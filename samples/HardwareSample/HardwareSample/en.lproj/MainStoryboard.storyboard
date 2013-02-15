@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a8-cQ-l83">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="gGw-dh-BDf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Find">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="find:" destination="2" eventType="touchUpInside" id="m6A-5e-zAb"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A10-JS-hfs">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="261" id="Mzv-lE-ZTs"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ss-13-KWH">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reset:" destination="2" eventType="touchUpInside" id="46M-uc-wFQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Radio strength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr7-h3-K9a">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0db" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHZ-8f-hzu">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-100db" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gw-Gw-3lC">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ready" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-zh-FtJ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-E7-GWt">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Read battery">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="requestReadBattery:" destination="2" eventType="touchUpInside" id="KBY-jz-gmZ"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sN-Zw-Nja"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnB-Uj-p7n">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWL-Er-FRc">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="3a8-cQ-l83" secondAttribute="trailing" type="default" id="1zl-cH-5e3"/>
+                            <constraint firstItem="MHZ-8f-hzu" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="18" id="4za-ut-kH3"/>
+                            <constraint firstAttribute="bottom" secondItem="MHZ-8f-hzu" secondAttribute="bottom" constant="195" id="5wL-VB-xni"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" type="default" id="AHt-j1-mh4"/>
+                            <constraint firstItem="3Gw-Gw-3lC" firstAttribute="baseline" secondItem="MHZ-8f-hzu" secondAttribute="baseline" type="default" id="AYw-1C-YNc"/>
+                            <constraint firstItem="3a8-cQ-l83" firstAttribute="top" secondItem="3" secondAttribute="top" constant="40" id="BEQ-9h-aEs"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="leading" secondItem="3a8-cQ-l83" secondAttribute="leading" type="default" id="BHR-np-n3r"/>
+                            <constraint firstAttribute="bottom" secondItem="A10-JS-hfs" secondAttribute="bottom" constant="220" id="DJC-qC-icw"/>
+                            <constraint firstAttribute="bottom" secondItem="fnB-Uj-p7n" secondAttribute="bottom" constant="31" id="EQA-Le-AWr"/>
+                            <constraint firstItem="A10-JS-hfs" firstAttribute="top" secondItem="cr7-h3-K9a" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="F1P-kR-hJb"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="centerX" secondItem="sYX-E7-GWt" secondAttribute="centerX" type="default" id="Fyk-4c-fam"/>
+                            <constraint firstAttribute="trailing" secondItem="XWL-Er-FRc" secondAttribute="trailing" constant="9" id="Hwj-bl-0MB"/>
+                            <constraint firstItem="pVZ-zh-FtJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="96" id="Iyn-JT-h07"/>
+                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="trailing" secondItem="MHZ-8f-hzu" secondAttribute="trailing" type="default" id="Jf8-L0-bf4"/>
+                            <constraint firstItem="cr7-h3-K9a" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" type="default" id="L0m-XP-zQi"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="128" id="NJG-c7-Lns"/>
+                            <constraint firstItem="3a8-cQ-l83" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="OU7-F2-nj8"/>
+                            <constraint firstAttribute="trailing" secondItem="3Gw-Gw-3lC" secondAttribute="trailing" constant="10" id="PPT-s0-Zt7"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="sYX-E7-GWt" secondAttribute="trailing" type="default" id="fAC-Gh-ySD"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="trailing" secondItem="A10-JS-hfs" secondAttribute="trailing" type="default" id="ifY-FV-3DU"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="centerX" secondItem="pVZ-zh-FtJ" secondAttribute="centerX" type="default" id="rxk-2x-8mu"/>
+                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="baseline" secondItem="XWL-Er-FRc" secondAttribute="baseline" type="default" id="sTK-FA-P1r"/>
+                            <constraint firstAttribute="bottom" secondItem="0sN-Zw-Nja" secondAttribute="bottom" constant="58" id="uLS-sv-2Hl"/>
+                            <constraint firstAttribute="bottom" secondItem="sYX-E7-GWt" secondAttribute="bottom" constant="87" id="yEV-ae-qRU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="batteryBar" destination="0sN-Zw-Nja" id="Zdg-mO-lsF"/>
+                        <outlet property="dbBar" destination="A10-JS-hfs" id="yYb-YH-9Zy"/>
+                        <outlet property="statusMessage" destination="pVZ-zh-FtJ" id="eCc-rs-NmO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="find:"/>
+                <relationship kind="action" name="requestReadBattery:"/>
+                <relationship kind="action" name="reset:"/>
+                <relationship kind="action" name="resetMonaka:"/>
+                <relationship kind="outlet" name="batteryBar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="dbBar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="statusMessage" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

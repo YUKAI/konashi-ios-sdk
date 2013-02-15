@@ -1,0 +1,4 @@
+samples/*/*.xcodeproj/*
+!samples/*/*.xcodeproj/project.pbxproj
+!samples/*/*.xcworkspace/contents.xcworkspacedata
+.DS_Store
