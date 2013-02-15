@@ -43,7 +43,7 @@ $ git clone git@github.com:YUKAI/konashi-ios-sdk.git
 
 検索ボックスに「bluetooth」と入力すると, `CoreBluetooth.framework` が表示されるので追加します。
 
-<img src="../img/getting_started/gs2.png" width="400" />
+<img src="http://konashi.ux-xu.com/img/getting_started/gs2.png" width="400" />
 
 #### 4. konashi ライブラリをプロジェクトに追加
 
