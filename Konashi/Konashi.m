@@ -1449,7 +1449,6 @@
             {
                 [characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
                 pioInput = byte[0];
-                NSLog(@"###%d", pioInput);
                 [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_PIO_INPUT];
                 
                 break;

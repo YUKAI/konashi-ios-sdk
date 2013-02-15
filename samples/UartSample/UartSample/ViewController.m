@@ -56,9 +56,7 @@
     [Konashi find];
 }
 
-- (IBAction)send:(id)sender {
-    unsigned char data = 'A';
-    
-    [Konashi uartWrite:data];
+- (IBAction)send:(id)sender {    
+    [Konashi uartWrite:'A'];
 }
 @end

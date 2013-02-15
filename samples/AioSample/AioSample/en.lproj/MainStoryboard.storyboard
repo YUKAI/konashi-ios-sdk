@@ -47,6 +47,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98K-QN-qG7">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="Zy3-ea-dk0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Read AIO0">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,20 +62,41 @@
                                     <action selector="requestReadAio0:" destination="2" eventType="touchUpInside" id="9ys-oX-fKL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCW-xN-I6e">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="eRo-yg-dc7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="V" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-x8-haQ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="19" id="s3R-6z-Weh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="98K-QN-qG7" firstAttribute="top" secondItem="3" secondAttribute="top" constant="198" id="1jK-Br-ln7"/>
-                            <constraint firstItem="rz0-IY-hNz" firstAttribute="top" secondItem="3" secondAttribute="top" constant="273" id="1lK-Uh-KG8"/>
+                            <constraint firstItem="98K-QN-qG7" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="8h7-oC-9vo"/>
                             <constraint firstItem="rPW-tp-0vw" firstAttribute="top" secondItem="3" secondAttribute="top" constant="122" id="DqI-Wg-2CI"/>
-                            <constraint firstItem="98K-QN-qG7" firstAttribute="centerX" secondItem="rPW-tp-0vw" secondAttribute="centerX" type="default" id="Hhh-lV-Asm"/>
-                            <constraint firstItem="rPW-tp-0vw" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="SW9-5Q-ra2"/>
+                            <constraint firstItem="Grj-x8-haQ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="240" id="MT4-q4-qHe"/>
+                            <constraint firstItem="98K-QN-qG7" firstAttribute="top" secondItem="3" secondAttribute="top" constant="183" id="bx6-Qy-fkT"/>
+                            <constraint firstAttribute="trailing" secondItem="Grj-x8-haQ" secondAttribute="trailing" constant="122" id="dFM-qc-IZ7"/>
                             <constraint firstItem="gGK-0S-Vie" firstAttribute="top" secondItem="3" secondAttribute="top" constant="57" id="fsZ-fu-i2c"/>
-                            <constraint firstItem="98K-QN-qG7" firstAttribute="centerX" secondItem="rz0-IY-hNz" secondAttribute="centerX" type="default" id="r3H-pQ-QFb"/>
+                            <constraint firstItem="98K-QN-qG7" firstAttribute="centerX" secondItem="rz0-IY-hNz" secondAttribute="centerX" type="default" id="h3H-9x-6Pm"/>
+                            <constraint firstItem="bCW-xN-I6e" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="104" id="m1G-sr-OBK"/>
+                            <constraint firstItem="Grj-x8-haQ" firstAttribute="baseline" secondItem="bCW-xN-I6e" secondAttribute="baseline" type="default" id="oTZ-mZ-TH7"/>
+                            <constraint firstItem="98K-QN-qG7" firstAttribute="centerX" secondItem="rPW-tp-0vw" secondAttribute="centerX" type="default" id="qUt-fQ-kGF"/>
+                            <constraint firstAttribute="bottom" secondItem="rz0-IY-hNz" secondAttribute="bottom" constant="196" id="rbf-0n-aP7"/>
                             <constraint firstItem="rPW-tp-0vw" firstAttribute="centerX" secondItem="gGK-0S-Vie" secondAttribute="centerX" type="default" id="s9W-vx-zsg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="adcValue" destination="bCW-xN-I6e" id="S4t-Dz-gro"/>
                         <outlet property="statusMessage" destination="rPW-tp-0vw" id="M7f-c8-FiM"/>
                     </connections>
                 </viewController>
@@ -91,6 +115,7 @@
                 <relationship kind="action" name="find:"/>
                 <relationship kind="action" name="requestReadAio0:"/>
                 <relationship kind="action" name="setVoltage1000:"/>
+                <relationship kind="outlet" name="adcValue" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="statusMessage" candidateClass="UILabel"/>
             </relationships>
         </class>
