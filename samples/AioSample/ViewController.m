@@ -66,6 +66,8 @@
 - (void) readAio0
 {
     NSLog(@"READ_AIO0: %d", [Konashi analogRead:AIO0]);
-    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:AIO0]/1000];}
+    
+    self.adcValue.text = [NSString stringWithFormat:"%.3f", (float)[Konashi analogRead:AIO0]/1000];
+}
 
 @end
