@@ -1,6 +1,7 @@
-<img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" />
-
+<a href="http://konashi.ux-xu.com"><img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" /></a><br/>
 physical computing toolkit for smartphones and tablets
+
+<a href="http://konashi.ux-xu.com">http://konashi.ux-xu.com</a>
 
 ___
 
