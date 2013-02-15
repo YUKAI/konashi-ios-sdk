@@ -2,7 +2,8 @@
 //  ViewController.m
 //  I2cSample
 //
-//  Created on 12/26/12.
+//  Drive I2C LCD - ACM1602NI
+//
 //  Copyright (c) 2012 Yukai Engineering. All rights reserved.
 //
 
