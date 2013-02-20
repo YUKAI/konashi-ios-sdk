@@ -84,7 +84,7 @@ control キーを押しながら、左側に表示されているボタンを、
 <img src="http://konashi.ux-xu.com/img/getting_started/gs6.png" width="500" />
 
 
-#### 5. ViewControllerのコードを書く
+#### 6. ViewControllerのコードを書く
 
 `ViewController.m` に以下のコードを書いてください。
 
@@ -127,18 +127,33 @@ control キーを押しながら、左側に表示されているボタンを、
 @end
 ```
 
-これでおしまいです。konashi にバッテリーを差し込むか microUSBケーブルを接続して、プロジェクトを Run してください。
+#### 7. iOS デバイスの Bluetooth を有効にする
+
+konashi は通信するために Bluetooth 4.0 (Bluetooth Low Energy) を使用します。ですので、アプリを実行する前に iOS デバイスの Bluetooth 機能を有効にします。(すでに有効になっている方はこの項目をスキップしてください)
+
+iOSデバイスの「設定」を開き、表示されたリストの中の「Bluetooth」を選択します。
+
+<img src="http://konashi.ux-xu.com/img/getting_started/gs7.png" width="300" />
+
+Bluetooth の項目が `オフ` になっている場合は `オン` に変更してください。デバイスに検索中という項目が表示されますが、konashiとは関係ないのでホームボタンを押して設定を終了します。
+
+<img src="http://konashi.ux-xu.com/img/getting_started/gs8.png" width="300" />
+
+#### 8. konashi をiOSデバイスから動かす
+
+用意は整いました！
+
+konashi にコイン電池を差し込むか microUSBケーブルを接続して konashi の電源を供給し、プロジェクトを Run してください。
 
 アプリが起動したら Find ボタンを押してみましょう。
 
 すると接続できる konashi のリストが表示されるので、接続する konashi を選択し、 Done ボタンをタップしてください。
 
-<img src="http://konashi.ux-xu.com/img/getting_started/gs7.png" width="300" />
+<img src="http://konashi.ux-xu.com/img/getting_started/gs9.png" width="300" />
 
 しばらくして LED2 が点灯すれば成功です！
 
-<img src="http://konashi.ux-xu.com/img/getting_started/gs8.png" width="500" />
-
+<img src="http://konashi.ux-xu.com/img/getting_started/gs10.png" width="500" />
 
 #### 次にやることは…
 
