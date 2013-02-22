@@ -157,7 +157,7 @@ konashi にコイン電池を差し込むか microUSBケーブルを接続して
 
 #### 次にやることは…
 
-<a href="{{site.url}}/documents/">Documents</a> に機能や関数の詳しい説明がありますのでご覧ください。
+<a href="http://konashi.ux-xu.com/documents/">Documents</a> に機能や関数の詳しい説明がありますのでご覧ください。
 
 また、<a href="https://github.com/YUKAI/konashi-ios-sdk/tree/master/samples">konashi-ios-sdk/samples</a> にすべての機能を網羅したサンプルがありますので、それを元に konashi を触っていくことをおすすめします。
 
