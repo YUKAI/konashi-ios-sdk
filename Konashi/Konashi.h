@@ -153,6 +153,7 @@
 // Konashi control methods
 + (int) initialize;
 + (int) find;
++ (int) findWithName:(NSString*)name;
 + (int) disconnect;
 + (BOOL) isConnected;
 
