@@ -34,6 +34,7 @@
 }
 
 - (IBAction)find:(id)sender {
+    //[Konashi findWithName:@"konashi#4-0001"];
     [Konashi find];
 }
 
