@@ -44,6 +44,11 @@
     return [[Konashi shared] _findModule:2];
 }
 
++ (int) findWithName:(NSString*)name
+{
+    return [[Konashi shared] _findModuleWithName:name timeout:2];
+}
+
 + (int) disconnect
 {
     return [[Konashi shared] _disconnectModule];
@@ -349,6 +354,47 @@
     
     return KONASHI_SUCCESS;
 }
+
+- (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
+    if(activePeripheral && activePeripheral.isConnected){
+        [cm cancelPeripheralConnection:activePeripheral];
+    }
+    if(peripherals) peripherals = nil;
+    
+    if (cm.state  != CBCentralManagerStatePoweredOn) {
+        KNS_LOG(@"CoreBluetooth not correctly initialized !");
+        KNS_LOG(@"State = %d (%@)", cm.state, [self centralManagerStateToString:cm.state]);
+        return KONASHI_FAILURE;
+    }
+    
+    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
+
+        
+    [cm scanForPeripheralsWithServices:nil options:0];
+    
+    return KONASHI_SUCCESS;
+}
+
+- (void) finishScanModuleWithName:(NSTimer *)timer
+{
+    [cm stopScan];
+    NSString *targetname = [timer userInfo];
+    KNS_LOG(@"Peripherals: %d", [peripherals count]);
+    BOOL targetIsExist = NO;
+    int indexOfTarget = 0;
+    if ( [peripherals count] > 0 ) {
+        for (int i = 0; i < [peripherals count]; i++) {
+            if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
+                targetIsExist = YES;
+                indexOfTarget = i;
+            }
+        }
+    }
+    if (targetIsExist) {
+        [self connectTargetPeripheral:indexOfTarget];
+    }
+}
+
 
 - (void) finishScanModule:(NSTimer *)timer
 {
@@ -1105,6 +1151,10 @@
     [pickerViewPopup_pad presentPopoverFromRect:CGRectMake(0, 0, 10, 10) inView:rootView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
+
+
+
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -1130,6 +1180,15 @@
 - (void) pushPickerCancel
 {
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+
+-(void)connectTargetPeripheral:(int)indexOfTarget{
+    
+
+    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
+    
+    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
 }
 
 - (void) pushPickerDone
