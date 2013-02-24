@@ -25,6 +25,7 @@
     NSLog(@"####isReady %d", [Konashi isReady]);
     
     [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+    [Konashi addObserver:self selector:@selector(disconnected) name:KONASHI_EVENT_DISCONNECTED];
     [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
 }
@@ -36,8 +37,8 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi findWithName:@"konashi#4-0960"];
-    //[Konashi find];
+    //[Konashi findWithName:@"konashi#4-0001"];
+    [Konashi find];
 }
 
 - (IBAction)disconnect:(id)sender {
@@ -72,6 +73,11 @@
 {
     NSLog(@"####isReady %d", [Konashi isReady]);
     NSLog(@"CONNECTED");
+}
+
+- (void) disconnected
+{
+    NSLog(@"DISCONNECTED");
 }
 
 - (void) ready

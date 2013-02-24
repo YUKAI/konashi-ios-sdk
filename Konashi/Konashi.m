@@ -406,10 +406,7 @@
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
 
     for (int i = 0; i < [peripherals count]; i++) {
-        NSLog(@"#####1 %@", [[peripherals objectAtIndex:i] name]);
-        NSLog(@"######2 %@", targetname);
         if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
-            NSLog(@"TEKJTL");
             [self connectPeripheral:[peripherals objectAtIndex:i]];
             return;
         }
@@ -1343,13 +1340,22 @@
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    KNS_LOG(@"Connection to peripheral with UUID : %@ successfull", [self UUIDToString:peripheral.UUID]);
+    KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", [self UUIDToString:peripheral.UUID]);
     
     activePeripheral = peripheral;
     
     [[Konashi shared] postNotification:KONASHI_EVENT_CONNECTED];
 
     [activePeripheral discoverServices:nil];
+}
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    KNS_LOG(@"Disconnect from the peripheral: %@", [peripheral name]);
+    
+    [[Konashi shared] _initializeKonashiVariables];
+    
+    [[Konashi shared] postNotification:KONASHI_EVENT_DISCONNECTED];
 }
 
 - (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2

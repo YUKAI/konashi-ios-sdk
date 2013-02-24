@@ -87,6 +87,7 @@
 
 // Konashi Events
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
+#define KONASHI_EVENT_DISCONNECTED @"KonashiEventDisconnected"
 #define KONASHI_EVENT_READY @"KonashiEventReady"
 
 #define KONASHI_EVENT_UPDATE_PIO_INPUT @"KonashiEventUpdatePioInput"
