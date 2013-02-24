@@ -37,13 +37,13 @@ Physical computing toolkit for smartphones and tablets
 [git-flow](https://github.com/nvie/gitflow) を使用しています。各ブランチの役割は以下です。
 
 - master
-  - リリース用のブランチです。GitHubでは master がデフォルトのブランチです。
+  - リリース用のブランチです。GitHubでは master ブランチがデフォルトのブランチです。
 - develop
   - 開発用のブランチです。
 - feature/***
-  - 新機能追加やバグ修正を行うブランチです。develop から feature ブランチを切り、開発が完了後に develop に merge します。
+  - 新機能追加やバグ修正を行うブランチです。develop ブランチから feature ブランチを切り、開発が完了後に develop ブランチに merge します。
 - release/v***
-  - リリース前ブランチです。develop ブランチから release ブランチを切り、テストが終わり次第 master にマージされます。(現在は基本的に origin に push されません)
+  - リリース前ブランチです。develop ブランチから release ブランチを切り、テストが終わり次第 master ブランチにマージされます。(現在は基本的に origin に push されません)
 
 
 ### タグの運用
@@ -63,10 +63,7 @@ Pull Request を送るにあたっての注意点は以下です。
 konashi のソフトウェアのソースコード、ハードウェアに関するドキュメント・ファイルのライセンスは以下です。
 
 - ソフトウェア
-  - konashi-ios-sdk は [Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) のもと公開されています。
+  - konashi-ios-sdk のソースコードは [Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) のもと公開されています。
 - ハードウェア
   - konashi の回路図などハードウェア関連のドキュメント・ファイルのライセンスは [クリエイティブ・コモンズ・ライセンス「表示-継承 2.1 日本」](http://creativecommons.org/licenses/by-sa/2.1/jp/deed.ja)です。これに従う場合に限り、自由に複製、頒布、二次的著作物を作成することができます。
 - konashi のBLEモジュールのファームウェアは [CSR](http://www.csr.com/) とのNDAがあり公開していません。
-
-## 免責事項
-- 定格など
