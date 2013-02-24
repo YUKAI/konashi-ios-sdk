@@ -363,6 +363,21 @@
     return KONASHI_SUCCESS;
 }
 
+- (void) finishScanModule:(NSTimer *)timer
+{
+    [cm stopScan];
+    
+    KNS_LOG(@"Peripherals: %d", [peripherals count]);
+    
+    if ( [peripherals count] > 0 ) {
+        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            [self showModulePickeriPad];    //iPad
+        } else {
+            [self showModulePicker];        //else
+        }
+    }
+}
+
 - (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
     if(activePeripheral && activePeripheral.isConnected){
         [cm cancelPeripheralConnection:activePeripheral];
@@ -376,8 +391,8 @@
     }
     
     [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
-
-        
+    
+    
     [cm scanForPeripheralsWithServices:nil options:0];
     
     return KONASHI_SUCCESS;
@@ -385,36 +400,18 @@
 
 - (void) finishScanModuleWithName:(NSTimer *)timer
 {
-    [cm stopScan];
     NSString *targetname = [timer userInfo];
-    KNS_LOG(@"Peripherals: %d", [peripherals count]);
-    BOOL targetIsExist = NO;
-    int indexOfTarget = 0;
-    if ( [peripherals count] > 0 ) {
-        for (int i = 0; i < [peripherals count]; i++) {
-            if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
-                targetIsExist = YES;
-                indexOfTarget = i;
-            }
-        }
-    }
-    if (targetIsExist) {
-        [self connectTargetPeripheral:indexOfTarget];
-    }
-}
-
-
-- (void) finishScanModule:(NSTimer *)timer
-{
+    
     [cm stopScan];
-    
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
-    
-    if ( [peripherals count] > 0 ) {
-        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-            [self showModulePickeriPad];    //iPad
-        } else {
-            [self showModulePicker];        //else
+
+    for (int i = 0; i < [peripherals count]; i++) {
+        NSLog(@"#####1 %@", [[peripherals objectAtIndex:i] name]);
+        NSLog(@"######2 %@", targetname);
+        if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
+            NSLog(@"TEKJTL");
+            [self connectPeripheral:[peripherals objectAtIndex:i]];
+            return;
         }
     }
 }
@@ -1198,15 +1195,6 @@
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-
--(void)connectTargetPeripheral:(int)indexOfTarget{
-    
-
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
-}
-
 - (void) pushPickerDone
 {
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
@@ -1366,7 +1354,12 @@
 
 - (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
 {
-    return 0;
+    CFUUIDBytes b1 = CFUUIDGetUUIDBytes(u1);
+    CFUUIDBytes b2 = CFUUIDGetUUIDBytes(u2);
+    if (memcmp(&b1, &b2, 16) == 0) {
+        return 1;
+    }
+    else return 0;
 }
 
 -(void) getAllServicesFromMoudle:(CBPeripheral *)p
@@ -1391,7 +1384,8 @@
 - (NSString*) UUIDToString:(CFUUIDRef)UUID
 {
     if (!UUID) return @"NULL";
-    return @"NULL";
+    CFStringRef s = CFUUIDCreateString(NULL, UUID);
+    return (__bridge NSString *)s;
 }
 
 -(int) compareCBUUID:(CBUUID *) UUID1 UUID2:(CBUUID *)UUID2

@@ -10,7 +10,7 @@
 
 
 // Debug
-#define KONASHI_DEBUGx
+#define KONASHI_DEBUG
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(...) NSLog(__VA_ARGS__)
