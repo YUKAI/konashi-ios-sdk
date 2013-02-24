@@ -26,7 +26,7 @@ Physical computing toolkit for smartphones and tablets
   - [https://github.com/YUKAI/konashi-ios-sdk/issues](https://github.com/YUKAI/konashi-ios-sdk/issues)
   - feature-requests、bug、discussion などのラベルをご使用ください。
 - Pull Request
-  - バグ見つけて修正しといたよ、というときは Pull Request を develop ブランチに送ってください。
+  - バグ見つけて修正しといたよ、というときは Pull Request を **develop ブランチ**に送ってください。
   - 詳細は ブランチの運用 をご覧ください。
 - “konashi" をキーワードにつぶやく
   - twitter で #konashi のハッシュをつけるか、 konashi というキーワードを使って tweet してください。
@@ -67,4 +67,5 @@ konashi のソフトウェアのソースコード、ハードウェアに関す
   - konashi-ios-sdk のソースコードは [Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) のもと公開されています。
 - ハードウェア
   - konashi の回路図などハードウェア関連のドキュメント・ファイルのライセンスは [クリエイティブ・コモンズ・ライセンス「表示-継承 2.1 日本」](http://creativecommons.org/licenses/by-sa/2.1/jp/deed.ja)です。これに従う場合に限り、自由に複製、頒布、二次的著作物を作成することができます。
-- konashi のBLEモジュールのファームウェアは [CSR](http://www.csr.com/) とのNDAがあり公開していません。
+  - 回路図のデータ(eagleライブラリ)は3月上旬公開予定です。
+- konashi のBLEモジュールのファームウェアは [CSR社](http://www.csr.com/) とのNDAのため公開しておりません。
