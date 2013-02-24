@@ -10,7 +10,7 @@
 
 
 // Debug
-#define KONASHI_DEBUGx
+#define KONASHI_DEBUG
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(...) NSLog(__VA_ARGS__)
@@ -87,6 +87,7 @@
 
 // Konashi Events
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
+#define KONASHI_EVENT_DISCONNECTED @"KonashiEventDisconnected"
 #define KONASHI_EVENT_READY @"KonashiEventReady"
 
 #define KONASHI_EVENT_UPDATE_PIO_INPUT @"KonashiEventUpdatePioInput"
@@ -139,6 +140,7 @@
     // Hardware
     int batteryLevel;
     int rssi;
+    BOOL isReady;
     
     // BLE
     NSMutableArray *peripherals;
@@ -156,6 +158,7 @@
 + (int) findWithName:(NSString*)name;
 + (int) disconnect;
 + (BOOL) isConnected;
++ (BOOL) isReady;
 
 // Digital PIO methods
 + (int) pinMode:(int)pin mode:(int)mode;

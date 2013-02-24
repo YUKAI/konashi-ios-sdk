@@ -1,163 +1,71 @@
 <a href="http://konashi.ux-xu.com"><img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" /></a><br/>
-physical computing toolkit for smartphones and tablets
+Physical computing toolkit for smartphones and tablets
 
-<a href="http://konashi.ux-xu.com">http://konashi.ux-xu.com</a>
+[http://konashi.ux-xu.com](http://konashi.ux-xu.com)<br/>
+[http://konashi-yukai.tumblr.com](http://konashi-yukai.tumblr.com)
 
-___
+---
 
 <img src="http://konashi.ux-xu.com/img/documents/i2c.png" width="600" />
 
-___
+---
+
 
 ## Getting Started
 
-ここでは、konashi に搭載されているLEDを点灯させる手順を説明します。
+- [公式ページの Getting Started](http://konashi.ux-xu.com/getting_started/)
+  - konashi の基板上の LED を点灯させるまで
+  
 
-(この Gettings Started で作られた xcode のプロジェクトは、konashi ライブラリの <a href="https://github.com/YUKAI/konashi-ios-sdk/tree/master/samples/GettingStarted" target="_blank"><code>konashi-ios-sdk/samples/GettingStarted</code></a> にあります。)
+## 開発について
 
-#### 0. 用意するもの
-- konashi
-- xcode最新版が動くMacbook, iMac
-- BLE搭載のiPhone もしくは iPad
-- iOS Developer Program (実機テストをする場合)
+### 機能要望やバグ報告をするには
+開発者に要望を伝える報告する方法は以下です。
 
-#### 1. konashi ライブラリを取得
-[GitHub](https://github.com/YUKAI/konashi-ios-sdk) のリポジトリを clone してください。
+- GitHub の Issues に投稿
+  - [https://github.com/YUKAI/konashi-ios-sdk/issues](https://github.com/YUKAI/konashi-ios-sdk/issues)
+  - feature-requests、bug、discussion などのラベルをご使用ください。
+- Pull Request
+  - バグ見つけて修正しといたよ、というときは Pull Request を **develop ブランチ**に送ってください。
+  - 詳細は ブランチの運用 をご覧ください。
+- “konashi" をキーワードにつぶやく
+  - twitter で #konashi のハッシュをつけるか、 konashi というキーワードを使って tweet してください。
+  - もしくは konashi をキーワードにブログに書いてください。
+- [contact@ux-xu.com](contact@ux-xu.com) にメールする
+  - メールでの報告も受け付けています。
+  
+### ブランチの運用
+[git-flow](https://github.com/nvie/gitflow) を使用しています。各ブランチの役割は以下です。
 
-```
-$ git clone git@github.com:YUKAI/konashi-ios-sdk.git
-```
-
-もしくは [こちらから最新版のライブラリをダウンロード](https://github.com/YUKAI/konashi-ios-sdk/archive/master.zip)してください。
-
-#### 2. xcode で新規プロジェクトを作成
-
-`Single View Application` のプロジェクトを作成します。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs0.png" width="500" />
-
-#### 3. Core Bluetooth Frameworkをプロジェクトに追加
-
-プロジェクトの「Targets」のサマリーを表示し、`Linked frameworks and Libraries` の＋ボタンをクリックします。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs1.png" width="500" />
-
-検索ボックスに「bluetooth」と入力すると, `CoreBluetooth.framework` が表示されるので追加します。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs2.png" width="400" />
-
-#### 4. konashi ライブラリをプロジェクトに追加
-
-1.で取得したソースの中にある`konashi-ios-sdk/Konashi` ディレクトリをプロジェクトにドラッグ&ドロップして追加します。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs3.png" width="500" />
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs4.png" width="500" />
+- master
+  - リリース用のブランチです。GitHubでは master ブランチがデフォルトのブランチです。
+- develop
+  - 開発用のブランチです。
+- feature/***
+  - 新機能追加やバグ修正を行うブランチです。develop ブランチから feature ブランチを切り、開発が完了後に develop ブランチに merge します。
+- release/v***
+  - リリース前ブランチです。develop ブランチから release ブランチを切り、テストが終わり次第 master ブランチにマージされます。(現在は基本的に origin に push されません)
 
 
-#### 5. 「konashi と接続する」ボタンを追加
+### タグの運用
+基本的にリリース時にバージョン名でタグを切ります。konashi 公式ページからリンクされる zip ダウンロード先は最新のリリースタグの zip です。
 
-konashi と接続するためのボタンをUIに追加します。
+タグ一覧は[こちら](https://github.com/YUKAI/konashi-ios-sdk/tags)。
 
-`MainStoryboard.storyboard` を開き、ボタンを ViewControllerに配置します。
+### Pull Request
+**規模の大小関わらず、バグ修正や機能追加などの Pull Request 大歓迎！**
 
-<img src="http://konashi.ux-xu.com/img/getting_started/gs5.png" width="500" />
+Pull Request を送るにあたっての注意点は以下です。
 
-次に、そのボタンを押した時に実行される関数を設定します。
+- 最新の develop ブランチから任意の名前でブランチを切り、実装後に develop ブランチに対して Pull Request を送ってください。
+  - master ブランチへの Pull Request は(なるべく)ご遠慮ください。
 
-右上の蝶ネクタイアイコンのボタンをクリックしてアシスタントエディタモードにし、右のソースコードを `ViewController.h` にします。そして以下のように `- (IBAction)find:(id)sender;` を追加してください。
+## ライセンス
+konashi のソフトウェアのソースコード、ハードウェアに関するドキュメント・ファイルのライセンスは以下です。
 
-```objc
-#import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-
-- (IBAction)find:(id)sender;   // add this line
-
-@end
-```
-
-最後にボタンのタップと関数を紐付けます。
-
-control キーを押しながら、左側に表示されているボタンを、右側の `- (IBAction)find:(id)sender;` にドラッグアンドドロップしてください。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs6.png" width="500" />
-
-
-#### 6. ViewControllerのコードを書く
-
-`ViewController.m` に以下のコードを書いてください。
-
-```objc
-#import "ViewController.h"
-#import "Konashi.h"
-
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)find:(id)sender {
-    [Konashi find];
-}
-
-- (void)ready
-{
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi digitalWrite:LED2 value:HIGH];
-}
-
-@end
-```
-
-#### 7. iOS デバイスの Bluetooth を有効にする
-
-konashi は通信するために Bluetooth 4.0 (Bluetooth Low Energy) を使用します。ですので、アプリを実行する前に iOS デバイスの Bluetooth 機能を有効にします。(すでに有効になっている方はこの項目をスキップしてください)
-
-iOSデバイスの「設定」を開き、表示されたリストの中の「Bluetooth」を選択します。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs7.png" width="300" />
-
-Bluetooth の項目が `オフ` になっている場合は `オン` に変更してください。デバイスに検索中という項目が表示されますが、konashiとは関係ないのでホームボタンを押して設定を終了します。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs8.png" width="300" />
-
-#### 8. konashi をiOSデバイスから動かす
-
-用意は整いました！
-
-konashi にコイン電池を差し込むか microUSBケーブルを接続して konashi の電源を供給し、プロジェクトを Run してください。
-
-アプリが起動したら Find ボタンを押してみましょう。
-
-すると接続できる konashi のリストが表示されるので、接続する konashi を選択し、 Done ボタンをタップしてください。
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs9.png" width="300" />
-
-しばらくして LED2 が点灯すれば成功です！
-
-<img src="http://konashi.ux-xu.com/img/getting_started/gs10.png" width="500" />
-
-#### 次にやることは…
-
-<a href="http://konashi.ux-xu.com/documents/">Documents</a> に機能や関数の詳しい説明がありますのでご覧ください。
-
-また、<a href="https://github.com/YUKAI/konashi-ios-sdk/tree/master/samples">konashi-ios-sdk/samples</a> にすべての機能を網羅したサンプルがありますので、それを元に konashi を触っていくことをおすすめします。
-
+- ソフトウェア
+  - konashi-ios-sdk のソースコードは [Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) のもと公開されています。
+- ハードウェア
+  - konashi の回路図などハードウェア関連のドキュメント・ファイルのライセンスは [クリエイティブ・コモンズ・ライセンス「表示-継承 2.1 日本」](http://creativecommons.org/licenses/by-sa/2.1/jp/deed.ja)です。これに従う場合に限り、自由に複製、頒布、二次的著作物を作成することができます。
+  - 回路図のデータ(eagleライブラリ)は3月上旬公開予定です。
+- konashi のBLEモジュールのファームウェアは [csr社](http://www.csr.com/) とのNDAのため公開しておりません。
