@@ -33,7 +33,7 @@ Physical computing toolkit for smartphones and tablets
   - もしくは konashi をキーワードにブログに書いてください。
 - [contact@ux-xu.com](contact@ux-xu.com) にメールする
   - メールでの報告も受け付けています。
-
+  
 ### ブランチの運用
 [git-flow](https://github.com/nvie/gitflow) を使用しています。各ブランチの役割は以下です。
 

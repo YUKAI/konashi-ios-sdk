@@ -16,16 +16,16 @@
 
 + (Konashi *) shared
 {
-    static Konashi *_monaka = nil;
+    static Konashi *_konashi = nil;
     
     @synchronized (self){
         static dispatch_once_t pred;
         dispatch_once(&pred, ^{
-            _monaka = [[Konashi alloc] init];
+            _konashi = [[Konashi alloc] init];
         });
     }
     
-    return _monaka;
+    return _konashi;
 }
 
 
@@ -57,6 +57,11 @@
 + (BOOL) isConnected
 {
     return [[Konashi shared] _isConnected];
+}
+
++ (BOOL) isReady
+{
+    return [[Konashi shared] _isReady];
 }
 
 
@@ -333,6 +338,9 @@
     
     // RSSI
     rssi = 0;
+    
+    // others
+    isReady = NO;
 }
 
 - (int) _findModule:(int) timeout
@@ -411,6 +419,41 @@
     }
 }
 
+- (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
+    if(activePeripheral && activePeripheral.isConnected){
+        [cm cancelPeripheralConnection:activePeripheral];
+    }
+    if(peripherals) peripherals = nil;
+    
+    if (cm.state  != CBCentralManagerStatePoweredOn) {
+        KNS_LOG(@"CoreBluetooth not correctly initialized !");
+        KNS_LOG(@"State = %d (%@)", cm.state, [self centralManagerStateToString:cm.state]);
+        return KONASHI_FAILURE;
+    }
+    
+    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
+    
+    
+    [cm scanForPeripheralsWithServices:nil options:0];
+    
+    return KONASHI_SUCCESS;
+}
+
+- (void) finishScanModuleWithName:(NSTimer *)timer
+{
+    NSString *targetname = [timer userInfo];
+    
+    [cm stopScan];
+    KNS_LOG(@"Peripherals: %d", [peripherals count]);
+
+    for (int i = 0; i < [peripherals count]; i++) {
+        if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
+            [self connectPeripheral:[peripherals objectAtIndex:i]];
+            return;
+        }
+    }
+}
+
 - (void) connectPeripheral:(CBPeripheral *)peripheral
 {
 #ifdef KONASHI_DEBUG
@@ -426,6 +469,9 @@
 - (void) readyModule
 {
     CBPeripheral *p = activePeripheral;
+    
+    // set konashi property
+    isReady = YES;
     
     [[Konashi shared] postNotification:KONASHI_EVENT_READY];
     
@@ -450,6 +496,11 @@
 - (BOOL) _isConnected
 {
     return (activePeripheral && activePeripheral.isConnected);
+}
+
+- (BOOL) _isReady
+{
+    return isReady;
 }
 
 
@@ -1339,7 +1390,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    KNS_LOG(@"Connection to peripheral with UUID : %@ successfull", [self UUIDToString:peripheral.UUID]);
+    KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", [self UUIDToString:peripheral.UUID]);
     
     activePeripheral = peripheral;
     
@@ -1348,9 +1399,23 @@
     [activePeripheral discoverServices:nil];
 }
 
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    KNS_LOG(@"Disconnect from the peripheral: %@", [peripheral name]);
+    
+    [[Konashi shared] _initializeKonashiVariables];
+    
+    [[Konashi shared] postNotification:KONASHI_EVENT_DISCONNECTED];
+}
+
 - (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
 {
-    return 0;
+    CFUUIDBytes b1 = CFUUIDGetUUIDBytes(u1);
+    CFUUIDBytes b2 = CFUUIDGetUUIDBytes(u2);
+    if (memcmp(&b1, &b2, 16) == 0) {
+        return 1;
+    }
+    else return 0;
 }
 
 -(void) getAllServicesFromMoudle:(CBPeripheral *)p
@@ -1375,7 +1440,8 @@
 - (NSString*) UUIDToString:(CFUUIDRef)UUID
 {
     if (!UUID) return @"NULL";
-    return @"NULL";
+    CFStringRef s = CFUUIDCreateString(NULL, UUID);
+    return (__bridge NSString *)s;
 }
 
 -(int) compareCBUUID:(CBUUID *) UUID1 UUID2:(CBUUID *)UUID2
