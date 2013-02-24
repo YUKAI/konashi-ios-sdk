@@ -139,6 +139,7 @@
     // Hardware
     int batteryLevel;
     int rssi;
+    BOOL isReady;
     
     // BLE
     NSMutableArray *peripherals;
@@ -156,6 +157,7 @@
 + (int) findWithName:(NSString*)name;
 + (int) disconnect;
 + (BOOL) isConnected;
++ (BOOL) isReady;
 
 // Digital PIO methods
 + (int) pinMode:(int)pin mode:(int)mode;

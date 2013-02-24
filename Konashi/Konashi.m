@@ -16,16 +16,16 @@
 
 + (Konashi *) shared
 {
-    static Konashi *_monaka = nil;
+    static Konashi *_konashi = nil;
     
     @synchronized (self){
         static dispatch_once_t pred;
         dispatch_once(&pred, ^{
-            _monaka = [[Konashi alloc] init];
+            _konashi = [[Konashi alloc] init];
         });
     }
     
-    return _monaka;
+    return _konashi;
 }
 
 
@@ -57,6 +57,11 @@
 + (BOOL) isConnected
 {
     return [[Konashi shared] _isConnected];
+}
+
++ (BOOL) isReady
+{
+    return [[Konashi shared] _isReady];
 }
 
 
@@ -333,6 +338,9 @@
     
     // RSSI
     rssi = 0;
+    
+    // others
+    isReady = NO;
 }
 
 - (int) _findModule:(int) timeout
@@ -427,6 +435,9 @@
 {
     CBPeripheral *p = activePeripheral;
     
+    // set konashi property
+    isReady = YES;
+    
     [[Konashi shared] postNotification:KONASHI_EVENT_READY];
     
     // Enable PIO input notification
@@ -450,6 +461,11 @@
 - (BOOL) _isConnected
 {
     return (activePeripheral && activePeripheral.isConnected);
+}
+
+- (BOOL) _isReady
+{
+    return isReady;
 }
 
 
