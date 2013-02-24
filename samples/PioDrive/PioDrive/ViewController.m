@@ -22,6 +22,8 @@
     
     [Konashi initialize];
     
+    NSLog(@"####isReady %d", [Konashi isReady]);
+    
     [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
     [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
@@ -68,11 +70,13 @@
 
 - (void) connected
 {
+    NSLog(@"####isReady %d", [Konashi isReady]);
     NSLog(@"CONNECTED");
 }
 
 - (void) ready
 {
+    NSLog(@"####isReady %d", [Konashi isReady]);
     NSLog(@"READY");
     
     // Show buttons
