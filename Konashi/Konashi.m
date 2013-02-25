@@ -403,7 +403,6 @@
     }
 }
 
-
 - (void) finishScanModule:(NSTimer *)timer
 {
     [cm stopScan];
@@ -415,41 +414,6 @@
             [self showModulePickeriPad];    //iPad
         } else {
             [self showModulePicker];        //else
-        }
-    }
-}
-
-- (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
-    if(activePeripheral && activePeripheral.isConnected){
-        [cm cancelPeripheralConnection:activePeripheral];
-    }
-    if(peripherals) peripherals = nil;
-    
-    if (cm.state  != CBCentralManagerStatePoweredOn) {
-        KNS_LOG(@"CoreBluetooth not correctly initialized !");
-        KNS_LOG(@"State = %d (%@)", cm.state, [self centralManagerStateToString:cm.state]);
-        return KONASHI_FAILURE;
-    }
-    
-    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
-    
-    
-    [cm scanForPeripheralsWithServices:nil options:0];
-    
-    return KONASHI_SUCCESS;
-}
-
-- (void) finishScanModuleWithName:(NSTimer *)timer
-{
-    NSString *targetname = [timer userInfo];
-    
-    [cm stopScan];
-    KNS_LOG(@"Peripherals: %d", [peripherals count]);
-
-    for (int i = 0; i < [peripherals count]; i++) {
-        if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
-            [self connectPeripheral:[peripherals objectAtIndex:i]];
-            return;
         }
     }
 }
