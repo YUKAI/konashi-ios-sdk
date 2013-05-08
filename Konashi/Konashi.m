@@ -1338,7 +1338,7 @@
         peripherals = [NSMutableArray array];
     }
     
-    for(int i = 0; i < peripherals.count; i++) {
+    /*for(int i = 0; i < peripherals.count; i++) {
         CBPeripheral *p = [peripherals objectAtIndex:i];
         
         if ([self UUIDSAreEqual:p.UUID u2:peripheral.UUID]) {
@@ -1346,7 +1346,7 @@
             KNS_LOG(@"Duplicate UUID found updating ...");
             return;
         }
-    }
+    }*/
 
     [self->peripherals addObject:peripheral];    
     KNS_LOG(@"New UUID, adding:%@", peripheral.name);
