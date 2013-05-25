@@ -1,8 +1,6 @@
 //
 //  Konashi.m
 //
-//  Copyright (c) 2012 YUKAI Engineering. All rights reserved.
-//
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -41,12 +39,12 @@
 
 + (int) find
 {
-    return [[Konashi shared] _findModule:2];
+    return [[Konashi shared] _findModule:KONASHI_FIND_TIMEOUT];
 }
 
 + (int) findWithName:(NSString*)name
 {
-    return [[Konashi shared] _findModuleWithName:name timeout:2];
+    return [[Konashi shared] _findModuleWithName:name timeout:KONASHI_FIND_TIMEOUT];
 }
 
 + (int) disconnect
@@ -62,6 +60,11 @@
 + (BOOL) isReady
 {
     return [[Konashi shared] _isReady];
+}
+
++ (NSString *) peripheralName
+{
+    return [[Konashi shared] _peripheralName];
 }
 
 
@@ -295,11 +298,13 @@
 
 - (int) _initializeKonashi
 {
-    cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
-    
-    [self _initializeKonashiVariables];
-    
-    return KONASHI_SUCCESS;
+    if(!cm){
+        cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
+        [self _initializeKonashiVariables];
+        return KONASHI_SUCCESS;
+    } else {
+        return KONASHI_FAILURE;
+    }
 }
 
 - (void) _initializeKonashiVariables
@@ -341,20 +346,26 @@
     
     // others
     isReady = NO;
+    isCallFind = NO;
+    findName = @"";
 }
 
 - (int) _findModule:(int) timeout
 {
     if(activePeripheral && activePeripheral.isConnected){
-        [cm cancelPeripheralConnection:activePeripheral];
+        return KONASHI_FAILURE;
     }
-    if(peripherals) peripherals = nil;
-    
+        
     if (cm.state  != CBCentralManagerStatePoweredOn) {
         KNS_LOG(@"CoreBluetooth not correctly initialized !");
         KNS_LOG(@"State = %d (%@)", cm.state, [self centralManagerStateToString:cm.state]);
-        return KONASHI_FAILURE;
+        
+        isCallFind = YES;
+        
+        return KONASHI_SUCCESS;
     }
+    
+    if(peripherals) peripherals = nil;
     
     [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModule:) userInfo:nil repeats:NO];
     
@@ -365,15 +376,20 @@
 
 - (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
     if(activePeripheral && activePeripheral.isConnected){
-        [cm cancelPeripheralConnection:activePeripheral];
+        return KONASHI_FAILURE;
     }
-    if(peripherals) peripherals = nil;
-    
+        
     if (cm.state  != CBCentralManagerStatePoweredOn) {
         KNS_LOG(@"CoreBluetooth not correctly initialized !");
         KNS_LOG(@"State = %d (%@)", cm.state, [self centralManagerStateToString:cm.state]);
-        return KONASHI_FAILURE;
+        
+        isCallFind = YES;
+        findName = name;
+        
+        return KONASHI_SUCCESS;
     }
+    
+    if(peripherals) peripherals = nil;
     
     [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
 
@@ -467,6 +483,14 @@
     return isReady;
 }
 
+- (NSString *) _peripheralName
+{
+    if(activePeripheral && activePeripheral.isConnected){
+        return activePeripheral.name;
+    } else {
+        return @"";
+    }
+}
 
 
 #pragma mark -
@@ -1328,6 +1352,24 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     KNS_LOG(@"Status of CoreBluetooth central manager changed %d (%@)\r\n", central.state, [self centralManagerStateToString:central.state]);
+
+    if (central.state == CBCentralManagerStatePoweredOn) {
+        [[Konashi shared] postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+        
+        // Check already find
+        if(isCallFind){
+            isCallFind = NO;
+
+            if([findName length] > 0){
+                KNS_LOG(@"Try findWithName");
+                [Konashi findWithName:findName];
+                findName = @"";
+            } else {
+                KNS_LOG(@"Try find");
+                [Konashi find];
+            }
+        }
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
