@@ -1,8 +1,6 @@
 //
 //  Konashi.h
 //
-//  Copyright (c) 2012 YUKAI Engineering. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>

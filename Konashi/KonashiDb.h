@@ -1,8 +1,6 @@
 //
 //  KonashiDb.h
 //
-//  Copyright (c) 2012 YUKAI Engineering. All rights reserved.
-//
 
 #ifndef KONASHI_DB
 #define KONASHI_DB

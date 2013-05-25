@@ -1,8 +1,6 @@
 //
 //  Konashi.m
 //
-//  Copyright (c) 2012 YUKAI Engineering. All rights reserved.
-//
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -295,11 +293,13 @@
 
 - (int) _initializeKonashi
 {
-    cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
-    
-    [self _initializeKonashiVariables];
-    
-    return KONASHI_SUCCESS;
+    if(!cm){
+        cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
+        [self _initializeKonashiVariables];
+        return KONASHI_SUCCESS;
+    } else {
+        return KONASHI_FAILURE;
+    }
 }
 
 - (void) _initializeKonashiVariables
