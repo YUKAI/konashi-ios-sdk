@@ -62,6 +62,11 @@
     return [[Konashi shared] _isReady];
 }
 
++ (NSString *) peripheralName
+{
+    return [[Konashi shared] _peripheralName];
+}
+
 
 
 #pragma mark -
@@ -478,6 +483,14 @@
     return isReady;
 }
 
+- (NSString *) _peripheralName
+{
+    if(activePeripheral && activePeripheral.isConnected){
+        return activePeripheral.name;
+    } else {
+        return @"";
+    }
+}
 
 
 #pragma mark -
@@ -1344,7 +1357,6 @@
         [[Konashi shared] postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
         
         // Check already find
-        NSLog(@"UNKO");
         if(isCallFind){
             isCallFind = NO;
 

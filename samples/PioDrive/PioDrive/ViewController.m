@@ -79,7 +79,7 @@
 
 - (void) ready
 {
-    NSLog(@"READY isReady:%d", [Konashi isReady]);
+    NSLog(@"READY peripheral name:%@", [Konashi peripheralName]);
     
     // Show buttons
     self.led3.hidden = NO;

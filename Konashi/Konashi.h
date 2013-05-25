@@ -8,7 +8,7 @@
 
 
 // Debug
-#define KONASHI_DEBUG
+#define KONASHI_DEBUGx
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(...) NSLog(__VA_ARGS__)
@@ -164,6 +164,7 @@
 + (int) disconnect;
 + (BOOL) isConnected;
 + (BOOL) isReady;
++ (NSString *)peripheralName;
 
 // Digital PIO methods
 + (int) pinMode:(int)pin mode:(int)mode;
