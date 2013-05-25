@@ -8,7 +8,7 @@
 
 
 // Debug
-#define KONASHI_DEBUGx
+#define KONASHI_DEBUG
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(...) NSLog(__VA_ARGS__)
@@ -84,6 +84,8 @@
 #define KONASHI_UART_ENABLE 1
 
 // Konashi Events
+#define KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON @"KonashiEventCentralManagerPoweredOn"
+
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
 #define KONASHI_EVENT_DISCONNECTED @"KonashiEventDisconnected"
 #define KONASHI_EVENT_READY @"KonashiEventReady"
@@ -102,6 +104,7 @@
 #define KONASHI_EVENT_UPDATE_BATTERY_LEVEL @"KonashiEventUpdateBatteryLevel"
 #define KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH @"KonashiEventUpdateSignalStrength"
 
+#define KONASHI_FIND_TIMEOUT 2
 
 // Konashi interface
 @interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
@@ -109,7 +112,12 @@
     UIActionSheet *pickerViewPopup;
     UIPopoverController *pickerViewPopup_pad;
     UIPickerView *picker;
-    
+
+    // status
+    BOOL isCallFind;
+    NSString *findName;
+    BOOL isReady;
+
     // Digital PIO
     unsigned char pioSetting;
     unsigned char pioPullup;
@@ -138,7 +146,6 @@
     // Hardware
     int batteryLevel;
     int rssi;
-    BOOL isReady;
     
     // BLE
     NSMutableArray *peripherals;

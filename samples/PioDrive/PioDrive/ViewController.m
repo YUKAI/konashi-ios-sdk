@@ -18,13 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     [Konashi initialize];
+    //[Konashi findWithName:@"konashi#4-0452"];
     
-    NSLog(@"####isReady %d", [Konashi isReady]);
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+    //[Konashi addObserver:self selector:@selector(cmPoweredOn) name:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
     [Konashi addObserver:self selector:@selector(disconnected) name:KONASHI_EVENT_DISCONNECTED];
     [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
@@ -69,11 +67,10 @@
     [Konashi digitalWrite:LED5 value:HIGH];
 }
 
-- (void) connected
+/*- (void) cmPoweredOn
 {
-    NSLog(@"####isReady %d", [Konashi isReady]);
-    NSLog(@"CONNECTED");
-}
+    [Konashi find];
+}*/
 
 - (void) disconnected
 {
@@ -82,8 +79,7 @@
 
 - (void) ready
 {
-    NSLog(@"####isReady %d", [Konashi isReady]);
-    NSLog(@"READY");
+    NSLog(@"READY isReady:%d", [Konashi isReady]);
     
     // Show buttons
     self.led3.hidden = NO;
