@@ -23,6 +23,7 @@
     //[Konashi findWithName:@"konashi#4-0452"];
     
     //[Konashi addObserver:self selector:@selector(cmPoweredOn) name:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+    //[Konashi addObserver:self selector:@selector(peripheralNotFound) name:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     [Konashi addObserver:self selector:@selector(disconnected) name:KONASHI_EVENT_DISCONNECTED];
     [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
@@ -70,6 +71,11 @@
 /*- (void) cmPoweredOn
 {
     [Konashi find];
+}*/
+
+/*- (void) peripheralNotFound
+{
+    NSLog(@"peripheralNotFound :-(");
 }*/
 
 - (void) disconnected

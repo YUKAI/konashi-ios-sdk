@@ -86,6 +86,8 @@
 // Konashi Events
 #define KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON @"KonashiEventCentralManagerPoweredOn"
 
+#define KONASHI_EVENT_PERIPHERAL_NOT_FOUND @"KonashiEventPeripheralNotFound"
+
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
 #define KONASHI_EVENT_DISCONNECTED @"KonashiEventDisconnected"
 #define KONASHI_EVENT_READY @"KonashiEventReady"

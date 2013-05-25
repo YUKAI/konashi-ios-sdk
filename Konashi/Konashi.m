@@ -416,6 +416,8 @@
     }
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
+    } else {
+        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     }
 }
 
