@@ -98,6 +98,8 @@
     [Konashi pinMode:LED3 mode:OUTPUT];
     [Konashi pinMode:LED4 mode:OUTPUT];
     [Konashi pinMode:LED5 mode:OUTPUT];
+    
+    //[Konashi pinModeAll:0b11111110];
 }
 
 - (void) updatePioInput
