@@ -10,6 +10,20 @@ Physical computing toolkit for smartphones and tablets
 
 ---
 
+## CocoaPods に対応しました
+以下の様な Podfile を作成。(ios6.1を指定)
+
+```
+platform :ios, "6.1"
+pod "konashi-ios-sdk"
+```
+
+そして
+
+```
+$ pod install
+```
+
 
 ## Getting Started
 
