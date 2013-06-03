@@ -444,6 +444,7 @@
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
     
     if ( [peripherals count] > 0 ) {
+        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
         if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
             [self showModulePickeriPad];    //iPad
         } else {

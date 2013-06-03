@@ -103,6 +103,7 @@
 // Konashi Events
 #define KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON @"KonashiEventCentralManagerPoweredOn"
 
+#define KONASHI_EVENT_PERIPHERAL_FOUND @"KonashiEventPeripheralFound"
 #define KONASHI_EVENT_PERIPHERAL_NOT_FOUND @"KonashiEventPeripheralNotFound"
 
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
