@@ -106,6 +106,7 @@
 #define KONASHI_EVENT_PERIPHERAL_FOUND @"KonashiEventPeripheralFound"
 #define KONASHI_EVENT_PERIPHERAL_NOT_FOUND @"KonashiEventPeripheralNotFound"
 #define KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE @"KonashiEventNoPeripheralsAvailable"
+#define KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED @"KonashiEventPeripheralSelectorDismissed"
 
 #define KONASHI_EVENT_CONNECTED @"KonashiEventConnected"
 #define KONASHI_EVENT_DISCONNECTED @"KonashiEventDisconnected"

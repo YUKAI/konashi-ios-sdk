@@ -1230,6 +1230,7 @@
 - (void) pushPickerCancel
 {
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
+    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone
@@ -1246,6 +1247,7 @@
 - (void) pushPickerCancel_pad
 {
     [pickerViewPopup_pad dismissPopoverAnimated:YES];
+    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone_pad
