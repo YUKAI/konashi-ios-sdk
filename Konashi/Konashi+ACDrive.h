@@ -23,14 +23,18 @@
 
 #define KONASHI_AC_PIN_CTRL PIO0
 #define KONASHI_AC_PIN_FREQ PIO1
+
+#define KONASHI_AC_MODE_ONOFF 0
+#define KONASHI_AC_MODE_PWM 1
+
 #define KONASHI_PWM_AC_PERIOD 10000
+
 #define KONASHI_AC_FREQ_50HZ 50
 #define KONASHI_AC_FREQ_60HZ 60
 
 @interface Konashi (ACDrive)
 
-+ (int)initACDrive:(int)freq;
-+ (int)initPWMACDrive:(int)freq;
++ (int)initACDrive:(int)mode freq:(int)freq;
 + (int)updateACDriveDuty:(float)ratio;
 + (int)selectACDriveFreq:(int)freq;
 + (int)onACDrive;

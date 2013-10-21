@@ -64,7 +64,7 @@ static uint8_t powerMode;
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
         return KONASHI_FAILURE;
     }
-    powerMode=mode<<2;
+    powerMode=mode;
     [Konashi i2cStartCondition];
     [Konashi i2cWrite:1 data:&powerMode address:adcAddress];
     return [Konashi i2cStopCondition];

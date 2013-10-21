@@ -25,19 +25,21 @@
 
 static int ACDriveMode;
 
-+ (int)initACDrive:(int)freq
++ (int)initACDrive:(int)mode freq:(int)freq
 {
-    ACDriveMode=0;
-    [Konashi selectACDriveFreq:freq];
-    return [Konashi pinMode:KONASHI_AC_PIN_CTRL mode:OUTPUT];
-}
-
-+ (int)initPWMACDrive:(int)freq
-{
-    ACDriveMode=1;
-    [Konashi selectACDriveFreq:freq];
-    [Konashi pwmMode:KONASHI_AC_PIN_CTRL mode:KONASHI_PWM_ENABLE];
-    return [Konashi pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
+    ACDriveMode=mode;
+    if(mode==0){
+        [Konashi selectACDriveFreq:freq];
+        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:OUTPUT];
+        return [Konashi pinMode:KONASHI_AC_PIN_CTRL mode:OUTPUT];
+    } else if(mode==1) {
+        [Konashi selectACDriveFreq:freq];
+        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:OUTPUT];
+        [Konashi pwmMode:KONASHI_AC_PIN_CTRL mode:KONASHI_PWM_ENABLE];
+        return [Konashi pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
+    } else {
+        return KONASHI_FAILURE;
+    }
 }
 
 + (int)onACDrive

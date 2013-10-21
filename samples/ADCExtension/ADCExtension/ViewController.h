@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    NSTimer *timer;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *adcValueLabel;
 

@@ -44,7 +44,7 @@
 
 - (void)ready {
     NSLog(@"Ready");
-    [Konashi initPWMACDrive:KONASHI_AC_FREQ_50HZ];
+    [Konashi initACDrive:KONASHI_AC_MODE_PWM freq:KONASHI_AC_FREQ_50HZ];
 }
 
 - (IBAction)find:(id)sender {

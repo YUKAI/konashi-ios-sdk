@@ -24,6 +24,9 @@
     [Konashi initialize];
     [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     [Konashi addObserver:self selector:@selector(completeI2cRead) name:KONASHI_EVENT_I2C_READ_COMPLETE];
+    
+    timer=[NSTimer scheduledTimerWithTimeInterval:0.9f target:self selector:@selector(readValue) userInfo:nil repeats:YES];
+    [timer fire];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,14 +38,20 @@
 - (void)ready{
     NSLog(@"Ready");
     [Konashi initADC:KONASHI_ADC_ADDR_00];
+    [Konashi selectPowerMode:KONASHI_ADC_REFON_ADCON];
 }
 
 - (void)completeI2cRead{
     uint8_t val[2];
+    [Konashi i2cStopCondition];
     [Konashi i2cRead:2 data:val];
     int amp=val[0]*256+val[1];
     [adcValueLabel setText:[NSString stringWithFormat:@"%d",amp]];
     NSLog(@"ADC Value: %d\n",amp);
+}
+
+- (void)readValue{
+    [Konashi readFromADCWithChannel:KONASHI_ADC_CH0];
 }
 
 - (IBAction)find:(id)sender {
