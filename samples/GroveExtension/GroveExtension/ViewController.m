@@ -48,7 +48,7 @@
 
 - (void)readBrightness
 {
-    [Konashi readFromGroveAnalogPort:A0];
+    [Konashi readGroveAnalogPort:A0];
 }
 
 - (IBAction)find:(id)sender {

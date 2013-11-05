@@ -34,7 +34,7 @@ static uint8_t powerMode;
     return [Konashi i2cMode:KONASHI_I2C_ENABLE_400K];
 }
 
-+ (int)readFromADCWithChannel:(uint8_t)channel{
++ (int)readADCWithChannel:(uint8_t)channel{
     if(channel>KONASHI_ADC_CH7 ||
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
         return KONASHI_FAILURE;
@@ -47,7 +47,7 @@ static uint8_t powerMode;
     return [Konashi i2cReadRequest:2 address:adcAddress];
 }
 
-+ (int)readDiffFromADCWithChannels:(uint8_t)channels{
++ (int)readDiffADCWithChannels:(uint8_t)channels{
     if(channels>KONASHI_ADC_CH7_CH6 ||
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
         return KONASHI_FAILURE;

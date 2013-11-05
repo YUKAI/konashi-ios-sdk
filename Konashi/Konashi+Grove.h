@@ -42,9 +42,9 @@
 
 @interface Konashi (Grove)
 
-+ (int)readFromGroveDigitalPort:(int)port;
-+ (int)writeToGroveDigitalPort:(int)port value:(int)value;
-+ (int)readFromGroveAnalogPort:(int)port;
-+ (int)writeToGroveAnalogPort:(int)port milliVolt:(int)milliVolt;
++ (int)readGroveDigitalPort:(int)port;
++ (int)writeGroveDigitalPort:(int)port value:(int)value;
++ (int)readGroveAnalogPort:(int)port;
++ (int)writeGroveAnalogPort:(int)port milliVolt:(int)milliVolt;
 
 @end

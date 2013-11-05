@@ -51,7 +51,7 @@
 }
 
 - (void)readValue{
-    [Konashi readFromADCWithChannel:KONASHI_ADC_CH0];
+    [Konashi readADCWithChannel:KONASHI_ADC_CH0];
 }
 
 - (IBAction)find:(id)sender {

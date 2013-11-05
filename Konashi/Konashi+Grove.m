@@ -23,17 +23,17 @@
 
 @implementation Konashi (Grove)
 
-+ (int)readFromGroveDigitalPort:(int)port {
++ (int)readGroveDigitalPort:(int)port {
     return [Konashi digitalRead:port];
 }
-+ (int)writeToGroveDigitalPort:(int)port value:(int)value {
++ (int)writeGroveDigitalPort:(int)port value:(int)value {
     return [Konashi digitalWrite:port value:value];
 }
 
-+ (int)readFromGroveAnalogPort:(int)port {
++ (int)readGroveAnalogPort:(int)port {
     return [Konashi analogReadRequest:port];
 }
-+ (int)writeToGroveAnalogPort:(int)port milliVolt:(int)milliVolt {
++ (int)writeGroveAnalogPort:(int)port milliVolt:(int)milliVolt {
     return [Konashi analogWrite:port milliVolt:milliVolt];
 }
 

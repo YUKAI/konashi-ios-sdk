@@ -35,9 +35,9 @@
 @interface Konashi (ACDrive)
 
 + (int)initACDrive:(int)mode freq:(int)freq;
-+ (int)updateACDriveDuty:(float)ratio;
-+ (int)selectACDriveFreq:(int)freq;
 + (int)onACDrive;
 + (int)offACDrive;
++ (int)updateACDriveDuty:(float)ratio;
++ (int)selectACDriveFreq:(int)freq;
 
 @end
