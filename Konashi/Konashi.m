@@ -534,7 +534,7 @@
 
 - (KonashiResultState) _pinMode:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)){
         // Set value
         if(mode == KonashiPinModeOutput){
             pioSetting |= 0x01 << pin;
@@ -586,7 +586,7 @@
 
 - (KonashiResultState) _pinPullup:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPinModePullup || mode == KonashiPinModeNoPulls)){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModePullup || mode == KonashiPinModeNoPulls)){
         // Set value
         if(mode == KonashiPinModePullup){
             pioPullup |= 0x01 << pin;
@@ -637,7 +637,7 @@
 
 - (int) _digitalRead:(int)pin
 {
-    if(pin >= PIO0 && pin <= PIO7){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7){
         return (pioInput >> pin) & 0x01;
     }
     else{
@@ -653,7 +653,7 @@
 
 - (KonashiResultState) _digitalWrite:(int)pin value:(int)value
 {
-    if(pin >= PIO0 && pin <= PIO7 && (value == KonashiLevelHigh || value == KonashiLevelLow)){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (value == KonashiLevelHigh || value == KonashiLevelLow)){
         // Set value
         if(value == KonashiLevelHigh){
             pioOutput |= 0x01 << pin;
@@ -713,7 +713,7 @@
 
 - (KonashiResultState) _pwmMode:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPwmModeDisable || mode == KonashiPwmModeEnable || mode == KonashiPwmModeEnableLED )){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPwmModeDisable || mode == KonashiPwmModeEnable || mode == KonashiPwmModeEnableLED )){
         // Set value
         if(mode == KonashiPwmModeEnable || mode == KonashiPwmModeEnableLED){
             pwmSetting |= 0x01 << pin;
@@ -756,7 +756,7 @@
 
 - (KonashiResultState) _pwmPeriod:(int)pin period:(unsigned int)period
 {
-    if(pin >= PIO0 && pin <= PIO7 && pwmDuty[pin] <= period){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && pwmDuty[pin] <= period){
         pwmPeriod[pin] = period;
         return [self _writeValuePwmPeriod:pin];
     }
@@ -789,7 +789,7 @@
 
 - (KonashiResultState) _pwmDuty:(int)pin duty:(unsigned int)duty
 {
-    if(pin >= PIO0 && pin <= PIO7 && duty <= pwmPeriod[pin]){
+    if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && duty <= pwmPeriod[pin]){
         pwmDuty[pin] = duty;
         return [self _writeValuePwmDuty:pin];
     }
@@ -843,7 +843,7 @@
 
 - (KonashiResultState) _analogReadRequest:(int)pin
 {    
-    if(pin >= AIO0 && pin <= AIO2){
+    if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2){
         return [self _readValueAio:pin];
     }
     else{
@@ -856,10 +856,10 @@
     int uuid;
 
     if(activePeripheral && activePeripheral.isConnected) {
-        if(pin==AIO0){
+        if(pin==KonashiAnalogIO0){
             uuid = KONASHI_ANALOG_READ0_UUID;
         }
-        else if(pin==AIO1){
+        else if(pin==KonashiAnalogIO1){
             uuid = KONASHI_ANALOG_READ1_UUID;
         }
         else{   // AIO2
@@ -878,7 +878,7 @@
 
 - (KonashiResultState) _analogRead:(int)pin
 {
-    if(pin >= AIO0 && pin <= AIO2){
+    if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2){
         return analogValue[pin];
     }
     else{
@@ -888,7 +888,7 @@
 
 - (KonashiResultState) _analogWrite:(int)pin milliVolt:(int)milliVolt
 {
-    if(pin >= AIO0 && pin <= AIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
+    if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
        activePeripheral && activePeripheral.isConnected){
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
         NSData *d = [[NSData alloc] initWithBytes:t length:3];
