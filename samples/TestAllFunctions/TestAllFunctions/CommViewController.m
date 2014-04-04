@@ -43,16 +43,16 @@
     if(self.uartSetting.on){
         if(self.uartBaudrate.selectedSegmentIndex == 0) {
             NSLog(@"2400");
-            [Konashi uartBaudrate:KONASHI_UART_RATE_2K4];
+            [Konashi uartBaudrate:KonashiUartRate2K4];
         } else {
             NSLog(@"9600");
-            [Konashi uartBaudrate:KONASHI_UART_RATE_9K6];
+            [Konashi uartBaudrate:KonashiUartRate9K6];
         }
         
-        [Konashi uartMode:KONASHI_UART_ENABLE];
+        [Konashi uartMode:KonashiUartModeEnable];
     }
     else {
-        [Konashi uartMode:KONASHI_UART_DISABLE];
+        [Konashi uartMode:KonashiUartModeDisable];
     }
 }
 
@@ -83,13 +83,13 @@
 {
     if(self.i2cSetting.on){
         if(self.i2cSpeed.selectedSegmentIndex == 0) {
-            [Konashi i2cMode:KONASHI_I2C_ENABLE_100K];
+            [Konashi i2cMode:KonashiI2CModeEnable100K];
         } else {
-            [Konashi i2cMode:KONASHI_I2C_ENABLE_400K];
+            [Konashi i2cMode:KonashiI2CModeEnable400K];
         }
     }
     else {
-        [Konashi i2cMode:KONASHI_I2C_DISABLE];
+        [Konashi i2cMode:KonashiI2CModeDisable];
     }
 }
 
