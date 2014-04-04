@@ -162,7 +162,7 @@
 
 + (int) analogReference
 {
-    return KONASHI_ANALOG_REFERENCE;
+    return KonashiAnalogReference;
 }
 
 + (int) analogReadRequest:(int)pin
@@ -193,17 +193,17 @@
 
 + (int) i2cStartCondition
 {
-    return [[Konashi shared] _i2cSendCondition:KONASHI_I2C_START_CONDITION];
+    return [[Konashi shared] _i2cSendCondition:KonashiI2CConditionStart];
 }
 
 + (int) i2cRestartCondition
 {
-    return [[Konashi shared] _i2cSendCondition:KONASHI_I2C_RESTART_CONDITION];
+    return [[Konashi shared] _i2cSendCondition:KonashiI2CConditionRestart];
 }
 
 + (int) i2cStopCondition
 {
-    return [[Konashi shared] _i2cSendCondition:KONASHI_I2C_STOP_CONDITION];
+    return [[Konashi shared] _i2cSendCondition:KonashiI2CConditionStop];
 }
 
 + (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
@@ -312,14 +312,14 @@
 #pragma mark -
 #pragma mark - Konashi control private methods
 
-- (int) _initializeKonashi
+- (KonashiResultState) _initializeKonashi
 {
     if(!cm){
         cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
         [self _initializeKonashiVariables];
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -346,16 +346,16 @@
     }
     
     // I2C
-    i2cSetting = KONASHI_I2C_DISABLE;
-    for(i=0; i<KONASHI_I2C_DATA_MAX_LENGTH; i++){
+    i2cSetting = KonashiI2CModeDisable;
+    for(i=0; i<KonashiI2CDataMaxLength; i++){
         i2cReadData[i] = 0;
     }
     i2cReadDataLength = 0;
     i2cReadAddress = 0;
     
     // UART
-    uartSetting = KONASHI_UART_DISABLE;
-    uartBaudrate = KONASHI_UART_RATE_9K6;
+    uartSetting = KonashiUartModeDisable;
+    uartBaudrate = KonashiUartRate9K6;
     
     // RSSI
     rssi = 0;
@@ -366,10 +366,10 @@
     findName = @"";
 }
 
-- (int) _findModule:(int) timeout
+- (KonashiResultState) _findModule:(int) timeout
 {
     if(activePeripheral && activePeripheral.isConnected){
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
         
     if (cm.state  != CBCentralManagerStatePoweredOn) {
@@ -378,7 +378,7 @@
         
         isCallFind = YES;
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     
     if(peripherals) peripherals = nil;
@@ -387,12 +387,12 @@
     
     [cm scanForPeripheralsWithServices:nil options:0];
     
-    return KONASHI_SUCCESS;
+    return KonashiResultStateSuccess;
 }
 
-- (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
+- (KonashiResultState) _findModuleWithName:(NSString*)name timeout:(int)timeout{
     if(activePeripheral && activePeripheral.isConnected){
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
         
     if (cm.state  != CBCentralManagerStatePoweredOn) {
@@ -402,7 +402,7 @@
         isCallFind = YES;
         findName = name;
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     
     if(peripherals) peripherals = nil;
@@ -412,7 +412,7 @@
         
     [cm scanForPeripheralsWithServices:nil options:0];
     
-    return KONASHI_SUCCESS;
+    return KonashiResultStateSuccess;
 }
 
 - (void) finishScanModuleWithName:(NSTimer *)timer
@@ -483,14 +483,14 @@
     [self notification:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_RX_NOTIFICATION_UUID p:p on:YES];
 }
 
-- (int) _disconnectModule
+- (KonashiResultState) _disconnectModule
 {
     if(activePeripheral && activePeripheral.isConnected){
         [cm cancelPeripheralConnection:activePeripheral];
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -517,11 +517,11 @@
 #pragma mark -
 #pragma mark - Konashi PIO private methods
 
-- (int) _pinMode:(int)pin mode:(int)mode
+- (KonashiResultState) _pinMode:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == OUTPUT || mode == INPUT)){
+    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)){
         // Set value
-        if(mode == OUTPUT){
+        if(mode == KonashiPinModeOutput){
             pioSetting |= 0x01 << pin;
         }
         else{
@@ -532,11 +532,11 @@
         return [self _writeValuePioSetting];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _pinModeAll:(int)mode
+- (KonashiResultState) _pinModeAll:(int)mode
 {
     if(mode >= 0x00 && mode <= 0xFF){
         // Set value
@@ -546,11 +546,11 @@
         return [self _writeValuePioSetting];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePioSetting
+- (KonashiResultState) _writeValuePioSetting
 {
     if(activePeripheral && activePeripheral.isConnected) {
         KNS_LOG(@"PioSetting: %d", pioSetting);
@@ -562,18 +562,18 @@
                        p:activePeripheral
                     data:d];
                 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
 
-- (int) _pinPullup:(int)pin mode:(int)mode
+- (KonashiResultState) _pinPullup:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == PULLUP || mode == NO_PULLS)){
+    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPinModePullup || mode == KonashiPinModeNoPulls)){
         // Set value
-        if(mode == PULLUP){
+        if(mode == KonashiPinModePullup){
             pioPullup |= 0x01 << pin;
         } else {
             pioPullup &= ~(0x01 << pin) & 0xFF;
@@ -583,11 +583,11 @@
         return [self _writeValuePioPullup];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _pinPullupAll:(int)mode
+- (KonashiResultState) _pinPullupAll:(int)mode
 {
     if(mode >= 0x00 && mode <= 0xFF){
         // Set value
@@ -597,11 +597,11 @@
         return [self _writeValuePioPullup];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePioPullup
+- (KonashiResultState) _writeValuePioPullup
 {
     if(activePeripheral && activePeripheral.isConnected){
         KNS_LOG(@"PioPullup: %d", pioPullup);
@@ -613,20 +613,20 @@
                        p:activePeripheral
                     data:d];
                 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
 
-- (int) _digitalRead:(int)pin
+- (KonashiResultState) _digitalRead:(int)pin
 {
     if(pin >= PIO0 && pin <= PIO7){
         return (pioInput >> pin) & 0x01;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -636,11 +636,11 @@
 }
 
 
-- (int) _digitalWrite:(int)pin value:(int)value
+- (KonashiResultState) _digitalWrite:(int)pin value:(int)value
 {
-    if(pin >= PIO0 && pin <= PIO7 && (value == HIGH || value == LOW)){
+    if(pin >= PIO0 && pin <= PIO7 && (value == KonashiLevelHigh || value == KonashiLevelLow)){
         // Set value
-        if(value == HIGH){
+        if(value == KonashiLevelHigh){
             pioOutput |= 0x01 << pin;
         }
         else{
@@ -651,11 +651,11 @@
         return [self _writeValuePioOutput];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _digitalWriteAll:(int)value
+- (KonashiResultState) _digitalWriteAll:(int)value
 {
     if(value >= 0x00 && value <= 0xFF){
         // Set value
@@ -665,11 +665,11 @@
         return [self _writeValuePioOutput];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePioOutput
+- (KonashiResultState) _writeValuePioOutput
 {
     if(activePeripheral && activePeripheral.isConnected) {
         KNS_LOG(@"PioOutput: %d", pioOutput);
@@ -681,9 +681,9 @@
                        p:activePeripheral
                     data:d];
                 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -693,19 +693,19 @@
 #pragma mark -
 #pragma mark - Konashi PWM private methods
 
-- (int) _pwmMode:(int)pin mode:(int)mode
+- (KonashiResultState) _pwmMode:(int)pin mode:(int)mode
 {
-    if(pin >= PIO0 && pin <= PIO7 && (mode == KONASHI_PWM_DISABLE || mode == KONASHI_PWM_ENABLE || mode == KONASHI_PWM_ENABLE_LED_MODE )){
+    if(pin >= PIO0 && pin <= PIO7 && (mode == KonashiPwmModeDisable || mode == KonashiPwmModeEnable || mode == KonashiPwmModeEnableLED )){
         // Set value
-        if(mode == KONASHI_PWM_ENABLE || mode == KONASHI_PWM_ENABLE_LED_MODE){
+        if(mode == KonashiPwmModeEnable || mode == KonashiPwmModeEnableLED){
             pwmSetting |= 0x01 << pin;
         }
         else{
             pwmSetting &= ~(0x01 << pin) & 0xFF;
         }
         
-        if (mode == KONASHI_PWM_ENABLE_LED_MODE){
-            [self _pwmPeriod:pin period:KONASHI_PWM_LED_PERIOD];
+        if (mode == KonashiPwmModeEnableLED){
+            [self _pwmPeriod:pin period:KonashiLEDPeriod];
             [self _pwmLedDrive:pin dutyRatio:0.0];
         }
         
@@ -713,11 +713,11 @@
         return [[Konashi shared] _writeValuePwmSetting];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePwmSetting
+- (KonashiResultState) _writeValuePwmSetting
 {
     if(activePeripheral && activePeripheral.isConnected) {
         KNS_LOG(@"PwmSetting: %d", pwmSetting);
@@ -729,25 +729,25 @@
                        p:activePeripheral
                     data:d];
                 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
 
-- (int) _pwmPeriod:(int)pin period:(unsigned int)period
+- (KonashiResultState) _pwmPeriod:(int)pin period:(unsigned int)period
 {
     if(pin >= PIO0 && pin <= PIO7 && pwmDuty[pin] <= period){
         pwmPeriod[pin] = period;
         return [self _writeValuePwmPeriod:pin];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePwmPeriod:(int)pin
+- (KonashiResultState) _writeValuePwmPeriod:(int)pin
 {
     if(activePeripheral && activePeripheral.isConnected) {
         Byte t[] = {pin,
@@ -761,26 +761,26 @@
         
         KNS_LOG(@"PwmPeriod: %d", pwmPeriod[pin]);
 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
 
-- (int) _pwmDuty:(int)pin duty:(unsigned int)duty
+- (KonashiResultState) _pwmDuty:(int)pin duty:(unsigned int)duty
 {
     if(pin >= PIO0 && pin <= PIO7 && duty <= pwmPeriod[pin]){
         pwmDuty[pin] = duty;
         return [self _writeValuePwmDuty:pin];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _writeValuePwmDuty:(int)pin
+- (KonashiResultState) _writeValuePwmDuty:(int)pin
 {
     if(activePeripheral && activePeripheral.isConnected) {
         Byte t[] = {pin,
@@ -794,10 +794,10 @@
         
         KNS_LOG(@"pwmDuty: %d", pwmDuty[pin]);
 
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -812,7 +812,7 @@
         ratio = 100.0;
     }
     
-    duty = (int)(KONASHI_PWM_LED_PERIOD * ratio / 100);
+    duty = (int)(KonashiLEDPeriod * ratio / 100);
     
     return [self _pwmDuty:pin duty:duty];
 }
@@ -823,17 +823,17 @@
 #pragma mark -
 #pragma mark - Konashi analog IO private methods
 
-- (int) _analogReadRequest:(int)pin
+- (KonashiResultState) _analogReadRequest:(int)pin
 {    
     if(pin >= AIO0 && pin <= AIO2){
         return [self _readValueAio:pin];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _readValueAio:(int)pin
+- (KonashiResultState) _readValueAio:(int)pin
 {
     int uuid;
 
@@ -850,36 +850,36 @@
         
         [self readValue:KONASHI_SERVICE_UUID characteristicUUID:uuid p:activePeripheral];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 
 }
 
-- (int) _analogRead:(int)pin
+- (KonashiResultState) _analogRead:(int)pin
 {
     if(pin >= AIO0 && pin <= AIO2){
         return analogValue[pin];
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _analogWrite:(int)pin milliVolt:(int)milliVolt
+- (KonashiResultState) _analogWrite:(int)pin milliVolt:(int)milliVolt
 {
-    if(pin >= AIO0 && pin <= AIO2 && milliVolt >= 0 && milliVolt <= KONASHI_ANALOG_REFERENCE &&
+    if(pin >= AIO0 && pin <= AIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
        activePeripheral && activePeripheral.isConnected){
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
         NSData *d = [[NSData alloc] initWithBytes:t length:3];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_ANALOG_DRIVE_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -889,10 +889,10 @@
 #pragma mark -
 #pragma mark - Konashi I2C private methods
 
-- (int) _i2cMode:(int)mode
+- (KonashiResultState) _i2cMode:(int)mode
 {
-    if((mode == KONASHI_I2C_DISABLE || mode == KONASHI_I2C_ENABLE ||
-       mode == KONASHI_I2C_ENABLE_100K || mode == KONASHI_I2C_ENABLE_400K) &&
+    if((mode == KonashiI2CModeDisable || mode == KonashiI2CModeEnable ||
+       mode == KonashiI2CModeEnable100K || mode == KonashiI2CModeEnable400K) &&
        activePeripheral && activePeripheral.isConnected){
         i2cSetting = mode;
         
@@ -900,34 +900,34 @@
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_CONFIG_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _i2cSendCondition:(int)condition
+- (KonashiResultState) _i2cSendCondition:(int)condition
 {
-    if((condition == KONASHI_I2C_START_CONDITION || condition == KONASHI_I2C_RESTART_CONDITION ||
-       condition == KONASHI_I2C_STOP_CONDITION) && activePeripheral && activePeripheral.isConnected){
+    if((condition == KonashiI2CConditionStart || condition == KonashiI2CConditionRestart ||
+       condition == KonashiI2CConditionStop) && activePeripheral && activePeripheral.isConnected){
         Byte t = condition;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_START_STOP_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
+- (KonashiResultState) _i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
     int i;
-    unsigned char t[KONASHI_I2C_DATA_MAX_LENGTH];
+    unsigned char t[KonashiI2CDataMaxLength];
     
-    if(length > 0 && (i2cSetting == KONASHI_I2C_ENABLE || i2cSetting == KONASHI_I2C_ENABLE_100K || i2cSetting == KONASHI_I2C_ENABLE_400K) &&
+    if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
        activePeripheral && activePeripheral.isConnected){
         t[0] = length+1;
         t[1] = (address << 1) & 0b11111110;
@@ -939,16 +939,16 @@
         
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_WRITE_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _i2cReadRequest:(int)length address:(unsigned char)address
+- (KonashiResultState) _i2cReadRequest:(int)length address:(unsigned char)address
 {
-    if(length > 0 && (i2cSetting == KONASHI_I2C_ENABLE || i2cSetting == KONASHI_I2C_ENABLE_100K || i2cSetting == KONASHI_I2C_ENABLE_400K) &&
+    if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
        activePeripheral && activePeripheral.isConnected){
         
         // set variables
@@ -963,14 +963,14 @@
         // Request read i2c value
         [self readValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_READ_UUID p:activePeripheral];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _i2cRead:(int)length data:(unsigned char*)data
+- (KonashiResultState) _i2cRead:(int)length data:(unsigned char*)data
 {
     int i;
 
@@ -978,10 +978,10 @@
         for(i=0; i<i2cReadDataLength;i++){
             data[i] = i2cReadData[i];
         }
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -992,10 +992,10 @@
 #pragma mark - Konashi UART private methods
 
 
-- (int) _uartMode:(int)mode
+- (KonashiResultState) _uartMode:(int)mode
 {
     if(activePeripheral && activePeripheral.isConnected &&
-       ( mode == KONASHI_UART_DISABLE || mode == KONASHI_UART_ENABLE ) ){
+       ( mode == KonashiUartModeDisable || mode == KonashiUartModeEnable ) ){
         Byte t = mode;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID
@@ -1005,18 +1005,18 @@
         
         uartSetting = mode;
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _uartBaudrate:(int)baudrate
+- (KonashiResultState) _uartBaudrate:(int)baudrate
 {
-    if(activePeripheral && activePeripheral.isConnected && uartSetting==KONASHI_UART_DISABLE){
-        if(baudrate == KONASHI_UART_RATE_2K4 ||
-           baudrate == KONASHI_UART_RATE_9K6
+    if(activePeripheral && activePeripheral.isConnected && uartSetting==KonashiUartModeDisable){
+        if(baudrate == KonashiUartRate2K4 ||
+           baudrate == KonashiUartRate9K6
         ){
             Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
             NSData *d = [[NSData alloc] initWithBytes:t length:2];
@@ -1027,29 +1027,29 @@
             
             uartBaudrate = baudrate;
             
-            return KONASHI_SUCCESS;
+            return KonashiResultStateSuccess;
         }
         else{
-            return KONASHI_FAILURE;
+            return KonashiResultStateFailure;
         }
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _uartWrite:(unsigned char)data
+- (KonashiResultState) _uartWrite:(unsigned char)data
 {    
-    if(activePeripheral && activePeripheral.isConnected && uartSetting==KONASHI_UART_ENABLE){
+    if(activePeripheral && activePeripheral.isConnected && uartSetting==KonashiUartModeEnable){
         
         NSData *d = [[NSData alloc] initWithBytes:&data length:1];
         
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_TX_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -1064,29 +1064,29 @@
 #pragma mark -
 #pragma mark - Konashi hardware private methods
 
-- (int) _resetModule
+- (KonashiResultState) _resetModule
 {
     if(activePeripheral && activePeripheral.isConnected){
         Byte t = 1;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_HARDWARE_RESET_UUID p:activePeripheral data:d];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
-- (int) _batteryLevelReadRequest
+- (KonashiResultState) _batteryLevelReadRequest
 {
     if(activePeripheral && activePeripheral.isConnected){
         [self readValue:KONASHI_BATT_SERVICE_UUID characteristicUUID:KONASHI_LEVEL_SERVICE_UUID p:activePeripheral];
         
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
@@ -1095,14 +1095,14 @@
     return batteryLevel;
 }
 
-- (int) _signalStrengthReadRequest
+- (KonashiResultState) _signalStrengthReadRequest
 {
     if(activePeripheral && activePeripheral.isConnected){
         [activePeripheral readRSSI];
-        return KONASHI_SUCCESS;
+        return KonashiResultStateSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultStateFailure;
     }
 }
 
