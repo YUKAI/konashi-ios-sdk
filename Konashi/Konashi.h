@@ -65,33 +65,33 @@ typedef NS_OPTIONS(int, KonashiPinMask) {
 };
 
 typedef NS_ENUM(int, KonashiDigitalIOPin) {
-	PIO0 = 0,
-	PIO1,
-	PIO2,
-	PIO3,
-	PIO4,
-	PIO5,
-	PIO6,
-	PIO7
+	KonashiDigitalIO0 = 0,
+	KonashiDigitalIO1,
+	KonashiDigitalIO2,
+	KonashiDigitalIO3,
+	KonashiDigitalIO4,
+	KonashiDigitalIO5,
+	KonashiDigitalIO6,
+	KonashiDigitalIO7
 };
 
 typedef NS_ENUM(int, KonashiOnboardIO) {
-	S1 = PIO0,
-	LED2 = PIO1,
-	LED3 = PIO2,
-	LED4 = PIO3,
-	LED5 = PIO4
+	S1 = KonashiDigitalIO0,
+	LED2 = KonashiDigitalIO1,
+	LED3 = KonashiDigitalIO2,
+	LED4 = KonashiDigitalIO3,
+	LED5 = KonashiDigitalIO4
 };
 
 typedef NS_ENUM(int, KonashiAnalogIOPin) {
-	AIO0 = 0,
-	AIO1,
-	AIO2
+	KonashiAnalogIO0 = 0,
+	KonashiAnalogIO1,
+	KonashiAnalogIO2
 };
 
 typedef NS_ENUM(int, KonashiI2CPin) {
-	I2C_SDA = 6,
-	I2C_SCL = 7
+	KonashiI2C_SDA = 6,
+	KonashiI2C_SCL = 7
 };
 
 // Konashi PWM
