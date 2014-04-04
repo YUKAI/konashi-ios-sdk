@@ -23,6 +23,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
 
+@class Konashi;
 
 // Debug
 #define KONASHI_DEBUGx
@@ -131,6 +132,10 @@ typedef NS_ENUM(int, KonashiUartMode) {
 	KonashiUartModeEnable
 };
 
+typedef void(^KonashiEventHander)(Konashi *konashi);
+typedef void(^KonashiDigitalPinDidChangeValueHandler)(Konashi *konashi, KonashiDigitalIOPin pin, int value);
+typedef void(^KonashiAnalogPinDidChangeValueHandler)(Konashi *konashi, KonashiAnalogIOPin pin, int value);
+
 // Konashi Events
 static NSString *const KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON = @"KonashiEventCentralManagerPoweredOn";
 
@@ -176,6 +181,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
     unsigned char pioPullup;
     unsigned char pioOutput;
     unsigned char pioInput;
+	unsigned char piobyte[32];
     
     // PWM
     unsigned char pwmSetting;
@@ -206,12 +212,20 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
     CBPeripheral *activePeripheral;
 }
 
+@property (nonatomic, copy) KonashiEventHander connectedHander;
+@property (nonatomic, copy) KonashiEventHander disconnectedHander;
+@property (nonatomic, copy) KonashiEventHander readyHander;
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
+@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
+
 
 // Singleton
 + (Konashi *) shared;
 
 // Konashi control methods
-+ (int) initialize;
++ (KonashiResultState) initWithConnectedHandler:(KonashiEventHander)connectedHandler disconnectedHandler:(KonashiEventHander)disconnectedHander readyHandler:(KonashiEventHander)readyHandler;
++ (KonashiResultState) initialize;
 + (int) find;
 + (int) findWithName:(NSString*)name;
 + (int) disconnect;
