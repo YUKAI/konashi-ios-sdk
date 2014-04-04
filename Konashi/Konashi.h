@@ -231,7 +231,6 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 @property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
 @property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
-
 // Singleton
 + (Konashi *) shared;
 
