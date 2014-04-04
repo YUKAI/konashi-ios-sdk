@@ -132,7 +132,8 @@ typedef NS_ENUM(int, KonashiUartMode) {
 	KonashiUartModeEnable
 };
 
-typedef void(^KonashiEventHander)(Konashi *konashi);
+typedef void(^KonashiEventHandler)(Konashi *konashi);
+typedef void(^KonashiEventHandler1)(Konashi *konashi, int value);
 typedef void(^KonashiDigitalPinDidChangeValueHandler)(Konashi *konashi, KonashiDigitalIOPin pin, int value);
 typedef void(^KonashiAnalogPinDidChangeValueHandler)(Konashi *konashi, KonashiAnalogIOPin pin, int value);
 
@@ -212,9 +213,10 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
     CBPeripheral *activePeripheral;
 }
 
-@property (nonatomic, copy) KonashiEventHander connectedHander;
-@property (nonatomic, copy) KonashiEventHander disconnectedHander;
-@property (nonatomic, copy) KonashiEventHander readyHander;
+@property (nonatomic, copy) KonashiEventHandler connectedHander;
+@property (nonatomic, copy) KonashiEventHandler disconnectedHander;
+@property (nonatomic, copy) KonashiEventHandler readyHander;
+@property (nonatomic, copy) KonashiEventHandler centralManagerPoweredOnHandler;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
@@ -224,7 +226,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 + (Konashi *) shared;
 
 // Konashi control methods
-+ (KonashiResultState) initWithConnectedHandler:(KonashiEventHander)connectedHandler disconnectedHandler:(KonashiEventHander)disconnectedHander readyHandler:(KonashiEventHander)readyHandler;
++ (KonashiResultState) initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
 + (KonashiResultState) initialize;
 + (int) find;
 + (int) findWithName:(NSString*)name;
