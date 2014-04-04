@@ -39,11 +39,11 @@
 }
 
 - (IBAction)setVoltage1000:(id)sender {
-    [Konashi analogWrite:AIO1 milliVolt:1000];
+    [Konashi analogWrite:KonashiAnalogIO1 milliVolt:1000];
 }
 
 - (IBAction)requestReadAio0:(id)sender {
-    [Konashi analogReadRequest:AIO0];
+    [Konashi analogReadRequest:KonashiAnalogIO0];
 }
 
 - (void) connected
@@ -65,8 +65,8 @@
 
 - (void) readAio0
 {
-    NSLog(@"READ_AIO0: %d", [Konashi analogRead:AIO0]);
-    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:AIO0]/1000];
+    NSLog(@"READ_AIO0: %d", [Konashi analogRead:KonashiAnalogIO0]);
+    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:KonashiAnalogIO0]/1000];
 }
 
 @end
