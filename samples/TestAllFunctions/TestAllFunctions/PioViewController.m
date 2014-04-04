@@ -9,7 +9,9 @@
 #import "Konashi.h"
 
 @interface PioViewController ()
-
+{
+	NSArray *swArray;
+}
 @end
 
 @implementation PioViewController
@@ -50,7 +52,17 @@
     [self.pullup7 addTarget:self action:@selector(onChangePullup:) forControlEvents:UIControlEventValueChanged];
 
     // 入力状態の変化イベントハンドラ
-    [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
+	[Konashi shared].digitalInputDidChangeValueHandler = ^(Konashi *konashi, KonashiDigitalIOPin pin, int value) {
+		UISwitch *sw = swArray[pin];
+		sw.on = value;
+	};
+//    [Konashi addObserver:self selector:@selector(updatePioInput) name:KONASHI_EVENT_UPDATE_PIO_INPUT];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	swArray = @[self.in0, self.in1, self.in2, self.in3, self.in4, self.in5, self.in6, self.in7];
 }
 
 - (void)didReceiveMemoryWarning
