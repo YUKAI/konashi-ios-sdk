@@ -41,7 +41,7 @@ static const int  KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN			= 1;
 
 // PWM
 static const int  KONASHI_PWM_CONFIG_UUID							= 0x3004;
-static const int  KONASHI_PWM_PARAM_UUID								= 0x3005;
+static const int  KONASHI_PWM_PARAM_UUID							= 0x3005;
 static const int  KONASHI_PWM_DUTY_UUID								= 0x3006;
 
 // Analog
@@ -49,26 +49,26 @@ static const int  KONASHI_ANALOG_DRIVE_UUID							= 0x3007;
 static const int  KONASHI_ANALOG_READ0_UUID							= 0x3008;
 static const int  KONASHI_ANALOG_READ1_UUID							= 0x3009;
 static const int  KONASHI_ANALOG_READ2_UUID							= 0x300A;
-static const int KONASHI_ANALOG_READ_LEN								= 2;
+static const int KONASHI_ANALOG_READ_LEN							= 2;
 
 // I2C
 static const int  KONASHI_I2C_CONFIG_UUID							= 0x300B;
-static const int KONASHI_I2C_START_STOP_UUID							= 0x300C;
+static const int KONASHI_I2C_START_STOP_UUID						= 0x300C;
 static const int KONASHI_I2C_WRITE_UUID								= 0x300D;
 static const int  KONASHI_I2C_READ_PARAM_UIUD						= 0x300E;
 static const int  KONASHI_I2C_READ_UUID								= 0x300F;
 
 // UART
 static const int  KONASHI_UART_CONFIG_UUID							= 0x3010;
-static const int  KONASHI_UART_BAUDRATE_UUID							= 0x3011;
+static const int  KONASHI_UART_BAUDRATE_UUID						= 0x3011;
 static const int  KONASHI_UART_TX_UUID								= 0x3012;
 static const int  KONASHI_UART_RX_NOTIFICATION_UUID					= 0x3013;
 static const int  KONASHI_UART_RX_NOTIFICATION_READ_LEN				= 1;
 
 // Hardware
 static const int  KONASHI_HARDWARE_RESET_UUID						= 0x3014;
-static const int  KONASHI_HARDWARE_LOW_BAT_NOTIFICATION_UUID			= 0x3015;
-static const int  KONASHI_HARDWARE_LOW_BAT_NOTIFICATION_READ_LEN		= 1;
+static const int  KONASHI_HARDWARE_LOW_BAT_NOTIFICATION_UUID		= 0x3015;
+static const int  KONASHI_HARDWARE_LOW_BAT_NOTIFICATION_READ_LEN	= 1;
 
 
 #endif  // KONASHI_DB

@@ -36,8 +36,8 @@
 
 - (void)ready
 {
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi digitalWrite:LED2 value:HIGH];
+    [Konashi pinMode:LED2 mode:KonashiPinModeOutput];
+    [Konashi digitalWrite:LED2 value:KonashiLevelHigh];
 }
 
 @end
