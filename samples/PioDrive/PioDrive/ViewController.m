@@ -38,6 +38,9 @@
 		[Konashi pinMode:KonashiLED4 mode:KonashiPinModeOutput];
 		[Konashi pinMode:KonashiLED5 mode:KonashiPinModeOutput];
 	}];
+	[Konashi shared].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int signalStrength) {
+		NSLog(@"signal strength:%d", signalStrength);
+	};
     //[Konashi addObserver:self selector:@selector(cmPoweredOn) name:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
     //[Konashi addObserver:self selector:@selector(peripheralNotFound) name:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
 	[Konashi shared].digitalInputDidChangeValueHandler = ^(Konashi *konashi, KonashiDigitalIOPin pin, int value) {
