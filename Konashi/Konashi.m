@@ -635,7 +635,7 @@
 }
 
 
-- (int) _digitalRead:(int)pin
+- (KonashiResultState) _digitalRead:(int)pin
 {
     if(pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7){
         return (pioInput >> pin) & 0x01;
