@@ -55,12 +55,12 @@
 
 + (int) find
 {
-    return [[Konashi shared] _findModule:KONASHI_FIND_TIMEOUT];
+    return [[Konashi shared] _findModule:KonashiFindTimeoutInterval];
 }
 
 + (int) findWithName:(NSString*)name
 {
-    return [[Konashi shared] _findModuleWithName:name timeout:KONASHI_FIND_TIMEOUT];
+    return [[Konashi shared] _findModuleWithName:name timeout:KonashiFindTimeoutInterval];
 }
 
 + (int) disconnect
@@ -366,7 +366,7 @@
     findName = @"";
 }
 
-- (KonashiResultState) _findModule:(int) timeout
+- (KonashiResultState) _findModule:(NSTimeInterval) timeout
 {
     if(activePeripheral && activePeripheral.isConnected){
         return KonashiResultStateFailure;
@@ -390,7 +390,7 @@
     return KonashiResultStateSuccess;
 }
 
-- (KonashiResultState) _findModuleWithName:(NSString*)name timeout:(int)timeout{
+- (KonashiResultState) _findModuleWithName:(NSString*)name timeout:(NSTimeInterval)timeout{
     if(activePeripheral && activePeripheral.isConnected){
         return KonashiResultStateFailure;
     }
@@ -407,7 +407,7 @@
     
     if(peripherals) peripherals = nil;
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
 
         
     [cm scanForPeripheralsWithServices:nil options:0];
