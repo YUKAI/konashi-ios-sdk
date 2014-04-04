@@ -74,8 +74,8 @@ typedef NS_ENUM(int, KonashiDigitalIOPin) {
 	PIO7
 };
 
-static const int S1 = PIO0;
-typedef NS_ENUM(int, KonashiLEDPin) {
+typedef NS_ENUM(int, KonashiJumperedPin) {
+	S1 = PIO0,
 	LED2 = PIO1,
 	LED3 = PIO2,
 	LED4 = PIO3,
