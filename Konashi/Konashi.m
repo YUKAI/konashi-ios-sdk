@@ -48,7 +48,7 @@
 #pragma mark -
 #pragma mark - Konashi control public methods
 
-+ (KonashiResultState) initWithConnectedHandler:(KonashiEventHander)connectedHandler disconnectedHandler:(KonashiEventHander)disconnectedHander readyHandler:(KonashiEventHander)readyHandler
++ (KonashiResultState) initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler
 {
 	Konashi *sharedKonashi = [Konashi shared];
 	sharedKonashi.connectedHander = connectedHandler;
@@ -1384,7 +1384,12 @@
     KNS_LOG(@"Status of CoreBluetooth central manager changed %d (%@)\r\n", central.state, [self centralManagerStateToString:central.state]);
 
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [self postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+		if (self.centralManagerPoweredOnHandler) {
+			self.centralManagerPoweredOnHandler(self);
+		}
+		else {
+			[self postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+		}
         
         // Check already find
         if(isCallFind){
@@ -1657,8 +1662,12 @@
             {
                 [characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
                  // [0]: MSB
-                                
-                [self postNotification:KONASHI_EVENT_I2C_READ_COMPLETE];
+                if (self.i2cReadCompleteHandler) {
+					self.i2cReadCompleteHandler(self, i2cReadData);
+				}
+				else {
+					[self postNotification:KONASHI_EVENT_I2C_READ_COMPLETE];
+				}
                 
                 break;
             }
@@ -1668,7 +1677,12 @@
                 [characteristic.value getBytes:&uartRxData length:1];
                 // [0]: MSB
                 
-                [self postNotification:KONASHI_EVENT_UART_RX_COMPLETE];
+				if (self.uartRxCompleteHandler) {
+					self.uartRxCompleteHandler(self, uartRxData);
+				}
+				else {
+					[self postNotification:KONASHI_EVENT_UART_RX_COMPLETE];
+				}
                 
                 break;
             }
@@ -1677,8 +1691,12 @@
             {
                 [characteristic.value getBytes:&byte length:KONASHI_LEVEL_SERVICE_READ_LEN];
                 batteryLevel = byte[0];
-                
-                [self postNotification:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+                if (self.batteryLevelDidUpdateHandler) {
+					self.batteryLevelDidUpdateHandler(self, batteryLevel);
+				}
+				else {
+					[self postNotification:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+				}
                 
                 break;
             }
@@ -1707,7 +1725,12 @@
     
     rssi = [peripheral.RSSI intValue];
     
-    [self postNotification:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
+	if (self.signalStrengthDidUpdateHandler) {
+		self.signalStrengthDidUpdateHandler(self, rssi);
+	}
+	else {
+		[self postNotification:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
+	}
 }
 
 

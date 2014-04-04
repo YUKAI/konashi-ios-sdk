@@ -134,8 +134,14 @@ typedef NS_ENUM(int, KonashiUartMode) {
 
 typedef void(^KonashiEventHandler)(Konashi *konashi);
 typedef void(^KonashiEventHandler1)(Konashi *konashi, int value);
+typedef void(^KonashiEventHandler2)(Konashi *konashi, unsigned char value);
+typedef void(^KonashiEventHandler3)(Konashi *konashi, unsigned char *value);
 typedef void(^KonashiDigitalPinDidChangeValueHandler)(Konashi *konashi, KonashiDigitalIOPin pin, int value);
 typedef void(^KonashiAnalogPinDidChangeValueHandler)(Konashi *konashi, KonashiAnalogIOPin pin, int value);
+typedef KonashiEventHandler2 KonashiUartRxCompleteHandler;
+typedef KonashiEventHandler3 KonashiI2CReadCompleteHandler;
+typedef KonashiEventHandler1 KonashiBatteryLevelDidUpdateHandler;
+typedef KonashiEventHandler1 KonashiSignalStrengthDidUpdateHandler;
 
 // Konashi Events
 static NSString *const KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON = @"KonashiEventCentralManagerPoweredOn";
@@ -220,7 +226,10 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
-
+@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
+@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
+@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
+@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
 // Singleton
 + (Konashi *) shared;
