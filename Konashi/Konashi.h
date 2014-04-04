@@ -47,9 +47,9 @@ typedef NS_ENUM(int, KonashiPinMode) {
 	KonashiPinModeNoPulls = 0,
 	KonashiPinModePullup
 };
-typedef NS_ENUM(int, KonashiResultState) {
-	KonashiResultStateSuccess = 0,
-	KonashiResultStateFailure = -1
+typedef NS_ENUM(int, KonashiResult) {
+	KonashiResultSuccess = 0,
+	KonashiResultFailed = -1
 };
 
 // Konashi I/0 pin
@@ -235,8 +235,8 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 + (Konashi *) shared;
 
 // Konashi control methods
-+ (KonashiResultState) initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
-+ (KonashiResultState) initialize;
++ (KonashiResult) initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
++ (KonashiResult) initialize;
 + (int) find;
 + (int) findWithName:(NSString*)name;
 + (int) disconnect;
