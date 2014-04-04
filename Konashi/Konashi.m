@@ -315,7 +315,7 @@
 - (KonashiResultState) _initializeKonashi
 {
     if(!cm){
-        cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
+        cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         [self _initializeKonashiVariables];
         return KonashiResultStateSuccess;
     } else {
@@ -433,7 +433,7 @@
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
     } else {
-        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
+        [self postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     }
 }
 
@@ -444,14 +444,14 @@
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
     
     if ( [peripherals count] > 0 ) {
-        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
+        [self postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
         if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
             [self showModulePickeriPad];    //iPad
         } else {
             [self showModulePicker];        //else
         }
     } else {
-        [[Konashi shared] postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
+        [self postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
     }
 }
 
@@ -474,7 +474,7 @@
     // set konashi property
     isReady = YES;
     
-    [[Konashi shared] postNotification:KONASHI_EVENT_READY];
+    [self postNotification:KONASHI_EVENT_READY];
     
     // Enable PIO input notification
     [self notification:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_INPUT_NOTIFICATION_UUID p:p on:YES];
@@ -710,7 +710,7 @@
         }
         
         // Write value
-        return [[Konashi shared] _writeValuePwmSetting];
+        return [self _writeValuePwmSetting];
     }
     else{
         return KonashiResultStateFailure;
@@ -1230,7 +1230,7 @@
 - (void) pushPickerCancel
 {
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
+    [self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone
@@ -1247,7 +1247,7 @@
 - (void) pushPickerCancel_pad
 {
     [pickerViewPopup_pad dismissPopoverAnimated:YES];
-    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
+    [self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone_pad
@@ -1366,7 +1366,7 @@
     KNS_LOG(@"Status of CoreBluetooth central manager changed %d (%@)\r\n", central.state, [self centralManagerStateToString:central.state]);
 
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [[Konashi shared] postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+        [self postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
         
         // Check already find
         if(isCallFind){
@@ -1412,7 +1412,7 @@
     
     activePeripheral = peripheral;
     
-    [[Konashi shared] postNotification:KONASHI_EVENT_CONNECTED];
+    [self postNotification:KONASHI_EVENT_CONNECTED];
 
     [activePeripheral discoverServices:nil];
 }
@@ -1421,9 +1421,9 @@
 {
     KNS_LOG(@"Disconnect from the peripheral: %@", [peripheral name]);
     
-    [[Konashi shared] _initializeKonashiVariables];
+    [self _initializeKonashiVariables];
     
-    [[Konashi shared] postNotification:KONASHI_EVENT_DISCONNECTED];
+    [self postNotification:KONASHI_EVENT_DISCONNECTED];
 }
 
 - (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
@@ -1590,7 +1590,7 @@
             {
                 [characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
                 pioInput = byte[0];
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_PIO_INPUT];
+                [self postNotification:KONASHI_EVENT_UPDATE_PIO_INPUT];
                 
                 break;
             }
@@ -1600,8 +1600,8 @@
                 [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
                 analogValue[0] = byte[0]<<8 | byte[1];
                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
                 
                 break;
             }
@@ -1611,8 +1611,8 @@
                 [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
                 analogValue[1] = byte[0]<<8 | byte[1];
                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
                 
                 break;
             }
@@ -1623,8 +1623,8 @@
                 [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
                 analogValue[2] = byte[0]<<8 | byte[1];
                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
+                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
                 
                 break;
             }
@@ -1634,7 +1634,7 @@
                 [characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
                  // [0]: MSB
                                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_I2C_READ_COMPLETE];
+                [self postNotification:KONASHI_EVENT_I2C_READ_COMPLETE];
                 
                 break;
             }
@@ -1644,7 +1644,7 @@
                 [characteristic.value getBytes:&uartRxData length:1];
                 // [0]: MSB
                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_UART_RX_COMPLETE];
+                [self postNotification:KONASHI_EVENT_UART_RX_COMPLETE];
                 
                 break;
             }
@@ -1654,7 +1654,7 @@
                 [characteristic.value getBytes:&byte length:KONASHI_LEVEL_SERVICE_READ_LEN];
                 batteryLevel = byte[0];
                 
-                [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+                [self postNotification:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
                 
                 break;
             }
@@ -1683,7 +1683,7 @@
     
     rssi = [peripheral.RSSI intValue];
     
-    [[Konashi shared] postNotification:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
+    [self postNotification:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
 }
 
 
