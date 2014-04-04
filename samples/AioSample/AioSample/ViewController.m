@@ -32,7 +32,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    }
+}
 
 - (IBAction)find:(id)sender {
     [Konashi find];
