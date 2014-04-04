@@ -22,7 +22,7 @@
 	[Konashi initWithConnectedHandler:^(Konashi *konashi) {
 		
 	} disconnectedHandler:^(Konashi *konashi) {
-		[self disconnect:nil];
+		NSLog(@"DISCONNECTED");
 	} readyHandler:^(Konashi *konashi) {
 		NSLog(@"READY peripheral name:%@", [Konashi peripheralName]);
 		
@@ -102,10 +102,5 @@
 {
     NSLog(@"peripheralNotFound :-(");
 }*/
-
-- (void) disconnected
-{
-    NSLog(@"DISCONNECTED");
-}
 
 @end
