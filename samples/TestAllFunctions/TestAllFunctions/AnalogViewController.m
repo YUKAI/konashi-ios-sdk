@@ -53,17 +53,17 @@
 
 - (IBAction)setAio0:(id)sender {
     int volt = (int)(self.dacBar0.value * 1300);
-    [Konashi analogWrite:AIO0 milliVolt:volt];
+    [Konashi analogWrite:KonashiAnalogIO0 milliVolt:volt];
 }
 
 - (IBAction)setAio1:(id)sender {
     int volt = (int)(self.dacBar1.value * 1300);
-    [Konashi analogWrite:AIO1 milliVolt:volt];
+    [Konashi analogWrite:KonashiAnalogIO1 milliVolt:volt];
 }
 
 - (IBAction)setAio2:(id)sender {
     int volt = (int)(self.dacBar2.value * 1300);
-    [Konashi analogWrite:AIO2 milliVolt:volt];
+    [Konashi analogWrite:KonashiAnalogIO2 milliVolt:volt];
 }
 
 
@@ -71,28 +71,28 @@
 // ADC
 
 - (IBAction)getAio0:(id)sender {
-    [Konashi analogReadRequest:AIO0];
+    [Konashi analogReadRequest:KonashiAnalogIO0];
 }
 
 - (IBAction)getAio1:(id)sender {
-    [Konashi analogReadRequest:AIO1];
+    [Konashi analogReadRequest:KonashiAnalogIO1];
 }
 
 - (IBAction)getAio2:(id)sender {
-    [Konashi analogReadRequest:AIO2];
+    [Konashi analogReadRequest:KonashiAnalogIO2];
 }
 
 - (void)onGetAio0
 {
-    self.adc0.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:AIO0] / 1000];
+    self.adc0.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO0] / 1000];
 }
 - (void)onGetAio1
 {
-    self.adc1.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:AIO1] / 1000];
+    self.adc1.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO1] / 1000];
 }
 - (void)onGetAio2
 {
-    self.adc2.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:AIO2] / 1000];
+    self.adc2.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO2] / 1000];
 }
 
 @end

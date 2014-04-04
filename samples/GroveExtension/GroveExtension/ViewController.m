@@ -36,13 +36,13 @@
 - (void)ready
 {
     NSLog(@"Ready");
-    [Konashi pwmMode:LED2 mode:KONASHI_PWM_ENABLE_LED_MODE];
+    [Konashi pwmMode:KonashiLED2 mode:KonashiPwmModeEnableLED];
 }
 
 - (void)completeAnalogRead
 {
-    int aioValue=[Konashi analogRead:AIO0];
-    [Konashi pwmLedDrive:LED2 dutyRatio:aioValue/13];
+    int aioValue=[Konashi analogRead:KonashiAnalogIO0];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:aioValue/13];
     NSLog(@"Brightness:%d",aioValue);
 }
 
