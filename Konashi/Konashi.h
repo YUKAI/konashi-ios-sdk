@@ -76,11 +76,11 @@ typedef NS_ENUM(int, KonashiDigitalIOPin) {
 };
 
 typedef NS_ENUM(int, KonashiOnboardIO) {
-	S1 = KonashiDigitalIO0,
-	LED2 = KonashiDigitalIO1,
-	LED3 = KonashiDigitalIO2,
-	LED4 = KonashiDigitalIO3,
-	LED5 = KonashiDigitalIO4
+	KonashiS1 = KonashiDigitalIO0,
+	KonashiLED2 = KonashiDigitalIO1,
+	KonashiLED3 = KonashiDigitalIO2,
+	KonashiLED4 = KonashiDigitalIO3,
+	KonashiLED5 = KonashiDigitalIO4
 };
 
 typedef NS_ENUM(int, KonashiAnalogIOPin) {
