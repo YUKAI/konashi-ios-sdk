@@ -157,7 +157,7 @@ typedef NS_ENUM(int, KonashiUartMode) {
 #define KONASHI_EVENT_UPDATE_BATTERY_LEVEL @"KonashiEventUpdateBatteryLevel"
 #define KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH @"KonashiEventUpdateSignalStrength"
 
-#define KONASHI_FIND_TIMEOUT 2
+static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 
 // Konashi interface
 @interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
