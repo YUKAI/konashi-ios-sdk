@@ -48,7 +48,17 @@
 #pragma mark -
 #pragma mark - Konashi control public methods
 
-+ (int) initialize
++ (KonashiResultState) initWithConnectedHandler:(KonashiEventHander)connectedHandler disconnectedHandler:(KonashiEventHander)disconnectedHander readyHandler:(KonashiEventHander)readyHandler
+{
+	Konashi *sharedKonashi = [Konashi shared];
+	sharedKonashi.connectedHander = connectedHandler;
+	sharedKonashi.disconnectedHander = disconnectedHander;
+	sharedKonashi.readyHander = readyHandler;
+	
+	return [sharedKonashi _initializeKonashi];
+}
+
++ (KonashiResultState) initialize
 {
     return [[Konashi shared] _initializeKonashi];
 }
@@ -474,7 +484,12 @@
     // set konashi property
     isReady = YES;
     
-    [self postNotification:KONASHI_EVENT_READY];
+	if (self.readyHander) {
+		self.readyHander(self);
+	}
+	else {
+		[self postNotification:KONASHI_EVENT_READY];
+	}
     
     // Enable PIO input notification
     [self notification:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_INPUT_NOTIFICATION_UUID p:p on:YES];
@@ -620,7 +635,7 @@
 }
 
 
-- (KonashiResultState) _digitalRead:(int)pin
+- (int) _digitalRead:(int)pin
 {
     if(pin >= PIO0 && pin <= PIO7){
         return (pioInput >> pin) & 0x01;
@@ -646,6 +661,9 @@
         else{
             pioOutput &= ~(0x01 << pin) & 0xFF;
         }
+		if (self.digitalOutputDidChangeValueHandler) {
+			self.digitalOutputDidChangeValueHandler(self, pin, value);
+		}
         
         // Write value
         return [self _writeValuePioOutput];
@@ -1412,7 +1430,12 @@
     
     activePeripheral = peripheral;
     
-    [self postNotification:KONASHI_EVENT_CONNECTED];
+	if (self.connectedHander) {
+		self.connectedHander(self);
+	}
+	else {
+		[self postNotification:KONASHI_EVENT_CONNECTED];
+	}
 
     [activePeripheral discoverServices:nil];
 }
@@ -1423,7 +1446,12 @@
     
     [self _initializeKonashiVariables];
     
-    [self postNotification:KONASHI_EVENT_DISCONNECTED];
+	if (self.disconnectedHander) {
+		self.disconnectedHander(self);
+	}
+	else {
+		[self postNotification:KONASHI_EVENT_DISCONNECTED];
+	}
 }
 
 - (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
@@ -1588,47 +1616,43 @@
         switch(characteristicUUID){
             case KONASHI_PIO_INPUT_NOTIFICATION_UUID:
             {
-                [characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
+				[characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
+				int xor = (piobyte[0] ^ byte[0]) & (0xff ^ pioSetting);
+                [characteristic.value getBytes:&piobyte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
                 pioInput = byte[0];
-                [self postNotification:KONASHI_EVENT_UPDATE_PIO_INPUT];
+				if (self.digitalInputDidChangeValueHandler) {
+					for (int i = 7; i >= 0; i--) {
+						if (xor & 1 << i) {
+							self.digitalInputDidChangeValueHandler(self, i, [self _digitalRead:i]);
+						}
+					}
+				}
+				else {
+					[self postNotification:KONASHI_EVENT_UPDATE_PIO_INPUT];
+				}
                 
                 break;
             }
 
             case KONASHI_ANALOG_READ0_UUID:
-            {
-                [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
-                analogValue[0] = byte[0]<<8 | byte[1];
-                
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
-                
-                break;
-            }
-                
             case KONASHI_ANALOG_READ1_UUID:
-            {
-                [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
-                analogValue[1] = byte[0]<<8 | byte[1];
-                
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
-                
-                break;
-            }
-                
-                
             case KONASHI_ANALOG_READ2_UUID:
             {
+				int index = characteristicUUID & 0x000F - 8;
                 [characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
-                analogValue[2] = byte[0]<<8 | byte[1];
-                
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-                [self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
+                analogValue[index] = byte[0]<<8 | byte[1];
+                int value = analogValue[index];
+				if (self.analogPinDidChangeValueHandler) {
+					self.analogPinDidChangeValueHandler(self, index, value);
+				}
+				else {
+					[self postNotification:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
+					[self postNotification:@[KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0, KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1, KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2][index]];
+				}
                 
                 break;
             }
-                
+            
             case KONASHI_I2C_READ_UUID:
             {
                 [characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
