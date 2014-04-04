@@ -9,7 +9,9 @@
 #import "Konashi.h"
 
 @interface AnalogViewController ()
-
+{
+	NSArray *labelArray;
+}
 @end
 
 @implementation AnalogViewController
@@ -24,9 +26,19 @@
     [self.dacBar2 addTarget:self action:@selector(onChangeDacBar:) forControlEvents:UIControlEventValueChanged];
     
     // ADC
-    [Konashi addObserver:self selector:@selector(onGetAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
-    [Konashi addObserver:self selector:@selector(onGetAio1) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
-    [Konashi addObserver:self selector:@selector(onGetAio2) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
+	[Konashi shared].analogPinDidChangeValueHandler = ^(Konashi *konashi, KonashiAnalogIOPin pin, int value) {
+		UILabel *label = labelArray[pin];
+		label.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO0] / 1000];
+	};
+//    [Konashi addObserver:self selector:@selector(onGetAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+//    [Konashi addObserver:self selector:@selector(onGetAio1) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
+//    [Konashi addObserver:self selector:@selector(onGetAio2) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	labelArray = @[self.adc0, self.adc1, self.adc2];
 }
 
 - (void)didReceiveMemoryWarning
