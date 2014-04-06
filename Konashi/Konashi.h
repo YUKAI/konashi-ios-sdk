@@ -288,11 +288,8 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 + (int)signalStrengthReadRequest;
 + (int)signalStrengthRead;
 
-
 // Konashi event methods
 + (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
 + (void)removeObserver:(id)notificationObserver;
-
-
 
 @end
