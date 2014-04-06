@@ -154,8 +154,9 @@ static NSString *kCBCentralManagerBlocksKey = @"CBCentralManagerBlocksDelegate";
 #pragma mark -
 #pragma mark - Konashi control public methods
 
+static CBCentralManager *c;
 static NSMutableSet *globalPeripherals;
-+ (void)discover:(void (^)(NSArray *array, BOOL *stop))discoverBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
++ (void)findAny:(void (^)(NSArray *array))foundBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -163,8 +164,6 @@ static NSMutableSet *globalPeripherals;
 		c = [[CBCentralManager alloc] initBlcoksDelegateWithQueue:nil];
 	});
 	[globalPeripherals removeAllObjects];
-	
-	NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:timeoutInterval target:[self class] selector:@selector(stopScan:) userInfo:@{@"callback":[timeoutBlock copy]} repeats:YES];
 	[c.blocksDelegate setDidUpdateStateBlock:^(CBCentralManager *center) {
 		if (center.state == CBCentralManagerStatePoweredOn) {
 			[center scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@(NO)}];
@@ -172,16 +171,13 @@ static NSMutableSet *globalPeripherals;
 	}];
 	[c.blocksDelegate setDidDiscoverPeripheralBlock:^(CBCentralManager *center, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
 		[globalPeripherals addObject:peripheral];
-		BOOL stop = NO;
-		discoverBlocks(globalPeripherals.allObjects, &stop);
-		if (stop == YES) {
-			[self stopScan:t];
-		}
+		foundBlocks(globalPeripherals.allObjects);
 	}];
 	
 	if (c.state == CBCentralManagerStatePoweredOn) {
 		[c scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@(NO)}];
 	}
+	[NSTimer scheduledTimerWithTimeInterval:timeoutInterval target:[self class] selector:@selector(stopScan:) userInfo:@{@"callback":[timeoutBlock copy]} repeats:YES];
 }
 
 + (void)stopScan:(NSTimer *)timer
@@ -814,7 +810,20 @@ static NSMutableSet *globalPeripherals;
 {
     KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
     
-    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
+    KNS_LOG(@"Peripherals: %d", [peripherals count]);
+    
+    if ([peripherals count] > 0) {
+        [self postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            [self showModulePickeriPad];    //iPad
+        }
+		else {
+            [self showModulePicker];        //else
+        }
+    }
+	else {
+        [self postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
+    }
 }
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral
