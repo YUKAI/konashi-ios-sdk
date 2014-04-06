@@ -232,7 +232,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 @property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
 // Singleton
-+ (Konashi *) shared;
++ (Konashi *)shared;
 
 // Konashi control methods
 + (KonashiResult)initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
