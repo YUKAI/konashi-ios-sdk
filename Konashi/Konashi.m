@@ -297,7 +297,7 @@
 
 - (KonashiResult)_initializeKonashi
 {
-    if (!cm){
+    if (!cm) {
         cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         [self _initializeKonashiVariables];
         return KonashiResultSuccess;
@@ -352,7 +352,7 @@
 
 - (KonashiResult)_findModule:(NSTimeInterval) timeout
 {
-    if (activePeripheral && activePeripheral.isConnected){
+    if (activePeripheral && activePeripheral.isConnected) {
         return KonashiResultFailed;
     }
         
@@ -377,7 +377,7 @@
 }
 
 - (KonashiResult)_findModuleWithName:(NSString*)name timeout:(NSTimeInterval)timeout{
-    if (activePeripheral && activePeripheral.isConnected){
+    if (activePeripheral && activePeripheral.isConnected) {
         return KonashiResultFailed;
     }
         
@@ -410,7 +410,7 @@
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
     BOOL targetIsExist = NO;
     int indexOfTarget = 0;
-    if ( [peripherals count] > 0 ) {
+    if ([peripherals count] > 0) {
         for (int i = 0; i < [peripherals count]; i++) {
             if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
                 targetIsExist = YES;
@@ -420,7 +420,8 @@
     }
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
-    } else {
+    }
+	else {
         [self postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     }
 }
@@ -433,7 +434,7 @@
     
     if ([peripherals count] > 0) {
         [self postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             [self showModulePickeriPad];    //iPad
         }
 		else {
@@ -516,7 +517,7 @@
 {
     if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)) {
         // Set value
-        if (mode == KonashiPinModeOutput){
+        if (mode == KonashiPinModeOutput) {
             pioSetting |= 0x01 << pin;
         }
         else {
@@ -533,7 +534,7 @@
 
 - (KonashiResult)_pinModeAll:(int)mode
 {
-    if (mode >= 0x00 && mode <= 0xFF){
+    if (mode >= 0x00 && mode <= 0xFF) {
         // Set value
         pioSetting = mode;
         
@@ -569,7 +570,7 @@
 {
     if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModePullup || mode == KonashiPinModeNoPulls)) {
         // Set value
-        if (mode == KonashiPinModePullup){
+        if (mode == KonashiPinModePullup) {
             pioPullup |= 0x01 << pin;
         }
 		else {
@@ -638,7 +639,7 @@
 {
     if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (value == KonashiLevelHigh || value == KonashiLevelLow)) {
         // Set value
-        if (value == KonashiLevelHigh){
+        if (value == KonashiLevelHigh) {
             pioOutput |= 0x01 << pin;
         }
         else {
@@ -703,7 +704,7 @@
             pwmSetting &= ~(0x01 << pin) & 0xFF;
         }
         
-        if (mode == KonashiPwmModeEnableLED){
+        if (mode == KonashiPwmModeEnableLED) {
             [self _pwmPeriod:pin period:KonashiLEDPeriod];
             [self _pwmLedDrive:pin dutyRatio:0.0];
         }
@@ -771,7 +772,7 @@
 
 - (KonashiResult)_pwmDuty:(int)pin duty:(unsigned int)duty
 {
-    if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && duty <= pwmPeriod[pin]){
+    if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && duty <= pwmPeriod[pin]) {
         pwmDuty[pin] = duty;
         return [self _writeValuePwmDuty:pin];
     }
@@ -1582,7 +1583,7 @@
     KNS_LOG(@"didUpdateValueForCharacteristic");
     
     if (!error) {
-        switch(characteristicUUID){
+        switch(characteristicUUID) {
             case KONASHI_PIO_INPUT_NOTIFICATION_UUID:{
 				[characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
 				int xor = (piobyte[0] ^ byte[0]) & (0xff ^ pioSetting);
