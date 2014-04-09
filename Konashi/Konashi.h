@@ -176,7 +176,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
     UIPickerView *picker;
 
     // status
-    BOOL isCallFind;
+    BOOL findMethodCalled;
     NSString *findName;
     BOOL readyToUse;
 
@@ -232,10 +232,11 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 + (Konashi *)sharedKonashi;
 
 // Konashi control methods
++ (void)findAny:(void (^)(NSArray *array))foundBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
 + (Konashi *)createKonashiWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
-- (KonashiResult)find;
-- (KonashiResult)findWithName:(NSString*)name;
-- (KonashiResult)findModuleWithName:(NSString*)name timeout:(NSTimeInterval)timeout;
+- (KonashiResult)connect;
+- (KonashiResult)connectWithName:(NSString*)name;
+- (KonashiResult)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout;
 - (KonashiResult)disconnect;
 - (BOOL)isConnected;
 - (BOOL)isReadyToUse;

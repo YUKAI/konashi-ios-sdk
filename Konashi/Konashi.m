@@ -511,7 +511,7 @@ static NSMutableSet *globalPeripherals;
     KonashiResult result = KonashiResultFailed;
     if (length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
 		activePeripheral && activePeripheral.isConnected) {
-        t[0] = length+1;
+        t[0] = length + 1;
         t[1] = (address << 1) & 0b11111110;
         for (i = 0; i < length; i++) {
             t[i+2] = data[i];
@@ -1411,7 +1411,7 @@ static NSMutableSet *globalPeripherals;
     KNS_LOG(@"Disconnect from the peripheral: %@", [peripheral name]);
 	
 	if (self.disconnectedHander) {
-		self.disconnectedHander(k);
+		self.disconnectedHander(self);
 	}
 	else {
 		[self postNotification:KONASHI_EVENT_DISCONNECTED];

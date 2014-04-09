@@ -67,7 +67,7 @@
         [[Konashi sharedKonashi] disconnect];
         [self.connectButton setTitle: @"konashi に接続する" forState:UIControlStateNormal];
     } else {
-        [[Konashi sharedKonashi] find];
+        [[Konashi sharedKonashi] connect];
     }
 }
 

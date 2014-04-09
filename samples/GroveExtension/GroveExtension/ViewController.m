@@ -51,7 +51,7 @@
 }
 
 - (IBAction)find:(id)sender {
-    [[Konashi sharedKonashi] find];
+    [[Konashi sharedKonashi] connect];
 }
 
 - (IBAction)disconnect:(id)sender {

@@ -87,12 +87,12 @@
 
 - (IBAction)find:(id)sender {
     //[Konashi findWithName:@"konashi#4-0960"];
-    [konashi1 find];
+    [konashi1 connect];
 }
 
 - (IBAction)find2:(id)sender
 {
-	[konashi2 find];
+	[konashi2 connect];
 }
 
 - (IBAction)disconnect:(id)sender {

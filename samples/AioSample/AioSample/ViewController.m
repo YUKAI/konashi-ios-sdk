@@ -33,7 +33,7 @@
 }
 
 - (IBAction)find:(id)sender {
-    [[Konashi sharedKonashi] find];
+    [[Konashi sharedKonashi]connect];
 }
 
 - (IBAction)setVoltage1000:(id)sender {

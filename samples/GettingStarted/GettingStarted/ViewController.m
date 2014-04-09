@@ -29,7 +29,7 @@
 }
 
 - (IBAction)find:(id)sender {
-    [[Konashi sharedKonashi] find];
+    [[Konashi sharedKonashi] connect];
 }
 
 - (void)ready
