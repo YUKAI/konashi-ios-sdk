@@ -21,8 +21,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     
     timer=[NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(refreshDuty) userInfo:nil repeats:YES];
     [timer fire];
@@ -48,11 +47,11 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)disconnect:(id)sender {
-    [Konashi disconnect];
+    [[Konashi sharedKonashi] disconnect];
 }
 
 @end

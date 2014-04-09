@@ -132,12 +132,12 @@ typedef NS_ENUM(int, KonashiUartMode) {
 	KonashiUartModeEnable
 };
 
-typedef void(^KonashiEventHandler)(Konashi *konashi);
-typedef void(^KonashiEventHandler1)(Konashi *konashi, int value);
-typedef void(^KonashiEventHandler2)(Konashi *konashi, unsigned char value);
-typedef void(^KonashiEventHandler3)(Konashi *konashi, unsigned char *value);
-typedef void(^KonashiDigitalPinDidChangeValueHandler)(Konashi *konashi, KonashiDigitalIOPin pin, int value);
-typedef void(^KonashiAnalogPinDidChangeValueHandler)(Konashi *konashi, KonashiAnalogIOPin pin, int value);
+typedef void(^KonashiEventHandler)(Konashi *k);
+typedef void(^KonashiEventHandler1)(Konashi *k, int value);
+typedef void(^KonashiEventHandler2)(Konashi *k, unsigned char value);
+typedef void(^KonashiEventHandler3)(Konashi *k, unsigned char *value);
+typedef void(^KonashiDigitalPinDidChangeValueHandler)(Konashi *k, KonashiDigitalIOPin pin, int value);
+typedef void(^KonashiAnalogPinDidChangeValueHandler)(Konashi *k, KonashiAnalogIOPin pin, int value);
 typedef KonashiEventHandler2 KonashiUartRxCompleteHandler;
 typedef KonashiEventHandler3 KonashiI2CReadCompleteHandler;
 typedef KonashiEventHandler1 KonashiBatteryLevelDidUpdateHandler;
@@ -181,7 +181,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
     // status
     BOOL isCallFind;
     NSString *findName;
-    BOOL isReady;
+    BOOL readyToUse;
 
     // Digital PIO
     unsigned char pioSetting;
@@ -232,66 +232,66 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 @property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
 // Singleton
-+ (Konashi *) shared;
++ (Konashi *)sharedKonashi;
 
 // Konashi control methods
-+ (KonashiResult)initWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
-+ (KonashiResult)initialize;
-+ (KonashiResult)find;
-+ (KonashiResult)findWithName:(NSString*)name;
-+ (KonashiResult)disconnect;
-+ (BOOL)isConnected;
-+ (BOOL)isReady;
-+ (NSString *)peripheralName;
++ (Konashi *)createKonashiWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
+- (KonashiResult)find;
+- (KonashiResult)findWithName:(NSString*)name;
+- (KonashiResult)findModuleWithName:(NSString*)name timeout:(NSTimeInterval)timeout;
+- (KonashiResult)disconnect;
+- (BOOL)isConnected;
+- (BOOL)isReadyToUse;
+- (NSString *)peripheralName;
 
 // Digital PIO methods
-+ (int)pinMode:(int)pin mode:(int)mode;
-+ (int)pinModeAll:(int)mode;
-+ (int)pinPullup:(int)pin mode:(int)mode;
-+ (int)pinPullupAll:(int)mode;
-+ (int)digitalRead:(int)pin;
-+ (int)digitalReadAll;
-+ (int)digitalWrite:(int)pin value:(int)value;
-+ (int)digitalWriteAll:(int)value;
+- (int)pinMode:(int)pin mode:(int)mode;
+- (int)pinModeAll:(int)mode;
+- (int)pinPullup:(int)pin mode:(int)mode;
+- (int)pinPullupAll:(int)mode;
+- (int)digitalRead:(int)pin;
+- (int)digitalReadAll;
+- (int)digitalWrite:(int)pin value:(int)value;
+- (int)digitalWriteAll:(int)value;
 
 // PWM methods
-+ (int)pwmMode:(int)pin mode:(int)mode;
-+ (int)pwmPeriod:(int)pin period:(unsigned int)period;
-+ (int)pwmDuty:(int)pin duty:(unsigned int)duty;
-+ (int)pwmLedDrive:(int)pin dutyRatio:(int)ratio;
+- (int)pwmMode:(int)pin mode:(int)mode;
+- (int)pwmPeriod:(int)pin period:(unsigned int)period;
+- (int)pwmDuty:(int)pin duty:(unsigned int)duty;
+- (int)pwmLedDrive:(int)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
-+ (int)analogReference;
-+ (int)analogReadRequest:(int)pin;
-+ (int)analogRead:(int)pin;
-+ (int)analogWrite:(int)pin milliVolt:(int)milliVolt;
+- (int)analogReference;
+- (int)analogReadRequest:(int)pin;
+- (int)analogRead:(int)pin;
+- (KonashiResult)analogWrite:(int)pin milliVolt:(int)milliVolt;
 
 // I2C methods
-+ (int)i2cMode:(int)mode;
-+ (int)i2cStartCondition;
-+ (int)i2cRestartCondition;
-+ (int)i2cStopCondition;
-+ (int)i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
-+ (int)i2cReadRequest:(int)length address:(unsigned char)address;
-+ (int)i2cRead:(int)length data:(unsigned char*)data;
+- (KonashiResult)setI2CMode:(int)mode;
+- (KonashiResult)i2cStartCondition;
+- (KonashiResult)i2cRestartCondition;
+- (KonashiResult)i2cStopCondition;
+- (KonashiResult)i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
+- (KonashiResult)i2cReadRequest:(int)length address:(unsigned char)address;
+- (KonashiResult)i2cRead:(int)length data:(unsigned char*)data;
 
 // UART methods
-+ (int)uartMode:(int)mode;
-+ (int)uartBaudrate:(int)baudrate;
-+ (int)uartWrite:(unsigned char)data;
-+ (unsigned char)uartRead;
+- (KonashiResult)setUartMode:(int)mode;
+- (KonashiResult)setUartBaudrate:(int)baudrate;
+- (KonashiResult)uartWrite:(unsigned char)data;
+- (unsigned char)uartRead;
 
 // Konashi hardware methods
-+ (int)reset;
-+ (int)batteryLevelReadRequest;
-+ (int)batteryLevelRead;
-+ (int)signalStrengthReadRequest;
-+ (int)signalStrengthRead;
+- (KonashiResult)reset;
+- (KonashiResult)batteryLevelReadRequest;
+- (int)batteryLevelRead;
+- (KonashiResult)signalStrengthReadRequest;
+- (int)signalStrengthRead;
 
 
 // Konashi event methods
-+ (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
-+ (void)removeObserver:(id)notificationObserver;
+- (void)addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
+- (void)removeObserver:(id)notificationObserver;
 
 
 

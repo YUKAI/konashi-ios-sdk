@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Konashi;
+
 @interface ViewController : UIViewController
+{
+	Konashi *konashi1;
+	Konashi *konashi2;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *pioMessage;
 @property (weak, nonatomic) IBOutlet UIButton *led3;

@@ -19,9 +19,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,13 +29,13 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (void)ready
 {
-    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
-    [Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
+    [[Konashi sharedKonashi] pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+    [[Konashi sharedKonashi] digitalWrite:KonashiLED2 value:KonashiLevelHigh];
 }
 
 @end

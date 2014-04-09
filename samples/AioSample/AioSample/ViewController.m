@@ -19,13 +19,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(readAio) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-    [Konashi addObserver:self selector:@selector(readAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+	
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(readAio) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(readAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +33,15 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)setVoltage1000:(id)sender {
-    [Konashi analogWrite:KonashiAnalogIO1 milliVolt:1000];
+    [[Konashi sharedKonashi] analogWrite:KonashiAnalogIO1 milliVolt:1000];
 }
 
 - (IBAction)requestReadAio0:(id)sender {
-    [Konashi analogReadRequest:KonashiAnalogIO0];
+    [[Konashi sharedKonashi] analogReadRequest:KonashiAnalogIO0];
 }
 
 - (void) connected
@@ -65,8 +63,8 @@
 
 - (void) readAio0
 {
-    NSLog(@"READ_AIO0: %d", [Konashi analogRead:KonashiAnalogIO0]);
-    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:KonashiAnalogIO0]/1000];
+    NSLog(@"READ_AIO0: %ld", (long)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO0]);
+    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO0]/1000];
 }
 
 @end

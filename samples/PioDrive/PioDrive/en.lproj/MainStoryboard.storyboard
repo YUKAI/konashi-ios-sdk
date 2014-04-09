@@ -1,54 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eT-Q6-DAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="JG6-P0-54E"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PD0-g5-I9l">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="20" y="31" width="122" height="30"/>
                                 <state key="normal" title="Find">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="find:" destination="2" eventType="touchUpInside" id="aI9-P2-wBe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UN-Kz-PHR">
+                                <rect key="frame" x="99" y="93" width="122" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="VZh-zu-m1j"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Disconnect">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="disconnect:" destination="2" eventType="touchUpInside" id="tvz-go-WEy"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1T-LR-T1s">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="45" y="229" width="38" height="30"/>
                                 <state key="normal" title="LED3">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="downLed3:" destination="2" eventType="touchDown" id="R5N-ru-Qu6"/>
@@ -56,13 +49,9 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-yk-Zu6">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="141" y="229" width="38" height="30"/>
                                 <state key="normal" title="LED4">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="downLed4:" destination="2" eventType="touchDown" id="G4H-n3-MZn"/>
@@ -70,13 +59,9 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGC-hD-5cf">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="237" y="229" width="38" height="30"/>
                                 <state key="normal" title="LED5">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="downLed5:" destination="2" eventType="touchDown" id="Sn8-1e-kcn"/>
@@ -84,24 +69,35 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="基板のスイッチを押すとLED1点灯" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGw-wf-i9M">
+                                <rect key="frame" x="30" y="329" width="261" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjy-b4-pMW">
+                                <rect key="frame" x="178" y="31" width="122" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Find2">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="find2:" destination="2" eventType="touchUpInside" id="WWE-Cu-QIf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PD0-g5-I9l" firstAttribute="top" secondItem="3" secondAttribute="top" constant="31" id="0zt-TZ-Ct3"/>
-                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="centerX" secondItem="PD0-g5-I9l" secondAttribute="centerX" type="default" id="1es-Zk-uZW"/>
-                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="centerX" secondItem="Ac1-yk-Zu6" secondAttribute="centerX" type="default" id="28l-5w-z28"/>
+                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="centerX" secondItem="PD0-g5-I9l" secondAttribute="centerX" constant="79" id="1es-Zk-uZW"/>
+                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="centerX" secondItem="Ac1-yk-Zu6" secondAttribute="centerX" id="28l-5w-z28"/>
                             <constraint firstItem="g1T-LR-T1s" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="45" id="7cW-n1-Ewj"/>
                             <constraint firstItem="6UN-Kz-PHR" firstAttribute="top" secondItem="3" secondAttribute="top" constant="93" id="8ag-gR-XN5"/>
-                            <constraint firstItem="wGw-wf-i9M" firstAttribute="centerX" secondItem="Ac1-yk-Zu6" secondAttribute="centerX" type="default" id="F0e-rn-j3m"/>
+                            <constraint firstItem="wGw-wf-i9M" firstAttribute="centerX" secondItem="Ac1-yk-Zu6" secondAttribute="centerX" id="F0e-rn-j3m"/>
                             <constraint firstAttribute="trailing" secondItem="OGC-hD-5cf" secondAttribute="trailing" constant="45" id="FNL-Hh-u27"/>
-                            <constraint firstItem="Ac1-yk-Zu6" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ifb-AH-BYQ"/>
-                            <constraint firstItem="OGC-hD-5cf" firstAttribute="baseline" secondItem="Ac1-yk-Zu6" secondAttribute="baseline" type="default" id="Pri-MF-PYC"/>
-                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="leading" secondItem="PD0-g5-I9l" secondAttribute="leading" type="default" id="WHV-PJ-Uof"/>
-                            <constraint firstItem="Ac1-yk-Zu6" firstAttribute="baseline" secondItem="g1T-LR-T1s" secondAttribute="baseline" type="default" id="m3x-2x-hnx"/>
+                            <constraint firstItem="Ac1-yk-Zu6" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="Ifb-AH-BYQ"/>
+                            <constraint firstItem="OGC-hD-5cf" firstAttribute="baseline" secondItem="Ac1-yk-Zu6" secondAttribute="baseline" id="Pri-MF-PYC"/>
+                            <constraint firstItem="6UN-Kz-PHR" firstAttribute="leading" secondItem="PD0-g5-I9l" secondAttribute="leading" constant="79" id="WHV-PJ-Uof"/>
+                            <constraint firstItem="Ac1-yk-Zu6" firstAttribute="baseline" secondItem="g1T-LR-T1s" secondAttribute="baseline" id="m3x-2x-hnx"/>
                             <constraint firstItem="g1T-LR-T1s" firstAttribute="top" secondItem="3" secondAttribute="top" constant="229" id="ss8-ce-Vio"/>
                             <constraint firstAttribute="bottom" secondItem="wGw-wf-i9M" secondAttribute="bottom" constant="218" id="v0G-6f-X2h"/>
                         </constraints>
@@ -117,30 +113,6 @@
             </objects>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="disconnect:"/>
-                <relationship kind="action" name="disconnectMonaka:"/>
-                <relationship kind="action" name="downLed3:"/>
-                <relationship kind="action" name="downLed4:"/>
-                <relationship kind="action" name="downLed5:"/>
-                <relationship kind="action" name="find:"/>
-                <relationship kind="action" name="findMonaka:"/>
-                <relationship kind="action" name="upLed3:"/>
-                <relationship kind="action" name="upLed4:"/>
-                <relationship kind="action" name="upLed5:"/>
-                <relationship kind="outlet" name="led3" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="led4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="led5" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pioMessage" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

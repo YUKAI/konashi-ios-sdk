@@ -21,9 +21,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(completeI2cRead) name:KONASHI_EVENT_I2C_READ_COMPLETE];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(completeI2cRead) name:KONASHI_EVENT_I2C_READ_COMPLETE];
     
     timer=[NSTimer scheduledTimerWithTimeInterval:0.9f target:self selector:@selector(readValue) userInfo:nil repeats:YES];
     [timer fire];
@@ -43,8 +42,8 @@
 
 - (void)completeI2cRead{
     uint8_t val[2];
-    [Konashi i2cStopCondition];
-    [Konashi i2cRead:2 data:val];
+    [[Konashi sharedKonashi] i2cStopCondition];
+    [[Konashi sharedKonashi] i2cRead:2 data:val];
     int amp=val[0]*256+val[1];
     [adcValueLabel setText:[NSString stringWithFormat:@"%d",amp]];
     NSLog(@"ADC Value: %d\n",amp);
@@ -55,10 +54,10 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)disconnect:(id)sender {
-    [Konashi disconnect];
+    [[Konashi sharedKonashi] disconnect];
 }
 @end

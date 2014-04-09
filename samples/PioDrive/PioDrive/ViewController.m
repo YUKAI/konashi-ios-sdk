@@ -19,42 +19,64 @@
 {
     [super viewDidLoad];
     
-	[Konashi initWithConnectedHandler:^(Konashi *konashi) {
-		
-	} disconnectedHandler:^(Konashi *konashi) {
-		[self disconnect:nil];
-	} readyHandler:^(Konashi *konashi) {
-		NSLog(@"READY peripheral name:%@", [Konashi peripheralName]);
-		
+	konashi1 = [Konashi createKonashiWithConnectedHandler:^(Konashi *k) {
+	} disconnectedHandler:^(Konashi *k) {
+		NSLog(@"DISCONNECTED:%@", k.peripheralName);
+	} readyHandler:^(Konashi *k) {
+		NSLog(@"READY peripheral name:%@", k.peripheralName);
 		// Show buttons
 		self.led3.hidden = NO;
 		self.led4.hidden = NO;
 		self.led5.hidden = NO;
 		self.pioMessage.hidden = NO;
 		
-		[Konashi pinMode:KonashiS1 mode:KonashiPinModeInput];
-		[Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
-		[Konashi pinMode:KonashiLED3 mode:KonashiPinModeOutput];
-		[Konashi pinMode:KonashiLED4 mode:KonashiPinModeOutput];
-		[Konashi pinMode:KonashiLED5 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiS1 mode:KonashiPinModeInput];
+		[k pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED3 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED4 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED5 mode:KonashiPinModeOutput];
 	}];
-	[Konashi shared].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int signalStrength) {
-		NSLog(@"signal strength:%d", signalStrength);
+	konashi2 = [Konashi createKonashiWithConnectedHandler:^(Konashi *k) {
+	} disconnectedHandler:^(Konashi *k) {
+		NSLog(@"DISCONNECTED:%@", k.peripheralName);
+	} readyHandler:^(Konashi *k) {
+		NSLog(@"READY peripheral name:%@", k.peripheralName);
+		// Show buttons
+		self.led3.hidden = NO;
+		self.led4.hidden = NO;
+		self.led5.hidden = NO;
+		self.pioMessage.hidden = NO;
+		
+		[k pinMode:KonashiS1 mode:KonashiPinModeInput];
+		[k pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED3 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED4 mode:KonashiPinModeOutput];
+		[k pinMode:KonashiLED5 mode:KonashiPinModeOutput];
+	}];
+	
+	KonashiSignalStrengthDidUpdateHandler signal = ^(Konashi *k, int signalStrength) {
+		NSLog(@"signal strength:%@(%d)", k.peripheralName, signalStrength);
 	};
-    //[Konashi addObserver:self selector:@selector(cmPoweredOn) name:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
-    //[Konashi addObserver:self selector:@selector(peripheralNotFound) name:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
-	[Konashi shared].digitalInputDidChangeValueHandler = ^(Konashi *konashi, KonashiDigitalIOPin pin, int value) {
-		NSLog(@"input  %d:%d", pin, value);
+	KonashiDigitalPinDidChangeValueHandler input = ^(Konashi *k, KonashiDigitalIOPin pin, int value) {
+		NSLog(@"input:%@(%d:%d)", k.peripheralName, pin, value);
 		if (pin == KonashiS1 && value) {
-			[Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
+			[k digitalWrite:KonashiLED2 value:KonashiLevelHigh];
 		}
 		else {
-			[Konashi digitalWrite:KonashiLED2 value:KonashiLevelLow];
+			[k digitalWrite:KonashiLED2 value:KonashiLevelLow];
 		}
 	};
-	[Konashi shared].digitalOutputDidChangeValueHandler = ^(Konashi *konashi, KonashiDigitalIOPin pin, int value) {
-		NSLog(@"output %d:%d", pin, value);
+	KonashiDigitalPinDidChangeValueHandler output = ^(Konashi *k, KonashiDigitalIOPin pin, int value) {
+		NSLog(@"output:%@(%d:%d)", k.peripheralName, pin, value);
 	};
+	
+	konashi1.signalStrengthDidUpdateHandler = signal;
+	konashi1.digitalInputDidChangeValueHandler = input;
+	konashi1.digitalOutputDidChangeValueHandler = output;
+	
+	konashi2.signalStrengthDidUpdateHandler = signal;
+	konashi2.digitalInputDidChangeValueHandler = input;
+	konashi2.digitalOutputDidChangeValueHandler = output;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,35 +87,47 @@
 
 - (IBAction)find:(id)sender {
     //[Konashi findWithName:@"konashi#4-0960"];
-    [Konashi find];
+    [konashi1 find];
+}
+
+- (IBAction)find2:(id)sender
+{
+	[konashi2 find];
 }
 
 - (IBAction)disconnect:(id)sender {
-    [Konashi disconnect];
+    [konashi1 disconnect];
+	[konashi2 disconnect];
 }
 
 - (IBAction)upLed3:(id)sender {
-    [Konashi digitalWrite:KonashiLED3 value:KonashiLevelLow];
+    [konashi1 digitalWrite:KonashiLED3 value:KonashiLevelLow];
+	[konashi2 digitalWrite:KonashiLED3 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed3:(id)sender {
-    [Konashi digitalWrite:KonashiLED3 value:KonashiLevelHigh];
+    [konashi1 digitalWrite:KonashiLED3 value:KonashiLevelHigh];
+	[konashi2 digitalWrite:KonashiLED3 value:KonashiLevelHigh];
 }
 
 - (IBAction)upLed4:(id)sender {
-    [Konashi digitalWrite:KonashiLED4 value:KonashiLevelLow];
+    [konashi1 digitalWrite:KonashiLED4 value:KonashiLevelLow];
+	[konashi2 digitalWrite:KonashiLED4 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed4:(id)sender {
-    [Konashi digitalWrite:KonashiLED4 value:KonashiLevelHigh];
+    [konashi1 digitalWrite:KonashiLED4 value:KonashiLevelHigh];
+	[konashi2 digitalWrite:KonashiLED4 value:KonashiLevelHigh];
 }
 
 - (IBAction)upLed5:(id)sender {
-    [Konashi digitalWrite:KonashiLED5 value:KonashiLevelLow];
+    [konashi1 digitalWrite:KonashiLED5 value:KonashiLevelLow];
+	[konashi2 digitalWrite:KonashiLED5 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed5:(id)sender {
-    [Konashi digitalWrite:KonashiLED5 value:KonashiLevelHigh];
+    [konashi1 digitalWrite:KonashiLED5 value:KonashiLevelHigh];
+	[konashi2 digitalWrite:KonashiLED5 value:KonashiLevelHigh];
 }
 
 /*- (void) cmPoweredOn

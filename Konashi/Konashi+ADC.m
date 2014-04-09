@@ -31,7 +31,7 @@ static uint8_t powerMode;
         return KonashiResultFailed;
     }
     adcAddress=address;
-    return [Konashi i2cMode:KonashiI2CModeEnable400K];
+    return [[Konashi sharedKonashi] setI2CMode:KonashiI2CModeEnable400K];
 }
 
 + (int)readADCWithChannel:(uint8_t)channel{
@@ -41,10 +41,10 @@ static uint8_t powerMode;
     }
     uint8_t c=((uint8_t)channel>>1)|((channel&1)<<2);
     uint8_t data=KONASHI_ADC_SD|(c<<4)|(powerMode<<2);
-    [Konashi i2cStartCondition];
-    [Konashi i2cWrite:1 data:&data address:adcAddress];
-    [Konashi i2cRestartCondition];
-    return [Konashi i2cReadRequest:2 address:adcAddress];
+    [[Konashi sharedKonashi] i2cStartCondition];
+    [[Konashi sharedKonashi] i2cWrite:1 data:&data address:adcAddress];
+    [[Konashi sharedKonashi] i2cRestartCondition];
+    return [[Konashi sharedKonashi] i2cReadRequest:2 address:adcAddress];
 }
 
 + (int)readDiffADCWithChannels:(uint8_t)channels{
@@ -53,10 +53,10 @@ static uint8_t powerMode;
         return KonashiResultFailed;
     }
     uint8_t data=(channels<<4)|(powerMode<<2);
-    [Konashi i2cStartCondition];
-    [Konashi i2cWrite:1 data:&data address:adcAddress];
-    [Konashi i2cRestartCondition];
-    return [Konashi i2cReadRequest:2 address:adcAddress];
+    [[Konashi sharedKonashi] i2cStartCondition];
+    [[Konashi sharedKonashi] i2cWrite:1 data:&data address:adcAddress];
+    [[Konashi sharedKonashi] i2cRestartCondition];
+    return [[Konashi sharedKonashi] i2cReadRequest:2 address:adcAddress];
 }
 
 + (int)selectPowerMode:(uint8_t)mode{
@@ -65,9 +65,9 @@ static uint8_t powerMode;
         return KonashiResultFailed;
     }
     powerMode=mode;
-    [Konashi i2cStartCondition];
-    [Konashi i2cWrite:1 data:&powerMode address:adcAddress];
-    return [Konashi i2cStopCondition];
+    [[Konashi sharedKonashi] i2cStartCondition];
+    [[Konashi sharedKonashi] i2cWrite:1 data:&powerMode address:adcAddress];
+    return [[Konashi sharedKonashi] i2cStopCondition];
 }
 
 @end

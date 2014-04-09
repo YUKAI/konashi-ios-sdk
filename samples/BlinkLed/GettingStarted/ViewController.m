@@ -21,7 +21,7 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,18 +31,18 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (void)ready
 {
     // Drive LED
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPwmModeEnableLED];
+    [[Konashi sharedKonashi] pwmMode:KonashiLED2 mode:KonashiPwmModeEnableLED];
     
     //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:KonashiLED2 duty:500000];       // 0.5s
-    [Konashi pwmMode:KonashiLED2 mode:1];
+    [[Konashi sharedKonashi] pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
+    [[Konashi sharedKonashi] pwmDuty:KonashiLED2 duty:500000];       // 0.5s
+    [[Konashi sharedKonashi] pwmMode:KonashiLED2 mode:1];
 }
 
 @end

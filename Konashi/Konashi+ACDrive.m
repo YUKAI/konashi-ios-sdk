@@ -30,13 +30,13 @@ static int ACDriveMode;
     ACDriveMode=mode;
     if(mode==0){
         [Konashi selectACDriveFreq:freq];
-        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
-        return [Konashi pinMode:KONASHI_AC_PIN_CTRL mode:KonashiPinModeOutput];
+        [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        return [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_CTRL mode:KonashiPinModeOutput];
     } else if(mode==1) {
         [Konashi selectACDriveFreq:freq];
-        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
-        [Konashi pwmMode:KONASHI_AC_PIN_CTRL mode:KonashiPwmModeEnable];
-        return [Konashi pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
+        [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        [[Konashi sharedKonashi] pwmMode:KONASHI_AC_PIN_CTRL mode:KonashiPwmModeEnable];
+        return [[Konashi sharedKonashi] pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
     } else {
         return KonashiResultFailed;
     }
@@ -45,7 +45,7 @@ static int ACDriveMode;
 + (int)onACDrive
 {
     if(ACDriveMode==0){
-        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelHigh];
+        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelHigh];
     } else {
         return KonashiResultFailed;
     }
@@ -54,7 +54,7 @@ static int ACDriveMode;
 + (int)offACDrive
 {
     if(ACDriveMode==0){
-        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelLow];
+        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelLow];
     } else {
         return KonashiResultFailed;
     }
@@ -71,7 +71,7 @@ static int ACDriveMode;
             ratio = 100.0;
         }
         duty = (int)(KONASHI_PWM_AC_PERIOD * ratio / 100);
-        return [Konashi pwmDuty:KONASHI_AC_PIN_CTRL duty:duty];
+        return [[Konashi sharedKonashi] pwmDuty:KONASHI_AC_PIN_CTRL duty:duty];
     } else {
         return KonashiResultFailed;
     }
@@ -80,9 +80,9 @@ static int ACDriveMode;
 + (int)selectACDriveFreq:(int)freq
 {
     if(freq==KONASHI_AC_FREQ_50HZ) {
-        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelLow];
+        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelLow];
     } else if(freq==KONASHI_AC_FREQ_60HZ) {
-        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelHigh];
+        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelHigh];
     } else {
         return KonashiResultFailed;
     }
