@@ -19,11 +19,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(recvUartRx) name:KONASHI_EVENT_UART_RX_COMPLETE];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(recvUartRx) name:KONASHI_EVENT_UART_RX_COMPLETE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,20 +41,20 @@
     
     self.statusMessage.hidden = FALSE;
     
-    [Konashi uartBaudrate:KonashiUartRate9K6];
-    [Konashi uartMode:KonashiUartModeEnable];
+    [[Konashi sharedKonashi] setUartBaudrate:KonashiUartRate9K6];
+    [[Konashi sharedKonashi] setUartMode:KonashiUartModeEnable];
 }
 
 - (void) recvUartRx
 {
-    NSLog(@"UartRx %d", [Konashi uartRead]);
+    NSLog(@"UartRx %d", [[Konashi sharedKonashi] uartRead]);
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)send:(id)sender {    
-    [Konashi uartWrite:'A'];
+    [[Konashi sharedKonashi] uartWrite:'A'];
 }
 @end
