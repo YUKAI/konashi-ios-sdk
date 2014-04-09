@@ -19,9 +19,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(completeAnalogRead) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(completeAnalogRead) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
     
     timer=[NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(readBrightness) userInfo:nil repeats:YES];
     [timer fire];
@@ -36,13 +35,13 @@
 - (void)ready
 {
     NSLog(@"Ready");
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPwmModeEnableLED];
+    [[Konashi sharedKonashi] setPWMMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
 }
 
 - (void)completeAnalogRead
 {
-    int aioValue=[Konashi analogRead:KonashiAnalogIO0];
-    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:aioValue/13];
+    int aioValue=[[Konashi sharedKonashi] analogRead:KonashiAnalogIO0];
+    [[Konashi sharedKonashi] pwmLedDrive:KonashiLED2 dutyRatio:aioValue/13];
     NSLog(@"Brightness:%d",aioValue);
 }
 
@@ -52,10 +51,10 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)disconnect:(id)sender {
-    [Konashi disconnect];
+    [[Konashi sharedKonashi] disconnect];
 }
 @end

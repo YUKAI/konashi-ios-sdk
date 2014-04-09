@@ -23,8 +23,8 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+    [[Konashi sharedKonashi] addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,7 +34,7 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+    [[Konashi sharedKonashi] find];
 }
 
 - (IBAction)clearLcd:(id)sender {
@@ -56,7 +56,7 @@
     
     self.statusMessage.hidden = FALSE;
     
-    [Konashi i2cMode:KonashiI2CModeEnable100K];
+    [[Konashi sharedKonashi] setI2CMode:KonashiI2CModeEnable100K];
 }
 
 - (void) writeCmd:(unsigned char)cmd
@@ -66,11 +66,11 @@
     t[0] = 0x00;  // the control byte is 0x00, the next folling byte is command byte
     t[1] = cmd;
     
-    [Konashi i2cStartCondition];
+    [[Konashi sharedKonashi] i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cWrite:2 data:t address:0b1010000];  // slaver address could only set to 1010000
+    [[Konashi sharedKonashi] i2cWrite:2 data:t address:0b1010000];  // slaver address could only set to 1010000
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cStopCondition];
+    [[Konashi sharedKonashi] i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
 }
 
@@ -81,11 +81,11 @@
     t[0] = 0x80;  // the control byte is 0x80, the next folling byte is data byte
     t[1] = data;
     
-    [Konashi i2cStartCondition];
+    [[Konashi sharedKonashi] i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cWrite:2 data:t address:0b1010000];  // slaver address could only set to 1010000
+    [[Konashi sharedKonashi] i2cWrite:2 data:t address:0b1010000];  // slaver address could only set to 1010000
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cStopCondition];
+    [[Konashi sharedKonashi] i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
 }
 

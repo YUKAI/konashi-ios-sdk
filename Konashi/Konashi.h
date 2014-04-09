@@ -72,15 +72,12 @@ typedef NS_ENUM(int, KonashiDigitalIOPin) {
 	KonashiDigitalIO4,
 	KonashiDigitalIO5,
 	KonashiDigitalIO6,
-	KonashiDigitalIO7
-};
-
-typedef NS_ENUM(int, KonashiOnboardIO) {
-	S1 = PIO0,
-	LED2 = PIO1,
-	LED3 = PIO2,
-	LED4 = PIO3,
-	LED5 = PIO4
+	KonashiDigitalIO7,
+	KonashiS1 = KonashiDigitalIO0,
+	KonashiLED2 = KonashiDigitalIO1,
+	KonashiLED3 = KonashiDigitalIO2,
+	KonashiLED4 = KonashiDigitalIO3,
+	KonashiLED5 = KonashiDigitalIO4
 };
 
 typedef NS_ENUM(int, KonashiAnalogIOPin) {
@@ -95,10 +92,10 @@ typedef NS_ENUM(int, KonashiI2CPin) {
 };
 
 // Konashi PWM
-typedef NS_ENUM(int, KonashiPwmMode) {
-	KonashiPwmModeDisable = 0,
-	KonashiPwmModeEnable,
-	KonashiPwmModeEnableLED
+typedef NS_ENUM(int, KonashiPWMMode) {
+	KonashiPWMModeDisable = 0,
+	KonashiPWMModeEnable,
+	KonashiPWMModeEnableLED
 };
 static const unsigned int KonashiLEDPeriod = 10000;
 
@@ -255,10 +252,10 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 - (int)digitalWriteAll:(int)value;
 
 // PWM methods
-- (int)pwmMode:(int)pin mode:(int)mode;
-- (int)pwmPeriod:(int)pin period:(unsigned int)period;
-- (int)pwmDuty:(int)pin duty:(unsigned int)duty;
-- (int)pwmLedDrive:(int)pin dutyRatio:(int)ratio;
+- (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(int)mode;
+- (KonashiResult)setPWMPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
+- (KonashiResult)setPWMDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
+- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
 - (int)analogReference;

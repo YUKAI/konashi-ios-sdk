@@ -50,66 +50,66 @@
 
     if(setting == self.pwmSetting0){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO0 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO0 dutyRatio:self.pwmDuty0.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO0 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO0 dutyRatio:self.pwmDuty0.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO0 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO0 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting1){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO1 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO1 dutyRatio:self.pwmDuty1.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO1 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO1 dutyRatio:self.pwmDuty1.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO1 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO1 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting2){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO2 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO2 dutyRatio:self.pwmDuty2.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO2 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO2 dutyRatio:self.pwmDuty2.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO2 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO2 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting3){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO3 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO3 dutyRatio:self.pwmDuty3.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO3 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO3 dutyRatio:self.pwmDuty3.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO3 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO3 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting4){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO4 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO4 dutyRatio:self.pwmDuty4.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO4 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO4 dutyRatio:self.pwmDuty4.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO4 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO4 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting5){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO5 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO5 dutyRatio:self.pwmDuty5.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO5 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO5 dutyRatio:self.pwmDuty5.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO5 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO5 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting6){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO6 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO6 dutyRatio:self.pwmDuty6.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO6 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO6 dutyRatio:self.pwmDuty6.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO6 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO6 mode:KonashiPWMModeDisable];
         }
     }
     else if(setting == self.pwmSetting7){
         if(setting.on){
-            [Konashi pwmMode:KonashiDigitalIO7 mode:KonashiPwmModeEnableLED];
-            [Konashi pwmLedDrive:KonashiDigitalIO7 dutyRatio:self.pwmDuty7.value * 100];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO7 mode:KonashiPWMModeEnableLED];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO7 dutyRatio:self.pwmDuty7.value * 100];
         } else {
-            [Konashi pwmMode:KonashiDigitalIO7 mode:KonashiPwmModeDisable];
+            [[Konashi sharedKonashi] setPWMMode:KonashiDigitalIO7 mode:KonashiPWMModeDisable];
         }
     }
 }
@@ -120,50 +120,50 @@
 
     if(slider == self.pwmDuty0){
         if(self.pwmSetting0.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO0 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO0 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty1){
         if(self.pwmSetting1.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO1 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO1 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty2){
         if(self.pwmSetting2.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO2 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO2 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty3){
         if(self.pwmSetting3.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO3 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO3 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty4){
         if(self.pwmSetting4.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO4 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO4 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty5){
         if(self.pwmSetting5.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO5 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO5 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty6){
         if(self.pwmSetting6.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO6 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO6 dutyRatio:slider.value * 100];
         }
     }
     else if(slider == self.pwmDuty7){
         if(self.pwmSetting7.on){
-            [Konashi pwmLedDrive:KonashiDigitalIO7 dutyRatio:slider.value * 100];
+            [[Konashi sharedKonashi] pwmLedDrive:KonashiDigitalIO7 dutyRatio:slider.value * 100];
         }
     }
 }
 
 - (IBAction)pushSet:(id)sender {
-    [Konashi pwmPeriod:[self.port.text intValue] period:[self.period.text intValue]];
-    [Konashi pwmDuty:[self.port.text intValue] duty:[self.duty.text intValue]];
-    [Konashi pwmMode:[self.port.text intValue] mode:KonashiPwmModeEnable];
+    [[Konashi sharedKonashi] setPWMPeriod:[self.port.text intValue] period:[self.period.text intValue]];
+    [[Konashi sharedKonashi] setPWMDuty:[self.port.text intValue] duty:[self.duty.text intValue]];
+    [[Konashi sharedKonashi] setPWMMode:[self.port.text intValue] mode:KonashiPWMModeEnable];
     
     /*
     int period = [self.period.text intValue];

@@ -26,9 +26,9 @@
     [self.dacBar2 addTarget:self action:@selector(onChangeDacBar:) forControlEvents:UIControlEventValueChanged];
     
     // ADC
-	[Konashi shared].analogPinDidChangeValueHandler = ^(Konashi *konashi, KonashiAnalogIOPin pin, int value) {
+	[Konashi sharedKonashi].analogPinDidChangeValueHandler = ^(Konashi *konashi, KonashiAnalogIOPin pin, int value) {
 		UILabel *label = labelArray[pin];
-		label.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO0] / 1000];
+		label.text = [NSString stringWithFormat:@"%.3f", (double)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO0] / 1000];
 	};
 //    [Konashi addObserver:self selector:@selector(onGetAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
 //    [Konashi addObserver:self selector:@selector(onGetAio1) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
@@ -65,17 +65,17 @@
 
 - (IBAction)setAio0:(id)sender {
     int volt = (int)(self.dacBar0.value * 1300);
-    [Konashi analogWrite:KonashiAnalogIO0 milliVolt:volt];
+    [[Konashi sharedKonashi] analogWrite:KonashiAnalogIO0 milliVolt:volt];
 }
 
 - (IBAction)setAio1:(id)sender {
     int volt = (int)(self.dacBar1.value * 1300);
-    [Konashi analogWrite:KonashiAnalogIO1 milliVolt:volt];
+    [[Konashi sharedKonashi] analogWrite:KonashiAnalogIO1 milliVolt:volt];
 }
 
 - (IBAction)setAio2:(id)sender {
     int volt = (int)(self.dacBar2.value * 1300);
-    [Konashi analogWrite:KonashiAnalogIO2 milliVolt:volt];
+    [[Konashi sharedKonashi] analogWrite:KonashiAnalogIO2 milliVolt:volt];
 }
 
 
@@ -83,28 +83,28 @@
 // ADC
 
 - (IBAction)getAio0:(id)sender {
-    [Konashi analogReadRequest:KonashiAnalogIO0];
+    [[Konashi sharedKonashi] analogReadRequest:KonashiAnalogIO0];
 }
 
 - (IBAction)getAio1:(id)sender {
-    [Konashi analogReadRequest:KonashiAnalogIO1];
+    [[Konashi sharedKonashi] analogReadRequest:KonashiAnalogIO1];
 }
 
 - (IBAction)getAio2:(id)sender {
-    [Konashi analogReadRequest:KonashiAnalogIO2];
+    [[Konashi sharedKonashi] analogReadRequest:KonashiAnalogIO2];
 }
 
 - (void)onGetAio0
 {
-    self.adc0.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO0] / 1000];
+    self.adc0.text = [NSString stringWithFormat:@"%.3f", (double)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO0] / 1000];
 }
 - (void)onGetAio1
 {
-    self.adc1.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO1] / 1000];
+    self.adc1.text = [NSString stringWithFormat:@"%.3f", (double)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO1] / 1000];
 }
 - (void)onGetAio2
 {
-    self.adc2.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:KonashiAnalogIO2] / 1000];
+    self.adc2.text = [NSString stringWithFormat:@"%.3f", (double)[[Konashi sharedKonashi] analogRead:KonashiAnalogIO2] / 1000];
 }
 
 @end

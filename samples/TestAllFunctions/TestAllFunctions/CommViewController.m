@@ -21,7 +21,7 @@
     
     // UART系のイベントハンドラ
     [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
-	[Konashi shared].uartRxCompleteHandler = ^(Konashi *konashi, unsigned char value) {
+	[Konashi sharedKonashi].uartRxCompleteHandler = ^(Konashi *konashi, unsigned char value) {
 		NSLog(@"UartRx data: %d", value);
 		
 		self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", value]];
@@ -30,12 +30,12 @@
     
     // I2C系のイベントハンドラ
     [self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
-	[Konashi shared].i2cReadCompleteHandler = ^(Konashi *konashi, unsigned char *value) {
+	[Konashi sharedKonashi].i2cReadCompleteHandler = ^(Konashi *konashi, unsigned char *value) {
 		unsigned char data[18];
 		
-		[Konashi i2cRead:18 data:data];
+		[[Konashi sharedKonashi] i2cRead:18 data:data];
 		[NSThread sleepForTimeInterval:0.01];
-		[Konashi i2cStopCondition];
+		[[Konashi sharedKonashi] i2cStopCondition];
 		
 		int i;
 		for(i=0; i<18; i++){
@@ -62,16 +62,16 @@
     if(self.uartSetting.on){
         if(self.uartBaudrate.selectedSegmentIndex == 0) {
             NSLog(@"2400");
-            [Konashi uartBaudrate:KonashiUartRate2K4];
+            [[Konashi sharedKonashi] setUartBaudrate:KonashiUartRate2K4];
         } else {
             NSLog(@"9600");
-            [Konashi uartBaudrate:KonashiUartRate9K6];
+            [[Konashi sharedKonashi] setUartBaudrate:KonashiUartRate9K6];
         }
         
-        [Konashi uartMode:KonashiUartModeEnable];
+        [[Konashi sharedKonashi] setUartMode:KonashiUartModeEnable];
     }
     else {
-        [Konashi uartMode:KonashiUartModeDisable];
+        [[Konashi sharedKonashi] setUartMode:KonashiUartModeDisable];
     }
 }
 
@@ -81,13 +81,13 @@
     
     for(i=0; i<self.uartSendText.text.length; i++){
         data = (unsigned char)*[[self.uartSendText.text substringWithRange:NSMakeRange(i, 1)] UTF8String];
-        [Konashi uartWrite:data];
+        [[Konashi sharedKonashi] uartWrite:data];
     }
 }
 
 - (void)onUartRx
 {
-    unsigned char data = [Konashi uartRead];
+    unsigned char data = [[Konashi sharedKonashi] uartRead];
     NSLog(@"UartRx data: %d", data);
 
     self.uartRecvText.text =
@@ -102,13 +102,13 @@
 {
     if(self.i2cSetting.on){
         if(self.i2cSpeed.selectedSegmentIndex == 0) {
-            [Konashi i2cMode:KonashiI2CModeEnable100K];
+            [[Konashi sharedKonashi] setI2CMode:KonashiI2CModeEnable100K];
         } else {
-            [Konashi i2cMode:KonashiI2CModeEnable400K];
+            [[Konashi sharedKonashi] setI2CMode:KonashiI2CModeEnable400K];
         }
     }
     else {
-        [Konashi i2cMode:KonashiI2CModeDisable];
+        [[Konashi sharedKonashi] setI2CMode:KonashiI2CModeDisable];
     }
 }
 
@@ -120,27 +120,27 @@
         t[i] = 'A' + i;
     }
     
-    [Konashi i2cStartCondition];
+    [[Konashi sharedKonashi] i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cWrite:18 data:t address:0x1F];
+    [[Konashi sharedKonashi] i2cWrite:18 data:t address:0x1F];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cStopCondition];
+    [[Konashi sharedKonashi] i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
 }
 
 - (IBAction)i2cRecv:(id)sender {
-    [Konashi i2cStartCondition];
+    [[Konashi sharedKonashi] i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cReadRequest:18 address:0x1F];
+    [[Konashi sharedKonashi] i2cReadRequest:18 address:0x1F];
 }
 
 - (void)onI2cRecv
 {
     unsigned char data[18];
     
-    [Konashi i2cRead:18 data:data];
+    [[Konashi sharedKonashi] i2cRead:18 data:data];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cStopCondition];
+    [[Konashi sharedKonashi] i2cStopCondition];
     
     int i;
     for(i=0; i<18; i++){

@@ -20,7 +20,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // コネクション系
-	[Konashi initWithConnectedHandler:^(Konashi *konashi) {
+	[Konashi createKonashiWithConnectedHandler:^(Konashi *konashi) {
 		[self connected];
 	} disconnectedHandler:^(Konashi *konashi) {
 		
@@ -31,7 +31,7 @@
 //    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     
     // 電波強度
-	[Konashi shared].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int value) {
+	[Konashi sharedKonashi].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int value) {
 		float progress = -1.0 * value;
 		if(progress > 100.0){
 			progress = 100.0;
@@ -42,7 +42,7 @@
 //    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
 
     // バッテリー
-	[Konashi shared].batteryLevelDidUpdateHandler = ^(Konashi *konashi, int value) {
+	[Konashi sharedKonashi].batteryLevelDidUpdateHandler = ^(Konashi *konashi, int value) {
 		float progress = value;
 		
 		if(progress > 100.0){
@@ -51,7 +51,7 @@
 		
 		self.batteryBar.progress = progress / 100;
 		
-		NSLog(@"BATTERY LEVEL: %d%%", [Konashi batteryLevelRead]);
+		NSLog(@"BATTERY LEVEL: %d%%", [[Konashi sharedKonashi] batteryLevelRead]);
 	};
 //    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
 }
@@ -63,20 +63,20 @@
 }
 
 - (IBAction)find:(id)sender {
-    if ( [Konashi isConnected] ) {
-        [Konashi disconnect];
+    if ( [[Konashi sharedKonashi] isConnected] ) {
+        [[Konashi sharedKonashi] disconnect];
         [self.connectButton setTitle: @"konashi に接続する" forState:UIControlStateNormal];
     } else {
-        [Konashi find];
+        [[Konashi sharedKonashi] find];
     }
 }
 
 - (IBAction)disconnect:(id)sender {
-    [Konashi disconnect];
+    [[Konashi sharedKonashi] disconnect];
 }
 
 - (IBAction)reset:(id)sender {
-    [Konashi reset];
+    [[Konashi sharedKonashi] reset];
 }
 
 ///////////////////////////////////////////////////
@@ -113,12 +113,12 @@
 
 - (void) onRSSITimer:(NSTimer*)timer
 {
-    [Konashi signalStrengthReadRequest];
+    [[Konashi sharedKonashi] signalStrengthReadRequest];
 }
 
 - (void) updateRSSI
 {
-    float progress = -1.0 * [Konashi signalStrengthRead];
+    float progress = -1.0 * [[Konashi sharedKonashi] signalStrengthRead];
     
     if(progress > 100.0){
         progress = 100.0;
@@ -134,12 +134,12 @@
 // バッテリー
 
 - (IBAction)getBattery:(id)sender {
-    [Konashi batteryLevelReadRequest];
+    [[Konashi sharedKonashi] batteryLevelReadRequest];
 }
 
 - (void) updateBatteryLevel
 {
-    float progress = [Konashi batteryLevelRead];
+    float progress = [[Konashi sharedKonashi] batteryLevelRead];
     
     if(progress > 100.0){
         progress = 100.0;
@@ -147,7 +147,7 @@
     
     self.batteryBar.progress = progress / 100;
     
-    NSLog(@"BATTERY LEVEL: %d%%", [Konashi batteryLevelRead]);
+    NSLog(@"BATTERY LEVEL: %d%%", [[Konashi sharedKonashi] batteryLevelRead]);
 }
 
 @end

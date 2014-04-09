@@ -35,8 +35,8 @@ static int ACDriveMode;
     } else if(mode==1) {
         [Konashi selectACDriveFreq:freq];
         [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
-        [[Konashi sharedKonashi] pwmMode:KONASHI_AC_PIN_CTRL mode:KonashiPwmModeEnable];
-        return [[Konashi sharedKonashi] pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
+        [[Konashi sharedKonashi] setPWMMode:KONASHI_AC_PIN_CTRL mode:KonashiPWMModeEnable];
+        return [[Konashi sharedKonashi] setPWMPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
     } else {
         return KonashiResultFailed;
     }
@@ -71,7 +71,7 @@ static int ACDriveMode;
             ratio = 100.0;
         }
         duty = (int)(KONASHI_PWM_AC_PERIOD * ratio / 100);
-        return [[Konashi sharedKonashi] pwmDuty:KONASHI_AC_PIN_CTRL duty:duty];
+        return [[Konashi sharedKonashi] setPWMDuty:KONASHI_AC_PIN_CTRL duty:duty];
     } else {
         return KonashiResultFailed;
     }
