@@ -368,7 +368,7 @@
 
 - (int) _findModule:(int) timeout
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         return KONASHI_FAILURE;
     }
         
@@ -391,7 +391,7 @@
 }
 
 - (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         return KONASHI_FAILURE;
     }
         
@@ -485,7 +485,7 @@
 
 - (int) _disconnectModule
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         [cm cancelPeripheralConnection:activePeripheral];
         return KONASHI_SUCCESS;
     }
@@ -496,7 +496,7 @@
 
 - (BOOL) _isConnected
 {
-    return (activePeripheral && activePeripheral.isConnected);
+    return (activePeripheral && activePeripheral.state == CBPeripheralStateConnected);
 }
 
 - (BOOL) _isReady
@@ -506,7 +506,7 @@
 
 - (NSString *) _peripheralName
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         return activePeripheral.name;
     } else {
         return @"";
@@ -552,7 +552,7 @@
 
 - (int) _writeValuePioSetting
 {
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PioSetting: %d", pioSetting);
         
         Byte t = (Byte)pioSetting;
@@ -603,7 +603,7 @@
 
 - (int) _writeValuePioPullup
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         KNS_LOG(@"PioPullup: %d", pioPullup);
 
         Byte t = (Byte)pioPullup;
@@ -671,7 +671,7 @@
 
 - (int) _writeValuePioOutput
 {
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PioOutput: %d", pioOutput);
         
         Byte t = (Byte)pioOutput;
@@ -719,7 +719,7 @@
 
 - (int) _writeValuePwmSetting
 {
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PwmSetting: %d", pwmSetting);
         
         Byte t = (Byte)pwmSetting;
@@ -749,7 +749,7 @@
 
 - (int) _writeValuePwmPeriod:(int)pin
 {
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t[] = {pin,
                     (unsigned char)((pwmPeriod[pin] >> 24) & 0xFF),
                     (unsigned char)((pwmPeriod[pin] >> 16) & 0xFF),
@@ -782,7 +782,7 @@
 
 - (int) _writeValuePwmDuty:(int)pin
 {
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t[] = {pin,
             (unsigned char)((pwmDuty[pin] >> 24) & 0xFF),
             (unsigned char)((pwmDuty[pin] >> 16) & 0xFF),
@@ -837,7 +837,7 @@
 {
     int uuid;
 
-    if(activePeripheral && activePeripheral.isConnected) {
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         if(pin==AIO0){
             uuid = KONASHI_ANALOG_READ0_UUID;
         }
@@ -871,7 +871,7 @@
 - (int) _analogWrite:(int)pin milliVolt:(int)milliVolt
 {
     if(pin >= AIO0 && pin <= AIO2 && milliVolt >= 0 && milliVolt <= KONASHI_ANALOG_REFERENCE &&
-       activePeripheral && activePeripheral.isConnected){
+       activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
         NSData *d = [[NSData alloc] initWithBytes:t length:3];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_ANALOG_DRIVE_UUID p:activePeripheral data:d];
@@ -893,7 +893,7 @@
 {
     if((mode == KONASHI_I2C_DISABLE || mode == KONASHI_I2C_ENABLE ||
        mode == KONASHI_I2C_ENABLE_100K || mode == KONASHI_I2C_ENABLE_400K) &&
-       activePeripheral && activePeripheral.isConnected){
+       activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         i2cSetting = mode;
         
         Byte t = mode;
@@ -910,7 +910,7 @@
 - (int) _i2cSendCondition:(int)condition
 {
     if((condition == KONASHI_I2C_START_CONDITION || condition == KONASHI_I2C_RESTART_CONDITION ||
-       condition == KONASHI_I2C_STOP_CONDITION) && activePeripheral && activePeripheral.isConnected){
+       condition == KONASHI_I2C_STOP_CONDITION) && activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         Byte t = condition;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_START_STOP_UUID p:activePeripheral data:d];
@@ -928,7 +928,7 @@
     unsigned char t[KONASHI_I2C_DATA_MAX_LENGTH];
     
     if(length > 0 && (i2cSetting == KONASHI_I2C_ENABLE || i2cSetting == KONASHI_I2C_ENABLE_100K || i2cSetting == KONASHI_I2C_ENABLE_400K) &&
-       activePeripheral && activePeripheral.isConnected){
+       activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         t[0] = length+1;
         t[1] = (address << 1) & 0b11111110;
         for(i=0; i<length; i++){
@@ -949,7 +949,7 @@
 - (int) _i2cReadRequest:(int)length address:(unsigned char)address
 {
     if(length > 0 && (i2cSetting == KONASHI_I2C_ENABLE || i2cSetting == KONASHI_I2C_ENABLE_100K || i2cSetting == KONASHI_I2C_ENABLE_400K) &&
-       activePeripheral && activePeripheral.isConnected){
+       activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         
         // set variables
         i2cReadAddress = (address<<1)|0x1;
@@ -994,7 +994,7 @@
 
 - (int) _uartMode:(int)mode
 {
-    if(activePeripheral && activePeripheral.isConnected &&
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected &&
        ( mode == KONASHI_UART_DISABLE || mode == KONASHI_UART_ENABLE ) ){
         Byte t = mode;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
@@ -1014,7 +1014,7 @@
 
 - (int) _uartBaudrate:(int)baudrate
 {
-    if(activePeripheral && activePeripheral.isConnected && uartSetting==KONASHI_UART_DISABLE){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected && uartSetting==KONASHI_UART_DISABLE){
         if(baudrate == KONASHI_UART_RATE_2K4 ||
            baudrate == KONASHI_UART_RATE_9K6
         ){
@@ -1040,7 +1040,7 @@
 
 - (int) _uartWrite:(unsigned char)data
 {    
-    if(activePeripheral && activePeripheral.isConnected && uartSetting==KONASHI_UART_ENABLE){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected && uartSetting==KONASHI_UART_ENABLE){
         
         NSData *d = [[NSData alloc] initWithBytes:&data length:1];
         
@@ -1066,7 +1066,7 @@
 
 - (int) _resetModule
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         Byte t = 1;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_HARDWARE_RESET_UUID p:activePeripheral data:d];
@@ -1080,7 +1080,7 @@
 
 - (int) _batteryLevelReadRequest
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         [self readValue:KONASHI_BATT_SERVICE_UUID characteristicUUID:KONASHI_LEVEL_SERVICE_UUID p:activePeripheral];
         
         return KONASHI_SUCCESS;
@@ -1097,7 +1097,7 @@
 
 - (int) _signalStrengthReadRequest
 {
-    if(activePeripheral && activePeripheral.isConnected){
+    if(activePeripheral && activePeripheral.state == CBPeripheralStateConnected){
         [activePeripheral readRSSI];
         return KONASHI_SUCCESS;
     }
