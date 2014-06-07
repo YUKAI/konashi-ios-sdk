@@ -1,4 +1,11 @@
 samples/*/*.xcodeproj/*
+samples/*/Build
 !samples/*/*.xcodeproj/project.pbxproj
 !samples/*/*.xcworkspace/contents.xcworkspacedata
+
+# for vim
+*~
+*.swp
+
+# for mac
 .DS_Store

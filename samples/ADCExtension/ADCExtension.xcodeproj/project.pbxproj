@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32CAD1F1180421690082729D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD1F0180421690082729D /* UIKit.framework */; };
+		32CAD1F3180421690082729D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD1F2180421690082729D /* Foundation.framework */; };
+		32CAD1F5180421690082729D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD1F4180421690082729D /* CoreGraphics.framework */; };
+		32CAD1FB180421690082729D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD1F9180421690082729D /* InfoPlist.strings */; };
+		32CAD1FD180421690082729D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD1FC180421690082729D /* main.m */; };
+		32CAD201180421690082729D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD200180421690082729D /* AppDelegate.m */; };
+		32CAD203180421690082729D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD202180421690082729D /* Default.png */; };
+		32CAD205180421690082729D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD204180421690082729D /* Default@2x.png */; };
+		32CAD207180421690082729D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD206180421690082729D /* Default-568h@2x.png */; };
+		32CAD20A180421690082729D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD208180421690082729D /* MainStoryboard.storyboard */; };
+		32CAD20D180421690082729D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD20C180421690082729D /* ViewController.m */; };
+		32CAD214180421940082729D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD213180421940082729D /* CoreBluetooth.framework */; };
+		32CAD21F180421BE0082729D /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD21B180421BE0082729D /* Konashi.m */; };
+		32CAD222180421EF0082729D /* Konashi+ADC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD221180421EF0082729D /* Konashi+ADC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		32CAD1ED180421690082729D /* ADCExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADCExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CAD1F0180421690082729D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32CAD1F2180421690082729D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32CAD1F4180421690082729D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32CAD1F8180421690082729D /* ADCExtension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ADCExtension-Info.plist"; sourceTree = "<group>"; };
+		32CAD1FA180421690082729D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32CAD1FC180421690082729D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CAD1FE180421690082729D /* ADCExtension-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ADCExtension-Prefix.pch"; sourceTree = "<group>"; };
+		32CAD1FF180421690082729D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		32CAD200180421690082729D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		32CAD202180421690082729D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		32CAD204180421690082729D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		32CAD206180421690082729D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		32CAD209180421690082729D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		32CAD20B180421690082729D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		32CAD20C180421690082729D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		32CAD213180421940082729D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		32CAD21A180421BE0082729D /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
+		32CAD21B180421BE0082729D /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
+		32CAD21C180421BE0082729D /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		32CAD220180421EF0082729D /* Konashi+ADC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ADC.h"; sourceTree = "<group>"; };
+		32CAD221180421EF0082729D /* Konashi+ADC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ADC.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32CAD1EA180421690082729D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CAD214180421940082729D /* CoreBluetooth.framework in Frameworks */,
+				32CAD1F1180421690082729D /* UIKit.framework in Frameworks */,
+				32CAD1F3180421690082729D /* Foundation.framework in Frameworks */,
+				32CAD1F5180421690082729D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32CAD1E4180421690082729D = {
+			isa = PBXGroup;
+			children = (
+				32CAD215180421BE0082729D /* Konashi */,
+				32CAD1F6180421690082729D /* ADCExtension */,
+				32CAD1EF180421690082729D /* Frameworks */,
+				32CAD1EE180421690082729D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32CAD1EE180421690082729D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32CAD1ED180421690082729D /* ADCExtension.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32CAD1EF180421690082729D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32CAD213180421940082729D /* CoreBluetooth.framework */,
+				32CAD1F0180421690082729D /* UIKit.framework */,
+				32CAD1F2180421690082729D /* Foundation.framework */,
+				32CAD1F4180421690082729D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32CAD1F6180421690082729D /* ADCExtension */ = {
+			isa = PBXGroup;
+			children = (
+				32CAD1FF180421690082729D /* AppDelegate.h */,
+				32CAD200180421690082729D /* AppDelegate.m */,
+				32CAD208180421690082729D /* MainStoryboard.storyboard */,
+				32CAD20B180421690082729D /* ViewController.h */,
+				32CAD20C180421690082729D /* ViewController.m */,
+				32CAD1F7180421690082729D /* Supporting Files */,
+			);
+			path = ADCExtension;
+			sourceTree = "<group>";
+		};
+		32CAD1F7180421690082729D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32CAD1F8180421690082729D /* ADCExtension-Info.plist */,
+				32CAD1F9180421690082729D /* InfoPlist.strings */,
+				32CAD1FC180421690082729D /* main.m */,
+				32CAD1FE180421690082729D /* ADCExtension-Prefix.pch */,
+				32CAD202180421690082729D /* Default.png */,
+				32CAD204180421690082729D /* Default@2x.png */,
+				32CAD206180421690082729D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32CAD215180421BE0082729D /* Konashi */ = {
+			isa = PBXGroup;
+			children = (
+				32CAD21A180421BE0082729D /* Konashi.h */,
+				32CAD21B180421BE0082729D /* Konashi.m */,
+				32CAD21C180421BE0082729D /* KonashiDb.h */,
+				32CAD220180421EF0082729D /* Konashi+ADC.h */,
+				32CAD221180421EF0082729D /* Konashi+ADC.m */,
+			);
+			name = Konashi;
+			path = ../../Konashi;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32CAD1EC180421690082729D /* ADCExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32CAD210180421690082729D /* Build configuration list for PBXNativeTarget "ADCExtension" */;
+			buildPhases = (
+				32CAD1E9180421690082729D /* Sources */,
+				32CAD1EA180421690082729D /* Frameworks */,
+				32CAD1EB180421690082729D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ADCExtension;
+			productName = ADCExtension;
+			productReference = 32CAD1ED180421690082729D /* ADCExtension.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32CAD1E5180421690082729D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "YUKAI Engineering";
+			};
+			buildConfigurationList = 32CAD1E8180421690082729D /* Build configuration list for PBXProject "ADCExtension" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32CAD1E4180421690082729D;
+			productRefGroup = 32CAD1EE180421690082729D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32CAD1EC180421690082729D /* ADCExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32CAD1EB180421690082729D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CAD1FB180421690082729D /* InfoPlist.strings in Resources */,
+				32CAD203180421690082729D /* Default.png in Resources */,
+				32CAD205180421690082729D /* Default@2x.png in Resources */,
+				32CAD207180421690082729D /* Default-568h@2x.png in Resources */,
+				32CAD20A180421690082729D /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32CAD1E9180421690082729D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CAD1FD180421690082729D /* main.m in Sources */,
+				32CAD201180421690082729D /* AppDelegate.m in Sources */,
+				32CAD20D180421690082729D /* ViewController.m in Sources */,
+				32CAD21F180421BE0082729D /* Konashi.m in Sources */,
+				32CAD222180421EF0082729D /* Konashi+ADC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		32CAD1F9180421690082729D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32CAD1FA180421690082729D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32CAD208180421690082729D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32CAD209180421690082729D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32CAD20E180421690082729D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		32CAD20F180421690082729D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32CAD211180421690082729D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ADCExtension/ADCExtension-Prefix.pch";
+				INFOPLIST_FILE = "ADCExtension/ADCExtension-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32CAD212180421690082729D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ADCExtension/ADCExtension-Prefix.pch";
+				INFOPLIST_FILE = "ADCExtension/ADCExtension-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32CAD1E8180421690082729D /* Build configuration list for PBXProject "ADCExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32CAD20E180421690082729D /* Debug */,
+				32CAD20F180421690082729D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32CAD210180421690082729D /* Build configuration list for PBXNativeTarget "ADCExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32CAD211180421690082729D /* Debug */,
+				32CAD212180421690082729D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32CAD1E5180421690082729D /* Project object */;
+}

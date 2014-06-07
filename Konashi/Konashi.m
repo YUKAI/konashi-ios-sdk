@@ -444,11 +444,14 @@
     KNS_LOG(@"Peripherals: %d", [peripherals count]);
     
     if ( [peripherals count] > 0 ) {
+        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
         if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
             [self showModulePickeriPad];    //iPad
         } else {
             [self showModulePicker];        //else
         }
+    } else {
+        [[Konashi shared] postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
     }
 }
 
@@ -1111,8 +1114,6 @@
 
 
 
-
-
 #pragma mark -
 #pragma mark - Konashi module picker methods
 
@@ -1161,10 +1162,6 @@
     [pickerViewPopup setBounds:CGRectMake(0, 0, 320, 464)];
 }
 
-
-#pragma mark -
-#pragma mark - Konashi module picker methods
-
 - (void) showModulePickeriPad
 {
     UIView *rootView = [[[UIApplication sharedApplication] keyWindow] rootViewController].view;
@@ -1208,10 +1205,6 @@
     [pickerViewPopup_pad presentPopoverFromRect:CGRectMake(0, 0, 10, 10) inView:rootView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-
-
-
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -1237,15 +1230,7 @@
 - (void) pushPickerCancel
 {
     [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-}
-
-
--(void)connectTargetPeripheral:(int)indexOfTarget{
-    
-
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
+    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone
@@ -1262,6 +1247,7 @@
 - (void) pushPickerCancel_pad
 {
     [pickerViewPopup_pad dismissPopoverAnimated:YES];
+    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void) pushPickerDone_pad
@@ -1274,6 +1260,15 @@
     
     [self connectPeripheral:[peripherals objectAtIndex:selectedIndex]];
 }
+
+- (void)connectTargetPeripheral:(int)indexOfTarget
+{
+    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
+    
+    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
+}
+
+
 
 
 #pragma mark -
@@ -1301,8 +1296,7 @@
     return @"Unknown state";
 }
 
-
--(void) writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data
+- (void) writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data
 {
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
@@ -1324,7 +1318,7 @@
     [NSThread sleepForTimeInterval:0.03];
 }
 
--(void) readValue: (int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p
+- (void) readValue: (int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p
 {
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
@@ -1345,7 +1339,7 @@
     [p readValueForCharacteristic:characteristic];
 }
 
--(void) notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on
+- (void) notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on
 {
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
@@ -1442,12 +1436,12 @@
     else return 0;
 }
 
--(void) getAllServicesFromMoudle:(CBPeripheral *)p
+- (void) getAllServicesFromMoudle:(CBPeripheral *)p
 {
     [p discoverServices:nil]; // Discover all services without filter
 }
 
--(void) getAllCharacteristicsFromMoudle:(CBPeripheral *)p
+- (void) getAllCharacteristicsFromMoudle:(CBPeripheral *)p
 {
     for (int i=0; i < p.services.count; i++) {
         CBService *s = [p.services objectAtIndex:i];
@@ -1468,7 +1462,7 @@
     return (__bridge NSString *)s;
 }
 
--(int) compareCBUUID:(CBUUID *) UUID1 UUID2:(CBUUID *)UUID2
+- (int) compareCBUUID:(CBUUID *) UUID1 UUID2:(CBUUID *)UUID2
 {
     char b1[16];
     char b2[16];
@@ -1552,7 +1546,6 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error
@@ -1569,7 +1562,6 @@
         KNS_LOG(@"Service discovery was unsuccessfull !");
     }
 }
-
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {    
