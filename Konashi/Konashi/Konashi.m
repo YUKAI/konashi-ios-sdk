@@ -156,7 +156,7 @@ static NSString *kCBCentralManagerBlocksKey = @"CBCentralManagerBlocksDelegate";
 
 static CBCentralManager *c;
 static NSMutableSet *globalPeripherals;
-+ (void)findAny:(void (^)(NSArray *array))foundBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
++ (void)discover:(void (^)(NSArray *array))discoverBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -171,7 +171,7 @@ static NSMutableSet *globalPeripherals;
 	}];
 	[c.blocksDelegate setDidDiscoverPeripheralBlock:^(CBCentralManager *center, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
 		[globalPeripherals addObject:peripheral];
-		foundBlocks(globalPeripherals.allObjects);
+		discoverBlocks(globalPeripherals.allObjects);
 	}];
 	
 	if (c.state == CBCentralManagerStatePoweredOn) {
