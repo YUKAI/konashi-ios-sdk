@@ -21,11 +21,30 @@
     
     // UART系のイベントハンドラ
     [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
-    [Konashi addObserver:self selector:@selector(onUartRx) name:KONASHI_EVENT_UART_RX_COMPLETE];
+	[Konashi shared].uartRxCompleteHandler = ^(Konashi *konashi, unsigned char value) {
+		NSLog(@"UartRx data: %d", value);
+		
+		self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", value]];
+	};
+//    [Konashi addObserver:self selector:@selector(onUartRx) name:KONASHI_EVENT_UART_RX_COMPLETE];
     
     // I2C系のイベントハンドラ
     [self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
-    [Konashi addObserver:self selector:@selector(onI2cRecv) name:KONASHI_EVENT_I2C_READ_COMPLETE];
+	[Konashi shared].i2cReadCompleteHandler = ^(Konashi *konashi, unsigned char *value) {
+		unsigned char data[18];
+		
+		[Konashi i2cRead:18 data:data];
+		[NSThread sleepForTimeInterval:0.01];
+		[Konashi i2cStopCondition];
+		
+		int i;
+		for(i=0; i<18; i++){
+			NSLog(@"I2C Recv data: %d", data[i]);
+			self.i2cRecvText.text =
+            [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
+		}
+	};
+//    [Konashi addObserver:self selector:@selector(onI2cRecv) name:KONASHI_EVENT_I2C_READ_COMPLETE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,16 +62,16 @@
     if(self.uartSetting.on){
         if(self.uartBaudrate.selectedSegmentIndex == 0) {
             NSLog(@"2400");
-            [Konashi uartBaudrate:KONASHI_UART_RATE_2K4];
+            [Konashi uartBaudrate:KonashiUartRate2K4];
         } else {
             NSLog(@"9600");
-            [Konashi uartBaudrate:KONASHI_UART_RATE_9K6];
+            [Konashi uartBaudrate:KonashiUartRate9K6];
         }
         
-        [Konashi uartMode:KONASHI_UART_ENABLE];
+        [Konashi uartMode:KonashiUartModeEnable];
     }
     else {
-        [Konashi uartMode:KONASHI_UART_DISABLE];
+        [Konashi uartMode:KonashiUartModeDisable];
     }
 }
 
@@ -83,13 +102,13 @@
 {
     if(self.i2cSetting.on){
         if(self.i2cSpeed.selectedSegmentIndex == 0) {
-            [Konashi i2cMode:KONASHI_I2C_ENABLE_100K];
+            [Konashi i2cMode:KonashiI2CModeEnable100K];
         } else {
-            [Konashi i2cMode:KONASHI_I2C_ENABLE_400K];
+            [Konashi i2cMode:KonashiI2CModeEnable400K];
         }
     }
     else {
-        [Konashi i2cMode:KONASHI_I2C_DISABLE];
+        [Konashi i2cMode:KonashiI2CModeDisable];
     }
 }
 

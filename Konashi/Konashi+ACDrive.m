@@ -30,33 +30,33 @@ static int ACDriveMode;
     ACDriveMode=mode;
     if(mode==0){
         [Konashi selectACDriveFreq:freq];
-        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:OUTPUT];
-        return [Konashi pinMode:KONASHI_AC_PIN_CTRL mode:OUTPUT];
+        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        return [Konashi pinMode:KONASHI_AC_PIN_CTRL mode:KonashiPinModeOutput];
     } else if(mode==1) {
         [Konashi selectACDriveFreq:freq];
-        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:OUTPUT];
-        [Konashi pwmMode:KONASHI_AC_PIN_CTRL mode:KONASHI_PWM_ENABLE];
+        [Konashi pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        [Konashi pwmMode:KONASHI_AC_PIN_CTRL mode:KonashiPwmModeEnable];
         return [Konashi pwmPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
 }
 
 + (int)onACDrive
 {
     if(ACDriveMode==0){
-        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:HIGH];
+        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelHigh];
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
 }
 
 + (int)offACDrive
 {
     if(ACDriveMode==0){
-        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:LOW];
+        return [Konashi digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelLow];
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
 }
 
@@ -73,18 +73,18 @@ static int ACDriveMode;
         duty = (int)(KONASHI_PWM_AC_PERIOD * ratio / 100);
         return [Konashi pwmDuty:KONASHI_AC_PIN_CTRL duty:duty];
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
 }
 
 + (int)selectACDriveFreq:(int)freq
 {
     if(freq==KONASHI_AC_FREQ_50HZ) {
-        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:LOW];
+        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelLow];
     } else if(freq==KONASHI_AC_FREQ_60HZ) {
-        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:HIGH];
+        return [Konashi digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelHigh];
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
 }
 

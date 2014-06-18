@@ -28,16 +28,16 @@ static uint8_t powerMode;
 
 + (int)initADC:(uint8_t)address{
     if(address<KONASHI_ADC_ADDR_00 || address>KONASHI_ADC_ADDR_11){
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
     adcAddress=address;
-    return [Konashi i2cMode:KONASHI_I2C_ENABLE_400K];
+    return [Konashi i2cMode:KonashiI2CModeEnable400K];
 }
 
 + (int)readADCWithChannel:(uint8_t)channel{
     if(channel>KONASHI_ADC_CH7 ||
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
     uint8_t c=((uint8_t)channel>>1)|((channel&1)<<2);
     uint8_t data=KONASHI_ADC_SD|(c<<4)|(powerMode<<2);
@@ -50,7 +50,7 @@ static uint8_t powerMode;
 + (int)readDiffADCWithChannels:(uint8_t)channels{
     if(channels>KONASHI_ADC_CH7_CH6 ||
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
     uint8_t data=(channels<<4)|(powerMode<<2);
     [Konashi i2cStartCondition];
@@ -62,7 +62,7 @@ static uint8_t powerMode;
 + (int)selectPowerMode:(uint8_t)mode{
     if(mode>KONASHI_ADC_REFON_ADCON ||
        adcAddress<KONASHI_ADC_ADDR_00 || adcAddress>KONASHI_ADC_ADDR_11){
-        return KONASHI_FAILURE;
+        return KonashiResultFailed;
     }
     powerMode=mode;
     [Konashi i2cStartCondition];

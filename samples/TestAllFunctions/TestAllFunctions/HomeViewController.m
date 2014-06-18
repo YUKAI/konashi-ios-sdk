@@ -20,14 +20,40 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // コネクション系
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+	[Konashi initWithConnectedHandler:^(Konashi *konashi) {
+		[self connected];
+	} disconnectedHandler:^(Konashi *konashi) {
+		
+	} readyHandler:^(Konashi *konashi) {
+		[self ready];
+	}];
+//    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
+//    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     
     // 電波強度
-    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
+	[Konashi shared].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int value) {
+		float progress = -1.0 * value;
+		if(progress > 100.0){
+			progress = 100.0;
+		}
+		
+		self.dbBar.progress = progress / 100;
+	};
+//    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
 
     // バッテリー
-    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+	[Konashi shared].batteryLevelDidUpdateHandler = ^(Konashi *konashi, int value) {
+		float progress = value;
+		
+		if(progress > 100.0){
+			progress = 100.0;
+		}
+		
+		self.batteryBar.progress = progress / 100;
+		
+		NSLog(@"BATTERY LEVEL: %d%%", [Konashi batteryLevelRead]);
+	};
+//    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
 }
 
 - (void)didReceiveMemoryWarning

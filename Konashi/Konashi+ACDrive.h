@@ -21,8 +21,8 @@
 
 #import "Konashi.h"
 
-#define KONASHI_AC_PIN_CTRL PIO0
-#define KONASHI_AC_PIN_FREQ PIO1
+static const int KONASHI_AC_PIN_CTRL = KonashiDigitalIO0;
+static const int KONASHI_AC_PIN_FREQ = KonashiDigitalIO1;
 
 #define KONASHI_AC_MODE_ONOFF 0
 #define KONASHI_AC_MODE_PWM 1
