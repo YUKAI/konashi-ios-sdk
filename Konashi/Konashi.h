@@ -232,7 +232,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 + (Konashi *)sharedKonashi;
 
 // Konashi control methods
-+ (void)discover:(void (^)(NSArray *array))discoverBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
++ (void)discover:(void (^)(NSArray *array, BOOL *stop))discoverBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
 + (Konashi *)createKonashiWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler;
 - (KonashiResult)connect;
 - (KonashiResult)connectWithName:(NSString*)name;
