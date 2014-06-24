@@ -256,7 +256,7 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 - (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
 - (KonashiResult)setPWMPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
 - (KonashiResult)setPWMDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
-- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
+- (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
 - (int)analogReference;
