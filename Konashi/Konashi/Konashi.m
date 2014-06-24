@@ -1055,7 +1055,7 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi analog IO private methods
 
-- (KonashiResult)_readValueAio:(int)pin
+- (KonashiResult)_readValueAio:(KonashiAnalogIOPin)pin
 {
     int uuid;
 
@@ -1063,7 +1063,7 @@ static NSMutableSet *globalPeripherals;
         if(pin==KonashiAnalogIO0) {
             uuid = KONASHI_ANALOG_READ0_UUID;
         }
-        else if (pin==KonashiAnalogIO1) {
+        else if (pin == KonashiAnalogIO1) {
             uuid = KONASHI_ANALOG_READ1_UUID;
         }
         else {   // AIO2
@@ -1072,12 +1072,10 @@ static NSMutableSet *globalPeripherals;
         
         [self readValue:KONASHI_SERVICE_UUID characteristicUUID:uuid p:activePeripheral];
         
-        return KonashiResultSuccess;
+        result = KonashiResultSuccess;
     }
-    else {
-        return KonashiResultFailed;
-    }
-
+	
+	return result;
 }
 
 #pragma mark -
