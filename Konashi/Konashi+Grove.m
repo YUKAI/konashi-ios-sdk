@@ -23,18 +23,24 @@
 
 @implementation Konashi (Grove)
 
-+ (int)readGroveDigitalPort:(int)port {
-    return [[Konashi sharedKonashi] digitalRead:port];
-}
-+ (int)writeGroveDigitalPort:(int)port value:(int)value {
-    return [[Konashi sharedKonashi] digitalWrite:port value:value];
+- (KonashiResult)readGroveDigitalPort:(KonashiDigitalIOPin)port
+{
+    return [self digitalRead:port];
 }
 
-+ (int)readGroveAnalogPort:(int)port {
-    return [[Konashi sharedKonashi] analogReadRequest:port];
+- (KonashiResult)writeGroveDigitalPort:(KonashiDigitalIOPin)port value:(KonashiLevel)value
+{
+    return [self digitalWrite:port value:value];
 }
-+ (int)writeGroveAnalogPort:(int)port milliVolt:(int)milliVolt {
-    return [[Konashi sharedKonashi] analogWrite:port milliVolt:milliVolt];
+
+- (KonashiResult)readGroveAnalogPort:(KonashiAnalogIOPin)port
+{
+    return [self analogReadRequest:port];
+}
+
+- (KonashiResult)writeGroveAnalogPort:(KonashiAnalogIOPin)port milliVolt:(int)milliVolt
+{
+    return [self analogWrite:port milliVolt:milliVolt];
 }
 
 @end

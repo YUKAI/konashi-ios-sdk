@@ -244,13 +244,13 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 
 // Digital PIO methods
 - (KonashiResult)pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
-- (KonashiResult)pinModeAll:(KonashiPinMode)mode;
+- (KonashiResult)pinModeAll:(unsigned char)mode;
 - (KonashiResult)pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
-- (KonashiResult)pinPullupAll:(KonashiPinMode)mode;
+- (KonashiResult)pinPullupAll:(unsigned char)mode;
 - (KonashiResult)digitalRead:(KonashiDigitalIOPin)pin;
-- (KonashiResult)digitalReadAll;
+- (unsigned char)digitalReadAll;
 - (KonashiResult)digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
-- (KonashiResult)digitalWriteAll:(int)value;
+- (KonashiResult)digitalWriteAll:(unsigned char)value;
 
 // PWM methods
 - (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;

@@ -21,23 +21,29 @@
 
 #import "Konashi.h"
 
-static const int KONASHI_AC_PIN_CTRL = KonashiDigitalIO0;
-static const int KONASHI_AC_PIN_FREQ = KonashiDigitalIO1;
+typedef NS_ENUM(NSUInteger, KONASHI_AC_PIN) {
+    KONASHI_AC_PIN_CTRL = KonashiDigitalIO0,
+	KONASHI_AC_PIN_FREQ = KonashiDigitalIO1,
+};
 
-#define KONASHI_AC_MODE_ONOFF 0
-#define KONASHI_AC_MODE_PWM 1
+typedef NS_ENUM(NSUInteger, KONASHI_AC_MODE) {
+    KONASHI_AC_MODE_ONOFF = 0,
+	KONASHI_AC_MODE_PWM
+};
 
-#define KONASHI_PWM_AC_PERIOD 10000
+static const int KONASHI_PWM_AC_PERIOD = 10000;
 
-#define KONASHI_AC_FREQ_50HZ 50
-#define KONASHI_AC_FREQ_60HZ 60
+typedef NS_ENUM(NSUInteger, KONASHI_AC_FREQ) {
+	KONASHI_AC_FREQ_50HZ = 50,
+	KONASHI_AC_FREQ_60HZ = 60,
+};
 
 @interface Konashi (ACDrive)
 
-+ (int)initACDrive:(int)mode freq:(int)freq;
-+ (int)onACDrive;
-+ (int)offACDrive;
-+ (int)updateACDriveDuty:(float)ratio;
-+ (int)selectACDriveFreq:(int)freq;
+- (KonashiResult)setACDriveMode:(KONASHI_AC_MODE)mode freq:(KONASHI_AC_FREQ)freq;
+- (KonashiResult)onACDrive;
+- (KonashiResult)offACDrive;
+- (KonashiResult)updateACDriveDuty:(float)ratio;
+- (KonashiResult)selectACDriveFreq:(int)freq;
 
 @end

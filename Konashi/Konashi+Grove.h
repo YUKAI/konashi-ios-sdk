@@ -30,9 +30,9 @@ static const int A2 = KonashiAnalogIO2;
 
 @interface Konashi (Grove)
 
-+ (int)readGroveDigitalPort:(int)port;
-+ (int)writeGroveDigitalPort:(int)port value:(int)value;
-+ (int)readGroveAnalogPort:(int)port;
-+ (int)writeGroveAnalogPort:(int)port milliVolt:(int)milliVolt;
+- (KonashiResult)readGroveDigitalPort:(KonashiDigitalIOPin)port;
+- (KonashiResult)writeGroveDigitalPort:(KonashiDigitalIOPin)port value:(KonashiLevel)value;
+- (KonashiResult)readGroveAnalogPort:(KonashiAnalogIOPin)port;
+- (KonashiResult)writeGroveAnalogPort:(KonashiAnalogIOPin)port milliVolt:(int)milliVolt;
 
 @end

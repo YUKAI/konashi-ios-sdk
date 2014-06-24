@@ -25,67 +25,74 @@
 
 static int ACDriveMode;
 
-+ (int)initACDrive:(int)mode freq:(int)freq
+- (KonashiResult)setACDriveMode:(KONASHI_AC_MODE)mode freq:(KONASHI_AC_FREQ)freq
 {
-    ACDriveMode=mode;
-    if(mode==0){
-        [Konashi selectACDriveFreq:freq];
-        [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
-        return [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_CTRL mode:KonashiPinModeOutput];
-    } else if(mode==1) {
-        [Konashi selectACDriveFreq:freq];
-        [[Konashi sharedKonashi] pinMode:KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
-        [[Konashi sharedKonashi] setPWMMode:KONASHI_AC_PIN_CTRL mode:KonashiPWMModeEnable];
-        return [[Konashi sharedKonashi] setPWMPeriod:KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
-    } else {
-        return KonashiResultFailed;
+	KonashiResult result = KonashiResultFailed;
+    ACDriveMode = mode;
+    if (mode == 0) {
+        [self selectACDriveFreq:freq];
+        [self pinMode:(KonashiDigitalIOPin)KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        result = [self pinMode:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL mode:KonashiPinModeOutput];
     }
+	else if (mode == 1) {
+        [self selectACDriveFreq:freq];
+        [self pinMode:(KonashiDigitalIOPin)KONASHI_AC_PIN_FREQ mode:KonashiPinModeOutput];
+        [self setPWMMode:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL mode:KonashiPWMModeEnable];
+		result = [self setPWMPeriod:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL period:KONASHI_PWM_AC_PERIOD];
+    }
+	
+	return result;
 }
 
-+ (int)onACDrive
+- (KonashiResult)onACDrive
 {
-    if(ACDriveMode==0){
-        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelHigh];
-    } else {
-        return KonashiResultFailed;
+	KonashiResult result = KonashiResultFailed;
+    if (ACDriveMode == 0) {
+        result = [self digitalWrite:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL value:KonashiLevelHigh];
     }
+	
+	return result;
 }
 
-+ (int)offACDrive
+- (KonashiResult)offACDrive
 {
-    if(ACDriveMode==0){
-        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_CTRL value:KonashiLevelLow];
-    } else {
-        return KonashiResultFailed;
+	KonashiResult result = KonashiResultFailed;
+    if (ACDriveMode == 0) {
+        result = [self digitalWrite:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL value:KonashiLevelLow];
     }
+	
+	return result;
 }
 
-+ (int)updateACDriveDuty:(float)ratio
+- (KonashiResult)updateACDriveDuty:(float)ratio
 {
-    if(ACDriveMode==1){
+	KonashiResult result = KonashiResultFailed;
+    if(ACDriveMode == 1){
         int duty;
-        if(ratio < 0.0){
+        if (ratio < 0.0) {
             ratio = 0.0;
         }
-        if(ratio > 100.0){
+        if (ratio > 100.0) {
             ratio = 100.0;
         }
         duty = (int)(KONASHI_PWM_AC_PERIOD * ratio / 100);
-        return [[Konashi sharedKonashi] setPWMDuty:KONASHI_AC_PIN_CTRL duty:duty];
-    } else {
-        return KonashiResultFailed;
+        result = [self setPWMDuty:(KonashiDigitalIOPin)KONASHI_AC_PIN_CTRL duty:duty];
     }
+	
+	return result;
 }
 
-+ (int)selectACDriveFreq:(int)freq
+- (KonashiResult)selectACDriveFreq:(int)freq
 {
-    if(freq==KONASHI_AC_FREQ_50HZ) {
-        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelLow];
-    } else if(freq==KONASHI_AC_FREQ_60HZ) {
-        return [[Konashi sharedKonashi] digitalWrite:KONASHI_AC_PIN_FREQ value:KonashiLevelHigh];
-    } else {
-        return KonashiResultFailed;
+	KonashiResult result = KonashiResultFailed;
+    if (freq == KONASHI_AC_FREQ_50HZ) {
+        result =  [self digitalWrite:(KonashiDigitalIOPin)KONASHI_AC_PIN_FREQ value:KonashiLevelLow];
     }
+	else if (freq==KONASHI_AC_FREQ_60HZ) {
+        result = [self digitalWrite:(KonashiDigitalIOPin)KONASHI_AC_PIN_FREQ value:KonashiLevelHigh];
+    }
+	
+	return result;
 }
 
 @end

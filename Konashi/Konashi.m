@@ -262,7 +262,7 @@ static NSMutableSet *globalPeripherals;
 	return result;
 }
 
-- (KonashiResult)pinModeAll:(KonashiPinMode)mode
+- (KonashiResult)pinModeAll:(unsigned char)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (mode >= 0x00 && mode <= 0xFF) {
@@ -295,7 +295,7 @@ static NSMutableSet *globalPeripherals;
 	return result;
 }
 
-- (KonashiResult)pinPullupAll:(KonashiPinMode)mode
+- (KonashiResult)pinPullupAll:(unsigned char)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (mode >= 0x00 && mode <= 0xFF) {
@@ -346,7 +346,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)digitalWriteAll:(int)value
+- (KonashiResult)digitalWriteAll:(unsigned char)value
 {
 	KonashiResult result = KonashiResultFailed;
 	if (value >= 0x00 && value <= 0xFF) {
