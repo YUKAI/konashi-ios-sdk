@@ -404,7 +404,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
+- (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
 	int duty;
     
