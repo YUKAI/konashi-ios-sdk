@@ -1,3 +1,9 @@
+## v1.0.8 (June 27, 2014)
+- Fixed the iOS 7.0 compatibility issue (PR #22)
+
+## v1.0.7 (June 7, 2014)
+- Add ext board libs.
+
 ## v1.0.6 (May 27, 2013)
 - Added CocoaPods spec.
 
