@@ -22,7 +22,7 @@
 		085A314516873D0000A75E66 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314416873D0000A75E66 /* icon-72.png */; };
 		085A314716873D2E00A75E66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314616873D2E00A75E66 /* icon.png */; };
 		085A314916873D4500A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314816873D4500A75E66 /* icon@2x.png */; };
-		08AE62D816CDB6020027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62D616CDB6020027B895 /* Konashi.m */; };
+		E91150241991573500F11660 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91150231991573500F11660 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +46,7 @@
 		085A314416873D0000A75E66 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		085A314616873D2E00A75E66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		085A314816873D4500A75E66 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		08AE62D516CDB6020027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		08AE62D616CDB6020027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		08AE62D716CDB6020027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E91150231991573500F11660 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +58,7 @@
 				085A30F51685EC0A00A75E66 /* UIKit.framework in Frameworks */,
 				085A30F71685EC0A00A75E66 /* Foundation.framework in Frameworks */,
 				085A30F91685EC0A00A75E66 /* CoreGraphics.framework in Frameworks */,
+				E91150241991573500F11660 /* libKonashi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +68,6 @@
 		085A30E51685EC0900A75E66 = {
 			isa = PBXGroup;
 			children = (
-				08AE62D416CDB6020027B895 /* Konashi */,
 				085A30FA1685EC0A00A75E66 /* PioDrive */,
 				085A30F31685EC0A00A75E66 /* Frameworks */,
 				085A30F11685EC0A00A75E66 /* Products */,
@@ -87,6 +85,7 @@
 		085A30F31685EC0A00A75E66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E91150231991573500F11660 /* libKonashi.a */,
 				085A312B1686FEA400A75E66 /* CoreBluetooth.framework */,
 				085A30F41685EC0A00A75E66 /* UIKit.framework */,
 				085A30F61685EC0A00A75E66 /* Foundation.framework */,
@@ -123,17 +122,6 @@
 				085A310A1685EC0A00A75E66 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		08AE62D416CDB6020027B895 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				08AE62D516CDB6020027B895 /* Konashi.h */,
-				08AE62D616CDB6020027B895 /* Konashi.m */,
-				08AE62D716CDB6020027B895 /* KonashiDb.h */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +196,6 @@
 				085A31011685EC0A00A75E66 /* main.m in Sources */,
 				085A31051685EC0A00A75E66 /* AppDelegate.m in Sources */,
 				085A31111685EC0A00A75E66 /* ViewController.m in Sources */,
-				08AE62D816CDB6020027B895 /* Konashi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +276,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PioDrive/PioDrive-Prefix.pch";
 				INFOPLIST_FILE = "PioDrive/PioDrive-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -300,6 +296,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PioDrive/PioDrive-Prefix.pch";
 				INFOPLIST_FILE = "PioDrive/PioDrive-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

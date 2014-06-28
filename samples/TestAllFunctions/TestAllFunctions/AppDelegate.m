@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Konashi.h"
+#import "Konashi/Konashi.h"
 
 @implementation AppDelegate
 

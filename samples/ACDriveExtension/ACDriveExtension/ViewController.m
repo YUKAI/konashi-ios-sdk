@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Konashi+ACDrive.h"
+#import "Konashi/Konashi+ACDrive.h"
 
 @interface ViewController ()
 
@@ -38,12 +38,12 @@
     int duty;
     duty=[brightnessSlider value];
     NSLog(@"Duty: %d",duty);
-    [Konashi updateACDriveDuty:duty];
+    [[Konashi sharedKonashi] updateACDriveDuty:duty];
 }
 
 - (void)ready {
     NSLog(@"Ready");
-    [Konashi initACDrive:KONASHI_AC_MODE_PWM freq:KONASHI_AC_FREQ_50HZ];
+	[[Konashi sharedKonashi] setACDriveMode:KONASHI_AC_MODE_PWM freq:KONASHI_AC_FREQ_50HZ];
 }
 
 - (IBAction)find:(id)sender {

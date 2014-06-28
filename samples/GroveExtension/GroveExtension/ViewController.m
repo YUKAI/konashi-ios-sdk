@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Konashi+Grove.h"
+#import "Konashi/Konashi+Grove.h"
 
 @interface ViewController ()
 
@@ -47,7 +47,7 @@
 
 - (void)readBrightness
 {
-    [Konashi readGroveAnalogPort:A0];
+    [[Konashi sharedKonashi] readGroveAnalogPort:A0];
 }
 
 - (IBAction)find:(id)sender {

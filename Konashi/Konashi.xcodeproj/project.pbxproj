@@ -1,0 +1,534 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		E96505D31991469200AC30B2 /* Konashi-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E96505D41991469200AC30B2 /* Build configuration list for PBXAggregateTarget "Konashi-Universal" */;
+			buildPhases = (
+				E96505D7199146B100AC30B2 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Konashi-Universal";
+			productName = "Konashi-Universal";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		E911501A199153B900F11660 /* KonashiDb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DCA1991431100781153 /* KonashiDb.h */; };
+		E911501B199153B900F11660 /* Konashi.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DA3199142DA00781153 /* Konashi.h */; };
+		E911501C199153B900F11660 /* Konashi+ACDrive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC41991431100781153 /* Konashi+ACDrive.h */; };
+		E911501D199153B900F11660 /* Konashi+ADC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC61991431100781153 /* Konashi+ADC.h */; };
+		E911501E199153B900F11660 /* Konashi+Grove.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC81991431100781153 /* Konashi+Grove.h */; };
+		E9160DAD199142DB00781153 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9160DAC199142DB00781153 /* XCTest.framework */; };
+		E9160DAE199142DB00781153 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9160D9E199142DA00781153 /* Foundation.framework */; };
+		E9160DB9199142DB00781153 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9160DB7199142DB00781153 /* InfoPlist.strings */; };
+		E9160DBB199142DB00781153 /* KonashiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9160DBA199142DB00781153 /* KonashiTests.m */; };
+		E96505E1199149D800AC30B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9160D9E199142DA00781153 /* Foundation.framework */; };
+		E965060219914A0400AC30B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96505D1199144B700AC30B2 /* UIKit.framework */; };
+		E965060619914A6200AC30B2 /* KonashiDb.h in Headers */ = {isa = PBXBuildFile; fileRef = E9160DCA1991431100781153 /* KonashiDb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E965060719914A6200AC30B2 /* Konashi.h in Headers */ = {isa = PBXBuildFile; fileRef = E9160DA3199142DA00781153 /* Konashi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E965060819914A6200AC30B2 /* Konashi+ACDrive.h in Headers */ = {isa = PBXBuildFile; fileRef = E9160DC41991431100781153 /* Konashi+ACDrive.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E965060919914A6200AC30B2 /* Konashi+ADC.h in Headers */ = {isa = PBXBuildFile; fileRef = E9160DC61991431100781153 /* Konashi+ADC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E965060A19914A6200AC30B2 /* Konashi+Grove.h in Headers */ = {isa = PBXBuildFile; fileRef = E9160DC81991431100781153 /* Konashi+Grove.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E965060B19914A9100AC30B2 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9160DA5199142DA00781153 /* Konashi.m */; };
+		E965060C19914A9100AC30B2 /* Konashi+ACDrive.m in Sources */ = {isa = PBXBuildFile; fileRef = E9160DC51991431100781153 /* Konashi+ACDrive.m */; };
+		E965060D19914A9100AC30B2 /* Konashi+ADC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9160DC71991431100781153 /* Konashi+ADC.m */; };
+		E965060E19914A9100AC30B2 /* Konashi+Grove.m in Sources */ = {isa = PBXBuildFile; fileRef = E9160DC91991431100781153 /* Konashi+Grove.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E96505DE199149D700AC30B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				E911501A199153B900F11660 /* KonashiDb.h in CopyFiles */,
+				E911501B199153B900F11660 /* Konashi.h in CopyFiles */,
+				E911501C199153B900F11660 /* Konashi+ACDrive.h in CopyFiles */,
+				E911501D199153B900F11660 /* Konashi+ADC.h in CopyFiles */,
+				E911501E199153B900F11660 /* Konashi+Grove.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E9160D9E199142DA00781153 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E9160DA3199142DA00781153 /* Konashi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
+		E9160DA5199142DA00781153 /* Konashi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
+		E9160DAB199142DB00781153 /* KonashiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KonashiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9160DAC199142DB00781153 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		E9160DB6199142DB00781153 /* KonashiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KonashiTests-Info.plist"; sourceTree = "<group>"; };
+		E9160DB8199142DB00781153 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9160DBA199142DB00781153 /* KonashiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonashiTests.m; sourceTree = "<group>"; };
+		E9160DC41991431100781153 /* Konashi+ACDrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ACDrive.h"; sourceTree = "<group>"; };
+		E9160DC51991431100781153 /* Konashi+ACDrive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ACDrive.m"; sourceTree = "<group>"; };
+		E9160DC61991431100781153 /* Konashi+ADC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ADC.h"; sourceTree = "<group>"; };
+		E9160DC71991431100781153 /* Konashi+ADC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ADC.m"; sourceTree = "<group>"; };
+		E9160DC81991431100781153 /* Konashi+Grove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+Grove.h"; sourceTree = "<group>"; };
+		E9160DC91991431100781153 /* Konashi+Grove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+Grove.m"; sourceTree = "<group>"; };
+		E9160DCA1991431100781153 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E96505D1199144B700AC30B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E96505E0199149D700AC30B2 /* libKonashi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKonashi.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E965060419914A5500AC30B2 /* Konashi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E9160DA8199142DB00781153 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9160DAD199142DB00781153 /* XCTest.framework in Frameworks */,
+				E9160DAE199142DB00781153 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E96505DD199149D700AC30B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E965060219914A0400AC30B2 /* UIKit.framework in Frameworks */,
+				E96505E1199149D800AC30B2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E9160D92199142DA00781153 = {
+			isa = PBXGroup;
+			children = (
+				E9160DA0199142DA00781153 /* Konashi */,
+				E9160DB4199142DB00781153 /* KonashiTests */,
+				E9160D9D199142DA00781153 /* Frameworks */,
+				E9160D9C199142DA00781153 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E9160D9C199142DA00781153 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9160DAB199142DB00781153 /* KonashiTests.xctest */,
+				E96505E0199149D700AC30B2 /* libKonashi.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9160D9D199142DA00781153 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E96505D1199144B700AC30B2 /* UIKit.framework */,
+				E9160D9E199142DA00781153 /* Foundation.framework */,
+				E9160DAC199142DB00781153 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9160DA0199142DA00781153 /* Konashi */ = {
+			isa = PBXGroup;
+			children = (
+				E9160DCA1991431100781153 /* KonashiDb.h */,
+				E9160DA3199142DA00781153 /* Konashi.h */,
+				E9160DA5199142DA00781153 /* Konashi.m */,
+				E9160DCE1991431F00781153 /* Category */,
+				E9160DA1199142DA00781153 /* Supporting Files */,
+			);
+			path = Konashi;
+			sourceTree = "<group>";
+		};
+		E9160DA1199142DA00781153 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E965060419914A5500AC30B2 /* Konashi-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9160DB4199142DB00781153 /* KonashiTests */ = {
+			isa = PBXGroup;
+			children = (
+				E9160DBA199142DB00781153 /* KonashiTests.m */,
+				E9160DB5199142DB00781153 /* Supporting Files */,
+			);
+			path = KonashiTests;
+			sourceTree = "<group>";
+		};
+		E9160DB5199142DB00781153 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9160DB6199142DB00781153 /* KonashiTests-Info.plist */,
+				E9160DB7199142DB00781153 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9160DCE1991431F00781153 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E9160DC41991431100781153 /* Konashi+ACDrive.h */,
+				E9160DC51991431100781153 /* Konashi+ACDrive.m */,
+				E9160DC61991431100781153 /* Konashi+ADC.h */,
+				E9160DC71991431100781153 /* Konashi+ADC.m */,
+				E9160DC81991431100781153 /* Konashi+Grove.h */,
+				E9160DC91991431100781153 /* Konashi+Grove.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E965060319914A0C00AC30B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E965060619914A6200AC30B2 /* KonashiDb.h in Headers */,
+				E965060719914A6200AC30B2 /* Konashi.h in Headers */,
+				E965060819914A6200AC30B2 /* Konashi+ACDrive.h in Headers */,
+				E965060919914A6200AC30B2 /* Konashi+ADC.h in Headers */,
+				E965060A19914A6200AC30B2 /* Konashi+Grove.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E9160DAA199142DB00781153 /* KonashiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9160DC1199142DB00781153 /* Build configuration list for PBXNativeTarget "KonashiTests" */;
+			buildPhases = (
+				E9160DA7199142DB00781153 /* Sources */,
+				E9160DA8199142DB00781153 /* Frameworks */,
+				E9160DA9199142DB00781153 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KonashiTests;
+			productName = KonashiTests;
+			productReference = E9160DAB199142DB00781153 /* KonashiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E96505DF199149D700AC30B2 /* Konashi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E96505FC199149D800AC30B2 /* Build configuration list for PBXNativeTarget "Konashi" */;
+			buildPhases = (
+				E96505DC199149D700AC30B2 /* Sources */,
+				E96505DD199149D700AC30B2 /* Frameworks */,
+				E96505DE199149D700AC30B2 /* CopyFiles */,
+				E965060319914A0C00AC30B2 /* Headers */,
+				E9D0D21B19914F4D009C16D6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Konashi;
+			productName = Konashi;
+			productReference = E96505E0199149D700AC30B2 /* libKonashi.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E9160D93199142DA00781153 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Akira Matsuda";
+			};
+			buildConfigurationList = E9160D96199142DA00781153 /* Build configuration list for PBXProject "Konashi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E9160D92199142DA00781153;
+			productRefGroup = E9160D9C199142DA00781153 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E96505DF199149D700AC30B2 /* Konashi */,
+				E9160DAA199142DB00781153 /* KonashiTests */,
+				E96505D31991469200AC30B2 /* Konashi-Universal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9160DA9199142DB00781153 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9160DB9199142DB00781153 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E96505D7199146B100AC30B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild_konashi() {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -project ${PROJECT_NAME}.xcodeproj \\\n    -configuration ${CONFIGURATION} \\\n    -sdk $1 clean build\n}\n\nBUILD_DIR=\"${SRCROOT}/build\"\nLIB_DIR=\"${SRCROOT}/library\"\nLIB_NAME=\"lib${PROJECT_NAME}.a\"\n\nIOS_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${LIB_NAME}\"\nSIM_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${LIB_NAME}\"\nDEST_LIB=\"${LIB_DIR}/${LIB_NAME}\"\n\n\n# remove dir\nrm -rf \"${BUILD_DIR}\"\nrm -rf \"${LIB_DIR}\"\n\n# 1. xcodebuild\nxcodebuild_konashi iphoneos\nxcodebuild_konashi iphonesimulator\n\n# mkdir\nmkdir -p \"${LIB_DIR}\"\n\n# 2. lipo\nlipo \"${IOS_LIB}\" \"${SIM_LIB}\" -create -output \"${DEST_LIB}\"";
+		};
+		E9D0D21B19914F4D009C16D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9160DA7199142DB00781153 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9160DBB199142DB00781153 /* KonashiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E96505DC199149D700AC30B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E965060B19914A9100AC30B2 /* Konashi.m in Sources */,
+				E965060C19914A9100AC30B2 /* Konashi+ACDrive.m in Sources */,
+				E965060D19914A9100AC30B2 /* Konashi+ADC.m in Sources */,
+				E965060E19914A9100AC30B2 /* Konashi+Grove.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E9160DB7199142DB00781153 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9160DB8199142DB00781153 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E9160DBC199142DB00781153 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E9160DBD199142DB00781153 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E9160DC2199142DB00781153 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Konashi/Konashi-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		E9160DC3199142DB00781153 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Konashi/Konashi-Prefix.pch";
+				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		E96505D51991469200AC30B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Debug;
+		};
+		E96505D61991469200AC30B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Release;
+		};
+		E96505FD199149D800AC30B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Konashi.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Konashi-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Debug;
+		};
+		E96505FE199149D800AC30B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Konashi.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Konashi-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E9160D96199142DA00781153 /* Build configuration list for PBXProject "Konashi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9160DBC199142DB00781153 /* Debug */,
+				E9160DBD199142DB00781153 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9160DC1199142DB00781153 /* Build configuration list for PBXNativeTarget "KonashiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9160DC2199142DB00781153 /* Debug */,
+				E9160DC3199142DB00781153 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E96505D41991469200AC30B2 /* Build configuration list for PBXAggregateTarget "Konashi-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E96505D51991469200AC30B2 /* Debug */,
+				E96505D61991469200AC30B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E96505FC199149D800AC30B2 /* Build configuration list for PBXNativeTarget "Konashi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E96505FD199149D800AC30B2 /* Debug */,
+				E96505FE199149D800AC30B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E9160D93199142DA00781153 /* Project object */;
+}

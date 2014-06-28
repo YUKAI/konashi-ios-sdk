@@ -6,7 +6,7 @@
 //
 
 #import "HomeViewController.h"
-#import "Konashi.h"
+#import "Konashi/Konashi.h"
 
 @interface HomeViewController ()
 

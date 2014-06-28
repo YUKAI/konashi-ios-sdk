@@ -6,7 +6,7 @@
 //
 
 #import "PioViewController.h"
-#import "Konashi.h"
+#import "Konashi/Konashi.h"
 
 @interface PioViewController ()
 {

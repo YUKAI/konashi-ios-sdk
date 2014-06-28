@@ -212,7 +212,7 @@ static NSMutableSet *globalPeripherals;
 - (KonashiResult)disconnect
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         [cm cancelPeripheralConnection:activePeripheral];
         result = KonashiResultSuccess;
     }
@@ -222,7 +222,7 @@ static NSMutableSet *globalPeripherals;
 
 - (BOOL)isConnected
 {
-    return (activePeripheral && activePeripheral.isConnected);
+    return (activePeripheral && activePeripheral.state == CBPeripheralStateConnected);
 }
 
 - (BOOL)isReadyToUse
@@ -233,7 +233,7 @@ static NSMutableSet *globalPeripherals;
 - (NSString *)peripheralName
 {
 	NSString *name = @"";
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         name = activePeripheral.name;
     }
 	
@@ -243,7 +243,7 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi PIO public methods
 
-- (KonashiResult)pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
+- (int)pinMode:(int)pin mode:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)) {
@@ -262,7 +262,7 @@ static NSMutableSet *globalPeripherals;
 	return result;
 }
 
-- (KonashiResult)pinModeAll:(unsigned char)mode
+- (int)pinModeAll:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (mode >= 0x00 && mode <= 0xFF) {
@@ -276,7 +276,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
+- (int)pinPullup:(int)pin mode:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModePullup || mode == KonashiPinModeNoPulls)) {
@@ -295,7 +295,7 @@ static NSMutableSet *globalPeripherals;
 	return result;
 }
 
-- (KonashiResult)pinPullupAll:(unsigned char)mode
+- (int)pinPullupAll:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (mode >= 0x00 && mode <= 0xFF) {
@@ -309,7 +309,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)digitalRead:(KonashiDigitalIOPin)pin
+- (int)digitalRead:(int)pin
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7) {
@@ -319,12 +319,12 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (unsigned char)digitalReadAll
+- (int)digitalReadAll
 {
 	return pioInput;
 }
 
-- (KonashiResult)digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
+- (int)digitalWrite:(int)pin value:(int)value
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (value == KonashiLevelHigh || value == KonashiLevelLow)) {
@@ -346,7 +346,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)digitalWriteAll:(unsigned char)value
+- (int)digitalWriteAll:(int)value
 {
 	KonashiResult result = KonashiResultFailed;
 	if (value >= 0x00 && value <= 0xFF) {
@@ -363,7 +363,7 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi PWM public methods
 
-- (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
+- (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPWMModeDisable || mode == KonashiPWMModeEnable || mode == KonashiPWMModeEnableLED )) {
@@ -409,7 +409,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
+- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
 	int duty;
     
@@ -433,7 +433,7 @@ static NSMutableSet *globalPeripherals;
     return KonashiAnalogReference;
 }
 
-- (KonashiResult)analogReadRequest:(KonashiAnalogIOPin)pin
+- (int)analogReadRequest:(int)pin
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2) {
@@ -443,7 +443,7 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)analogRead:(KonashiAnalogIOPin)pin
+- (int)analogRead:(int)pin
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2) {
@@ -453,11 +453,11 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
+- (KonashiResult)analogWrite:(int)pin milliVolt:(int)milliVolt
 {
 	KonashiResult result = KonashiResultFailed;
 	if (pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
-		activePeripheral && activePeripheral.isConnected) {
+		activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
         NSData *d = [[NSData alloc] initWithBytes:t length:3];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_ANALOG_DRIVE_UUID p:activePeripheral data:d];
@@ -471,12 +471,12 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi I2C public methods
 
-- (KonashiResult)setI2CMode:(KonashiI2CMode)mode
+- (KonashiResult)setI2CMode:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
 	if ((mode == KonashiI2CModeDisable || mode == KonashiI2CModeEnable ||
 		 mode == KonashiI2CModeEnable100K || mode == KonashiI2CModeEnable400K) &&
-		activePeripheral && activePeripheral.isConnected) {
+		activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         i2cSetting = mode;
         
         Byte t = mode;
@@ -510,7 +510,7 @@ static NSMutableSet *globalPeripherals;
     unsigned char t[KonashiI2CDataMaxLength];
     KonashiResult result = KonashiResultFailed;
     if (length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
-		activePeripheral && activePeripheral.isConnected) {
+		activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         t[0] = length + 1;
         t[1] = (address << 1) & 0b11111110;
         for (i = 0; i < length; i++) {
@@ -531,7 +531,7 @@ static NSMutableSet *globalPeripherals;
 {
 	KonashiResult result = KonashiResultFailed;
 	if (length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
-		activePeripheral && activePeripheral.isConnected) {
+		activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         
         // set variables
         i2cReadAddress = (address<<1)|0x1;
@@ -568,10 +568,10 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi UART public methods
 
-- (KonashiResult)setUartMode:(KonashiUartMode)mode
+- (KonashiResult)setUartMode:(int)mode
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected &&
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected &&
 		(mode == KonashiUartModeDisable || mode == KonashiUartModeEnable )) {
         Byte t = mode;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
@@ -588,10 +588,10 @@ static NSMutableSet *globalPeripherals;
     return result;
 }
 
-- (KonashiResult)setUartBaudrate:(KonashiUartRate)baudrate
+- (KonashiResult)setUartBaudrate:(int)baudrate
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected && uartSetting == KonashiUartModeDisable) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected && uartSetting == KonashiUartModeDisable) {
         if(baudrate == KonashiUartRate2K4 ||
            baudrate == KonashiUartRate9K6
 		   ) {
@@ -614,7 +614,7 @@ static NSMutableSet *globalPeripherals;
 - (KonashiResult)uartWrite:(unsigned char)data
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected && uartSetting == KonashiUartModeEnable) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected && uartSetting == KonashiUartModeEnable) {
         NSData *d = [[NSData alloc] initWithBytes:&data length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_TX_UUID p:activePeripheral data:d];
         
@@ -635,7 +635,7 @@ static NSMutableSet *globalPeripherals;
 - (KonashiResult)reset
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t = 1;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_HARDWARE_RESET_UUID p:activePeripheral data:d];
@@ -649,7 +649,7 @@ static NSMutableSet *globalPeripherals;
 - (KonashiResult)batteryLevelReadRequest
 {
 	KonashiResult result = KonashiResultFailed;
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         [self readValue:KONASHI_BATT_SERVICE_UUID characteristicUUID:KONASHI_LEVEL_SERVICE_UUID p:activePeripheral];
         
         result = KonashiResultSuccess;
@@ -667,7 +667,7 @@ static NSMutableSet *globalPeripherals;
 {
 	KonashiResult result = KonashiResultFailed;
 	
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         [activePeripheral readRSSI];
         result = KonashiResultSuccess;
     }
@@ -709,7 +709,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_initialize
 {
-    if (!cm){
+    if (!cm) {
         cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         [self _initializeVariables];
         return KonashiResultSuccess;
@@ -764,7 +764,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)findModule:(NSTimeInterval)timeout
 {
-	if (activePeripheral && activePeripheral.isConnected) {
+	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         return KonashiResultFailed;
     }
 	
@@ -794,7 +794,7 @@ static NSMutableSet *globalPeripherals;
 }
 
 - (KonashiResult)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout{
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         return KonashiResultFailed;
     }
         
@@ -826,7 +826,7 @@ static NSMutableSet *globalPeripherals;
     KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
     BOOL targetIsExist = NO;
     int indexOfTarget = 0;
-    if ( [peripherals count] > 0 ) {
+    if ([peripherals count] > 0) {
         for (int i = 0; i < [peripherals count]; i++) {
             if ([[[peripherals objectAtIndex:i] name] isEqualToString:targetname]) {
                 targetIsExist = YES;
@@ -836,7 +836,8 @@ static NSMutableSet *globalPeripherals;
     }
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
-    } else {
+    }
+	else {
         [self postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     }
 }
@@ -849,7 +850,7 @@ static NSMutableSet *globalPeripherals;
     
     if ([peripherals count] > 0) {
         [self postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             [self showModulePickeriPad];    //iPad
         }
 		else {
@@ -901,7 +902,7 @@ static NSMutableSet *globalPeripherals;
 {
     if (pin >= KonashiDigitalIO0 && pin <= KonashiDigitalIO7 && (mode == KonashiPinModeOutput || mode == KonashiPinModeInput)) {
         // Set value
-        if (mode == KonashiPinModeOutput){
+        if (mode == KonashiPinModeOutput) {
             pioSetting |= 0x01 << pin;
         }
         else {
@@ -918,7 +919,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_pinModeAll:(int)mode
 {
-    if (mode >= 0x00 && mode <= 0xFF){
+    if (mode >= 0x00 && mode <= 0xFF) {
         // Set value
         pioSetting = mode;
         
@@ -932,7 +933,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePioSetting
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PioSetting: %d", pioSetting);
         
         Byte t = (Byte)pioSetting;
@@ -951,7 +952,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePioPullup
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PioPullup: %d", pioPullup);
 
         Byte t = (Byte)pioPullup;
@@ -970,7 +971,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePioOutput
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PioOutput: %d", pioOutput);
         
         Byte t = (Byte)pioOutput;
@@ -992,7 +993,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePwmSetting
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         KNS_LOG(@"PwmSetting: %d", pwmSetting);
         
         Byte t = (Byte)pwmSetting;
@@ -1011,7 +1012,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePwmPeriod:(int)pin
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t[] = {pin,
                     (unsigned char)((pwmPeriod[pin] >> 24) & 0xFF),
                     (unsigned char)((pwmPeriod[pin] >> 16) & 0xFF),
@@ -1032,7 +1033,7 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_writeValuePwmDuty:(int)pin
 {
-    if (activePeripheral && activePeripheral.isConnected) {
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t[] = {pin,
             (unsigned char)((pwmDuty[pin] >> 24) & 0xFF),
             (unsigned char)((pwmDuty[pin] >> 16) & 0xFF),
@@ -1054,15 +1055,15 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi analog IO private methods
 
-- (KonashiResult)_readValueAio:(KonashiAnalogIOPin)pin
+- (KonashiResult)_readValueAio:(int)pin
 {
-	KonashiResult result = KonashiResultFailed;
-    if (activePeripheral && activePeripheral.isConnected) {
-		int uuid;
-        if (pin == KonashiAnalogIO0) {
+    int uuid;
+
+    if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
+        if(pin==KonashiAnalogIO0) {
             uuid = KONASHI_ANALOG_READ0_UUID;
         }
-        else if (pin == KonashiAnalogIO1) {
+        else if (pin==KonashiAnalogIO1) {
             uuid = KONASHI_ANALOG_READ1_UUID;
         }
         else {   // AIO2
@@ -1071,10 +1072,12 @@ static NSMutableSet *globalPeripherals;
         
         [self readValue:KONASHI_SERVICE_UUID characteristicUUID:uuid p:activePeripheral];
         
-        result = KonashiResultSuccess;
+        return KonashiResultSuccess;
     }
-	
-	return result;
+    else {
+        return KonashiResultFailed;
+    }
+
 }
 
 #pragma mark -
@@ -1083,7 +1086,7 @@ static NSMutableSet *globalPeripherals;
 - (KonashiResult)i2cSendCondition:(int)condition
 {
     if ((condition == KonashiI2CConditionStart || condition == KonashiI2CConditionRestart ||
-       condition == KonashiI2CConditionStop) && activePeripheral && activePeripheral.isConnected) {
+       condition == KonashiI2CConditionStop) && activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
         Byte t = condition;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
         [self writeValue:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_START_STOP_UUID p:activePeripheral data:d];
@@ -1581,7 +1584,7 @@ static NSMutableSet *globalPeripherals;
     KNS_LOG(@"didUpdateValueForCharacteristic");
     
     if (!error) {
-        switch(characteristicUUID){
+        switch(characteristicUUID) {
             case KONASHI_PIO_INPUT_NOTIFICATION_UUID:{
 				[characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
 				int xor = (piobyte[0] ^ byte[0]) & (0xff ^ pioSetting);

@@ -22,7 +22,7 @@
 		082325BA168AAB0B00586AE2 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B7168AAB0B00586AE2 /* icon.png */; };
 		082325BB168AAB0B00586AE2 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B8168AAB0B00586AE2 /* icon@2x.png */; };
 		082325C6168AABA600586AE2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082325C5168AABA600586AE2 /* CoreBluetooth.framework */; };
-		08AE62D316CDB4B30027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62D116CDB4B30027B895 /* Konashi.m */; };
+		E91150261991574400F11660 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91150251991574400F11660 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +46,7 @@
 		082325B7168AAB0B00586AE2 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		082325B8168AAB0B00586AE2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		082325C5168AABA600586AE2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		08AE62D016CDB4B30027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		08AE62D116CDB4B30027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		08AE62D216CDB4B30027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E91150251991574400F11660 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +58,7 @@
 				08232594168AAAE200586AE2 /* UIKit.framework in Frameworks */,
 				08232596168AAAE200586AE2 /* Foundation.framework in Frameworks */,
 				08232598168AAAE200586AE2 /* CoreGraphics.framework in Frameworks */,
+				E91150261991574400F11660 /* libKonashi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +68,6 @@
 		08232584168AAAE200586AE2 = {
 			isa = PBXGroup;
 			children = (
-				08AE62CF16CDB4B30027B895 /* Konashi */,
 				08232599168AAAE200586AE2 /* I2cSample */,
 				08232592168AAAE200586AE2 /* Frameworks */,
 				08232590168AAAE200586AE2 /* Products */,
@@ -87,6 +85,7 @@
 		08232592168AAAE200586AE2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E91150251991574400F11660 /* libKonashi.a */,
 				082325C5168AABA600586AE2 /* CoreBluetooth.framework */,
 				08232593168AAAE200586AE2 /* UIKit.framework */,
 				08232595168AAAE200586AE2 /* Foundation.framework */,
@@ -123,17 +122,6 @@
 				082325A9168AAAE200586AE2 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		08AE62CF16CDB4B30027B895 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				08AE62D016CDB4B30027B895 /* Konashi.h */,
-				08AE62D116CDB4B30027B895 /* Konashi.m */,
-				08AE62D216CDB4B30027B895 /* KonashiDb.h */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +196,6 @@
 				082325A0168AAAE200586AE2 /* main.m in Sources */,
 				082325A4168AAAE200586AE2 /* AppDelegate.m in Sources */,
 				082325B0168AAAE200586AE2 /* ViewController.m in Sources */,
-				08AE62D316CDB4B30027B895 /* Konashi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +276,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I2cSample/I2cSample-Prefix.pch";
 				INFOPLIST_FILE = "I2cSample/I2cSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)",
+					"$(inherited)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -300,6 +296,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I2cSample/I2cSample-Prefix.pch";
 				INFOPLIST_FILE = "I2cSample/I2cSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

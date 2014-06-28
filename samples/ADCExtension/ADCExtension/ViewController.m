@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Konashi+ADC.h"
+#import "Konashi/Konashi+ADC.h"
 
 @interface ViewController ()
 
@@ -36,8 +36,8 @@
 
 - (void)ready{
     NSLog(@"Ready");
-    [Konashi initADC:KONASHI_ADC_ADDR_00];
-    [Konashi selectPowerMode:KONASHI_ADC_REFON_ADCON];
+    [[Konashi sharedKonashi] initADC:KONASHI_ADC_ADDR_00];
+    [[Konashi sharedKonashi] selectPowerMode:KONASHI_ADC_REFON_ADCON];
 }
 
 - (void)completeI2cRead{
@@ -50,7 +50,7 @@
 }
 
 - (void)readValue{
-    [Konashi readADCWithChannel:KONASHI_ADC_CH0];
+    [[Konashi sharedKonashi]readADCWithChannel:KONASHI_ADC_CH0];
 }
 
 - (IBAction)find:(id)sender {

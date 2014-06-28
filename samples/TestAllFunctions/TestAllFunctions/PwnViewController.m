@@ -6,7 +6,7 @@
 //
 
 #import "PwnViewController.h"
-#import "Konashi.h"
+#import "Konashi/Konashi.h"
 
 @interface PwnViewController ()
 

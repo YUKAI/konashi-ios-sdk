@@ -6,7 +6,7 @@
 //
 
 #import "AnalogViewController.h"
-#import "Konashi.h"
+#import "Konashi/Konashi.h"
 
 @interface AnalogViewController ()
 {
