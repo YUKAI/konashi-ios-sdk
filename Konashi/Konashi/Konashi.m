@@ -1266,7 +1266,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    KNS_LOG(@"Disconnect from the peripheral: %@", [peripheral name]);
+    KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
     
     [[Konashi shared] _initializeKonashiVariables];
     
