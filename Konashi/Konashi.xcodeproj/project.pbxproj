@@ -295,8 +295,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"${SRCROOT}\"\n\nxcodebuild_konashi() {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -project ${PROJECT_NAME}.xcodeproj \\\n    -configuration ${CONFIGURATION} \\\n    -sdk $1 clean build\n}\n\nBUILD_DIR=\"${SRCROOT}/build\"\nLIB_DIR=\"${SRCROOT}/library\"\nLIB_NAME=\"lib${PROJECT_NAME}.a\"\n\nIOS_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${LIB_NAME}\"\nSIM_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${LIB_NAME}\"\nDEST_LIB=\"${LIB_DIR}/${LIB_NAME}\"\n\n\n# remove dir\nrm -rf \"${BUILD_DIR}\"\nrm -rf \"${LIB_DIR}\"\n\n# 1. xcodebuild\nxcodebuild_konashi iphoneos\nxcodebuild_konashi iphonesimulator\n\n# mkdir\nmkdir -p \"${LIB_DIR}\"\nmkdir \"${LIB_DIR}/include\"\ncp \"${SRCROOT}/Konashi/*.h ${LIB_DIR}/include\"\n\n# 2. lipo\nlipo \"${IOS_LIB}\" \"${SIM_LIB}\" -create -output \"${DEST_LIB}\"";
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nxcodebuild_konashi() {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -project ${PROJECT_NAME}.xcodeproj \\\n    -configuration ${CONFIGURATION} \\\n    -sdk $1 clean build\n}\n\nBUILD_DIR=\"${SRCROOT}/build\"\nLIB_DIR=\"${SRCROOT}/library\"\nLIB_NAME=\"lib${PROJECT_NAME}.a\"\n\nIOS_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${LIB_NAME}\"\nSIM_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${LIB_NAME}\"\nDEST_LIB=\"${LIB_DIR}/${LIB_NAME}\"\n\n\n# delete dir\nrm -rf \"${BUILD_DIR}\"\nrm -rf \"${LIB_DIR}\"\nrm -rf \"${LIB_DIR}/include\"\n\n# create dir\nmkdir -p \"${LIB_DIR}/include\"\nfor filename in `ls ${SRCROOT}/Konashi/*.h`; do echo \"file is ${filename}\"; cp $filename \"${LIB_DIR}/include\"; done\n\n# 1. xcodebuild\nxcodebuild_konashi iphoneos\nxcodebuild_konashi iphonesimulator\n\n# 2. lipo\nlipo \"${IOS_LIB}\" \"${SIM_LIB}\" -create -output \"${DEST_LIB}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
