@@ -131,6 +131,11 @@ static NSString *kCBCentralManagerBlocksKey = @"CBCentralManagerBlocksDelegate";
 
 @end
 
+@interface Konashi () <UIActionSheetDelegate>
+
+@end
+
+
 @implementation Konashi
 
 #pragma mark -

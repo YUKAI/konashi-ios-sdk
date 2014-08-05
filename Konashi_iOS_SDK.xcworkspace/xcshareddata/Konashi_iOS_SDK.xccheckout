@@ -5,15 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
-<<<<<<< HEAD
 	<string>7348D663-998D-40FB-8D1D-3AE61EBBD740</string>
-=======
-	<string>B6E2F780-6EAB-4E83-885C-8F0F673DC2DE</string>
->>>>>>> d9f9cf6... use workspace
-=======
-	<string>7348D663-998D-40FB-8D1D-3AE61EBBD740</string>
->>>>>>> ca36b1a... change workspace settings
 	<key>IDESourceControlProjectName</key>
 	<string>Konashi_iOS_SDK</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
