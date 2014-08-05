@@ -5,60 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<string>7348D663-998D-40FB-8D1D-3AE61EBBD740</string>
-=======
-	<string>B6E2F780-6EAB-4E83-885C-8F0F673DC2DE</string>
->>>>>>> d9f9cf6... use workspace
-=======
-	<string>7348D663-998D-40FB-8D1D-3AE61EBBD740</string>
->>>>>>> ca36b1a... change workspace settings
+	<string>08CD97BA-5951-4F7A-BD99-72BC35C99619</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Konashi_iOS_SDK</string>
+	<string>HardwareSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
-=======
-		<key>FC48716F-FEA2-4A96-A90D-2E36302CCE07</key>
->>>>>>> d9f9cf6... use workspace
+		<key>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</key>
 		<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Konashi_iOS_SDK.xcworkspace</string>
+	<string>samples/HardwareSample/HardwareSample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
-=======
-		<key>FC48716F-FEA2-4A96-A90D-2E36302CCE07</key>
->>>>>>> d9f9cf6... use workspace
-		<string>..</string>
+		<key>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
-<<<<<<< HEAD
-	<integer>111</integer>
-	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
-=======
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FC48716F-FEA2-4A96-A90D-2E36302CCE07</string>
->>>>>>> d9f9cf6... use workspace
+	<string>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-<<<<<<< HEAD
-			<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
-=======
-			<string>FC48716F-FEA2-4A96-A90D-2E36302CCE07</string>
->>>>>>> d9f9cf6... use workspace
+			<string>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</string>
 			<key>IDESourceControlWCCName</key>
 			<string>konashi-ios-sdk</string>
 		</dict>
