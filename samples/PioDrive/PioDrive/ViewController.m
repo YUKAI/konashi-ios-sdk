@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Konashi/Konashi.h"
+#import "Konashi/Konashi+UI.h"
 
 @interface ViewController ()
 
@@ -87,12 +88,12 @@
 
 - (IBAction)find:(id)sender {
     //[Konashi findWithName:@"konashi#4-0960"];
-    [konashi1 connect];
+    [konashi1 connectWithUserInterface];
 }
 
 - (IBAction)find2:(id)sender
 {
-	[konashi2 connect];
+	[konashi2 connectWithUserInterface];
 }
 
 - (IBAction)disconnect:(id)sender {

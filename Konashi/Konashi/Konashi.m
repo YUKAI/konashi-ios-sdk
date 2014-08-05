@@ -154,7 +154,6 @@ static NSString *kCBCentralManagerBlocksKey = @"CBCentralManagerBlocksDelegate";
 #pragma mark -
 #pragma mark - Konashi control public methods
 
-static CBCentralManager *c;
 static NSMutableSet *globalPeripherals;
 + (void)discover:(void (^)(NSArray *array, BOOL *stop))discoverBlocks timeoutBlock:(void (^)(NSArray *array))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
@@ -204,16 +203,11 @@ static NSMutableSet *globalPeripherals;
 	return konashi;
 }
 
-- (KonashiResult)connect
-{
-    return [self findModule:KonashiFindTimeoutInterval];
-}
-
 - (KonashiResult)disconnect
 {
 	KonashiResult result = KonashiResultFailed;
 	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
-        [cm cancelPeripheralConnection:activePeripheral];
+        [c cancelPeripheralConnection:activePeripheral];
         result = KonashiResultSuccess;
     }
     
@@ -698,7 +692,7 @@ static NSMutableSet *globalPeripherals;
 #pragma mark -
 #pragma mark - Konashi private event methods
 
-- (void)postNotification:(NSString*)notificationName
+- (void)postNotification:(NSString *)notificationName
 {
     NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
     [[NSNotificationCenter defaultCenter] postNotification:n];
@@ -709,8 +703,8 @@ static NSMutableSet *globalPeripherals;
 
 - (KonashiResult)_initialize
 {
-    if (!cm) {
-        cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    if (!c) {
+        c = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         [self _initializeVariables];
         return KonashiResultSuccess;
     }
@@ -762,32 +756,6 @@ static NSMutableSet *globalPeripherals;
     findName = @"";
 }
 
-- (KonashiResult)findModule:(NSTimeInterval)timeout
-{
-	if (activePeripheral && activePeripheral.state == CBPeripheralStateConnected) {
-        return KonashiResultFailed;
-    }
-	
-    if (cm.state != CBCentralManagerStatePoweredOn) {
-        KNS_LOG(@"CoreBluetooth not correctly initialized !");
-        KNS_LOG(@"State = %ld (%@)", (long)cm.state, [self centralManagerStateToString:cm.state]);
-        
-        findMethodCalled = YES;
-        
-        return KonashiResultSuccess;
-    }
-    
-    if (peripherals) {
-		peripherals = nil;
-	}
-    
-    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(finishScanModule:) userInfo:nil repeats:NO];
-    
-    [cm scanForPeripheralsWithServices:nil options:0];
-    
-    return KonashiResultSuccess;
-}
-
 - (KonashiResult)connectWithName:(NSString*)name
 {
 	return [self connectWithName:name timeout:KonashiFindTimeoutInterval];
@@ -798,7 +766,7 @@ static NSMutableSet *globalPeripherals;
         return KonashiResultFailed;
     }
         
-    if (cm.state  != CBCentralManagerStatePoweredOn) {
+    if (c.state  != CBCentralManagerStatePoweredOn) {
         KNS_LOG(@"CoreBluetooth not correctly initialized !");
         KNS_LOG(@"State = %ld (%@)", (long)cm.state, [self centralManagerStateToString:cm.state]);
         
@@ -814,14 +782,14 @@ static NSMutableSet *globalPeripherals;
     
     [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(finishScanModuleWithName:) userInfo:name repeats:NO];
 
-    [cm scanForPeripheralsWithServices:nil options:0];
+    [c scanForPeripheralsWithServices:nil options:0];
     
     return KonashiResultSuccess;
 }
 
 - (void)finishScanModuleWithName:(NSTimer *)timer
 {
-    [cm stopScan];
+    [c stopScan];
     NSString *targetname = [timer userInfo];
     KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
     BOOL targetIsExist = NO;
@@ -842,24 +810,11 @@ static NSMutableSet *globalPeripherals;
     }
 }
 
-- (void)finishScanModule:(NSTimer *)timer
+- (void)connectTargetPeripheral:(int)indexOfTarget
 {
-    [cm stopScan];
+    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
     
-    KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
-    
-    if ([peripherals count] > 0) {
-        [self postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            [self showModulePickeriPad];    //iPad
-        }
-		else {
-            [self showModulePicker];        //else
-        }
-    }
-	else {
-        [self postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
-    }
+    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
 }
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral
@@ -871,7 +826,7 @@ static NSMutableSet *globalPeripherals;
     
     activePeripheral = peripheral;
     activePeripheral.delegate = self;
-    [cm connectPeripheral:activePeripheral options:nil];
+    [c connectPeripheral:activePeripheral options:nil];
 }
 
 - (void)readyModule
@@ -1099,160 +1054,6 @@ static NSMutableSet *globalPeripherals;
 }
 
 #pragma mark -
-#pragma mark - Konashi module picker methods
-
-- (void)showModulePicker
-{
-    UIView *rootView = [[[UIApplication sharedApplication] keyWindow] rootViewController].view;
-    
-    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Select Module"
-                                                  delegate:self
-                                         cancelButtonTitle:nil
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:nil];
-    
-    // Add the picker
-    
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.showsSelectionIndicator = YES;
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	toolBar.barStyle = UIBarStyleBlackOpaque;
-	[toolBar sizeToFit];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    label.text = @"Select";
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:24];
-    [label sizeToFit];
-    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:label];
-    
-	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushPickerCancel)];
-	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pushPickerDone)];
-	
-    NSArray *items = [NSArray arrayWithObjects:cancel, spacer, title, spacer, done, nil];
-	[toolBar setItems:items animated:YES];
-    
-    [pickerViewPopup addSubview:toolBar];
-    [pickerViewPopup addSubview:picker];
-    [pickerViewPopup showInView:rootView];
-    
-    [pickerViewPopup setBounds:CGRectMake(0, 0, 320, 464)];
-}
-
-- (void)showModulePickeriPad
-{
-    UIView *rootView = [[[UIApplication sharedApplication] keyWindow] rootViewController].view;
-    
-    // Add the picker
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.showsSelectionIndicator = YES;
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	toolBar.barStyle = UIBarStyleBlackOpaque;
-	[toolBar sizeToFit];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    label.text = @"Select";
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:18];
-    [label sizeToFit];
-    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:label];
-    
-	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushPickerCancel_pad)];
-	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    spacer.width=60;
-	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pushPickerDone_pad)];
-	
-    NSArray *items = [NSArray arrayWithObjects:cancel, spacer, title, spacer, done, nil];
-	[toolBar setItems:items animated:YES];
-    [toolBar sizeToFit];
-    
-    UIViewController *pickerViewController;
-    pickerViewController=[[UIViewController alloc] init];
-    [pickerViewController.view addSubview:toolBar];
-    [pickerViewController.view addSubview:picker.viewForBaselineLayout];
-    
-    pickerViewPopup_pad = [[UIPopoverController alloc] initWithContentViewController: pickerViewController];
-    
-    [pickerViewPopup_pad presentPopoverFromRect:CGRectMake(0, 0, 10, 10) inView:rootView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [peripherals count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *module[64];
-    
-    for (int i = 0; i < peripherals.count; i++) {
-        CBPeripheral *p = [peripherals objectAtIndex:i];
-        module[i] = p.name;
-    }
-    
-    return module[row];
-}
-
-- (void)pushPickerCancel
-{
-    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-    [self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
-}
-
-- (void)pushPickerDone
-{
-    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-    
-    NSInteger selectedIndex = [picker selectedRowInComponent:0];
-    
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:selectedIndex]];
-}
-
-- (void)pushPickerCancel_pad
-{
-    [pickerViewPopup_pad dismissPopoverAnimated:YES];
-    [self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
-}
-
-- (void)pushPickerDone_pad
-{
-    [pickerViewPopup_pad dismissPopoverAnimated:YES];
-    
-    NSInteger selectedIndex = [picker selectedRowInComponent:0];
-    
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:selectedIndex]];
-}
-
-- (void)connectTargetPeripheral:(int)indexOfTarget
-{
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
-}
-
-#pragma mark -
 #pragma mark - Konashi BLE methods
 
 - (NSString *)centralManagerStateToString: (int)state
@@ -1362,10 +1163,6 @@ static NSMutableSet *globalPeripherals;
                 KNS_LOG(@"Try findWithName");
                 [self connectWithName:findName];
                 findName = @"";
-            }
-			else {
-                KNS_LOG(@"Try find");
-                [self connect];
             }
         }
     }

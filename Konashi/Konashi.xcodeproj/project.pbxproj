@@ -26,6 +26,9 @@
 		E911501C199153B900F11660 /* Konashi+ACDrive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC41991431100781153 /* Konashi+ACDrive.h */; };
 		E911501D199153B900F11660 /* Konashi+ADC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC61991431100781153 /* Konashi+ADC.h */; };
 		E911501E199153B900F11660 /* Konashi+Grove.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9160DC81991431100781153 /* Konashi+Grove.h */; };
+		E911503719915ED900F11660 /* Konashi+UI.h in Headers */ = {isa = PBXBuildFile; fileRef = E911503519915ED900F11660 /* Konashi+UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E911503819915ED900F11660 /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E911503619915ED900F11660 /* Konashi+UI.m */; };
+		E91150391991626300F11660 /* Konashi+UI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E911503519915ED900F11660 /* Konashi+UI.h */; };
 		E9160DAD199142DB00781153 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9160DAC199142DB00781153 /* XCTest.framework */; };
 		E9160DAE199142DB00781153 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9160D9E199142DA00781153 /* Foundation.framework */; };
 		E9160DB9199142DB00781153 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9160DB7199142DB00781153 /* InfoPlist.strings */; };
@@ -50,6 +53,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E91150391991626300F11660 /* Konashi+UI.h in CopyFiles */,
 				E911501A199153B900F11660 /* KonashiDb.h in CopyFiles */,
 				E911501B199153B900F11660 /* Konashi.h in CopyFiles */,
 				E911501C199153B900F11660 /* Konashi+ACDrive.h in CopyFiles */,
@@ -61,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E911503519915ED900F11660 /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E911503619915ED900F11660 /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 		E9160D9E199142DA00781153 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9160DA3199142DA00781153 /* Konashi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
 		E9160DA5199142DA00781153 /* Konashi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
@@ -179,6 +185,8 @@
 				E9160DC71991431100781153 /* Konashi+ADC.m */,
 				E9160DC81991431100781153 /* Konashi+Grove.h */,
 				E9160DC91991431100781153 /* Konashi+Grove.m */,
+				E911503519915ED900F11660 /* Konashi+UI.h */,
+				E911503619915ED900F11660 /* Konashi+UI.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 				E965060719914A6200AC30B2 /* Konashi.h in Headers */,
 				E965060819914A6200AC30B2 /* Konashi+ACDrive.h in Headers */,
 				E965060919914A6200AC30B2 /* Konashi+ADC.h in Headers */,
+				E911503719915ED900F11660 /* Konashi+UI.h in Headers */,
 				E965060A19914A6200AC30B2 /* Konashi+Grove.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +235,6 @@
 				E96505DD199149D700AC30B2 /* Frameworks */,
 				E96505DE199149D700AC30B2 /* CopyFiles */,
 				E965060319914A0C00AC30B2 /* Headers */,
-				E9D0D21B19914F4D009C16D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -287,21 +295,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "xcodebuild_konashi() {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -project ${PROJECT_NAME}.xcodeproj \\\n    -configuration ${CONFIGURATION} \\\n    -sdk $1 clean build\n}\n\nBUILD_DIR=\"${SRCROOT}/build\"\nLIB_DIR=\"${SRCROOT}/library\"\nLIB_NAME=\"lib${PROJECT_NAME}.a\"\n\nIOS_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${LIB_NAME}\"\nSIM_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${LIB_NAME}\"\nDEST_LIB=\"${LIB_DIR}/${LIB_NAME}\"\n\n\n# remove dir\nrm -rf \"${BUILD_DIR}\"\nrm -rf \"${LIB_DIR}\"\n\n# 1. xcodebuild\nxcodebuild_konashi iphoneos\nxcodebuild_konashi iphonesimulator\n\n# mkdir\nmkdir -p \"${LIB_DIR}\"\n\n# 2. lipo\nlipo \"${IOS_LIB}\" \"${SIM_LIB}\" -create -output \"${DEST_LIB}\"";
-		};
-		E9D0D21B19914F4D009C16D6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nxcodebuild_konashi() {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -project ${PROJECT_NAME}.xcodeproj \\\n    -configuration ${CONFIGURATION} \\\n    -sdk $1 clean build\n}\n\nBUILD_DIR=\"${SRCROOT}/build\"\nLIB_DIR=\"${SRCROOT}/library\"\nLIB_NAME=\"lib${PROJECT_NAME}.a\"\n\nIOS_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${LIB_NAME}\"\nSIM_LIB=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${LIB_NAME}\"\nDEST_LIB=\"${LIB_DIR}/${LIB_NAME}\"\n\n\n# delete dir\nrm -rf \"${BUILD_DIR}\"\nrm -rf \"${LIB_DIR}\"\nrm -rf \"${LIB_DIR}/include\"\n\n# create dir\nmkdir -p \"${LIB_DIR}/include\"\nfor filename in `ls ${SRCROOT}/Konashi/*.h`; do echo \"file is ${filename}\"; cp $filename \"${LIB_DIR}/include\"; done\n\n# 1. xcodebuild\nxcodebuild_konashi iphoneos\nxcodebuild_konashi iphonesimulator\n\n# 2. lipo\nlipo \"${IOS_LIB}\" \"${SIM_LIB}\" -create -output \"${DEST_LIB}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -318,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E911503819915ED900F11660 /* Konashi+UI.m in Sources */,
 				E965060B19914A9100AC30B2 /* Konashi.m in Sources */,
 				E965060C19914A9100AC30B2 /* Konashi+ACDrive.m in Sources */,
 				E965060D19914A9100AC30B2 /* Konashi+ADC.m in Sources */,
@@ -446,7 +442,7 @@
 		E96505D51991469200AC30B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
@@ -455,7 +451,7 @@
 		E96505D61991469200AC30B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
@@ -471,6 +467,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -483,6 +480,7 @@
 				DSTROOT = /tmp/Konashi.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Konashi-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";

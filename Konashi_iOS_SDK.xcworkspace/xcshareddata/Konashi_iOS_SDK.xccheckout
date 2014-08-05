@@ -19,10 +19,14 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
 =======
 		<key>FC48716F-FEA2-4A96-A90D-2E36302CCE07</key>
 >>>>>>> d9f9cf6... use workspace
+=======
+		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
+>>>>>>> 1b65b82... project settings
 		<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -30,15 +34,20 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
 =======
 		<key>FC48716F-FEA2-4A96-A90D-2E36302CCE07</key>
 >>>>>>> d9f9cf6... use workspace
+=======
+		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
+>>>>>>> 1b65b82... project settings
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
+<<<<<<< HEAD
 <<<<<<< HEAD
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -48,6 +57,11 @@
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>FC48716F-FEA2-4A96-A90D-2E36302CCE07</string>
 >>>>>>> d9f9cf6... use workspace
+=======
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
+>>>>>>> 1b65b82... project settings
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -55,10 +69,14 @@
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
 =======
 			<string>FC48716F-FEA2-4A96-A90D-2E36302CCE07</string>
 >>>>>>> d9f9cf6... use workspace
+=======
+			<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
+>>>>>>> 1b65b82... project settings
 			<key>IDESourceControlWCCName</key>
 			<string>konashi-ios-sdk</string>
 		</dict>

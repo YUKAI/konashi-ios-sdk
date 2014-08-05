@@ -46,7 +46,6 @@
 		08284BB416AEF8CB00693B45 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		08284BB516AEF8CB00693B45 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		08284BB616AEF8CB00693B45 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		E96505DA199148C900AC30B2 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = ../../Konashi/library/libKonashi.a; sourceTree = "<group>"; };
 		E9D0D21919914D59009C16D6 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Release-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				E9D0D21919914D59009C16D6 /* libKonashi.a */,
-				E96505DA199148C900AC30B2 /* libKonashi.a */,
 				08284BB016AEF80900693B45 /* CoreBluetooth.framework */,
 				08284B8616AEF7DA00693B45 /* UIKit.framework */,
 				08284B8816AEF7DA00693B45 /* Foundation.framework */,

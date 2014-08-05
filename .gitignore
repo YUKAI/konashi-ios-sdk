@@ -1,4 +1,6 @@
-samples/*/*.xcodeproj/*
-!samples/*/*.xcodeproj/project.pbxproj
-!samples/*/*.xcworkspace/contents.xcworkspacedata
+*/Konashi/build/*
+*/Konashi/library/*
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcworkspace/contents.xcworkspacedata
 .DS_Store

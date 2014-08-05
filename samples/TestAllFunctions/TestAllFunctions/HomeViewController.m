@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "Konashi/Konashi.h"
+#import "Konashi/Konashi+UI.h"
 
 @interface HomeViewController ()
 
@@ -27,8 +28,6 @@
 	} readyHandler:^(Konashi *konashi) {
 		[self ready];
 	}];
-//    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-//    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
     
     // 電波強度
 	[Konashi sharedKonashi].signalStrengthDidUpdateHandler = ^(Konashi *konashi, int value) {
@@ -39,7 +38,6 @@
 		
 		self.dbBar.progress = progress / 100;
 	};
-//    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
 
     // バッテリー
 	[Konashi sharedKonashi].batteryLevelDidUpdateHandler = ^(Konashi *konashi, int value) {
@@ -53,7 +51,6 @@
 		
 		NSLog(@"BATTERY LEVEL: %d%%", [[Konashi sharedKonashi] batteryLevelRead]);
 	};
-//    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +64,7 @@
         [[Konashi sharedKonashi] disconnect];
         [self.connectButton setTitle: @"konashi に接続する" forState:UIControlStateNormal];
     } else {
-        [[Konashi sharedKonashi] connect];
+        [[Konashi sharedKonashi] connectWithUserInterface];
     }
 }
 

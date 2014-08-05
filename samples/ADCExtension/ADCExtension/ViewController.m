@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Konashi/Konashi+UI.h"
 #import "Konashi/Konashi+ADC.h"
 
 @interface ViewController ()
@@ -54,7 +55,7 @@
 }
 
 - (IBAction)find:(id)sender {
-    [[Konashi sharedKonashi] connect];
+    [[Konashi sharedKonashi] connectWithUserInterface];
 }
 
 - (IBAction)disconnect:(id)sender {

@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>66005F41-8EB3-4ECD-B495-10570CFF3E2E</string>
+	<string>016C780C-3160-412C-8767-6D122F545ED0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Konashi</string>
+	<string>GettingStarted</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
+		<key>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</key>
 		<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Konashi/Konashi/Konashi.xcodeproj/project.xcworkspace</string>
+	<string>samples/BlinkLed/GettingStarted.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3118980FF8DD65BDD536677E3ED68BFB8E370768</key>
+		<key>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>111</integer>
+	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
+	<string>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3118980FF8DD65BDD536677E3ED68BFB8E370768</string>
+			<string>E0DA0620-47E9-46C1-AA4F-5CE6E23DE570</string>
 			<key>IDESourceControlWCCName</key>
 			<string>konashi-ios-sdk</string>
 		</dict>
