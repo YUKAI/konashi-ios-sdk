@@ -239,29 +239,29 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 - (NSString *)peripheralName;
 
 // Digital PIO methods
-- (int)pinMode:(int)pin mode:(int)mode;
-- (int)pinModeAll:(int)mode;
-- (int)pinPullup:(int)pin mode:(int)mode;
-- (int)pinPullupAll:(int)mode;
-- (int)digitalRead:(int)pin;
-- (int)digitalReadAll;
-- (int)digitalWrite:(int)pin value:(int)value;
-- (int)digitalWriteAll:(int)value;
+- (KonashiResult)pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
+- (KonashiResult)pinModeAll:(unsigned char)mode;
+- (KonashiResult)pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
+- (KonashiResult)pinPullupAll:(unsigned char)mode;
+- (KonashiResult)digitalRead:(KonashiDigitalIOPin)pin;
+- (unsigned char)digitalReadAll;
+- (KonashiResult)digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
+- (KonashiResult)digitalWriteAll:(unsigned char)value;
 
 // PWM methods
-- (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(int)mode;
+- (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
 - (KonashiResult)setPWMPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
 - (KonashiResult)setPWMDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
-- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
+- (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
 - (int)analogReference;
-- (int)analogReadRequest:(int)pin;
-- (int)analogRead:(int)pin;
-- (KonashiResult)analogWrite:(int)pin milliVolt:(int)milliVolt;
+- (KonashiResult)analogReadRequest:(KonashiAnalogIOPin)pin;
+- (KonashiResult)analogRead:(KonashiAnalogIOPin)pin;
+- (KonashiResult)analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
 
 // I2C methods
-- (KonashiResult)setI2CMode:(int)mode;
+- (KonashiResult)setI2CMode:(KonashiI2CMode)mode;
 - (KonashiResult)i2cStartCondition;
 - (KonashiResult)i2cRestartCondition;
 - (KonashiResult)i2cStopCondition;
@@ -270,8 +270,8 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 - (KonashiResult)i2cRead:(int)length data:(unsigned char*)data;
 
 // UART methods
-- (KonashiResult)setUartMode:(int)mode;
-- (KonashiResult)setUartBaudrate:(int)baudrate;
+- (KonashiResult)setUartMode:(KonashiUartMode)mode;
+- (KonashiResult)setUartBaudrate:(KonashiUartRate)baudrate;
 - (KonashiResult)uartWrite:(unsigned char)data;
 - (unsigned char)uartRead;
 

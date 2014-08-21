@@ -21,7 +21,6 @@
 
 #import "Konashi.h"
 
-<<<<<<< HEAD:Konashi/Konashi/Konashi+Grove.h
 // Analog Port
 static const int A0 = KonashiAnalogIO0;
 static const int A1 = KonashiAnalogIO1;
@@ -35,31 +34,5 @@ static const int A2 = KonashiAnalogIO2;
 - (KonashiResult)writeGroveDigitalPort:(KonashiDigitalIOPin)port value:(KonashiLevel)value;
 - (KonashiResult)readGroveAnalogPort:(KonashiAnalogIOPin)port;
 - (KonashiResult)writeGroveAnalogPort:(KonashiAnalogIOPin)port milliVolt:(int)milliVolt;
-=======
-typedef NS_ENUM(NSUInteger, KONASHI_AC_PIN) {
-    KONASHI_AC_PIN_CTRL = KonashiDigitalIO0,
-	KONASHI_AC_PIN_FREQ = KonashiDigitalIO1,
-};
-
-typedef NS_ENUM(NSUInteger, KONASHI_AC_MODE) {
-    KONASHI_AC_MODE_ONOFF = 0,
-	KONASHI_AC_MODE_PWM
-};
-
-static const int KONASHI_PWM_AC_PERIOD = 10000;
-
-typedef NS_ENUM(NSUInteger, KONASHI_AC_FREQ) {
-	KONASHI_AC_FREQ_50HZ = 50,
-	KONASHI_AC_FREQ_60HZ = 60,
-};
-
-@interface Konashi (ACDrive)
-
-- (KonashiResult)setACDriveMode:(KONASHI_AC_MODE)mode freq:(KONASHI_AC_FREQ)freq;
-- (KonashiResult)onACDrive;
-- (KonashiResult)offACDrive;
-- (KonashiResult)updateACDriveDuty:(float)ratio;
-- (KonashiResult)selectACDriveFreq:(int)freq;
->>>>>>> 6b83e8b... リファクタリング:Konashi/Konashi+ACDrive.h
 
 @end
