@@ -23,6 +23,7 @@
 #import "Konashi.h"
 #import "KonashiDb.h"
 #import "Konashi+UI.h"
+#import "KonashiUtils.h"
 
 @implementation Konashi
 
@@ -1376,7 +1377,8 @@
 #ifdef KONASHI_DEBUG
         for(int i=0; i < service.characteristics.count; i++) {
             CBCharacteristic *c = [service.characteristics objectAtIndex:i];
-            KNS_LOG(@"Found characteristic %@", [self CBUUIDToString:c.UUID]);
+            KNS_LOG(@"Found characteristic %@\nvalue: %@\ndescriptors: %@\nproperties: %@\nisNotifying: %d\nisBroadcasted: %d",
+                    [self CBUUIDToString: c.UUID], c.value, c.descriptors, NSStringFromCBCharacteristicProperty(c.properties), c.isNotifying, c.isBroadcasted);
         }
 #endif
         

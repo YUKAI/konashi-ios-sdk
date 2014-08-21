@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7143D8619C949DF007E4F15 /* KonashiUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C7143D8519C949DF007E4F15 /* KonashiUtils.m */; };
 		E91B712819C8F2D700BC88A4 /* Konashi+ACDrive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E91E54B719C8F2850071D7C9 /* Konashi+ACDrive.h */; };
 		E91B712919C8F2D700BC88A4 /* Konashi+ADC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E91E54B919C8F2850071D7C9 /* Konashi+ADC.h */; };
 		E91B712A19C8F2D700BC88A4 /* Konashi+Grove.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E91E54BB19C8F2850071D7C9 /* Konashi+Grove.h */; };
@@ -57,6 +58,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C7143D8419C949DF007E4F15 /* KonashiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiUtils.h; sourceTree = "<group>"; };
+		C7143D8519C949DF007E4F15 /* KonashiUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KonashiUtils.m; sourceTree = "<group>"; };
 		E91B713119C8F38100BC88A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E91E548E19C8F2750071D7C9 /* libKonashi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKonashi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91E549119C8F2750071D7C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				E91E54BD19C8F2850071D7C9 /* Konashi+UI.h */,
 				E91E54BE19C8F2850071D7C9 /* Konashi+UI.m */,
 				E91E54BF19C8F2850071D7C9 /* KonashiDb.h */,
+				C7143D8419C949DF007E4F15 /* KonashiUtils.h */,
+				C7143D8519C949DF007E4F15 /* KonashiUtils.m */,
 				E91E549419C8F2750071D7C9 /* Supporting Files */,
 			);
 			path = Konashi;
@@ -261,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91E54C319C8F2850071D7C9 /* Konashi+UI.m in Sources */,
+				C7143D8619C949DF007E4F15 /* KonashiUtils.m in Sources */,
 				E91E54C019C8F2850071D7C9 /* Konashi+ACDrive.m in Sources */,
 				E91E54C219C8F2850071D7C9 /* Konashi+Grove.m in Sources */,
 				E91E54C119C8F2850071D7C9 /* Konashi+ADC.m in Sources */,
