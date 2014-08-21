@@ -276,10 +276,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PioDrive/PioDrive-Prefix.pch";
 				INFOPLIST_FILE = "PioDrive/PioDrive-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -296,10 +293,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PioDrive/PioDrive-Prefix.pch";
 				INFOPLIST_FILE = "PioDrive/PioDrive-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

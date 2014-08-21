@@ -271,11 +271,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)",
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -291,11 +287,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)",
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi_iOS_SDK-eytphjfdeakhtsgochnubspdlfyn/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

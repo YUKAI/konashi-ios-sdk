@@ -239,20 +239,20 @@ static const NSTimeInterval KonashiFindTimeoutInterval = 2.0;
 - (NSString *)peripheralName;
 
 // Digital PIO methods
-- (int)pinMode:(int)pin mode:(int)mode;
-- (int)pinModeAll:(int)mode;
-- (int)pinPullup:(int)pin mode:(int)mode;
-- (int)pinPullupAll:(int)mode;
-- (int)digitalRead:(int)pin;
-- (int)digitalReadAll;
-- (int)digitalWrite:(int)pin value:(int)value;
-- (int)digitalWriteAll:(int)value;
+- (KonashiResult)pinMode:(int)pin mode:(int)mode;
+- (KonashiResult)pinModeAll:(int)mode;
+- (KonashiResult)pinPullup:(int)pin mode:(int)mode;
+- (KonashiResult)pinPullupAll:(int)mode;
+- (KonashiResult)digitalRead:(int)pin;
+- (KonashiResult)digitalReadAll;
+- (KonashiResult)digitalWrite:(int)pin value:(int)value;
+- (KonashiResult)digitalWriteAll:(int)value;
 
 // PWM methods
 - (KonashiResult)setPWMMode:(KonashiDigitalIOPin)pin mode:(int)mode;
 - (KonashiResult)setPWMPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
 - (KonashiResult)setPWMDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
-- (int)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
+- (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
 - (int)analogReference;
