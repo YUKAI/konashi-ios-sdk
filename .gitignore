@@ -1,6 +1,5 @@
-*/Konashi/build/*
-*/Konashi/library/*
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata
 !*.xcworkspace/contents.xcworkspacedata
 .DS_Store
