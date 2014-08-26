@@ -129,12 +129,8 @@
 #define KONASHI_FIND_TIMEOUT 2
 
 // Konashi interface
-@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
+@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIActionSheetDelegate>
 {
-    UIActionSheet *pickerViewPopup;
-    UIPopoverController *pickerViewPopup_pad;
-    UIPickerView *picker;
-
     // status
     BOOL isCallFind;
     NSString *findName;
