@@ -445,11 +445,7 @@
     
     if ( [peripherals count] > 0 ) {
         [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
-        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-            [self showModulePickeriPad];    //iPad
-        } else {
-            [self showModulePicker];        //else
-        }
+		[self showModulePicker];
     } else {
         [[Konashi shared] postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
     }
@@ -1119,146 +1115,33 @@
 
 - (void) showModulePicker
 {    
-    UIView *rootView = [[[UIApplication sharedApplication] keyWindow] rootViewController].view;
-    
-    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Select Module"
-                                                  delegate:self
-                                         cancelButtonTitle:nil
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:nil];
-    
-    // Add the picker
-    
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.showsSelectionIndicator = YES;
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	toolBar.barStyle = UIBarStyleBlackOpaque;
-	[toolBar sizeToFit];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    label.text = @"Select";
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:24];
-    [label sizeToFit];
-    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:label];
-    
-	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushPickerCancel)];
-	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pushPickerDone)];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Module" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 	
-    NSArray *items = [NSArray arrayWithObjects:cancel, spacer, title, spacer, done, nil];
-	[toolBar setItems:items animated:YES];
-    
-    [pickerViewPopup addSubview:toolBar];
-    [pickerViewPopup addSubview:picker];
-    [pickerViewPopup showInView:rootView];
-    
-    [pickerViewPopup setBounds:CGRectMake(0, 0, 320, 464)];
+	for (CBPeripheral *p in peripherals) {
+		[actionSheet addButtonWithTitle:p.name];
+	}
+	[actionSheet addButtonWithTitle:@"Cancel"];
+	actionSheet.cancelButtonIndex = peripherals.count;
+	actionSheet.delegate = self;
+	[actionSheet showInView:[[[UIApplication sharedApplication] delegate] window]];
 }
 
-- (void) showModulePickeriPad
+#pragma mark - UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIView *rootView = [[[UIApplication sharedApplication] keyWindow] rootViewController].view;
-    
-    // Add the picker
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.showsSelectionIndicator = YES;
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	toolBar.barStyle = UIBarStyleBlackOpaque;
-	[toolBar sizeToFit];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    label.text = @"Select";
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:18];
-    [label sizeToFit];
-    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:label];
-    
-	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushPickerCancel_pad)];
-	UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    spacer.width=60;
-	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pushPickerDone_pad)];
-	
-    NSArray *items = [NSArray arrayWithObjects:cancel, spacer, title, spacer, done, nil];
-	[toolBar setItems:items animated:YES];
-    [toolBar sizeToFit];
-    
-    UIViewController *pickerViewController;
-    pickerViewController=[[UIViewController alloc] init];
-    [pickerViewController.view addSubview:toolBar];
-    [pickerViewController.view addSubview:picker.viewForBaselineLayout];
-    
-    pickerViewPopup_pad = [[UIPopoverController alloc] initWithContentViewController: pickerViewController];
-    
-    [pickerViewPopup_pad presentPopoverFromRect:CGRectMake(0, 0, 10, 10) inView:rootView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	if (buttonIndex == [actionSheet cancelButtonIndex]) {
+		[self actionSheetCancel:actionSheet];
+	}
+	else {
+		KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
+		[self connectPeripheral:[peripherals objectAtIndex:buttonIndex]];
+	}
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [peripherals count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *module[64];
-    
-    for(int i = 0; i < peripherals.count; i++) {
-        CBPeripheral *p = [peripherals objectAtIndex:i];
-        module[i] = p.name;
-    }
-    
-    return module[row];
-}
-
-- (void) pushPickerCancel
-{
-    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
-}
-
-- (void) pushPickerDone
-{
-    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
-    
-    NSInteger selectedIndex = [picker selectedRowInComponent:0];
-    
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:selectedIndex]];
-}
-
-- (void) pushPickerCancel_pad
-{
-    [pickerViewPopup_pad dismissPopoverAnimated:YES];
-    [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
-}
-
-- (void) pushPickerDone_pad
-{
-    [pickerViewPopup_pad dismissPopoverAnimated:YES];
-    
-    NSInteger selectedIndex = [picker selectedRowInComponent:0];
-    
-    KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
-    
-    [self connectPeripheral:[peripherals objectAtIndex:selectedIndex]];
+	[self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
 }
 
 - (void)connectTargetPeripheral:(int)indexOfTarget
