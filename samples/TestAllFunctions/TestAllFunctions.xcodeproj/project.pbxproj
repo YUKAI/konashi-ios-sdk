@@ -39,6 +39,7 @@
 		085A502716D311FF008E28A0 /* pwm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A501D16D311FF008E28A0 /* pwm@2x.png */; };
 		085A502C16D3125F008E28A0 /* control.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A502A16D3125F008E28A0 /* control.png */; };
 		085A502D16D3125F008E28A0 /* control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A502B16D3125F008E28A0 /* control@2x.png */; };
+		E9E77CFD19B59DF4009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CFC19B59DF4009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,8 @@
 		085A501D16D311FF008E28A0 /* pwm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pwm@2x.png"; sourceTree = "<group>"; };
 		085A502A16D3125F008E28A0 /* control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control.png; sourceTree = "<group>"; };
 		085A502B16D3125F008E28A0 /* control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "control@2x.png"; sourceTree = "<group>"; };
+		E9E77CFB19B59DF4009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CFC19B59DF4009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,8 @@
 			children = (
 				085A501216D310E5008E28A0 /* Konashi.h */,
 				085A501316D310E5008E28A0 /* Konashi.m */,
+				E9E77CFB19B59DF4009C8ADE /* Konashi+UI.h */,
+				E9E77CFC19B59DF4009C8ADE /* Konashi+UI.m */,
 				085A501416D310E5008E28A0 /* KonashiDb.h */,
 			);
 			name = Konashi;
@@ -281,6 +286,7 @@
 				084B932D16C93FE40089C59A /* AnalogViewController.m in Sources */,
 				084B933616C945330089C59A /* CommViewController.m in Sources */,
 				085A501516D310E5008E28A0 /* Konashi.m in Sources */,
+				E9E77CFD19B59DF4009C8ADE /* Konashi+UI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

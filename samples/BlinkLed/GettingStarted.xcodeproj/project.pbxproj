@@ -20,6 +20,7 @@
 		08AE634216CE96050027B895 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE634116CE96050027B895 /* ViewController.m */; };
 		08AE634916CE96140027B895 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE634816CE96140027B895 /* CoreBluetooth.framework */; };
 		08AE634E16CE96440027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE634C16CE96440027B895 /* Konashi.m */; };
+		E9E77CEB19B59DA7009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CEA19B59DA7009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		08AE634B16CE96440027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
 		08AE634C16CE96440027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
 		08AE634D16CE96440027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E9E77CE919B59DA7009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CEA19B59DA7009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 			children = (
 				08AE634B16CE96440027B895 /* Konashi.h */,
 				08AE634C16CE96440027B895 /* Konashi.m */,
+				E9E77CE919B59DA7009C8ADE /* Konashi+UI.h */,
+				E9E77CEA19B59DA7009C8ADE /* Konashi+UI.m */,
 				08AE634D16CE96440027B895 /* KonashiDb.h */,
 			);
 			name = Konashi;
@@ -193,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E77CEB19B59DA7009C8ADE /* Konashi+UI.m in Sources */,
 				08AE633216CE96040027B895 /* main.m in Sources */,
 				08AE633616CE96040027B895 /* AppDelegate.m in Sources */,
 				08AE634216CE96050027B895 /* ViewController.m in Sources */,
@@ -319,6 +325,7 @@
 				08AE634716CE96050027B895 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -21,6 +21,7 @@
 		32CAD214180421940082729D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD213180421940082729D /* CoreBluetooth.framework */; };
 		32CAD21F180421BE0082729D /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD21B180421BE0082729D /* Konashi.m */; };
 		32CAD222180421EF0082729D /* Konashi+ADC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD221180421EF0082729D /* Konashi+ADC.m */; };
+		E9E77CE519B59D8C009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CE419B59D8C009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		32CAD21C180421BE0082729D /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
 		32CAD220180421EF0082729D /* Konashi+ADC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ADC.h"; sourceTree = "<group>"; };
 		32CAD221180421EF0082729D /* Konashi+ADC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ADC.m"; sourceTree = "<group>"; };
+		E9E77CE319B59D8C009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CE419B59D8C009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 			children = (
 				32CAD21A180421BE0082729D /* Konashi.h */,
 				32CAD21B180421BE0082729D /* Konashi.m */,
+				E9E77CE319B59D8C009C8ADE /* Konashi+UI.h */,
+				E9E77CE419B59D8C009C8ADE /* Konashi+UI.m */,
 				32CAD21C180421BE0082729D /* KonashiDb.h */,
 				32CAD220180421EF0082729D /* Konashi+ADC.h */,
 				32CAD221180421EF0082729D /* Konashi+ADC.m */,
@@ -203,6 +208,7 @@
 				32CAD20D180421690082729D /* ViewController.m in Sources */,
 				32CAD21F180421BE0082729D /* Konashi.m in Sources */,
 				32CAD222180421EF0082729D /* Konashi+ADC.m in Sources */,
+				E9E77CE519B59D8C009C8ADE /* Konashi+UI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

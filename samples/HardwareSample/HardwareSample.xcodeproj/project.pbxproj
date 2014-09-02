@@ -23,6 +23,7 @@
 		085A320B168A967400A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A3208168A967400A75E66 /* icon@2x.png */; };
 		085A3211168A969D00A75E66 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085A3210168A969D00A75E66 /* CoreBluetooth.framework */; };
 		08AE62CE16CDB3CE0027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62CC16CDB3CE0027B895 /* Konashi.m */; };
+		E9E77CF119B59DC9009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CF019B59DC9009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		08AE62CB16CDB3CE0027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
 		08AE62CC16CDB3CE0027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
 		08AE62CD16CDB3CE0027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E9E77CEF19B59DC9009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CF019B59DC9009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 			children = (
 				08AE62CB16CDB3CE0027B895 /* Konashi.h */,
 				08AE62CC16CDB3CE0027B895 /* Konashi.m */,
+				E9E77CEF19B59DC9009C8ADE /* Konashi+UI.h */,
+				E9E77CF019B59DC9009C8ADE /* Konashi+UI.m */,
 				08AE62CD16CDB3CE0027B895 /* KonashiDb.h */,
 			);
 			name = Konashi;
@@ -205,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E77CF119B59DC9009C8ADE /* Konashi+UI.m in Sources */,
 				085A31F0168A964900A75E66 /* main.m in Sources */,
 				085A31F4168A964900A75E66 /* AppDelegate.m in Sources */,
 				085A3200168A964900A75E66 /* ViewController.m in Sources */,

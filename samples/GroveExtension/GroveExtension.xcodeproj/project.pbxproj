@@ -21,6 +21,7 @@
 		32E2C5101802B31100DF5810 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2C50E1802B31100DF5810 /* Konashi.m */; };
 		32E2C5121802B32700DF5810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E2C5111802B32700DF5810 /* CoreBluetooth.framework */; };
 		32E2C5151802B38C00DF5810 /* Konashi+Grove.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2C5141802B38C00DF5810 /* Konashi+Grove.m */; };
+		E9E77CEE19B59DB8009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CED19B59DB8009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		32E2C5111802B32700DF5810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		32E2C5131802B38C00DF5810 /* Konashi+Grove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+Grove.h"; sourceTree = "<group>"; };
 		32E2C5141802B38C00DF5810 /* Konashi+Grove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+Grove.m"; sourceTree = "<group>"; };
+		E9E77CEC19B59DB8009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CED19B59DB8009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 			children = (
 				32E2C50D1802B31100DF5810 /* Konashi.h */,
 				32E2C50E1802B31100DF5810 /* Konashi.m */,
+				E9E77CEC19B59DB8009C8ADE /* Konashi+UI.h */,
+				E9E77CED19B59DB8009C8ADE /* Konashi+UI.m */,
 				32E2C50F1802B31100DF5810 /* KonashiDb.h */,
 				32E2C5131802B38C00DF5810 /* Konashi+Grove.h */,
 				32E2C5141802B38C00DF5810 /* Konashi+Grove.m */,
@@ -203,6 +208,7 @@
 				32E2C5061802B2E100DF5810 /* ViewController.m in Sources */,
 				32E2C5101802B31100DF5810 /* Konashi.m in Sources */,
 				32E2C5151802B38C00DF5810 /* Konashi+Grove.m in Sources */,
+				E9E77CEE19B59DB8009C8ADE /* Konashi+UI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +331,7 @@
 				32E2C50B1802B2E100DF5810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
