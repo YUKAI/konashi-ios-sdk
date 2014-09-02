@@ -23,6 +23,7 @@
 		08284BB816AEF8CB00693B45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB516AEF8CB00693B45 /* icon.png */; };
 		08284BB916AEF8CB00693B45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB616AEF8CB00693B45 /* icon@2x.png */; };
 		08AE62E216CDB8DD0027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62E016CDB8DD0027B895 /* Konashi.m */; };
+		E9E77D0019B59E00009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CFF19B59E00009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		08AE62DF16CDB8DD0027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
 		08AE62E016CDB8DD0027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
 		08AE62E116CDB8DD0027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E9E77CFE19B59E00009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CFF19B59E00009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 			children = (
 				08AE62DF16CDB8DD0027B895 /* Konashi.h */,
 				08AE62E016CDB8DD0027B895 /* Konashi.m */,
+				E9E77CFE19B59E00009C8ADE /* Konashi+UI.h */,
+				E9E77CFF19B59E00009C8ADE /* Konashi+UI.m */,
 				08AE62E116CDB8DD0027B895 /* KonashiDb.h */,
 			);
 			name = Konashi;
@@ -205,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E77D0019B59E00009C8ADE /* Konashi+UI.m in Sources */,
 				08284B9316AEF7DA00693B45 /* main.m in Sources */,
 				08284B9716AEF7DA00693B45 /* AppDelegate.m in Sources */,
 				08284BA316AEF7DA00693B45 /* ViewController.m in Sources */,

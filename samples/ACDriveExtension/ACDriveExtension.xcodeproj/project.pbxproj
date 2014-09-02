@@ -21,6 +21,7 @@
 		32CC973E1802D84E0038AB97 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC973B1802D84E0038AB97 /* Konashi.m */; };
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
 		32CC97431802D8CD0038AB97 /* Konashi+ACDrive.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */; };
+		E9E77CE219B59D80009C8ADE /* Konashi+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E77CE119B59D80009C8ADE /* Konashi+UI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		32CC97411802D8CD0038AB97 /* Konashi+ACDrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ACDrive.h"; sourceTree = "<group>"; };
 		32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ACDrive.m"; sourceTree = "<group>"; };
+		E9E77CE019B59D80009C8ADE /* Konashi+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+UI.h"; sourceTree = "<group>"; };
+		E9E77CE119B59D80009C8ADE /* Konashi+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+UI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 			children = (
 				32CC973A1802D84E0038AB97 /* Konashi.h */,
 				32CC973B1802D84E0038AB97 /* Konashi.m */,
+				E9E77CE019B59D80009C8ADE /* Konashi+UI.h */,
+				E9E77CE119B59D80009C8ADE /* Konashi+UI.m */,
 				32CC973C1802D84E0038AB97 /* KonashiDb.h */,
 				32CC97411802D8CD0038AB97 /* Konashi+ACDrive.h */,
 				32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */,
@@ -203,6 +208,7 @@
 				32CC97311802D8340038AB97 /* ViewController.m in Sources */,
 				32CC973E1802D84E0038AB97 /* Konashi.m in Sources */,
 				32CC97431802D8CD0038AB97 /* Konashi+ACDrive.m in Sources */,
+				E9E77CE219B59D80009C8ADE /* Konashi+UI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
