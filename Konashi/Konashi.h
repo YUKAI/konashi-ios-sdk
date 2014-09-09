@@ -129,7 +129,7 @@
 #define KONASHI_FIND_TIMEOUT 2
 
 // Konashi interface
-@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIActionSheetDelegate>
+@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 {
     // status
     BOOL isCallFind;
