@@ -22,6 +22,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Konashi.h"
 #import "KonashiDb.h"
+#import "Konashi+UI.h"
 
 @implementation Konashi
 
@@ -1107,47 +1108,10 @@
     return rssi;
 }
 
-
-
-
-#pragma mark -
-#pragma mark - Konashi module picker methods
-
-- (void) showModulePicker
-{    
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Module" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-	
-	for (CBPeripheral *p in peripherals) {
-		[actionSheet addButtonWithTitle:p.name];
-	}
-	[actionSheet addButtonWithTitle:@"Cancel"];
-	actionSheet.cancelButtonIndex = peripherals.count;
-	actionSheet.delegate = self;
-	[actionSheet showInView:[[[UIApplication sharedApplication] delegate] window]];
-}
-
-#pragma mark - UIActionSheetDelegate methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == [actionSheet cancelButtonIndex]) {
-		[self actionSheetCancel:actionSheet];
-	}
-	else {
-		KNS_LOG(@"Select %@", [[peripherals objectAtIndex:selectedIndex] name]);
-		[self connectPeripheral:[peripherals objectAtIndex:buttonIndex]];
-	}
-}
-
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet
-{
-	[self postNotification:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
-}
-
 - (void)connectTargetPeripheral:(int)indexOfTarget
 {
     KNS_LOG(@"Select %@", [[peripherals objectAtIndex:indexOfTarget] name]);
-    
+	
     [self connectPeripheral:[peripherals objectAtIndex:indexOfTarget]];
 }
 
