@@ -14,7 +14,9 @@
 {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Module" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 	for (CBPeripheral *p in peripherals) {
-		[actionSheet addButtonWithTitle:p.name];
+		NSString *name = p.name;
+		name = [[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] ? name : @"Unknown";
+		[actionSheet addButtonWithTitle:name];
 	}
 	[actionSheet addButtonWithTitle:@"Cancel"];
 	actionSheet.cancelButtonIndex = peripherals.count;
