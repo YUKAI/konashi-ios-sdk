@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Konashi/Konashi.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/ACDriveExtension/ACDriveExtension.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/ADCExtension/ADCExtension.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/AioSample/AioSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/BlinkLed/GettingStarted.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/GroveExtension/GroveExtension.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/HardwareSample/HardwareSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/I2cSample/I2cSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/PioDrive/PioDrive.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/PwmDrive/PwmDrive.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/TestAllFunctions/TestAllFunctions.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/UartSample/UartSample.xcodeproj">
+   </FileRef>
+</Workspace>

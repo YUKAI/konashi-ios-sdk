@@ -28,7 +28,6 @@
 		084B932A16C93CF20089C59A /* PwnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 084B932916C93CF20089C59A /* PwnViewController.m */; };
 		084B932D16C93FE40089C59A /* AnalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 084B932C16C93FE40089C59A /* AnalogViewController.m */; };
 		084B933616C945330089C59A /* CommViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 084B933516C945330089C59A /* CommViewController.m */; };
-		085A501516D310E5008E28A0 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 085A501316D310E5008E28A0 /* Konashi.m */; };
 		085A502016D311FF008E28A0 /* aio.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A501616D311FF008E28A0 /* aio.png */; };
 		085A502116D311FF008E28A0 /* aio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A501716D311FF008E28A0 /* aio@2x.png */; };
 		085A502216D311FF008E28A0 /* comm.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A501816D311FF008E28A0 /* comm.png */; };
@@ -39,6 +38,7 @@
 		085A502716D311FF008E28A0 /* pwm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A501D16D311FF008E28A0 /* pwm@2x.png */; };
 		085A502C16D3125F008E28A0 /* control.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A502A16D3125F008E28A0 /* control.png */; };
 		085A502D16D3125F008E28A0 /* control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A502B16D3125F008E28A0 /* control@2x.png */; };
+		E9E6500819C8F4D300AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500719C8F4D300AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,9 +72,6 @@
 		084B932C16C93FE40089C59A /* AnalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalogViewController.m; sourceTree = "<group>"; };
 		084B933416C945330089C59A /* CommViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommViewController.h; sourceTree = "<group>"; };
 		084B933516C945330089C59A /* CommViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommViewController.m; sourceTree = "<group>"; };
-		085A501216D310E5008E28A0 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		085A501316D310E5008E28A0 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		085A501416D310E5008E28A0 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
 		085A501616D311FF008E28A0 /* aio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aio.png; sourceTree = "<group>"; };
 		085A501716D311FF008E28A0 /* aio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aio@2x.png"; sourceTree = "<group>"; };
 		085A501816D311FF008E28A0 /* comm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comm.png; sourceTree = "<group>"; };
@@ -85,6 +82,7 @@
 		085A501D16D311FF008E28A0 /* pwm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pwm@2x.png"; sourceTree = "<group>"; };
 		085A502A16D3125F008E28A0 /* control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control.png; sourceTree = "<group>"; };
 		085A502B16D3125F008E28A0 /* control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "control@2x.png"; sourceTree = "<group>"; };
+		E9E6500719C8F4D300AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E6500819C8F4D300AC0F17 /* libKonashi.a in Frameworks */,
 				084B932716C91FCB0089C59A /* CoreBluetooth.framework in Frameworks */,
 				084B92EA16C91EAC0089C59A /* UIKit.framework in Frameworks */,
 				084B92EC16C91EAC0089C59A /* Foundation.framework in Frameworks */,
@@ -105,7 +104,6 @@
 		084B92DD16C91EAC0089C59A = {
 			isa = PBXGroup;
 			children = (
-				085A501116D310E5008E28A0 /* Konashi */,
 				084B92EF16C91EAC0089C59A /* TestAllFunctions */,
 				084B92E816C91EAC0089C59A /* Frameworks */,
 				084B92E716C91EAC0089C59A /* Products */,
@@ -123,6 +121,7 @@
 		084B92E816C91EAC0089C59A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9E6500719C8F4D300AC0F17 /* libKonashi.a */,
 				084B932616C91FCB0089C59A /* CoreBluetooth.framework */,
 				084B92E916C91EAC0089C59A /* UIKit.framework */,
 				084B92EB16C91EAC0089C59A /* Foundation.framework */,
@@ -179,17 +178,6 @@
 				084B92FF16C91EAC0089C59A /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		085A501116D310E5008E28A0 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				085A501216D310E5008E28A0 /* Konashi.h */,
-				085A501316D310E5008E28A0 /* Konashi.m */,
-				085A501416D310E5008E28A0 /* KonashiDb.h */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +268,6 @@
 				084B932A16C93CF20089C59A /* PwnViewController.m in Sources */,
 				084B932D16C93FE40089C59A /* AnalogViewController.m in Sources */,
 				084B933616C945330089C59A /* CommViewController.m in Sources */,
-				085A501516D310E5008E28A0 /* Konashi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +356,9 @@
 				GCC_PREFIX_HEADER = "TestAllFunctions/TestAllFunctions-Prefix.pch";
 				INFOPLIST_FILE = "TestAllFunctions/TestAllFunctions-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -381,7 +370,9 @@
 				GCC_PREFIX_HEADER = "TestAllFunctions/TestAllFunctions-Prefix.pch";
 				INFOPLIST_FILE = "TestAllFunctions/TestAllFunctions-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
