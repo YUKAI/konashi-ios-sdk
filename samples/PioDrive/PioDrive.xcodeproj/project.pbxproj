@@ -150,7 +150,7 @@
 		085A30E71685EC0900A75E66 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Yukai Engineering";
 			};
 			buildConfigurationList = 085A30EA1685EC0900A75E66 /* Build configuration list for PBXProject "PioDrive" */;
@@ -244,6 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

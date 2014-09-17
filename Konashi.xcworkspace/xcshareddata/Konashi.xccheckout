@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>337D4380-2C9D-478D-B871-414326638A4F</string>
+	<string>872CA69D-0D96-418F-A8AE-27080EB341EB</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Konashi</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4C9756E3-648B-4A82-B7E8-D3DFE400CAA0</key>
-		<string>ssh://github.com/YUKAI/konashi-ios-sdk.git</string>
+		<key>68D62A50-FAB0-4732-AE50-DB65A361BF40</key>
+		<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Konashi.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4C9756E3-648B-4A82-B7E8-D3DFE400CAA0</key>
+		<key>68D62A50-FAB0-4732-AE50-DB65A361BF40</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/YUKAI/konashi-ios-sdk.git</string>
+	<string>ssh://github.com/0x0c/konashi-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4C9756E3-648B-4A82-B7E8-D3DFE400CAA0</string>
+	<string>68D62A50-FAB0-4732-AE50-DB65A361BF40</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4C9756E3-648B-4A82-B7E8-D3DFE400CAA0</string>
+			<string>68D62A50-FAB0-4732-AE50-DB65A361BF40</string>
 			<key>IDESourceControlWCCName</key>
 			<string>konashi-ios-sdk</string>
 		</dict>
