@@ -33,10 +33,9 @@
 		[self actionSheetCancel:actionSheet];
 	}
 	else {
-		KNS_LOG(@"Select %@", [[peripherals objectAtIndex:buttonIndex] name]);
 #ifdef KONASHI_DEBUG
-		NSString* name = peripheral.name;
-		KNS_LOG(@"Connecting %@(UUID: %@)", name, [self UUIDToString:peripheral.UUID]);
+		CBPeripheral *p = [peripherals objectAtIndex:buttonIndex];
+		KNS_LOG(@"Connecting %@", p);
 #endif
 		CBPeripheral *peripheral = peripherals[buttonIndex];
 		activePeripheral = peripheral;
