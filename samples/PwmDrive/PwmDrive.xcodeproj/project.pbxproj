@@ -22,7 +22,7 @@
 		085A3182168A6BBC00A75E66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A317F168A6BBC00A75E66 /* icon.png */; };
 		085A3183168A6BBC00A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A3180168A6BBC00A75E66 /* icon@2x.png */; };
 		085A3187168A6C0B00A75E66 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085A3186168A6C0B00A75E66 /* CoreBluetooth.framework */; };
-		08AE62DD16CDB77C0027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62DB16CDB77C0027B895 /* Konashi.m */; };
+		E9E6500619C8F4B800AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500519C8F4B800AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +46,7 @@
 		085A317F168A6BBC00A75E66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		085A3180168A6BBC00A75E66 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		085A3186168A6C0B00A75E66 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		08AE62DA16CDB77C0027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		08AE62DB16CDB77C0027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		08AE62DC16CDB77C0027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E9E6500519C8F4B800AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E6500619C8F4B800AC0F17 /* libKonashi.a in Frameworks */,
 				085A3187168A6C0B00A75E66 /* CoreBluetooth.framework in Frameworks */,
 				085A315A168A6B6D00A75E66 /* UIKit.framework in Frameworks */,
 				085A315C168A6B6D00A75E66 /* Foundation.framework in Frameworks */,
@@ -69,7 +68,6 @@
 		085A314A168A6B6D00A75E66 = {
 			isa = PBXGroup;
 			children = (
-				08AE62D916CDB77C0027B895 /* Konashi */,
 				085A315F168A6B6D00A75E66 /* PwmDrive */,
 				085A3158168A6B6D00A75E66 /* Frameworks */,
 				085A3156168A6B6D00A75E66 /* Products */,
@@ -87,6 +85,7 @@
 		085A3158168A6B6D00A75E66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9E6500519C8F4B800AC0F17 /* libKonashi.a */,
 				085A3186168A6C0B00A75E66 /* CoreBluetooth.framework */,
 				085A3159168A6B6D00A75E66 /* UIKit.framework */,
 				085A315B168A6B6D00A75E66 /* Foundation.framework */,
@@ -123,17 +122,6 @@
 				085A316F168A6B6D00A75E66 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		08AE62D916CDB77C0027B895 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				08AE62DA16CDB77C0027B895 /* Konashi.h */,
-				08AE62DB16CDB77C0027B895 /* Konashi.m */,
-				08AE62DC16CDB77C0027B895 /* KonashiDb.h */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +196,6 @@
 				085A3166168A6B6D00A75E66 /* main.m in Sources */,
 				085A316A168A6B6D00A75E66 /* AppDelegate.m in Sources */,
 				085A3176168A6B6D00A75E66 /* ViewController.m in Sources */,
-				08AE62DD16CDB77C0027B895 /* Konashi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +276,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PwmDrive/PwmDrive-Prefix.pch";
 				INFOPLIST_FILE = "PwmDrive/PwmDrive-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -300,7 +289,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PwmDrive/PwmDrive-Prefix.pch";
 				INFOPLIST_FILE = "PwmDrive/PwmDrive-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

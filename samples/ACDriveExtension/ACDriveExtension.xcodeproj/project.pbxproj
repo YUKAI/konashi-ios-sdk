@@ -18,9 +18,8 @@
 		32CC972B1802D8340038AB97 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC972A1802D8340038AB97 /* Default-568h@2x.png */; };
 		32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CC972C1802D8340038AB97 /* MainStoryboard.storyboard */; };
 		32CC97311802D8340038AB97 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97301802D8340038AB97 /* ViewController.m */; };
-		32CC973E1802D84E0038AB97 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC973B1802D84E0038AB97 /* Konashi.m */; };
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
-		32CC97431802D8CD0038AB97 /* Konashi+ACDrive.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */; };
+		E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712D19C8F2F100BC88A4 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,12 +39,8 @@
 		32CC972D1802D8340038AB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		32CC972F1802D8340038AB97 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		32CC97301802D8340038AB97 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		32CC973A1802D84E0038AB97 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		32CC973B1802D84E0038AB97 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		32CC973C1802D84E0038AB97 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
 		32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		32CC97411802D8CD0038AB97 /* Konashi+ACDrive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+ACDrive.h"; sourceTree = "<group>"; };
-		32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ACDrive.m"; sourceTree = "<group>"; };
+		E91B712D19C8F2F100BC88A4 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */,
 				32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */,
 				32CC97151802D8340038AB97 /* UIKit.framework in Frameworks */,
 				32CC97171802D8340038AB97 /* Foundation.framework in Frameworks */,
@@ -66,7 +62,6 @@
 		32CC97081802D8340038AB97 = {
 			isa = PBXGroup;
 			children = (
-				32CC97371802D84E0038AB97 /* Konashi */,
 				32CC971A1802D8340038AB97 /* ACDriveExtension */,
 				32CC97131802D8340038AB97 /* Frameworks */,
 				32CC97121802D8340038AB97 /* Products */,
@@ -84,6 +79,7 @@
 		32CC97131802D8340038AB97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E91B712D19C8F2F100BC88A4 /* libKonashi.a */,
 				32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */,
 				32CC97141802D8340038AB97 /* UIKit.framework */,
 				32CC97161802D8340038AB97 /* Foundation.framework */,
@@ -117,19 +113,6 @@
 				32CC972A1802D8340038AB97 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		32CC97371802D84E0038AB97 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				32CC973A1802D84E0038AB97 /* Konashi.h */,
-				32CC973B1802D84E0038AB97 /* Konashi.m */,
-				32CC973C1802D84E0038AB97 /* KonashiDb.h */,
-				32CC97411802D8CD0038AB97 /* Konashi+ACDrive.h */,
-				32CC97421802D8CD0038AB97 /* Konashi+ACDrive.m */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +184,6 @@
 				32CC97211802D8340038AB97 /* main.m in Sources */,
 				32CC97251802D8340038AB97 /* AppDelegate.m in Sources */,
 				32CC97311802D8340038AB97 /* ViewController.m in Sources */,
-				32CC973E1802D84E0038AB97 /* Konashi.m in Sources */,
-				32CC97431802D8CD0038AB97 /* Konashi+ACDrive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +271,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -301,7 +284,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
