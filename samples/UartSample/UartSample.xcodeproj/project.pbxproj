@@ -22,7 +22,7 @@
 		08284BB716AEF8CB00693B45 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB416AEF8CB00693B45 /* icon-72.png */; };
 		08284BB816AEF8CB00693B45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB516AEF8CB00693B45 /* icon.png */; };
 		08284BB916AEF8CB00693B45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB616AEF8CB00693B45 /* icon@2x.png */; };
-		08AE62E216CDB8DD0027B895 /* Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AE62E016CDB8DD0027B895 /* Konashi.m */; };
+		E9E6500A19C8F4F800AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500919C8F4F800AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +46,7 @@
 		08284BB416AEF8CB00693B45 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		08284BB516AEF8CB00693B45 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		08284BB616AEF8CB00693B45 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		08AE62DF16CDB8DD0027B895 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
-		08AE62E016CDB8DD0027B895 /* Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Konashi.m; sourceTree = "<group>"; };
-		08AE62E116CDB8DD0027B895 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
+		E9E6500919C8F4F800AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E6500A19C8F4F800AC0F17 /* libKonashi.a in Frameworks */,
 				08284BB116AEF80900693B45 /* CoreBluetooth.framework in Frameworks */,
 				08284B8716AEF7DA00693B45 /* UIKit.framework in Frameworks */,
 				08284B8916AEF7DA00693B45 /* Foundation.framework in Frameworks */,
@@ -69,7 +68,6 @@
 		08284B7716AEF7DA00693B45 = {
 			isa = PBXGroup;
 			children = (
-				08AE62DE16CDB8DD0027B895 /* Konashi */,
 				08284B8C16AEF7DA00693B45 /* UartSample */,
 				08284B8516AEF7DA00693B45 /* Frameworks */,
 				08284B8316AEF7DA00693B45 /* Products */,
@@ -87,6 +85,7 @@
 		08284B8516AEF7DA00693B45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9E6500919C8F4F800AC0F17 /* libKonashi.a */,
 				08284BB016AEF80900693B45 /* CoreBluetooth.framework */,
 				08284B8616AEF7DA00693B45 /* UIKit.framework */,
 				08284B8816AEF7DA00693B45 /* Foundation.framework */,
@@ -125,17 +124,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		08AE62DE16CDB8DD0027B895 /* Konashi */ = {
-			isa = PBXGroup;
-			children = (
-				08AE62DF16CDB8DD0027B895 /* Konashi.h */,
-				08AE62E016CDB8DD0027B895 /* Konashi.m */,
-				08AE62E116CDB8DD0027B895 /* KonashiDb.h */,
-			);
-			name = Konashi;
-			path = ../../Konashi;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,7 +150,7 @@
 		08284B7916AEF7DA00693B45 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Yukai Engineering";
 			};
 			buildConfigurationList = 08284B7C16AEF7DA00693B45 /* Build configuration list for PBXProject "UartSample" */;
@@ -208,7 +196,6 @@
 				08284B9316AEF7DA00693B45 /* main.m in Sources */,
 				08284B9716AEF7DA00693B45 /* AppDelegate.m in Sources */,
 				08284BA316AEF7DA00693B45 /* ViewController.m in Sources */,
-				08AE62E216CDB8DD0027B895 /* Konashi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -289,7 +277,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UartSample/UartSample-Prefix.pch";
 				INFOPLIST_FILE = "UartSample/UartSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -300,7 +290,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UartSample/UartSample-Prefix.pch";
 				INFOPLIST_FILE = "UartSample/UartSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
