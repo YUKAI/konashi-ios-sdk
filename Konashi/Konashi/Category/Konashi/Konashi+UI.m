@@ -7,6 +7,7 @@
 //
 
 #import "Konashi+UI.h"
+#import "KonashiUtils.h"
 
 @implementation Konashi (UI)
 
@@ -34,14 +35,12 @@
 	}
 	else {
 		KNS_LOG(@"Select %@", [[peripherals objectAtIndex:buttonIndex] name]);
+		CBPeripheral *peripheral = peripherals[buttonIndex];
+		[cm connectPeripheral:peripheral options:nil];
 #ifdef KONASHI_DEBUG
 		NSString* name = peripheral.name;
-		KNS_LOG(@"Connecting %@(UUID: %@)", name, [self UUIDToString:peripheral.UUID]);
+		KNS_LOG(@"Connecting %@(UUID: %@)", name, NSStringFromCFUUIDRef(peripheral.UUID));
 #endif
-		CBPeripheral *peripheral = peripherals[buttonIndex];
-		activePeripheral = peripheral;
-		activePeripheral.delegate = self;
-		[cm connectPeripheral:activePeripheral options:nil];
 	}
 }
 

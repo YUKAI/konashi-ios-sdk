@@ -23,7 +23,7 @@ NSString *NSStringFromCBCentralManagerState(CBCentralManagerState state){
         ret = @"PoweredOn";
         break;
     default:
-        NSLog( @"unexpected state: %ld", state );
+        NSLog( @"unexpected state: %lu", (unsigned long) state );
         ret = @"*UNEXPECTED STATE*";
     }
     return ret;
@@ -63,10 +63,17 @@ NSString *NSStringFromSingleCBCharacteristicProperty(CBCharacteristicProperties 
         ret = @"IndicateEncryptionRequired";
         break;
     default:
-        NSLog( @"unexpected property: %lu", state );
+        NSLog( @"unexpected property: %lu", (unsigned long) state );
         ret = @"*UNEXPECTED PROPERTY*";
     }
     return ret;
+}
+
+NSString *NSStringFromCFUUIDRef(CFUUIDRef uuid)
+{
+	if (!uuid) return @"NULL";
+	CFStringRef s = CFUUIDCreateString(NULL, uuid);
+	return (__bridge NSString *)s;
 }
 
 NSString *NSStringFromCBCharacteristicProperty(CBCharacteristicProperties state) {
@@ -96,4 +103,21 @@ NSString *NSStringFromCBCharacteristicProperty(CBCharacteristicProperties state)
         }
     }
     return ret;
+}
+
+UInt16 kns_swapUInt16(UInt16 s)
+{
+    UInt16 temp = s << 8;
+    temp |= (s >> 8);
+    return temp;
+}
+
+BOOL kns_compareCFUUIDRef(CFUUIDRef uuid1, CFUUIDRef uuid2)
+{
+	CFUUIDBytes b1 = CFUUIDGetUUIDBytes(uuid1);
+	CFUUIDBytes b2 = CFUUIDGetUUIDBytes(uuid2);
+	if (memcmp(&b1, &b2, 16) == 0) {
+		return YES;
+	}
+	else return NO;
 }
