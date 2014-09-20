@@ -235,7 +235,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 	for (CBService *service in peripheral.services) {
-		if ([service.UUID kns_isEqualToUUID:[CBUUID kns_UUIDWithUInt16:KONASHI_SERVICE_UUID.uuid16]]) {
+		if ([service.UUID kns_isEqualTo16BitUUID:[CBUUID kns_UUIDWithUInt16:KONASHI_SERVICE_UUID.uuid16]]) {
 			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}

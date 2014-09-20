@@ -18,7 +18,7 @@
 	return [CBUUID UUIDWithData:data];
 }
 
-- (BOOL) kns_isEqualToUUID:(CBUUID *)UUID
+- (BOOL) kns_isEqualTo16BitUUID:(CBUUID *)UUID
 {
 	char b1[16];
 	char b2[16];
