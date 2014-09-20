@@ -28,6 +28,13 @@
 	else return NO;
 }
 
+- (BOOL)kns_isEqualTo128BitUUID:(CBUUID *)UUID
+{
+	NSString *uuid1 = self.UUIDString;
+	NSString *uuid2 = UUID.UUIDString;
+	return [uuid1 isEqualToString:uuid2];
+}
+
 - (UInt16)kns_toUInt16
 {
 	char b1[16];

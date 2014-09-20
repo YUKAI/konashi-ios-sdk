@@ -239,7 +239,7 @@
 			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
-		else if ([service.UUID isEqual:[CBUUID UUIDWithString:[NSString stringWithUTF8String:KOSHIAN_SERVICE_UUID.uuid128]]]){
+		else if ([service.UUID kns_isEqualTo128BitUUID:[CBUUID UUIDWithString:[NSString stringWithUTF8String:KOSHIAN_SERVICE_UUID.uuid128]]]){
 			impl_ = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
