@@ -42,7 +42,7 @@
 	return ((b1[0] << 8) | b1[1]);
 }
 
-- (NSString *)kns_stringValue
+- (NSString *)kns_dataDescription
 {
     return [self.data description];
 }

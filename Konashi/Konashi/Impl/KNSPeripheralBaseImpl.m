@@ -90,13 +90,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
 	if (!error) {
-		KNS_LOG(@"Characteristics of service with UUID : %@ found", [service.UUID kns_stringValue]);
+		KNS_LOG(@"Characteristics of service with UUID : %@ found", [service.UUID kns_dataDescription]);
 		
 #ifdef KONASHI_DEBUG
 		for(int i=0; i < service.characteristics.count; i++) {
 			CBCharacteristic *c = [service.characteristics objectAtIndex:i];
 			KNS_LOG(@"Found characteristic %@\nvalue: %@\ndescriptors: %@\nproperties: %@\nisNotifying: %d\nisBroadcasted: %d",
-					[c.UUID kns_stringValue], c.value, c.descriptors, NSStringFromCBCharacteristicProperty(c.properties), c.isNotifying, c.isBroadcasted);
+					[c.UUID kns_dataDescription], c.value, c.descriptors, NSStringFromCBCharacteristicProperty(c.properties), c.isNotifying, c.isBroadcasted);
 		}
 #endif
 		

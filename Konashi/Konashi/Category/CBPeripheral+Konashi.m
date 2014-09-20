@@ -30,7 +30,7 @@
 {
 	for (int i=0; i < self.services.count; i++) {
 		CBService *s = [self.services objectAtIndex:i];
-		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_stringValue]);
+		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
 		[self discoverCharacteristics:nil forService:s];
 	}
 }

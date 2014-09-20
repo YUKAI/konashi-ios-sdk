@@ -579,12 +579,12 @@
 	
     CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
     if (!service) {
-        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
         return;
     }
     CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
     if (!characteristic) {
-        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_stringValue], [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
         return;
     }
     [self.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
@@ -596,12 +596,12 @@
 	CBUUID *characteristicUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:cuuid.uuid128]];
 	CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
 	if (!service) {
-		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@\r\n", [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@\r\n", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
 		return;
 	}
 	CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
 	if (!characteristic) {
-		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_stringValue], [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
 		return;
 	}
 	[self.peripheral readValueForCharacteristic:characteristic];
@@ -614,12 +614,12 @@
 	CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
 	
 	if (!service) {
-		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
 		return;
 	}
 	CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
 	if (!characteristic) {
-		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_stringValue], [serviceUUID kns_stringValue], NSStringFromCFUUIDRef(self.peripheral.UUID));
+		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
 		return;
 	}
 	[self.peripheral setNotifyValue:on forCharacteristic:characteristic];

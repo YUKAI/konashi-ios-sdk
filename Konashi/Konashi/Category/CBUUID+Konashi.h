@@ -14,6 +14,6 @@
 - (BOOL)kns_isEqualTo16BitUUID:(CBUUID *)UUID;
 - (BOOL)kns_isEqualTo128BitUUID:(CBUUID *)UUID;
 - (UInt16)kns_toUInt16;
-- (NSString *)kns_stringValue;
+- (NSString *)kns_dataDescription;
 
 @end
