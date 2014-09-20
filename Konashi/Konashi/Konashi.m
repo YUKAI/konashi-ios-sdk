@@ -452,7 +452,7 @@
 
 - (BOOL) _isReady
 {
-    return isReady;
+    return [[Konashi shared].activePeripheral isReady];
 }
 
 - (NSString *) _peripheralName

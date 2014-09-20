@@ -76,6 +76,18 @@
 	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
 }
 
+- (void)enablePIOInputNotification
+{
+	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+}
+
+- (void)enableUART_RXNotification
+{
+	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+}
+
+#pragma mark - CBPeripheralDelegate
+
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
 	//KNS_LOG(@"peripheralDidUpdateRSSI");
@@ -84,8 +96,6 @@
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH object:nil];
 }
-
-#pragma mark - CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
@@ -103,7 +113,16 @@
 		CBService *s = [peripheral.services objectAtIndex:(peripheral.services.count - 1)];
 		if([service.UUID kns_isEqualTo16BitUUID:s.UUID]) {
 			KNS_LOG(@"Finished discovering all services' characteristics");
-//			[self readyModule];
+			// set konashi property
+			_ready = YES;
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_READY object:nil];
+			
+			// Enable PIO input notification
+			[self enablePIOInputNotification];
+			
+			// Enable UART RX notification
+			[self enableUART_RXNotification];
 		}
 	}
 	else {

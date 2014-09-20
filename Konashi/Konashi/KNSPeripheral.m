@@ -247,7 +247,6 @@
 	
 	if (impl_ != nil) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_CONNECTED object:nil];
-//		[self readyModule];
 	}
 }
 
