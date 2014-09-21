@@ -10,7 +10,7 @@
 
 typedef struct __KNSUUID {
 	UInt16 uuid16;
-	char uuid128[36];
+	char uuid128[37];
 } KNSUUID;
 
 KNSUUID uuidWithUInt16(UInt16 uuid16);
