@@ -30,9 +30,15 @@
 
 - (BOOL)kns_isEqualTo128BitUUID:(CBUUID *)UUID
 {
-	NSString *uuid1 = self.UUIDString;
-	NSString *uuid2 = UUID.UUIDString;
-	return [uuid1 isEqualToString:uuid2];
+	char b1[16];
+	char b2[16];
+	[self.data getBytes:b1];
+	[UUID.data getBytes:b2];
+	
+	BOOL result = NO;
+	result = memcmp(b1, b2, self.data.length) == 0 ? YES : NO;
+	
+	return result;
 }
 
 - (UInt16)kns_toUInt16
