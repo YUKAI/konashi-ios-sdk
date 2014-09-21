@@ -629,57 +629,58 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-	NSString *characteristicUUID = NSStringFromCFUUIDRef((__bridge CFUUIDRef)(characteristic.UUID));
+	NSString *characteristicUUID = [[characteristic.UUID kns_representativeString] lowercaseString];
 	unsigned char byte[32];
 	
 	KNS_LOG(@"didUpdateValueForCharacteristic");
 	
 	if (!error) {
-		if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_PIO_INPUT_NOTIFICATION_UUID.uuid128]]) {
+		if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_PIO_INPUT_NOTIFICATION_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_PIO_INPUT_NOTIFICATION_READ_LEN];
 			pioInput = byte[0];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_PIO_INPUT object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ0_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ0_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[0] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ1_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ1_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[1] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ2_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ2_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[2] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_I2C_READ_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_I2C_READ_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_I2C_READ_COMPLETE object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_UART_RX_NOTIFICATION_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_UART_RX_NOTIFICATION_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&uartRxData length:1];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UART_RX_COMPLETE object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[NSString stringWithUTF8String:KOSHIAN_LEVEL_SERVICE_UUID.uuid128]]) {
+		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_LEVEL_SERVICE_UUID.uuid128] lowercaseString]]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_LEVEL_SERVICE_READ_LEN];
 			batteryLevel = byte[0];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_BATTERY_LEVEL object:nil];
 		}
 	}
+
 }
 
 @end

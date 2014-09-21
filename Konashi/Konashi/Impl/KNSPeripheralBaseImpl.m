@@ -111,7 +111,7 @@
 #endif
 		
 		CBService *s = [peripheral.services objectAtIndex:(peripheral.services.count - 1)];
-		if([service.UUID kns_isEqualTo16BitUUID:s.UUID]) {
+		if([service.UUID kns_isEqualToUUID:s.UUID]) {
 			KNS_LOG(@"Finished discovering all services' characteristics");
 			// set konashi property
 			_ready = YES;

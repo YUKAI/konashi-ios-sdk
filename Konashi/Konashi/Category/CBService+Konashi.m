@@ -14,7 +14,7 @@
 - (CBCharacteristic *) kns_findCharacteristicFromUUID:(CBUUID *)UUID
 {
 	for (CBCharacteristic *c in self.characteristics) {
-		if ([c.UUID kns_isEqualTo16BitUUID:UUID]) return c;
+		if ([c.UUID kns_isEqualToUUID:UUID]) return c;
 	}
     return nil;
 }

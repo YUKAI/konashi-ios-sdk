@@ -11,9 +11,9 @@
 @interface CBUUID (Konashi)
 
 + (CBUUID*) kns_UUIDWithUInt16:(UInt16)uuid;
-- (BOOL)kns_isEqualTo16BitUUID:(CBUUID *)UUID;
-- (BOOL)kns_isEqualTo128BitUUID:(CBUUID *)UUID;
+- (BOOL)kns_isEqualToUUID:(CBUUID *)UUID;
 - (UInt16)kns_toUInt16;
 - (NSString *)kns_dataDescription;
+- (NSString *)kns_representativeString;
 
 @end

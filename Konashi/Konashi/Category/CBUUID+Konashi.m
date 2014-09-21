@@ -18,17 +18,7 @@
 	return [CBUUID UUIDWithData:data];
 }
 
-- (BOOL) kns_isEqualTo16BitUUID:(CBUUID *)UUID
-{
-	char b1[16];
-	char b2[16];
-	[self.data getBytes:b1];
-	[UUID.data getBytes:b2];
-	if (memcmp(b1, b2, self.data.length) == 0)return YES;
-	else return NO;
-}
-
-- (BOOL)kns_isEqualTo128BitUUID:(CBUUID *)UUID
+- (BOOL)kns_isEqualToUUID:(CBUUID *)UUID
 {
 	char b1[16];
 	char b2[16];
@@ -51,6 +41,30 @@
 - (NSString *)kns_dataDescription
 {
     return [self.data description];
+}
+
+- (NSString *)kns_representativeString
+{
+	NSData *data = [self data];
+	
+	NSUInteger bytesToConvert = [data length];
+	const unsigned char *uuidBytes = [data bytes];
+	NSMutableString *outputString = [NSMutableString stringWithCapacity:16];
+	
+	for (NSUInteger currentByteIndex = 0; currentByteIndex < bytesToConvert; currentByteIndex++)
+	{
+		switch (currentByteIndex)
+		{
+			case 3:
+			case 5:
+			case 7:
+			case 9:[outputString appendFormat:@"%02x-", uuidBytes[currentByteIndex]]; break;
+			default:[outputString appendFormat:@"%02x", uuidBytes[currentByteIndex]];
+		}
+		
+	}
+	
+	return outputString;
 }
 
 @end

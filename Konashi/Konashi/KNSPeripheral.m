@@ -235,11 +235,11 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 	for (CBService *service in peripheral.services) {
-		if ([service.UUID kns_isEqualTo16BitUUID:[CBUUID kns_UUIDWithUInt16:KONASHI_SERVICE_UUID.uuid16]]) {
+		if ([service.UUID kns_isEqualToUUID:[CBUUID kns_UUIDWithUInt16:KONASHI_SERVICE_UUID.uuid16]]) {
 			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
-		else if ([service.UUID kns_isEqualTo128BitUUID:[CBUUID UUIDWithString:[NSString stringWithUTF8String:KOSHIAN_SERVICE_UUID.uuid128]]]){
+		else if ([service.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:[NSString stringWithUTF8String:KOSHIAN_SERVICE_UUID.uuid128]]]){
 			impl_ = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}

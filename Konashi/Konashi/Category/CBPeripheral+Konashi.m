@@ -16,7 +16,7 @@
 - (CBService*) kns_findServiceFromUUID:(CBUUID *)UUID
 {
 	for (CBService *s in self.services) {
-		if ([s.UUID kns_isEqualTo16BitUUID:UUID]) return s;
+		if ([s.UUID kns_isEqualToUUID:UUID]) return s;
 	}
     return nil;
 }
