@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Akira Matsuda. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @interface CBUUID (Konashi)
