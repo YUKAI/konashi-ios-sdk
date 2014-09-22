@@ -366,7 +366,7 @@
         i2cSetting = mode;
         
         Byte t = mode;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PWM_CONFIG_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_CONFIG_UUID];
         
         return KONASHI_SUCCESS;
     }
