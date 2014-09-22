@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 typedef struct __KNSUUID {
 	UInt16 uuid16;
@@ -15,3 +16,4 @@ typedef struct __KNSUUID {
 
 KNSUUID uuidWithUInt16(UInt16 uuid16);
 KNSUUID uuidWithCharacter(char *uuid128);
+CBUUID *convetToCBUUID(KNSUUID uuid);
