@@ -20,15 +20,7 @@
 
 - (BOOL)kns_isEqualToUUID:(CBUUID *)UUID
 {
-	char b1[16];
-	char b2[16];
-	[self.data getBytes:b1];
-	[UUID.data getBytes:b2];
-	
-	BOOL result = NO;
-	result = memcmp(b1, b2, self.data.length) == 0 ? YES : NO;
-	
-	return result;
+    return [self.data isEqualToData:UUID.data];
 }
 
 - (UInt16)kns_toUInt16
