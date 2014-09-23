@@ -39,7 +39,7 @@
 		[cm connectPeripheral:peripheral options:nil];
 #ifdef KONASHI_DEBUG
 		NSString* name = peripheral.name;
-		KNS_LOG(@"Connecting %@(UUID: %@)", name, NSStringFromCFUUIDRef(peripheral.UUID));
+		KNS_LOG(@"Connecting %@(UUID: %@)", name, peripheral.identifier.UUIDString);
 #endif
 	}
 }

@@ -414,7 +414,7 @@
 {
 #ifdef KONASHI_DEBUG
     NSString* name = peripheral.name;
-    KNS_LOG(@"Connecting %@(UUID: %@)", name, NSStringFromCFUUIDRef(peripheral.UUID));
+    KNS_LOG(@"Connecting %@(UUID: %@)", name, peripheral.identifier.UUIDString);
 #endif
     
     [cm connectPeripheral:peripheral options:nil];
@@ -473,7 +473,7 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    KNS_LOG(@"Status of CoreBluetooth central manager changed %d (%@)\r\n", central.state, NSStringFromCBCentralManagerState(cm.state));
+    KNS_LOG(@"Status of CoreBluetooth central manager changed %ld (%@)\r\n", central.state, NSStringFromCBCentralManagerState(cm.state));
 
     if (central.state == CBCentralManagerStatePoweredOn) {
         [[Konashi shared] postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
@@ -518,7 +518,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", NSStringFromCFUUIDRef(peripheral.UUID));
+    KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", peripheral.identifier.UUIDString);
 	_activePeripheral = [[KNSPeripheral alloc] initWithPeripheral:peripheral];
 }
 

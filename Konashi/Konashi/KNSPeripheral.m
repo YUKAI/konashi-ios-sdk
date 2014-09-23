@@ -23,17 +23,17 @@
 	return self;
 }
 
-- (void)writeData:(NSData *)data serviceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)charasteristicUUID
+- (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
 {
 	[impl_ writeData:data serviceUUID:uuid characteristicUUID:charasteristicUUID];
 }
 
-- (void)readDataWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)charasteristicUUID
+- (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
 {
 	[impl_ readDataWithServiceUUID:uuid characteristicUUID:charasteristicUUID];
 }
 
-- (void)notificationWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)characteristicUUID on:(BOOL)on
+- (void)notificationWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on
 {
 	[impl_ notificationWithServiceUUID:uuid characteristicUUID:characteristicUUID on:on];
 }
@@ -235,11 +235,11 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 	for (CBService *service in peripheral.services) {
-		if ([service.UUID kns_isEqualToUUID:[CBUUID kns_UUIDWithUInt16:KONASHI_SERVICE_UUID.uuid16]]) {
+		if ([service.UUID kns_isEqualToUUID:KONASHI_SERVICE_UUID]) {
 			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
-		else if ([service.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:[NSString stringWithUTF8String:KOSHIAN_SERVICE_UUID.uuid128]]]){
+		else if ([service.UUID kns_isEqualToUUID:KOSHIAN_SERVICE_UUID]){
 			impl_ = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}

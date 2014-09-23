@@ -295,7 +295,7 @@
 
 - (int) readValueAio:(int)pin
 {
-	KNSUUID uuid;
+	CBUUID *uuid;
 	
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
 		if(pin==AIO0){
@@ -570,110 +570,54 @@
 	[self notificationWithServiceUUID:KOSHIAN_SERVICE_UUID characteristicUUID:KOSHIAN_UART_RX_NOTIFICATION_UUID on:YES];
 }
 
-#pragma mark -
-
-- (void)writeData:(NSData *)data serviceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)cuuid
-{
-	CBUUID *serviceUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:uuid.uuid128]];
-	CBUUID *characteristicUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:cuuid.uuid128]];
-	
-    CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
-    if (!service) {
-        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-        return;
-    }
-    CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
-    if (!characteristic) {
-        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-        return;
-    }
-    [self.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
-}
-
-- (void)readDataWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)cuuid
-{
-	CBUUID *serviceUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:uuid.uuid128]];
-	CBUUID *characteristicUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:cuuid.uuid128]];
-	CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
-	if (!service) {
-		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@\r\n", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-		return;
-	}
-	CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
-	if (!characteristic) {
-		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-		return;
-	}
-	[self.peripheral readValueForCharacteristic:characteristic];
-}
-
-- (void)notificationWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)cuuid on:(BOOL)on
-{
-	CBUUID *serviceUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:uuid.uuid128]];
-	CBUUID *characteristicUUID = [CBUUID UUIDWithString:[NSString stringWithUTF8String:cuuid.uuid128]];
-	CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
-	
-	if (!service) {
-		KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-		return;
-	}
-	CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
-	if (!characteristic) {
-		KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], NSStringFromCFUUIDRef(self.peripheral.UUID));
-		return;
-	}
-	[self.peripheral setNotifyValue:on forCharacteristic:characteristic];
-}
-
 #pragma mark - CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-	NSString *characteristicUUID = [[characteristic.UUID kns_representativeString] lowercaseString];
 	unsigned char byte[32];
 	
 	KNS_LOG(@"didUpdateValueForCharacteristic");
 	
 	if (!error) {
-		if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_PIO_INPUT_NOTIFICATION_UUID.uuid128] lowercaseString]]) {
+		if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_PIO_INPUT_NOTIFICATION_UUID]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_PIO_INPUT_NOTIFICATION_READ_LEN];
 			pioInput = byte[0];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_PIO_INPUT object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ0_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_ANALOG_READ0_UUID]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[0] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ1_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_ANALOG_READ1_UUID]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[1] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_ANALOG_READ2_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_ANALOG_READ2_UUID]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_ANALOG_READ_LEN];
 			analogValue[2] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_I2C_READ_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_I2C_READ_UUID]) {
 			[characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_I2C_READ_COMPLETE object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_UART_RX_NOTIFICATION_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_UART_RX_NOTIFICATION_UUID]) {
 			[characteristic.value getBytes:&uartRxData length:1];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UART_RX_COMPLETE object:nil];
 		}
-		else if ([characteristicUUID isEqualToString:[[NSString stringWithUTF8String:KOSHIAN_LEVEL_SERVICE_UUID.uuid128] lowercaseString]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:KOSHIAN_LEVEL_SERVICE_UUID]) {
 			[characteristic.value getBytes:&byte length:KOSHIAN_LEVEL_SERVICE_READ_LEN];
 			batteryLevel = byte[0];
 			

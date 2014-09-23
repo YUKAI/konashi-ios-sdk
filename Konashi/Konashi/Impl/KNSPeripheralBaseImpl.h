@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "KonashiConstant.h"
-#import "KNSUUID.h"
 #import "CBUUID+Konashi.h"
 #import "CBService+Konashi.h"
 #import "CBPeripheral+Konashi.h"
@@ -53,8 +52,8 @@
 @property (nonatomic, readonly) CBPeripheral *peripheral;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
-- (void)writeData:(NSData *)data serviceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)charasteristicUUID;
-- (void)readDataWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)charasteristicUUID;
-- (void)notificationWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)characteristicUUID on:(BOOL)on;
+- (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
+- (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
+- (void)notificationWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on;
 
 @end
