@@ -272,6 +272,10 @@
 				GCC_PREFIX_HEADER = "GettingStarted/GettingStarted-Prefix.pch";
 				INFOPLIST_FILE = "GettingStarted/GettingStarted-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
@@ -285,6 +289,10 @@
 				GCC_PREFIX_HEADER = "GettingStarted/GettingStarted-Prefix.pch";
 				INFOPLIST_FILE = "GettingStarted/GettingStarted-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;

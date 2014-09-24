@@ -23,7 +23,7 @@ NSString *NSStringFromCBCentralManagerState(CBCentralManagerState state){
         ret = @"PoweredOn";
         break;
     default:
-        NSLog( @"unexpected state: %ld", state );
+        NSLog( @"unexpected state: %lu", (unsigned long) state );
         ret = @"*UNEXPECTED STATE*";
     }
     return ret;
@@ -63,10 +63,17 @@ NSString *NSStringFromSingleCBCharacteristicProperty(CBCharacteristicProperties 
         ret = @"IndicateEncryptionRequired";
         break;
     default:
-        NSLog( @"unexpected property: %lu", state );
+        NSLog( @"unexpected property: %lu", (unsigned long) state );
         ret = @"*UNEXPECTED PROPERTY*";
     }
     return ret;
+}
+
+NSString *NSStringFromCFUUIDRef(CFUUIDRef uuid)
+{
+	if (!uuid) return @"NULL";
+	CFStringRef s = CFUUIDCreateString(NULL, uuid);
+	return (__bridge NSString *)s;
 }
 
 NSString *NSStringFromCBCharacteristicProperty(CBCharacteristicProperties state) {
