@@ -7,6 +7,7 @@
 //
 
 #import "Konashi+UI.h"
+#import "KonashiUtils.h"
 
 @implementation Konashi (UI)
 
@@ -33,11 +34,10 @@
 		[self actionSheetCancel:actionSheet];
 	}
 	else {
-#ifdef KONASHI_DEBUG
-		CBPeripheral *p = [peripherals objectAtIndex:buttonIndex];
-		KNS_LOG(@"Connecting %@", p);
-#endif
 		CBPeripheral *peripheral = peripherals[buttonIndex];
+#ifdef KONASHI_DEBUG
+		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
+#endif
 		activePeripheral = peripheral;
 		activePeripheral.delegate = self;
 		[cm connectPeripheral:activePeripheral options:nil];
