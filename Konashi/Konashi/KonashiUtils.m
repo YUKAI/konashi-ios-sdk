@@ -104,20 +104,3 @@ NSString *NSStringFromCBCharacteristicProperty(CBCharacteristicProperties state)
     }
     return ret;
 }
-
-UInt16 kns_swapUInt16(UInt16 s)
-{
-    UInt16 temp = s << 8;
-    temp |= (s >> 8);
-    return temp;
-}
-
-BOOL kns_compareCFUUIDRef(CFUUIDRef uuid1, CFUUIDRef uuid2)
-{
-	CFUUIDBytes b1 = CFUUIDGetUUIDBytes(uuid1);
-	CFUUIDBytes b2 = CFUUIDGetUUIDBytes(uuid2);
-	if (memcmp(&b1, &b2, 16) == 0) {
-		return YES;
-	}
-	else return NO;
-}

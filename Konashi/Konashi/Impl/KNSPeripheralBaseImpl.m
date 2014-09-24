@@ -61,19 +61,54 @@
 
 #pragma mark -
 
-- (void)writeData:(NSData *)data serviceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)characteristicUUID
+#pragma mark -
+
+- (void)writeData:(NSData *)data serviceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID
 {
-	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
+    if (!service) {
+        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
+    if (!characteristic) {
+        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    [self.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+
+    [NSThread sleepForTimeInterval:0.03];
 }
 
-- (void)readDataWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)characteristicUUID
+- (void)readDataWithServiceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID
 {
-	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
+    if (!service) {
+        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@\r\n", [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
+    if (!characteristic) {
+        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    [self.peripheral readValueForCharacteristic:characteristic];
 }
 
-- (void)notificationWithServiceUUID:(KNSUUID)uuid characteristicUUID:(KNSUUID)characteristicUUID on:(BOOL)on
+- (void)notificationWithServiceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on
 {
-	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
+
+    if (!service) {
+        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
+    if (!characteristic) {
+        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    [self.peripheral setNotifyValue:on forCharacteristic:characteristic];
 }
 
 - (void)enablePIOInputNotification
@@ -105,8 +140,8 @@
 #ifdef KONASHI_DEBUG
 		for(int i=0; i < service.characteristics.count; i++) {
 			CBCharacteristic *c = [service.characteristics objectAtIndex:i];
-			KNS_LOG(@"Found characteristic %@\nvalue: %@\ndescriptors: %@\nproperties: %@\nisNotifying: %d\nisBroadcasted: %d",
-					[c.UUID kns_dataDescription], c.value, c.descriptors, NSStringFromCBCharacteristicProperty(c.properties), c.isNotifying, c.isBroadcasted);
+			KNS_LOG(@"Found characteristic %@\nvalue: %@\ndescriptors: %@\nproperties: %@\nisNotifying: %d\n",
+					[c.UUID kns_dataDescription], c.value, c.descriptors, NSStringFromCBCharacteristicProperty(c.properties), c.isNotifying);
 		}
 #endif
 		
