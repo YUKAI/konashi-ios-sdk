@@ -61,8 +61,6 @@
 
 #pragma mark -
 
-#pragma mark -
-
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID
 {
     CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
@@ -76,8 +74,6 @@
         return;
     }
     [self.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
-
-    [NSThread sleepForTimeInterval:0.03];
 }
 
 - (void)readDataWithServiceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID

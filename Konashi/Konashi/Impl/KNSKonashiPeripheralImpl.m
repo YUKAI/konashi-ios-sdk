@@ -571,6 +571,25 @@
 	[self notificationWithServiceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_RX_NOTIFICATION_UUID on:YES];
 }
 
+// override
+- (void)writeData:(NSData *)data serviceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID
+{
+    CBService *service = [self.peripheral kns_findServiceFromUUID:serviceUUID];
+    if (!service) {
+        KNS_LOG(@"Could not find service with UUID %@ on peripheral with UUID %@", [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    CBCharacteristic *characteristic = [service kns_findCharacteristicFromUUID:characteristicUUID];
+    if (!characteristic) {
+        KNS_LOG(@"Could not find characteristic with UUID %@ on service with UUID %@ on peripheral with UUID %@", [characteristicUUID kns_dataDescription], [serviceUUID kns_dataDescription], self.peripheral.identifier.UUIDString);
+        return;
+    }
+    [self.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+
+    // konashi needs to sleep to get I2C right
+    [NSThread sleepForTimeInterval:0.03];
+}
+
 #pragma mark - CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
