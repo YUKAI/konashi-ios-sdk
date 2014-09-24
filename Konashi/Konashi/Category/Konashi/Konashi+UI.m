@@ -35,12 +35,10 @@
 	}
 	else {
 		CBPeripheral *peripheral = peripherals[buttonIndex];
+		[cm connectPeripheral:peripheral options:nil];
 #ifdef KONASHI_DEBUG
 		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
 #endif
-		activePeripheral = peripheral;
-		activePeripheral.delegate = self;
-		[cm connectPeripheral:activePeripheral options:nil];
 	}
 }
 
