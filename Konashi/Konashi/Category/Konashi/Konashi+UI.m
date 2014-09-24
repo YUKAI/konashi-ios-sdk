@@ -34,13 +34,13 @@
 		[self actionSheetCancel:actionSheet];
 	}
 	else {
-		KNS_LOG(@"Select %@", [[peripherals objectAtIndex:buttonIndex] name]);
 		CBPeripheral *peripheral = peripherals[buttonIndex];
-		[cm connectPeripheral:peripheral options:nil];
 #ifdef KONASHI_DEBUG
-		NSString* name = peripheral.name;
-		KNS_LOG(@"Connecting %@(UUID: %@)", name, peripheral.identifier.UUIDString);
+		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
 #endif
+		activePeripheral = peripheral;
+		activePeripheral.delegate = self;
+		[cm connectPeripheral:activePeripheral options:nil];
 	}
 }
 
