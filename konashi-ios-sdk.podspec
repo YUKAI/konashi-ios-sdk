@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author       = { 'monakaz' => 'yukaiwpc@gmail.com' }
   s.source       = { :git => 'https://github.com/YUKAI/konashi-ios-sdk.git', :tag => 'v2.0.0' }
   s.platform     = :ios, '7.1'
-  s.source_files = 'Konashi/*.{h,m}'
+  s.source_files = 'Konashi/Konashi/*.{h,m}','Konashi/Konashi/**/*.{h,m}'
   s.requires_arc = true
   s.framework  = 'CoreBluetooth'
 end
