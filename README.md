@@ -1,6 +1,8 @@
 <a href="http://konashi.ux-xu.com"><img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" /></a><br/>
 Physical computing toolkit for smartphones and tablets
 
+[![Version](https://img.shields.io/cocoapods/v/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
+
 [http://konashi.ux-xu.com](http://konashi.ux-xu.com)<br/>
 [http://konashi-yukai.tumblr.com](http://konashi-yukai.tumblr.com)
 
