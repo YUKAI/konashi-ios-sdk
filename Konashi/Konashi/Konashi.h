@@ -52,47 +52,47 @@
 + (NSString *)peripheralName;
 
 // Digital PIO methods
-+ (int) pinMode:(int)pin mode:(int)mode;
-+ (int) pinModeAll:(int)mode;
-+ (int) pinPullup:(int)pin mode:(int)mode;
-+ (int) pinPullupAll:(int)mode;
-+ (int) digitalRead:(int)pin;
++ (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
++ (KonashiResult) pinModeAll:(int)mode;
++ (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
++ (KonashiResult) pinPullupAll:(int)mode;
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin;
 + (int) digitalReadAll;
-+ (int) digitalWrite:(int)pin value:(int)value;
-+ (int) digitalWriteAll:(int)value;
++ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
++ (KonashiResult) digitalWriteAll:(int)value;
 
 // PWM methods
-+ (int) pwmMode:(int)pin mode:(int)mode;
-+ (int) pwmPeriod:(int)pin period:(unsigned int)period;
-+ (int) pwmDuty:(int)pin duty:(unsigned int)duty;
-+ (int) pwmLedDrive:(int)pin dutyRatio:(int)ratio;
++ (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
++ (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
++ (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
++ (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
 // Analog IO methods
 + (int) analogReference;
-+ (int) analogReadRequest:(int)pin;
-+ (int) analogRead:(int)pin;
-+ (int) analogWrite:(int)pin milliVolt:(int)milliVolt;
++ (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
++ (int) analogRead:(KonashiAnalogIOPin)pin;
++ (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
 
 // I2C methods
-+ (int) i2cMode:(int)mode;
-+ (int) i2cStartCondition;
-+ (int) i2cRestartCondition;
-+ (int) i2cStopCondition;
-+ (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
-+ (int) i2cReadRequest:(int)length address:(unsigned char)address;
-+ (int) i2cRead:(int)length data:(unsigned char*)data;
++ (KonashiResult) i2cMode:(KonashiI2CMode)mode;
++ (KonashiResult) i2cStartCondition;
++ (KonashiResult) i2cRestartCondition;
++ (KonashiResult) i2cStopCondition;
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
++ (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
++ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
 
 // UART methods
-+ (int) uartMode:(int)mode;
-+ (int) uartBaudrate:(int)baudrate;
-+ (int) uartWrite:(unsigned char)data;
++ (KonashiResult) uartMode:(KonashiUartMode)mode;
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
++ (KonashiResult) uartWrite:(unsigned char)data;
 + (unsigned char) uartRead;
 
 // Konashi hardware methods
-+ (int) reset;
-+ (int) batteryLevelReadRequest;
++ (KonashiResult) reset;
++ (KonashiResult) batteryLevelReadRequest;
 + (int) batteryLevelRead;
-+ (int) signalStrengthReadRequest;
++ (KonashiResult) signalStrengthReadRequest;
 + (int) signalStrengthRead;
 
 

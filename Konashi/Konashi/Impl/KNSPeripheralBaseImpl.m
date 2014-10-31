@@ -37,16 +37,16 @@
 		}
 		
 		// I2C
-		i2cSetting = KONASHI_I2C_DISABLE;
-		for (NSInteger i = 0; i < KONASHI_I2C_DATA_MAX_LENGTH; i++) {
+		i2cSetting = KonashiI2CModeDisable;
+		for (NSInteger i = 0; i < KonashiI2CDataMaxLength; i++) {
 			i2cReadData[i] = 0;
 		}
 		i2cReadDataLength = 0;
 		i2cReadAddress = 0;
 		
 		// UART
-		uartSetting = KONASHI_UART_DISABLE;
-		uartBaudrate = KONASHI_UART_RATE_9K6;
+		uartSetting = KonashiUartModeDisable;
+		uartBaudrate = KonashiUartBaudrateRate9K6;
 		
 		// RSSI
 		rssi = 0;
