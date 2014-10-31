@@ -53,13 +53,13 @@
 typedef NS_ENUM(int, KonashiLevel) {
 	KonashiLevelUnknown = -1,
 	KonashiLevelLow	 = 0,
-	KonashiLevelHigh,
+	KonashiLevelHigh = 1,
 };
 typedef NS_ENUM(int, KonashiPinMode) {
 	KonashiPinModeInput	= 0,
-	KonashiPinModeOutput,
+	KonashiPinModeOutput = 1,
 	KonashiPinModeNoPulls = 0,
-	KonashiPinModePullup
+	KonashiPinModePullup = 1
 };
 typedef NS_ENUM(int, KonashiResult) {
 	KonashiResultSuccess = 0,
@@ -80,13 +80,13 @@ typedef NS_OPTIONS(int, KonashiPinMask) {
 
 typedef NS_ENUM(int, KonashiDigitalIOPin) {
 	KonashiDigitalIO0 = 0,
-	KonashiDigitalIO1,
-	KonashiDigitalIO2,
-	KonashiDigitalIO3,
-	KonashiDigitalIO4,
-	KonashiDigitalIO5,
-	KonashiDigitalIO6,
-	KonashiDigitalIO7,
+	KonashiDigitalIO1 = 1,
+	KonashiDigitalIO2 = 2,
+	KonashiDigitalIO3 = 3,
+	KonashiDigitalIO4 = 4,
+	KonashiDigitalIO5 = 5,
+	KonashiDigitalIO6 = 6,
+	KonashiDigitalIO7 = 7,
 	KonashiS1 = KonashiDigitalIO0,
 	KonashiLED2 = KonashiDigitalIO1,
 	KonashiLED3 = KonashiDigitalIO2,
@@ -98,15 +98,15 @@ typedef NS_ENUM(int, KonashiDigitalIOPin) {
 
 typedef NS_ENUM(int, KonashiAnalogIOPin) {
 	KonashiAnalogIO0 = 0,
-	KonashiAnalogIO1,
-	KonashiAnalogIO2
+	KonashiAnalogIO1 = 1,
+	KonashiAnalogIO2 = 2
 };
 
 // Konashi PWM
 typedef NS_ENUM(int, KonashiPWMMode) {
 	KonashiPWMModeDisable = 0,
-	KonashiPWMModeEnable,
-	KonashiPWMModeEnableLED
+	KonashiPWMModeEnable = 1,
+	KonashiPWMModeEnableLED = 2
 };
 static const unsigned int KonashiLEDPeriod = 10000;
 
@@ -116,22 +116,22 @@ static const int KonashiAnalogReference = 1300;
 // Konashi I2C
 static const int KonashiI2CDataMaxLength = 18;
 typedef NS_ENUM(int, KonashiI2CMode) {
-	KonashiI2CModeDisable,
-	KonashiI2CModeEnable,
+	KonashiI2CModeDisable = 0,
+	KonashiI2CModeEnable = 1,
 	KonashiI2CModeEnable100K = 1,
-	KonashiI2CModeEnable400K
+	KonashiI2CModeEnable400K = 2
 };
 typedef NS_ENUM(int, KonashiI2CCondition) {
-	KonashiI2CConditionStop,
-	KonashiI2CConditionStart,
-	KonashiI2CConditionRestart
+	KonashiI2CConditionStop = 0,
+	KonashiI2CConditionStart = 1,
+	KonashiI2CConditionRestart = 2
 };
 
 // Konashi UART
 static const int KonashiUartDataMaxLength = 19;
 typedef NS_ENUM(int, KonashiUartMode) {
-	KonashiUartModeDisable,
-	KonashiUartModeEnable
+	KonashiUartModeDisable = 0,
+	KonashiUartModeEnable = 1
 };
 
 // Konashi UART baudrate
