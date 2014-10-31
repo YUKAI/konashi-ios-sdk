@@ -21,8 +21,13 @@
 
 #import "Konashi.h"
 
-#define KONASHI_AC_PIN_CTRL PIO0
-#define KONASHI_AC_PIN_FREQ PIO1
+#define KONASHI_AC_PIN_CTRL KonashiDigitalIO0
+#define KONASHI_AC_PIN_FREQ KonashiDigitalIO1
+
+typedef NS_ENUM(NSUInteger, KonashiACMode) {
+	KonashiACModeOnOff,
+	KonashiACModePWM
+};
 
 #define KONASHI_AC_MODE_ONOFF 0
 #define KONASHI_AC_MODE_PWM 1
@@ -34,10 +39,10 @@
 
 @interface Konashi (ACDrive)
 
-+ (int)initACDrive:(int)mode freq:(int)freq;
-+ (int)onACDrive;
-+ (int)offACDrive;
-+ (int)updateACDriveDuty:(float)ratio;
-+ (int)selectACDriveFreq:(int)freq;
++ (KonashiResult)initACDrive:(KonashiACMode)mode freq:(int)freq;
++ (KonashiResult)onACDrive;
++ (KonashiResult)offACDrive;
++ (KonashiResult)updateACDriveDuty:(float)ratio;
++ (KonashiResult)selectACDriveFreq:(int)freq;
 
 @end

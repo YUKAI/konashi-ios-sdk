@@ -34,7 +34,7 @@
 	
 	// I2C
 	unsigned char i2cSetting;
-	unsigned char i2cReadData[KONASHI_I2C_DATA_MAX_LENGTH];
+	unsigned char i2cReadData[KonashiI2CDataMaxLength];
 	unsigned char i2cReadDataLength;
 	unsigned char i2cReadAddress;
 	

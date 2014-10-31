@@ -53,9 +53,9 @@
 
 @interface Konashi (ADC)
 
-+ (int)initADC:(uint8_t)address;
-+ (int)readADCWithChannel:(uint8_t)channel;
-+ (int)readDiffADCWithChannels:(uint8_t)channels;
-+ (int)selectPowerMode:(uint8_t)mode;
++ (KonashiResult)initADC:(uint8_t)address;
++ (KonashiResult)readADCWithChannel:(uint8_t)channel;
++ (KonashiResult)readDiffADCWithChannels:(uint8_t)channels;
++ (KonashiResult)selectPowerMode:(uint8_t)mode;
 
 @end
