@@ -67,4 +67,46 @@
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
 
++ (NSInteger)levelServiceReadLength;
++ (NSInteger)pioInputNotificationReadLength;
++ (NSInteger)analogReadLength;
++ (NSInteger)uartRX_NotificationReadLength;
++ (NSInteger)hardwareLowBatteryNotificationReadLength;
+// UUID
++ (CBUUID *)batteryServiceUUID;
++ (CBUUID *)levelServiceUUID;
++ (CBUUID *)powerStateUUID;
++ (CBUUID *)serviceUUID;
+// PIO
++ (CBUUID *)pioSettingUUID;
++ (CBUUID *)pioPullupUUID;
++ (CBUUID *)pioOutputUUID;
++ (CBUUID *)pioInputNotificationUUID;
+
+// PWM
++ (CBUUID *)pwmConfigUUID;
++ (CBUUID *)pwmParamUUID;
++ (CBUUID *)pwmDutyUUID;
+
+// Analog
++ (CBUUID *)analogDriveUUID;
++ (CBUUID *)analogReadUUIDWithPinNumber:(NSInteger)pin;
+
+// I2C
++ (CBUUID *)i2cConfigUUID;
++ (CBUUID *)i2cStartStopUUID;
++ (CBUUID *)i2cWriteUUID;
++ (CBUUID *)i2cReadParamUUID;
++ (CBUUID *)i2cReadUUID;
+
+// UART
++ (CBUUID *)uartConfigUUID;
++ (CBUUID *)uartBaudrateUUID;
++ (CBUUID *)uartTX_UUID;
++ (CBUUID *)uartRX_NotificationUUID;
+
+// Hardware
++ (CBUUID *)hardwareResetUUID;
++ (CBUUID *)lowBatteryNotificationUUID;
+
 @end

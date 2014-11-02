@@ -8,7 +8,6 @@
 
 #import "KNSPeripheral.h"
 #import "KNSPeripheralImpls.h"
-#import "KNSUUIDExtern.h"
 
 @implementation KNSPeripheral
 
@@ -235,11 +234,11 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 	for (CBService *service in peripheral.services) {
-		if ([service.UUID kns_isEqualToUUID:KONASHI_SERVICE_UUID]) {
+		if ([service.UUID kns_isEqualToUUID:[[KNSKonashiPeripheralImpl class] serviceUUID]]) {
 			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
-		else if ([service.UUID kns_isEqualToUUID:KOSHIAN_SERVICE_UUID]){
+		else if ([service.UUID kns_isEqualToUUID:[[KNSKoshianPeripheralImpl class] serviceUUID]]){
 			impl_ = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
