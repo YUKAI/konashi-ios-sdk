@@ -67,6 +67,7 @@
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
 
++ (NSInteger)i2cDataMaxLength;
 + (NSInteger)levelServiceReadLength;
 + (NSInteger)pioInputNotificationReadLength;
 + (NSInteger)analogReadLength;

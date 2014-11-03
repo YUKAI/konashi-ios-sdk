@@ -11,6 +11,11 @@
 
 @implementation KNSKoshianPeripheralImpl
 
++ (NSInteger)i2cDataMaxLength
+{
+	return 16;
+}
+
 + (NSInteger)levelServiceReadLength
 {
 	return 1;
@@ -569,7 +574,7 @@
 		i2cSetting = mode;
 		
 		Byte t = mode;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pwmConfigUUID]];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cConfigUUID]];
 		
 		return KonashiResultSuccess;
 	}

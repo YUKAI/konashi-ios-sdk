@@ -11,7 +11,10 @@
 
 @implementation KNSKonashiPeripheralImpl
 
-#pragma mark - KonashiPeripheralImplProtocol
++ (NSInteger)i2cDataMaxLength
+{
+	return 20;
+}
 
 + (NSInteger)levelServiceReadLength
 {
