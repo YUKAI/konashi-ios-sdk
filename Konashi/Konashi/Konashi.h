@@ -43,10 +43,10 @@
 + (Konashi *) shared;
 
 // Konashi control methods
-+ (int) initialize;
-+ (int) find;
-+ (int) findWithName:(NSString*)name;
-+ (int) disconnect;
++ (KonashiResult) initialize;
++ (KonashiResult) find;
++ (KonashiResult) findWithName:(NSString*)name;
++ (KonashiResult) disconnect;
 + (BOOL) isConnected;
 + (BOOL) isReady;
 + (NSString *)peripheralName;

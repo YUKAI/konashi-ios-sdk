@@ -51,22 +51,22 @@
 #pragma mark -
 #pragma mark - Konashi control public methods
 
-+ (int) initialize
++ (KonashiResult) initialize
 {
     return [[Konashi shared] _initializeKonashi];
 }
 
-+ (int) find
++ (KonashiResult) find
 {
     return [[Konashi shared] _findModule:KONASHI_FIND_TIMEOUT];
 }
 
-+ (int) findWithName:(NSString*)name
++ (KonashiResult) findWithName:(NSString*)name
 {
     return [[Konashi shared] _findModuleWithName:name timeout:KONASHI_FIND_TIMEOUT];
 }
 
-+ (int) disconnect
++ (KonashiResult) disconnect
 {
     return [[Konashi shared] _disconnectModule];
 }
