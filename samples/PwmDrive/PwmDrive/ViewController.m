@@ -37,21 +37,21 @@
 }
 
 - (IBAction)changeLedBlightness20:(id)sender {
-    [Konashi pwmLedDrive:LED2 dutyRatio:20.0];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:20.0];
 }
 
 - (IBAction)changeLedBlightness50:(id)sender {
-    [Konashi pwmLedDrive:LED2 dutyRatio:50.0];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
 }
 
 - (IBAction)changeLedBlightness80:(id)sender {
-    [Konashi pwmLedDrive:LED2 dutyRatio:80.0];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:80.0];
 }
 
 - (IBAction)changeLedBlightnessBar:(id)sender {
     NSLog(@"Blightness: %f", self.blightnessSlider.value);
     
-    [Konashi pwmLedDrive:LED2 dutyRatio:self.blightnessSlider.value];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:self.blightnessSlider.value];
 }
 
 - (void) connected
@@ -67,8 +67,8 @@
     self.statusMessage.hidden = FALSE;
     
     // Drive LED
-    [Konashi pwmMode:LED2 mode:KONASHI_PWM_ENABLE_LED_MODE];
-    [Konashi pwmLedDrive:LED2 dutyRatio:50.0];
+    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
     
     /*
     //Blink LED (interval: 0.5s)

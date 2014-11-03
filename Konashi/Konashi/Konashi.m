@@ -91,27 +91,27 @@
 #pragma mark -
 #pragma mark - Konashi PIO public methods
 
-+ (int) pinMode:(int)pin mode:(int)mode
++ (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {    
     return [[Konashi shared].activePeripheral pinMode:pin mode:mode];
 }
 
-+ (int) pinModeAll:(int)mode
++ (KonashiResult) pinModeAll:(int)mode
 {
     return [[Konashi shared].activePeripheral pinModeAll:mode];
 }
 
-+ (int) pinPullup:(int)pin mode:(int)mode
++ (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
     return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
 }
 
-+ (int) pinPullupAll:(int)mode
++ (KonashiResult) pinPullupAll:(int)mode
 {
     return [[Konashi shared].activePeripheral pinPullupAll:mode];
 }
 
-+ (int) digitalRead:(int)pin
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
 {
     return [[Konashi shared].activePeripheral digitalRead:pin];
 }
@@ -121,12 +121,12 @@
     return [[Konashi shared].activePeripheral digitalReadAll];
 }
 
-+ (int) digitalWrite:(int)pin value:(int)value
++ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
 {
     return [[Konashi shared].activePeripheral digitalWrite:pin value:value];
 }
 
-+ (int) digitalWriteAll:(int)value
++ (KonashiResult) digitalWriteAll:(int)value
 {
     return [[Konashi shared].activePeripheral digitalWriteAll:value];
 }
@@ -137,22 +137,22 @@
 #pragma mark -
 #pragma mark - Konashi PWM public methods
 
-+ (int) pwmMode:(int)pin mode:(int)mode
++ (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
     return [[Konashi shared].activePeripheral pwmMode:pin mode:mode];
 }
 
-+ (int) pwmPeriod:(int)pin period:(unsigned int)period
++ (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period
 {
     return [[Konashi shared].activePeripheral pwmPeriod:pin period:period];
 }
 
-+ (int) pwmDuty:(int)pin duty:(unsigned int)duty
++ (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty
 {
     return [[Konashi shared].activePeripheral pwmDuty:pin duty:duty];
 }
 
-+ (int) pwmLedDrive:(int)pin dutyRatio:(int)ratio
++ (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
     return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
 }
@@ -165,20 +165,20 @@
 
 + (int) analogReference
 {
-    return KONASHI_ANALOG_REFERENCE;
+    return [[Konashi shared].activePeripheral analogReference];
 }
 
-+ (int) analogReadRequest:(int)pin
++ (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
     return [[Konashi shared].activePeripheral analogReadRequest:pin];
 }
 
-+ (int) analogRead:(int)pin
++ (int) analogRead:(KonashiAnalogIOPin)pin
 {
     return [[Konashi shared].activePeripheral analogRead:pin];
 }
 
-+ (int) analogWrite:(int)pin milliVolt:(int)milliVolt
++ (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
     return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
 }
@@ -189,37 +189,37 @@
 #pragma mark -
 #pragma mark - Konashi I2C public methods
 
-+ (int) i2cMode:(int)mode
++ (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
     return [[Konashi shared].activePeripheral i2cMode:mode];
 }
 
-+ (int) i2cStartCondition
++ (KonashiResult) i2cStartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KONASHI_I2C_START_CONDITION];
+    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStart];
 }
 
-+ (int) i2cRestartCondition
++ (KonashiResult) i2cRestartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KONASHI_I2C_RESTART_CONDITION];
+    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionRestart];
 }
 
-+ (int) i2cStopCondition
++ (KonashiResult) i2cStopCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KONASHI_I2C_STOP_CONDITION];
+    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
-+ (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
     return [[Konashi shared].activePeripheral i2cWrite:length data:data address:address];
 }
 
-+ (int) i2cReadRequest:(int)length address:(unsigned char)address
++ (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
     return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
 }
 
-+ (int) i2cRead:(int)length data:(unsigned char*)data
++ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
 {
     return [[Konashi shared].activePeripheral i2cRead:length data:data];
 }
@@ -230,17 +230,17 @@
 #pragma mark -
 #pragma mark - Konashi UART public methods
 
-+ (int) uartMode:(int)mode
++ (KonashiResult) uartMode:(KonashiUartMode)mode
 {
     return [[Konashi shared].activePeripheral uartMode:mode];
 }
 
-+ (int) uartBaudrate:(int)baudrate
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
 {
     return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
 }
 
-+ (int) uartWrite:(unsigned char)data
++ (KonashiResult) uartWrite:(unsigned char)data
 {
     return [[Konashi shared].activePeripheral uartWrite:data];
 }
@@ -256,12 +256,12 @@
 #pragma mark -
 #pragma mark - Konashi hardware public methods
 
-+ (int) reset
++ (KonashiResult) reset
 {
     return [[Konashi shared].activePeripheral reset];
 }
 
-+ (int) batteryLevelReadRequest
++ (KonashiResult) batteryLevelReadRequest
 {
     return [[Konashi shared].activePeripheral batteryLevelReadRequest];
 }
@@ -271,7 +271,7 @@
     return [[Konashi shared].activePeripheral batteryLevelRead];
 }
 
-+ (int) signalStrengthReadRequest
++ (KonashiResult) signalStrengthReadRequest
 {
     return [[Konashi shared].activePeripheral signalStrengthReadRequest];
 }
@@ -315,20 +315,20 @@
 #pragma mark -
 #pragma mark - Konashi control private methods
 
-- (int) _initializeKonashi
+- (KonashiResult) _initializeKonashi
 {
     if(!cm){
         cm = [[CBCentralManager alloc] initWithDelegate:[Konashi shared] queue:nil];
-        return KONASHI_SUCCESS;
+        return KonashiResultSuccess;
     } else {
-        return KONASHI_FAILURE;
+        return KonashiResultFailure;
     }
 }
 
-- (int) _findModule:(int) timeout
+- (KonashiResult) _findModule:(int) timeout
 {
     if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
-        return KONASHI_FAILURE;
+        return KonashiResultFailure;
     }
         
     if (cm.state  != CBCentralManagerStatePoweredOn) {
@@ -337,7 +337,7 @@
 		
         isCallFind = YES;
         
-        return KONASHI_SUCCESS;
+        return KonashiResultSuccess;
     }
     
     if(peripherals) peripherals = nil;
@@ -346,12 +346,12 @@
     
     [cm scanForPeripheralsWithServices:nil options:0];
     
-    return KONASHI_SUCCESS;
+    return KonashiResultSuccess;
 }
 
-- (int) _findModuleWithName:(NSString*)name timeout:(int)timeout{
+- (KonashiResult) _findModuleWithName:(NSString*)name timeout:(int)timeout{
     if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
-        return KONASHI_FAILURE;
+        return KonashiResultFailure;
     }
         
     if (cm.state  != CBCentralManagerStatePoweredOn) {
@@ -361,7 +361,7 @@
         isCallFind = YES;
         findName = name;
         
-        return KONASHI_SUCCESS;
+        return KonashiResultSuccess;
     }
     
     if(peripherals) peripherals = nil;
@@ -371,7 +371,7 @@
         
     [cm scanForPeripheralsWithServices:nil options:0];
     
-    return KONASHI_SUCCESS;
+    return KonashiResultSuccess;
 }
 
 - (void) finishScanModuleWithName:(NSTimer *)timer
@@ -434,14 +434,14 @@
 	[_activePeripheral enableUART_RXNotification];
 }
 
-- (int) _disconnectModule
+- (KonashiResult) _disconnectModule
 {
     if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
         [cm cancelPeripheralConnection:self.activePeripheral.peripheral];
-        return KONASHI_SUCCESS;
+        return KonashiResultSuccess;
     }
     else{
-        return KONASHI_FAILURE;
+        return KonashiResultFailure;
     }
 }
 

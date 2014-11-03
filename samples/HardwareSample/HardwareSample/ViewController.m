@@ -58,8 +58,8 @@
     self.statusMessage.hidden = FALSE;
     
     // LED2 on
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi digitalWrite:LED2 value:HIGH];
+    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+    [Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
     
     // Set RSSI timer
     NSTimer *tm = [NSTimer

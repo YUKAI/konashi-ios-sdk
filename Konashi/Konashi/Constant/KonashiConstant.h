@@ -21,71 +21,6 @@
 #define KNS_LOG_METHOD
 #endif
 
-// Konashi common
-#define HIGH 1
-#define LOW 0
-#define OUTPUT 1
-#define INPUT 0
-#define PULLUP 1
-#define NO_PULLS 0
-#define ENABLE 1
-#define DISABLE 0
-#define TRUE 1
-#define FALSE 0
-#define KONASHI_SUCCESS 0
-#define KONASHI_FAILURE -1
-
-// Konashi I/0 pin
-#define PIO0 0
-#define PIO1 1
-#define PIO2 2
-#define PIO3 3
-#define PIO4 4
-#define PIO5 5
-#define PIO6 6
-#define PIO7 7
-
-#define S1 0
-#define LED2 1
-#define LED3 2
-#define LED4 3
-#define LED5 4
-
-#define AIO0 0
-#define AIO1 1
-#define AIO2 2
-
-#define I2C_SDA 6
-#define I2C_SCL 7
-
-// Konashi PWM
-#define KONASHI_PWM_DISABLE 0
-#define KONASHI_PWM_ENABLE 1
-#define KONASHI_PWM_ENABLE_LED_MODE 2
-#define KONASHI_PWM_LED_PERIOD 10000  // 10ms
-
-// Konashi analog I/O
-#define KONASHI_ANALOG_REFERENCE 1300 // 1300mV
-
-// Konashi UART baudrate
-#define KONASHI_UART_RATE_2K4 0x000a
-#define KONASHI_UART_RATE_9K6 0x0028
-
-// Konashi I2C
-#define KONASHI_I2C_DATA_MAX_LENGTH 20
-#define KONASHI_I2C_DISABLE 0
-#define KONASHI_I2C_ENABLE 1
-#define KONASHI_I2C_ENABLE_100K 1
-#define KONASHI_I2C_ENABLE_400K 2
-#define KONASHI_I2C_STOP_CONDITION 0
-#define KONASHI_I2C_START_CONDITION 1
-#define KONASHI_I2C_RESTART_CONDITION 2
-
-// Konashi UART
-#define KONASHI_UART_DATA_MAX_LENGTH 19
-#define KONASHI_UART_DISABLE 0
-#define KONASHI_UART_ENABLE 1
-
 // Konashi Events
 #define KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON @"KonashiEventCentralManagerPoweredOn"
 
@@ -113,5 +48,96 @@
 #define KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH @"KonashiEventUpdateSignalStrength"
 
 #define KONASHI_FIND_TIMEOUT 2
+
+// Konashi common
+typedef NS_ENUM(int, KonashiLevel) {
+	KonashiLevelUnknown = -1,
+	KonashiLevelLow	 = 0,
+	KonashiLevelHigh = 1,
+};
+typedef NS_ENUM(int, KonashiPinMode) {
+	KonashiPinModeInput	= 0,
+	KonashiPinModeOutput = 1,
+	KonashiPinModeNoPulls = 0,
+	KonashiPinModePullup = 1
+};
+typedef NS_ENUM(int, KonashiResult) {
+	KonashiResultSuccess = 0,
+	KonashiResultFailure = -1
+};
+
+// Konashi I/0 pin
+typedef NS_OPTIONS(int, KonashiPinMask) {
+	KonashiPinMask0 = 0,
+	KonashiPinMask1 = 1 << 0,
+	KonashiPinMask2 = 1 << 1,
+	KonashiPinMask3 = 1 << 2,
+	KonashiPinMask4 = 1 << 3,
+	KonashiPinMask5 = 1 << 4,
+	KonashiPinMask6 = 1 << 5,
+	KonashiPinMask7 = 1 << 6,
+};
+
+typedef NS_ENUM(int, KonashiDigitalIOPin) {
+	KonashiDigitalIO0 = 0,
+	KonashiDigitalIO1 = 1,
+	KonashiDigitalIO2 = 2,
+	KonashiDigitalIO3 = 3,
+	KonashiDigitalIO4 = 4,
+	KonashiDigitalIO5 = 5,
+	KonashiDigitalIO6 = 6,
+	KonashiDigitalIO7 = 7,
+	KonashiS1 = KonashiDigitalIO0,
+	KonashiLED2 = KonashiDigitalIO1,
+	KonashiLED3 = KonashiDigitalIO2,
+	KonashiLED4 = KonashiDigitalIO3,
+	KonashiLED5 = KonashiDigitalIO4,
+	KonashiI2C_SDA = 6,
+	KonashiI2C_SCL = 7
+};
+
+typedef NS_ENUM(int, KonashiAnalogIOPin) {
+	KonashiAnalogIO0 = 0,
+	KonashiAnalogIO1 = 1,
+	KonashiAnalogIO2 = 2
+};
+
+// Konashi PWM
+typedef NS_ENUM(int, KonashiPWMMode) {
+	KonashiPWMModeDisable = 0,
+	KonashiPWMModeEnable = 1,
+	KonashiPWMModeEnableLED = 2
+};
+static const unsigned int KonashiLEDPeriod = 10000;
+
+// Konashi analog I/O
+static const int KonashiAnalogReference = 1300;
+
+// Konashi I2C
+static const int KonashiI2CDataMaxLength = 18;
+typedef NS_ENUM(int, KonashiI2CMode) {
+	KonashiI2CModeDisable = 0,
+	KonashiI2CModeEnable = 1,
+	KonashiI2CModeEnable100K = 1,
+	KonashiI2CModeEnable400K = 2
+};
+typedef NS_ENUM(int, KonashiI2CCondition) {
+	KonashiI2CConditionStop = 0,
+	KonashiI2CConditionStart = 1,
+	KonashiI2CConditionRestart = 2
+};
+
+// Konashi UART
+static const int KonashiUartDataMaxLength = 19;
+typedef NS_ENUM(int, KonashiUartMode) {
+	KonashiUartModeDisable = 0,
+	KonashiUartModeEnable = 1
+};
+
+// Konashi UART baudrate
+typedef NS_ENUM(int, KonashiUartBaudrate) {
+	KonashiUartBaudrateRate2K4 = 0x000a,
+	KonashiUartBaudrateRate9K6 = 0x0028
+};
 
 #endif
