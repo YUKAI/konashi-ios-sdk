@@ -45,27 +45,27 @@
 }
 
 - (IBAction)upLed3:(id)sender {
-    [Konashi digitalWrite:LED3 value:LOW];
+    [Konashi digitalWrite:KonashiLED3 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed3:(id)sender {
-    [Konashi digitalWrite:LED3 value:HIGH];
+    [Konashi digitalWrite:KonashiLED3 value:KonashiLevelHigh];
 }
 
 - (IBAction)upLed4:(id)sender {
-    [Konashi digitalWrite:LED4 value:LOW];
+    [Konashi digitalWrite:KonashiLED4 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed4:(id)sender {
-    [Konashi digitalWrite:LED4 value:HIGH];
+    [Konashi digitalWrite:KonashiLED4 value:KonashiLevelHigh];
 }
 
 - (IBAction)upLed5:(id)sender {
-    [Konashi digitalWrite:LED5 value:LOW];
+    [Konashi digitalWrite:KonashiLED5 value:KonashiLevelLow];
 }
 
 - (IBAction)downLed5:(id)sender {
-    [Konashi digitalWrite:LED5 value:HIGH];
+    [Konashi digitalWrite:KonashiLED5 value:KonashiLevelHigh];
 }
 
 /*- (void) cmPoweredOn
@@ -93,11 +93,11 @@
     self.led5.hidden = NO;
     self.pioMessage.hidden = NO;
     
-    [Konashi pinMode:S1 mode:INPUT];
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi pinMode:LED3 mode:OUTPUT];
-    [Konashi pinMode:LED4 mode:OUTPUT];
-    [Konashi pinMode:LED5 mode:OUTPUT];
+    [Konashi pinMode:KonashiS1 mode:KonashiPinModeInput];
+    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+    [Konashi pinMode:KonashiLED3 mode:KonashiPinModeOutput];
+    [Konashi pinMode:KonashiLED4 mode:KonashiPinModeOutput];
+    [Konashi pinMode:KonashiLED5 mode:KonashiPinModeOutput];
     
     //[Konashi pinModeAll:0b11111110];
 }
@@ -106,10 +106,10 @@
 {
     NSLog(@"UPDATE_PIO_INPUT");
     
-    if([Konashi digitalRead:S1]){
-        [Konashi digitalWrite:LED2 value:HIGH];
+    if([Konashi digitalRead:KonashiS1]){
+        [Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
     } else {
-        [Konashi digitalWrite:LED2 value:LOW];
+        [Konashi digitalWrite:KonashiLED2 value:KonashiLevelLow];
     }
 }
 

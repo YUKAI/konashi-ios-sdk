@@ -37,12 +37,12 @@
 - (void)ready
 {
     // Drive LED
-    [Konashi pwmMode:LED2 mode:KONASHI_PWM_ENABLE_LED_MODE];
+    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
     
     //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:LED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:LED2 duty:500000];       // 0.5s
-    [Konashi pwmMode:LED2 mode:ENABLE];
+    [Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
+    [Konashi pwmDuty:KonashiLED2 duty:500000];       // 0.5s
+    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
 }
 
 @end

@@ -71,88 +71,88 @@
         if(pin.on){
             self.out0.enabled = YES;
             self.pullup0.enabled = NO;
-            [Konashi pinMode:PIO0 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO0 mode:KonashiPinModeOutput];
         } else {
             self.out0.enabled = NO;
             self.pullup0.enabled = YES;
-            [Konashi pinMode:PIO0 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO0 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin1){
         if(pin.on){
             self.out1.enabled = YES;
             self.pullup1.enabled = NO;
-            [Konashi pinMode:PIO1 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO1 mode:KonashiPinModeOutput];
         } else {
             self.out1.enabled = NO;
             self.pullup1.enabled = YES;
-            [Konashi pinMode:PIO1 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO1 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin2){
         if(pin.on){
             self.out2.enabled = YES;
             self.pullup2.enabled = NO;
-            [Konashi pinMode:PIO2 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO2 mode:KonashiPinModeOutput];
         } else {
             self.out2.enabled = NO;
             self.pullup2.enabled = YES;
-            [Konashi pinMode:PIO2 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO2 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin3){
         if(pin.on){
             self.out3.enabled = YES;
             self.pullup3.enabled = NO;
-            [Konashi pinMode:PIO3 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO3 mode:KonashiPinModeOutput];
         } else {
             self.out3.enabled = NO;
             self.pullup3.enabled = YES;
-            [Konashi pinMode:PIO3 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO3 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin4){
         if(pin.on){
             self.out4.enabled = YES;
             self.pullup4.enabled = NO;
-            [Konashi pinMode:PIO4 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO4 mode:KonashiPinModeOutput];
         } else {
             self.out4.enabled = NO;
             self.pullup4.enabled = YES;
-            [Konashi pinMode:PIO4 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO4 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin5){
         if(pin.on){
             self.out5.enabled = YES;
             self.pullup5.enabled = NO;
-            [Konashi pinMode:PIO5 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO5 mode:KonashiPinModeOutput];
         } else {
             self.out5.enabled = NO;
             self.pullup5.enabled = YES;
-            [Konashi pinMode:PIO5 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO5 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin6){
         if(pin.on){
             self.out6.enabled = YES;
             self.pullup6.enabled = NO;
-            [Konashi pinMode:PIO6 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO6 mode:KonashiPinModeOutput];
         } else {
             self.out6.enabled = NO;
             self.pullup6.enabled = YES;
-            [Konashi pinMode:PIO6 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO6 mode:KonashiPinModeInput];
         }
     }
     else if(pin==self.pin7){
         if(pin.on){
             self.out7.enabled = YES;
             self.pullup7.enabled = NO;
-            [Konashi pinMode:PIO7 mode:OUTPUT];
+            [Konashi pinMode:KonashiDigitalIO7 mode:KonashiPinModeOutput];
         } else {
             self.out7.enabled = NO;
             self.pullup7.enabled = YES;
-            [Konashi pinMode:PIO7 mode:INPUT];
+            [Konashi pinMode:KonashiDigitalIO7 mode:KonashiPinModeInput];
         }
     }
 }
@@ -167,58 +167,58 @@
     
     if(pin==self.out0){
         if(pin.on){
-            [Konashi digitalWrite:PIO0 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO0 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO0 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO0 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out1){
         if(pin.on){
-            [Konashi digitalWrite:PIO1 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO1 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO1 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO1 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out2){
         if(pin.on){
-            [Konashi digitalWrite:PIO2 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO2 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO2 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO2 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out3){
         if(pin.on){
-            [Konashi digitalWrite:PIO3 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO3 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO3 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO3 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out4){
         if(pin.on){
-            [Konashi digitalWrite:PIO4 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO4 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO4 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO4 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out5){
         if(pin.on){
-            [Konashi digitalWrite:PIO5 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO5 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO5 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO5 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out6){
         if(pin.on){
-            [Konashi digitalWrite:PIO6 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO6 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO6 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO6 value:KonashiLevelLow];
         }
     }
     else if(pin==self.out7){
         if(pin.on){
-            [Konashi digitalWrite:PIO7 value:HIGH];
+            [Konashi digitalWrite:KonashiDigitalIO7 value:KonashiLevelHigh];
         } else {
-            [Konashi digitalWrite:PIO7 value:LOW];
+            [Konashi digitalWrite:KonashiDigitalIO7 value:KonashiLevelLow];
         }
     }
 }
@@ -233,65 +233,65 @@
     
     if(pin==self.pullup0){
         if(pin.on){
-            [Konashi pinPullup:PIO0 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO0 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO0 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO0 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup1){
         if(pin.on){
-            [Konashi pinPullup:PIO1 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO1 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO1 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO1 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup1){
         if(pin.on){
-            [Konashi pinPullup:PIO1 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO1 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO1 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO1 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup2){
         if(pin.on){
-            [Konashi pinPullup:PIO2 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO2 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO2 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO2 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup3){
         if(pin.on){
-            [Konashi pinPullup:PIO3 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO3 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO3 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO3 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup4){
         if(pin.on){
-            [Konashi pinPullup:PIO4 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO4 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO4 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO4 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup5){
         if(pin.on){
-            [Konashi pinPullup:PIO5 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO5 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO5 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO5 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup6){
         if(pin.on){
-            [Konashi pinPullup:PIO6 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO6 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO6 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO6 mode:KonashiPinModeNoPulls];
         }
     }
     else if(pin==self.pullup7){
         if(pin.on){
-            [Konashi pinPullup:PIO7 mode:PULLUP];
+            [Konashi pinPullup:KonashiDigitalIO7 mode:KonashiPinModePullup];
         } else {
-            [Konashi pinPullup:PIO7 mode:NO_PULLS];
+            [Konashi pinPullup:KonashiDigitalIO7 mode:KonashiPinModeNoPulls];
         }
     }
 }
@@ -302,14 +302,14 @@
 
 - (void)updatePioInput
 {
-    self.in0.on = [Konashi digitalRead:PIO0];
-    self.in1.on = [Konashi digitalRead:PIO1];
-    self.in2.on = [Konashi digitalRead:PIO2];
-    self.in3.on = [Konashi digitalRead:PIO3];
-    self.in4.on = [Konashi digitalRead:PIO4];
-    self.in5.on = [Konashi digitalRead:PIO5];
-    self.in6.on = [Konashi digitalRead:PIO6];
-    self.in7.on = [Konashi digitalRead:PIO7];
+    self.in0.on = [Konashi digitalRead:KonashiDigitalIO0];
+    self.in1.on = [Konashi digitalRead:KonashiDigitalIO1];
+    self.in2.on = [Konashi digitalRead:KonashiDigitalIO2];
+    self.in3.on = [Konashi digitalRead:KonashiDigitalIO3];
+    self.in4.on = [Konashi digitalRead:KonashiDigitalIO4];
+    self.in5.on = [Konashi digitalRead:KonashiDigitalIO5];
+    self.in6.on = [Konashi digitalRead:KonashiDigitalIO6];
+    self.in7.on = [Konashi digitalRead:KonashiDigitalIO7];
 }
 
 @end
