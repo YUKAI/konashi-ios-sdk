@@ -43,8 +43,8 @@
     
     self.statusMessage.hidden = FALSE;
     
-    [Konashi uartBaudrate:KONASHI_UART_RATE_9K6];
-    [Konashi uartMode:KONASHI_UART_ENABLE];
+    [Konashi uartBaudrate:KonashiUartBaudrateRate9K6];
+    [Konashi uartMode:KonashiUartModeEnable];
 }
 
 - (void) recvUartRx
