@@ -114,7 +114,6 @@ static const unsigned int KonashiLEDPeriod = 10000;
 static const int KonashiAnalogReference = 1300;
 
 // Konashi I2C
-static const int KonashiI2CDataMaxLength = 20;
 typedef NS_ENUM(int, KonashiI2CMode) {
 	KonashiI2CModeDisable = 0,
 	KonashiI2CModeEnable = 1,

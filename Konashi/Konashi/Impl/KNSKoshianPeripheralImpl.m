@@ -9,11 +9,24 @@
 #import "KNSKoshianPeripheralImpl.h"
 #import "KonashiUtils.h"
 
+static NSInteger const i2cDataMaxLength = 16;
+
+@interface KNSKoshianPeripheralImpl ()
+{
+	// I2C
+	unsigned char i2cSetting;
+	unsigned char i2cReadData[i2cDataMaxLength];
+	unsigned char i2cReadDataLength;
+	unsigned char i2cReadAddress;
+}
+
+@end
+
 @implementation KNSKoshianPeripheralImpl
 
 + (NSInteger)i2cDataMaxLength
 {
-	return 16;
+	return i2cDataMaxLength;
 }
 
 + (NSInteger)levelServiceReadLength
@@ -230,6 +243,22 @@
 	return kns_CreateUUIDFromString(	@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
 }
 
+- (instancetype)initWithPeripheral:(CBPeripheral *)p
+{
+	self = [super initWithPeripheral:p];
+	if (self) {
+		// I2C
+		i2cSetting = KonashiI2CModeDisable;
+		for (NSInteger i = 0; i < [[self class] i2cDataMaxLength]; i++) {
+			i2cReadData[i] = 0;
+		}
+		i2cReadDataLength = 0;
+		i2cReadAddress = 0;
+	}
+	
+	return self;
+}
+
 - (CBPeripheralState)state
 {
 	return self.peripheral.state;
@@ -239,7 +268,6 @@
 {
 	return self.peripheral.name;
 }
-
 
 - (KonashiResult) writeValuePioSetting
 {
@@ -615,7 +643,7 @@
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
 	int i;
-	unsigned char t[KonashiI2CDataMaxLength];
+	unsigned char t[[[self class] i2cDataMaxLength]];
 	
 	if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
 	   self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
