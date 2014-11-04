@@ -42,10 +42,7 @@
 		E9CA77BE19CCEA2F00C9F3F7 /* Konashi+ADC.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D2E19CB4021005E9F04 /* Konashi+ADC.h */; };
 		E9CA77BF19CCEA2F00C9F3F7 /* Konashi+Grove.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D3019CB4021005E9F04 /* Konashi+Grove.h */; };
 		E9CA77C019CCEA2F00C9F3F7 /* Konashi+UI.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D3219CB4021005E9F04 /* Konashi+UI.h */; };
-		E9CA77C419CCEA2F00C9F3F7 /* KoshianDb.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D1119CB25C8005E9F04 /* KoshianDb.h */; };
-		E9CA77C519CCEA2F00C9F3F7 /* KonashiDb.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D1019CB25C8005E9F04 /* KonashiDb.h */; };
 		E9CA77C619CCEA2F00C9F3F7 /* KonashiConstant.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D2A19CB3058005E9F04 /* KonashiConstant.h */; };
-		E9CA77C719CCEA2F00C9F3F7 /* KNSUUIDExtern.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E954C5DD19CCC8B70046F6D7 /* KNSUUIDExtern.h */; };
 		E9CA77C819CCEA2F00C9F3F7 /* KNSPeripheralBaseImpl.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E954C60319CCD56E0046F6D7 /* KNSPeripheralBaseImpl.h */; };
 		E9CA77C919CCEA2F00C9F3F7 /* KNSKoshianPeripheralImpl.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D1519CB25C8005E9F04 /* KNSKoshianPeripheralImpl.h */; };
 		E9CA77CA19CCEA2F00C9F3F7 /* KNSKonashiPeripheralImpl.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E9C02D2719CB2E1D005E9F04 /* KNSKonashiPeripheralImpl.h */; };
@@ -80,10 +77,7 @@
 				E9CA77BE19CCEA2F00C9F3F7 /* Konashi+ADC.h in Copy Files */,
 				E9CA77BF19CCEA2F00C9F3F7 /* Konashi+Grove.h in Copy Files */,
 				E9CA77C019CCEA2F00C9F3F7 /* Konashi+UI.h in Copy Files */,
-				E9CA77C419CCEA2F00C9F3F7 /* KoshianDb.h in Copy Files */,
-				E9CA77C519CCEA2F00C9F3F7 /* KonashiDb.h in Copy Files */,
 				E9CA77C619CCEA2F00C9F3F7 /* KonashiConstant.h in Copy Files */,
-				E9CA77C719CCEA2F00C9F3F7 /* KNSUUIDExtern.h in Copy Files */,
 				E9CA77C819CCEA2F00C9F3F7 /* KNSPeripheralBaseImpl.h in Copy Files */,
 				E9CA77C919CCEA2F00C9F3F7 /* KNSKoshianPeripheralImpl.h in Copy Files */,
 				E9CA77CA19CCEA2F00C9F3F7 /* KNSKonashiPeripheralImpl.h in Copy Files */,
@@ -110,7 +104,6 @@
 		E91E54AB19C8F2750071D7C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E91E54AD19C8F2750071D7C9 /* KonashiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonashiTests.m; sourceTree = "<group>"; };
 		E954C5DC19CCC4140046F6D7 /* KNSPeripheralImpls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImpls.h; sourceTree = "<group>"; };
-		E954C5DD19CCC8B70046F6D7 /* KNSUUIDExtern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSUUIDExtern.h; sourceTree = "<group>"; };
 		E954C60319CCD56E0046F6D7 /* KNSPeripheralBaseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralBaseImpl.h; sourceTree = "<group>"; };
 		E954C60419CCD56E0046F6D7 /* KNSPeripheralBaseImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSPeripheralBaseImpl.m; sourceTree = "<group>"; };
 		E954C60719CCE0C00046F6D7 /* KNSPeripheralImplProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImplProtocol.h; sourceTree = "<group>"; };
@@ -120,8 +113,6 @@
 		E9BB34D019EBB6CC0088A3CE /* CBService+Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+Konashi.m"; sourceTree = "<group>"; };
 		E9BB34D119EBB6CC0088A3CE /* CBUUID+Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Konashi.h"; sourceTree = "<group>"; };
 		E9BB34D219EBB6CC0088A3CE /* CBUUID+Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Konashi.m"; sourceTree = "<group>"; };
-		E9C02D1019CB25C8005E9F04 /* KonashiDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KonashiDb.h; sourceTree = "<group>"; };
-		E9C02D1119CB25C8005E9F04 /* KoshianDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KoshianDb.h; sourceTree = "<group>"; };
 		E9C02D1519CB25C8005E9F04 /* KNSKoshianPeripheralImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSKoshianPeripheralImpl.h; sourceTree = "<group>"; };
 		E9C02D1619CB25C8005E9F04 /* KNSKoshianPeripheralImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSKoshianPeripheralImpl.m; sourceTree = "<group>"; };
 		E9C02D1819CB25C8005E9F04 /* Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Konashi.h; sourceTree = "<group>"; };
@@ -265,10 +256,7 @@
 		E9C02D0F19CB25C8005E9F04 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
-				E9C02D1119CB25C8005E9F04 /* KoshianDb.h */,
-				E9C02D1019CB25C8005E9F04 /* KonashiDb.h */,
 				E9C02D2A19CB3058005E9F04 /* KonashiConstant.h */,
-				E954C5DD19CCC8B70046F6D7 /* KNSUUIDExtern.h */,
 			);
 			path = Constant;
 			sourceTree = "<group>";

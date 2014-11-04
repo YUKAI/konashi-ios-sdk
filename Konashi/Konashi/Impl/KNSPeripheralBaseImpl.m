@@ -36,14 +36,6 @@
 			analogValue[i] = 0;
 		}
 		
-		// I2C
-		i2cSetting = KonashiI2CModeDisable;
-		for (NSInteger i = 0; i < KonashiI2CDataMaxLength; i++) {
-			i2cReadData[i] = 0;
-		}
-		i2cReadDataLength = 0;
-		i2cReadAddress = 0;
-		
 		// UART
 		uartSetting = KonashiUartModeDisable;
 		uartBaudrate = KonashiUartBaudrateRate9K6;

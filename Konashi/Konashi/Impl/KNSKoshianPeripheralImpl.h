@@ -12,4 +12,8 @@
 
 @interface KNSKoshianPeripheralImpl : KNSPeripheralBaseImpl <KNSPeripheralImplProtocol>
 
++ (CBUUID *)upgradeServiceUUID;
++ (CBUUID *)upgradeCharacteristicControlPointUUID;
++ (CBUUID *)upgradeCharacteristicDataUUID;
+
 @end

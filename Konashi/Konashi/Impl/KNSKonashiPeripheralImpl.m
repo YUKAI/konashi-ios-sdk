@@ -7,12 +7,239 @@
 //
 
 #import "KNSKonashiPeripheralImpl.h"
-#import "KonashiDb.h"
 #import "KonashiUtils.h"
+
+static NSInteger const i2cDataMaxLength = 20;
+
+@interface KNSKonashiPeripheralImpl ()
+{
+	// I2C
+	unsigned char i2cSetting;
+	unsigned char i2cReadData[i2cDataMaxLength];
+	unsigned char i2cReadDataLength;
+	unsigned char i2cReadAddress;
+}
+
+@end
 
 @implementation KNSKonashiPeripheralImpl
 
-#pragma mark - KonashiPeripheralImplProtocol
++ (NSInteger)i2cDataMaxLength
+{
+	return i2cDataMaxLength;
+}
+
++ (NSInteger)levelServiceReadLength
+{
+	return 1;
+}
+
++ (NSInteger)pioInputNotificationReadLength
+{
+	return 1;
+}
+
++ (NSInteger)analogReadLength
+{
+	return 2;
+}
+
++ (NSInteger)uartRX_NotificationReadLength
+{
+	return 1;
+}
+
++ (NSInteger)hardwareLowBatteryNotificationReadLength
+{
+	return 1;
+}
+
+// UUID
++ (CBUUID *)batteryServiceUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"180F", uuid);
+}
+
++ (CBUUID *)levelServiceUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"2A19", uuid);
+}
+
++ (CBUUID *)powerStateUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"2A1B", uuid);
+}
+
++ (CBUUID *)serviceUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"FF00", uuid);
+}
+
+// PIO
++ (CBUUID *)pioSettingUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3000", uuid);
+}
+
++ (CBUUID *)pioPullupUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3001", uuid);
+}
+
++ (CBUUID *)pioOutputUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3002", uuid);
+}
+
++ (CBUUID *)pioInputNotificationUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3003", uuid);
+}
+
+// PWM
++ (CBUUID *)pwmConfigUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3004", uuid);
+}
+
++ (CBUUID *)pwmParamUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3005", uuid);
+}
+
++ (CBUUID *)pwmDutyUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3006", uuid);
+}
+
+// Analog
++ (CBUUID *)analogDriveUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3007", uuid);
+}
+
++ (CBUUID *)analogReadUUIDWithPinNumber:(NSInteger)pin
+{
+	CBUUID *uuid = nil;
+	switch (pin) {
+		case 0: {
+			static CBUUID *uuid0;
+			uuid = kns_CreateUUIDFromString(@"3008", uuid0);
+		}
+			break;
+		case 1: {
+			static CBUUID *uuid1;
+			uuid = kns_CreateUUIDFromString(@"3009", uuid1);
+		}
+			break;
+		case 2: {
+			static CBUUID *uuid2;
+			uuid = kns_CreateUUIDFromString(@"300A", uuid2);
+		}
+			break;
+		default:
+			break;
+	}
+	
+	return uuid;
+}
+
+// I2C
++ (CBUUID *)i2cConfigUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"300B", uuid);
+}
+
++ (CBUUID *)i2cStartStopUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"300C", uuid);
+}
+
++ (CBUUID *)i2cWriteUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"300D", uuid);
+}
+
++ (CBUUID *)i2cReadParamUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"300E", uuid);
+}
+
++ (CBUUID *)i2cReadUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"300F", uuid);
+}
+
+// UART
++ (CBUUID *)uartConfigUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3010", uuid);
+}
+
++ (CBUUID *)uartBaudrateUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3011", uuid);
+}
+
++ (CBUUID *)uartTX_UUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3012", uuid);
+}
+
++ (CBUUID *)uartRX_NotificationUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3013", uuid);
+}
+
+// Hardware
++ (CBUUID *)hardwareResetUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3014", uuid);
+}
+
++ (CBUUID *)lowBatteryNotificationUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"3015", uuid);
+}
+
+- (instancetype)initWithPeripheral:(CBPeripheral *)p
+{
+	self = [super initWithPeripheral:p];
+	if (self) {
+		// I2C
+		i2cSetting = KonashiI2CModeDisable;
+		for (NSInteger i = 0; i < [[self class] i2cDataMaxLength]; i++) {
+			i2cReadData[i] = 0;
+		}
+		i2cReadDataLength = 0;
+		i2cReadAddress = 0;
+	}
+	
+	return self;
+}
 
 - (CBPeripheralState)state
 {
@@ -31,7 +258,7 @@
         
         Byte t = (Byte)pioSetting;
         NSData *d = [[NSData alloc] initWithBytes:&t length:1];
-		[self writeData:d serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_SETTING_UUID];
+		[self writeData:d serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pioSettingUUID]];
 		
         return KonashiResultSuccess;
     } else {
@@ -45,7 +272,7 @@
         KNS_LOG(@"PioPullup: %d", pioPullup);
 		
         Byte t = (Byte)pioPullup;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_PULLUP_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pioPullupUUID]];
 		
         return KonashiResultSuccess;
     } else {
@@ -59,7 +286,7 @@
         KNS_LOG(@"PioOutput: %d", pioOutput);
         
         Byte t = (Byte)pioOutput;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_OUTPUT_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pioOutputUUID]];
 		
         return KonashiResultSuccess;
     } else {
@@ -186,7 +413,7 @@
         KNS_LOG(@"PwmSetting: %d", pwmSetting);
         
         Byte t = (Byte)pwmSetting;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PWM_CONFIG_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pwmConfigUUID]];
 		
         return KonashiResultSuccess;
     } else {
@@ -202,8 +429,7 @@
 			(unsigned char)((pwmPeriod[pin] >> 16) & 0xFF),
 			(unsigned char)((pwmPeriod[pin] >> 8) & 0xFF),
 			(unsigned char)((pwmPeriod[pin] >> 0) & 0xFF)};
-        
-        [self writeData:[NSData dataWithBytes:t length:5] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PWM_PARAM_UUID];
+        [self writeData:[NSData dataWithBytes:t length:5] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pwmParamUUID]];
         KNS_LOG(@"PwmPeriod: %d", pwmPeriod[pin]);
 		
         return KonashiResultSuccess;
@@ -222,7 +448,8 @@
             (unsigned char)((pwmDuty[pin] >> 8) & 0xFF),
             (unsigned char)((pwmDuty[pin] >> 0) & 0xFF)};
 		
-		[self writeData:[NSData dataWithBytes:t length:5] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PWM_DUTY_UUID];
+		[self writeData:[NSData dataWithBytes:t length:5] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pwmDutyUUID]];
+
         KNS_LOG(@"pwmDuty: %d", pwmDuty[pin]);
 		
         return KonashiResultSuccess;
@@ -296,27 +523,17 @@
 
 - (KonashiResult) readValueAio:(KonashiAnalogIOPin)pin
 {
-    CBUUID *uuid;
+	CBUUID *uuid;
 	
-    if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
-        if(pin==KonashiAnalogIO0){
-            uuid = KONASHI_ANALOG_READ0_UUID;
-        }
-        else if(pin==KonashiAnalogIO1){
-            uuid = KONASHI_ANALOG_READ1_UUID;
-        }
-        else{   // AIO2
-            uuid = KONASHI_ANALOG_READ2_UUID;
-        }
-        
-		[self readDataWithServiceUUID:KONASHI_SERVICE_UUID characteristicUUID:uuid];
-        
-        return KonashiResultSuccess;
-    }
-    else{
-        return KonashiResultFailure;
-    }
-	
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
+		uuid = [[self class] analogReadUUIDWithPinNumber:pin];
+		[self readDataWithServiceUUID:[[self class] serviceUUID] characteristicUUID:uuid];
+		
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}	
 }
 
 - (int) analogReference
@@ -349,7 +566,7 @@
 	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
        self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
-		[self writeData:[NSData dataWithBytes:t length:3] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_ANALOG_DRIVE_UUID];
+		[self writeData:[NSData dataWithBytes:t length:3] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] analogDriveUUID]];
         
         return KonashiResultSuccess;
     }
@@ -366,7 +583,7 @@
         i2cSetting = mode;
         
         Byte t = mode;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_CONFIG_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cConfigUUID]];
         
         return KonashiResultSuccess;
     }
@@ -380,7 +597,7 @@
 	if((condition == KonashiI2CConditionStart || condition == KonashiI2CConditionRestart ||
 		condition == KonashiI2CConditionStop) && self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
         Byte t = condition;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_START_STOP_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cStartStopUUID]];
         
         return KonashiResultSuccess;
     }
@@ -407,7 +624,7 @@
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
 	int i;
-    unsigned char t[KonashiI2CDataMaxLength];
+	unsigned char t[[[self class] i2cDataMaxLength]];
     
     if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
        self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
@@ -417,7 +634,7 @@
             t[i+2] = data[i];
         }
         
-		[self writeData:[NSData dataWithBytes:t length:length + 2] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_WRITE_UUID];
+		[self writeData:[NSData dataWithBytes:t length:length + 2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cWriteUUID]];
         
         return KonashiResultSuccess;
     }
@@ -437,10 +654,11 @@
         
         // Set read params
         Byte t[] = {length, i2cReadAddress};
-		[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_READ_PARAM_UIUD];
+		[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadParamUUID]];
+
         
         // Request read i2c value
-		[self readDataWithServiceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_I2C_READ_UUID];
+		[self readDataWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadUUID]];
         
         return KonashiResultSuccess;
     }
@@ -469,7 +687,7 @@
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected &&
        ( mode == KonashiUartModeDisable || mode == KonashiUartModeEnable ) ){
         Byte t = mode;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_CONFIG_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartConfigUUID]];
         uartSetting = mode;
         
         return KonashiResultSuccess;
@@ -486,7 +704,7 @@
            baudrate == KonashiUartBaudrateRate9K6
 		   ){
             Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
-            [self writeData:[NSData dataWithBytes:t length:2] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_BAUDRATE_UUID];
+            [self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
             uartBaudrate = baudrate;
             
             return KonashiResultSuccess;
@@ -503,7 +721,7 @@
 - (KonashiResult) uartWrite:(unsigned char)data
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		[self writeData:[NSData dataWithBytes:&data length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_TX_UUID];
+		[self writeData:[NSData dataWithBytes:&data length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
         return KonashiResultSuccess;
     }
     else{
@@ -520,7 +738,7 @@
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
         Byte t = 1;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_HARDWARE_RESET_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] hardwareResetUUID]];
         
         return KonashiResultSuccess;
     }
@@ -532,7 +750,8 @@
 - (KonashiResult) batteryLevelReadRequest
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
-        [self readDataWithServiceUUID:KONASHI_BATT_SERVICE_UUID characteristicUUID:KONASHI_LEVEL_SERVICE_UUID];
+        [self readDataWithServiceUUID:[[self class] batteryServiceUUID] characteristicUUID:[[self class] levelServiceUUID]];
+
         return KonashiResultSuccess;
     }
     else{
@@ -563,12 +782,12 @@
 
 - (void)enablePIOInputNotification
 {
-	[self notificationWithServiceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_PIO_INPUT_NOTIFICATION_UUID on:YES];
+	[self notificationWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] pioInputNotificationUUID] on:YES];
 }
 
 - (void)enableUART_RXNotification
 {
-	[self notificationWithServiceUUID:KONASHI_SERVICE_UUID characteristicUUID:KONASHI_UART_RX_NOTIFICATION_UUID on:YES];
+	[self notificationWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartRX_NotificationUUID] on:YES];
 }
 
 // override
@@ -599,46 +818,46 @@
 	KNS_LOG(@"didUpdateValueForCharacteristic");
 	
 	if (!error) {
-		if ([characteristic.UUID kns_isEqualToUUID: KONASHI_PIO_INPUT_NOTIFICATION_UUID]) {
-			[characteristic.value getBytes:&byte length:KONASHI_PIO_INPUT_NOTIFICATION_READ_LEN];
+		if ([characteristic.UUID kns_isEqualToUUID:[[self class] pioInputNotificationUUID]]) {
+			[characteristic.value getBytes:&byte length:[[self class] pioInputNotificationReadLength]];
 			pioInput = byte[0];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_PIO_INPUT object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_ANALOG_READ0_UUID]) {
-			[characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:0]]) {
+			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[0] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_ANALOG_READ1_UUID]) {
-			[characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:1]]) {
+			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[1] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_ANALOG_READ2_UUID]) {
-			[characteristic.value getBytes:&byte length:KONASHI_ANALOG_READ_LEN];
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:2]]) {
+			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[2] = byte[0]<<8 | byte[1];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_I2C_READ_UUID]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] i2cReadUUID]]) {
 			[characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_I2C_READ_COMPLETE object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_UART_RX_NOTIFICATION_UUID]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
 			[characteristic.value getBytes:&uartRxData length:1];
 			// [0]: MSB
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UART_RX_COMPLETE object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID: KONASHI_LEVEL_SERVICE_UUID]) {
-			[characteristic.value getBytes:&byte length:KONASHI_LEVEL_SERVICE_READ_LEN];
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] levelServiceUUID]]) {
+			[characteristic.value getBytes:&byte length:[[self class] levelServiceReadLength]];
 			batteryLevel = byte[0];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_BATTERY_LEVEL object:nil];
