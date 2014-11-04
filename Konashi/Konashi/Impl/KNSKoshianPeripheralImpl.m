@@ -365,7 +365,7 @@
 		i2cSetting = mode;
 		
 		Byte t = mode;
-		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KOSHIAN_SERVICE_UUID characteristicUUID:KOSHIAN_PWM_CONFIG_UUID];
+		[self writeData:[NSData dataWithBytes:&t length:1] serviceUUID:KOSHIAN_SERVICE_UUID characteristicUUID:KOSHIAN_I2C_CONFIG_UUID];
 		
 		return KonashiResultSuccess;
 	}
