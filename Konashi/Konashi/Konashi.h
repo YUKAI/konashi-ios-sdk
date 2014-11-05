@@ -26,9 +26,10 @@
 #import "KNSPeripheralImpls.h"
 #import "KNSPeripheral.h"
 #import "KNSUUIDExtern.h"
+#import "Konashi+JavaScriptCore.h"
 
 // Konashi interface
-@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, KonashiJavaScriptBindings>
 {
 	NSString *findName;
 	BOOL isReady;

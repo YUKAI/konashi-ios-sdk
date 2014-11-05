@@ -37,4 +37,7 @@
    <FileRef
       location = "group:samples/UartSample/UartSample.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:samples/JSBindingsSample/JSBindingsSample.xcodeproj">
+   </FileRef>
 </Workspace>
