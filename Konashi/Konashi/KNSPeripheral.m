@@ -245,7 +245,7 @@
 	}
 	
 	if (impl_ != nil) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_CONNECTED object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:nil];
 	}
 }
 

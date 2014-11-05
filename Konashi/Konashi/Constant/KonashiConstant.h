@@ -22,32 +22,32 @@
 #endif
 
 // Konashi Events
-static NSString *const KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON = @"KonashiEventCentralManagerPoweredOn";
+static NSString *const KonashiEventCentralManagerPowerOnNotification = @"KonashiEventCentralManagerPoweredOn";
 
-static NSString *const KONASHI_EVENT_PERIPHERAL_FOUND = @"KonashiEventPeripheralFound";
-static NSString *const KONASHI_EVENT_PERIPHERAL_NOT_FOUND = @"KonashiEventPeripheralNotFound";
-static NSString *const KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE = @"KonashiEventNoPeripheralsAvailable";
-static NSString *const KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED = @"KonashiEventPeripheralSelectorDismissed";
+static NSString *const KonashiEventPeripheralFoundNotification = @"KonashiEventPeripheralFound";
+static NSString *const KonashiEventPeripheralNotFoundNotification = @"KonashiEventPeripheralNotFound";
+static NSString *const KonashiEventNoPeripheralsAvailableNotification = @"KonashiEventNoPeripheralsAvailable";
+static NSString *const KonashiEventPeripheralSelectorDismissedNotification = @"KonashiEventPeripheralSelectorDismissed";
 
-static NSString *const KONASHI_EVENT_CONNECTED = @"KonashiEventConnected";
-static NSString *const KONASHI_EVENT_DISCONNECTED = @"KonashiEventDisconnected";
-static NSString *const KONASHI_EVENT_READY = @"KonashiEventReady";
+static NSString *const KonashiEventConnectedNotification = @"KonashiEventConnected";
+static NSString *const KonashiEventDisconnectedNotification = @"KonashiEventDisconnected";
+static NSString *const KonashiEventReadyToUseNotification = @"KonashiEventReady";
 
-static NSString *const KONASHI_EVENT_UPDATE_PIO_INPUT = @"KonashiEventUpdatePioInput";
+static NSString *const KonashiEventDigitalIODidUpdateNotification = @"KonashiEventUpdatePioInput";
 
-static NSString *const KONASHI_EVENT_UPDATE_ANALOG_VALUE = @"KonashiEventUpdateAnalogValue";
-static NSString *const KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 = @"KonashiEventUpdateAnalogValueAio0";
-static NSString *const KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 = @"KonashiEventUpdateAnalogValueAio1";
-static NSString *const KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 = @"KonashiEventUpdateAnalogValueAio2";
+static NSString *const KonashiEventAnalogIODidUpdateNotification = @"KonashiEventUpdateAnalogValue";
+static NSString *const KonashiEventAnalogIO0DidUpdateNotification = @"KonashiEventUpdateAnalogValueAio0";
+static NSString *const KonashiEventAnalogIO1DidUpdateNotification = @"KonashiEventUpdateAnalogValueAio1";
+static NSString *const KonashiEventAnalogIO2DidUpdateNotification = @"KonashiEventUpdateAnalogValueAio2";
 
-static NSString *const KONASHI_EVENT_I2C_READ_COMPLETE = @"KonashiEventI2CReadComplete";
+static NSString *const KonashiEventI2CReadCompleteNotification = @"KonashiEventI2CReadComplete";
 
-static NSString *const KONASHI_EVENT_UART_RX_COMPLETE = @"KonashiEventUartRxComplete";
+static NSString *const KonashiEventUartRxCompleteNotification = @"KonashiEventUartRxComplete";
 
-static NSString *const KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"KonashiEventUpdateBatteryLevel";
-static NSString *const KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"KonashiEventUpdateSignalStrength";
+static NSString *const KonashiEventBatteryLevelDidUpdateNotification = @"KonashiEventUpdateBatteryLevel";
+static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"KonashiEventUpdateSignalStrength";
 
-static NSTimeInterval const KONASHI_FIND_TIMEOUT = 2;
+static NSTimeInterval const KonashiFindTimeoutInterval = 2;
 
 // Konashi common
 typedef NS_ENUM(int, KonashiLevel) {

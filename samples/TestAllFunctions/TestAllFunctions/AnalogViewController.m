@@ -24,9 +24,9 @@
     [self.dacBar2 addTarget:self action:@selector(onChangeDacBar:) forControlEvents:UIControlEventValueChanged];
     
     // ADC
-    [Konashi addObserver:self selector:@selector(onGetAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
-    [Konashi addObserver:self selector:@selector(onGetAio1) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1];
-    [Konashi addObserver:self selector:@selector(onGetAio2) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2];
+    [Konashi addObserver:self selector:@selector(onGetAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(onGetAio1) name:KonashiEventAnalogIO1DidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(onGetAio2) name:KonashiEventAnalogIO2DidUpdateNotification];
 }
 
 - (void)didReceiveMemoryWarning

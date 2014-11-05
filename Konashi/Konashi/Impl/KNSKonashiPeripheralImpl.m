@@ -821,46 +821,46 @@ static NSInteger const i2cDataMaxLength = 20;
 		if ([characteristic.UUID kns_isEqualToUUID:[[self class] pioInputNotificationUUID]]) {
 			[characteristic.value getBytes:&byte length:[[self class] pioInputNotificationReadLength]];
 			pioInput = byte[0];
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_PIO_INPUT object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDigitalIODidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:0]]) {
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[0] = byte[0]<<8 | byte[1];
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO0DidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:1]]) {
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[1] = byte[0]<<8 | byte[1];
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO1DidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:2]]) {
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[2] = byte[0]<<8 | byte[1];
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE object:nil];
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO2DidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] i2cReadUUID]]) {
 			[characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
 			// [0]: MSB
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_I2C_READ_COMPLETE object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventI2CReadCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
 			[characteristic.value getBytes:&uartRxData length:1];
 			// [0]: MSB
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UART_RX_COMPLETE object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] levelServiceUUID]]) {
 			[characteristic.value getBytes:&byte length:[[self class] levelServiceReadLength]];
 			batteryLevel = byte[0];
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_BATTERY_LEVEL object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventBatteryLevelDidUpdateNotification object:nil];
 		}
 	}
 }

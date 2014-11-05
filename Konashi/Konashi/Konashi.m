@@ -58,12 +58,12 @@
 
 + (KonashiResult) find
 {
-    return [[Konashi shared] _findModule:KONASHI_FIND_TIMEOUT];
+    return [[Konashi shared] _findModule:KonashiFindTimeoutInterval];
 }
 
 + (KonashiResult) findWithName:(NSString*)name
 {
-    return [[Konashi shared] _findModuleWithName:name timeout:KONASHI_FIND_TIMEOUT];
+    return [[Konashi shared] _findModuleWithName:name timeout:KonashiFindTimeoutInterval];
 }
 
 + (KonashiResult) disconnect
@@ -392,7 +392,7 @@
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
     } else {
-        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
+        [[Konashi shared] postNotification:KonashiEventPeripheralNotFoundNotification];
     }
 }
 
@@ -403,10 +403,10 @@
     KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
     
     if ( [peripherals count] > 0 ) {
-        [[Konashi shared] postNotification:KONASHI_EVENT_PERIPHERAL_FOUND];
+        [[Konashi shared] postNotification:KonashiEventPeripheralFoundNotification];
 		[self showModulePicker];
     } else {
-        [[Konashi shared] postNotification:KONASHI_EVENT_NO_PERIPHERALS_AVAILABLE];
+        [[Konashi shared] postNotification:KonashiEventNoPeripheralsAvailableNotification];
     }
 }
 
@@ -425,7 +425,7 @@
     // set konashi property
     isReady = YES;
     
-	[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_READY object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 	
     // Enable PIO input notification
 	[_activePeripheral enablePIOInputNotification];
@@ -476,7 +476,7 @@
     KNS_LOG(@"Status of CoreBluetooth central manager changed %ld (%@)\r\n", central.state, NSStringFromCBCentralManagerState(cm.state));
 
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [[Konashi shared] postNotification:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
+        [[Konashi shared] postNotification:KonashiEventCentralManagerPowerOnNotification];
         
         // Check already find
         if(isCallFind){
@@ -526,7 +526,7 @@
 {
     KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
     
-	[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_DISCONNECTED object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
 
 @end

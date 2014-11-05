@@ -117,7 +117,7 @@
 	
 	rssi = [peripheral.RSSI intValue];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventSignalStrengthDidUpdateNotification object:nil];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
@@ -139,7 +139,7 @@
 			// set konashi property
 			_ready = YES;
 			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_READY object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			
 			// Enable PIO input notification
 			[self enablePIOInputNotification];

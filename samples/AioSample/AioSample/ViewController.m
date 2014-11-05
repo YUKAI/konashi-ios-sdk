@@ -22,10 +22,10 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(readAio) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE];
-    [Konashi addObserver:self selector:@selector(readAio0) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [Konashi addObserver:self selector:@selector(readAio) name:KonashiEventAnalogValueDidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(readAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
 }
 
 - (void)didReceiveMemoryWarning
