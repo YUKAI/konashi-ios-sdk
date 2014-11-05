@@ -50,7 +50,7 @@
     [self.pullup7 addTarget:self action:@selector(onChangePullup:) forControlEvents:UIControlEventValueChanged];
 
     // 入力状態の変化イベントハンドラ
-    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventPioInputDidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventDigitalIODidUpdateNotification];
 }
 
 - (void)didReceiveMemoryWarning

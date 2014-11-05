@@ -26,7 +26,7 @@
     //[Konashi addObserver:self selector:@selector(peripheralNotFound) name:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
     [Konashi addObserver:self selector:@selector(disconnected) name:KonashiEventDisconnectedNotification];
     [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventPioInputDidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventDigitalIODidUpdateNotification];
 }
 
 - (void)didReceiveMemoryWarning

@@ -24,7 +24,7 @@
     
     [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
     [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-    [Konashi addObserver:self selector:@selector(readAio) name:KonashiEventAnalogValueDidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(readAio) name:KonashiEventAnalogIODidUpdateNotification];
     [Konashi addObserver:self selector:@selector(readAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
 }
 
