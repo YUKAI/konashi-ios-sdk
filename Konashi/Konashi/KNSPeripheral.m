@@ -59,27 +59,27 @@
 	return impl_.findName;
 }
 
-- (int) pinMode:(int)pin mode:(int)mode
+- (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
 	return [impl_ pinMode:pin mode:mode];
 }
 
-- (int) pinModeAll:(int)mode
+- (KonashiResult) pinModeAll:(int)mode
 {
 	return [impl_ pinModeAll:mode];
 }
 
-- (int) pinPullup:(int)pin mode:(int)mode
+- (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
 	return [impl_ pinPullup:pin mode:mode];
 }
 
-- (int) pinPullupAll:(int)mode
+- (KonashiResult) pinPullupAll:(int)mode
 {
 	return [impl_ pinPullupAll:mode];
 }
 
-- (int) digitalRead:(int)pin
+- (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
 {
 	return [impl_ digitalRead:pin];
 }
@@ -89,37 +89,37 @@
 	return [impl_ digitalReadAll];
 }
 
-- (int) digitalWrite:(int)pin value:(int)value
+- (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
 {
 	return [impl_ digitalWrite:pin value:value];
 }
 
-- (int) digitalWriteAll:(int)value
+- (KonashiResult) digitalWriteAll:(int)value
 {
 	return [impl_ digitalWriteAll:value];
 }
 
-- (int) pwmMode:(int)pin mode:(int)mode
+- (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
 	return [impl_ pwmMode:pin mode:mode];
 }
 
-- (int) pwmPeriod:(int)pin period:(unsigned int)period
+- (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period
 {
 	return [impl_ pwmPeriod:pin period:period];
 }
 
-- (int) pwmDuty:(int)pin duty:(unsigned int)duty
+- (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty
 {
 	return [impl_ pwmDuty:pin duty:duty];
 }
 
-- (int) pwmLedDrive:(int)pin dutyRatio:(int)ratio
+- (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
 	return [impl_ pwmLedDrive:pin dutyRatio:ratio];
 }
 
-- (int) readValueAio:(int)pin
+- (KonashiResult) readValueAio:(KonashiAnalogIOPin)pin
 {
 	return [impl_ readValueAio:pin];
 }
@@ -129,72 +129,72 @@
 	return [impl_ analogReference];
 }
 
-- (int) analogReadRequest:(int)pin
+- (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
 	return [impl_ analogReadRequest:pin];
 }
 
-- (int) analogRead:(int)pin
+- (int) analogRead:(KonashiAnalogIOPin)pin
 {
 	return [impl_ analogRead:pin];
 }
 
-- (int) analogWrite:(int)pin milliVolt:(int)milliVolt
+- (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
 	return [impl_ analogWrite:pin milliVolt:milliVolt];
 }
 
-- (int) i2cMode:(int)mode
+- (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
 	return [impl_ i2cMode:mode];
 }
 
-- (int) i2cSendCondition:(int)condition
+- (KonashiResult) i2cSendCondition:(KonashiI2CCondition)condition
 {
 	return [impl_ i2cSendCondition:condition];
 }
 
-- (int) i2cStartCondition
+- (KonashiResult) i2cStartCondition
 {
 	return [impl_ i2cStartCondition];
 }
 
-- (int) i2cRestartCondition
+- (KonashiResult) i2cRestartCondition
 {
 	return [impl_ i2cRestartCondition];
 }
 
-- (int) i2cStopCondition
+- (KonashiResult) i2cStopCondition
 {
 	return [impl_ i2cStopCondition];
 }
 
-- (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
+- (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
 	return [impl_ i2cWrite:length data:data address:address];
 }
 
-- (int) i2cReadRequest:(int)length address:(unsigned char)address
+- (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
 	return [impl_ i2cReadRequest:length address:address];
 }
 
-- (int) i2cRead:(int)length data:(unsigned char*)data
+- (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
 {
 	return [impl_ i2cRead:length data:data];
 }
 
-- (int) uartMode:(int)mode
+- (KonashiResult) uartMode:(KonashiUartMode)mode
 {
 	return [impl_ uartMode:mode];
 }
 
-- (int) uartBaudrate:(int)baudrate
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
 {
 	return [impl_ uartBaudrate:baudrate];
 }
 
-- (int) uartWrite:(unsigned char)data
+- (KonashiResult) uartWrite:(unsigned char)data
 {
 	return [impl_ uartWrite:data];
 }
@@ -204,12 +204,12 @@
 	return [impl_ uartRead];
 }
 
-- (int) reset
+- (KonashiResult) reset
 {
 	return [impl_ reset];
 }
 
-- (int) batteryLevelReadRequest
+- (KonashiResult) batteryLevelReadRequest
 {
 	return [impl_ batteryLevelReadRequest];
 }
@@ -219,7 +219,7 @@
 	return [impl_ batteryLevelRead];
 }
 
-- (int) signalStrengthReadRequest
+- (KonashiResult) signalStrengthReadRequest
 {
 	return [impl_ signalStrengthReadRequest];
 }

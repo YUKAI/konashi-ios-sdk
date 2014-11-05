@@ -538,7 +538,7 @@ static NSInteger const i2cDataMaxLength = 20;
 
 - (int) analogReference
 {
-	return KonashiAnalogReference;
+	return 1300;
 }
 
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
@@ -563,7 +563,7 @@ static NSInteger const i2cDataMaxLength = 20;
 
 - (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= KonashiAnalogReference &&
+	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= [self analogReference] &&
        self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
         Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
 		[self writeData:[NSData dataWithBytes:t length:3] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] analogDriveUUID]];
