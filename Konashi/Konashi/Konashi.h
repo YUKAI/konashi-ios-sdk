@@ -25,7 +25,6 @@
 #import "KonashiConstant.h"
 #import "KNSPeripheralImpls.h"
 #import "KNSPeripheral.h"
-#import "KNSUUIDExtern.h"
 #import "Konashi+JavaScriptCore.h"
 
 // Konashi interface
