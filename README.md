@@ -16,8 +16,9 @@ Physical computing toolkit for smartphones and tablets
 以下の様な Podfile を作成。(ios6.1を指定)
 
 ```
+source "https://github.com/CocoaPods/Specs.git"
 platform :ios, "6.1"
-pod "konashi-ios-sdk"
+pod "konashi-ios-sdk", "~> 2.0"
 ```
 
 そして
