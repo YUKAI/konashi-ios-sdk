@@ -36,6 +36,11 @@
 			analogValue[i] = 0;
 		}
 		
+		//I2C
+		i2cSetting = KonashiI2CModeDisable;
+		i2cReadDataLength = 0;
+		i2cReadAddress = 0;
+		
 		// UART
 		uartSetting = KonashiUartModeDisable;
 		uartBaudrate = KonashiUartBaudrateRate9K6;
@@ -175,6 +180,12 @@
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO2DidUpdateNotification object:nil];
+		}
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] i2cReadUUID]]) {
+			i2cReadData = [characteristic.value copy];
+			// [0]: MSB
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventI2CReadCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
 			[characteristic.value getBytes:&uartRxData length:1];
@@ -764,6 +775,40 @@
 		
 		[self writeData:[NSData dataWithBytes:t length:length + 2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cWriteUUID]];
 		
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
+
+- (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
+{
+	if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
+	   self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
+		
+		// set variables
+		i2cReadAddress = (address<<1)|0x1;
+		i2cReadDataLength = length;
+		
+		// Set read params
+		Byte t[] = {length, i2cReadAddress};
+		[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadParamUUID]];
+		
+		// Request read i2c value
+		[self readDataWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadUUID]];
+		
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
+
+- (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
+{
+	if(length==i2cReadDataLength){
+		[i2cReadData getBytes:data length:length];
 		return KonashiResultSuccess;
 	}
 	else{

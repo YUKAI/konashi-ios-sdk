@@ -12,10 +12,6 @@
 static NSInteger const i2cDataMaxLength = 20;
 
 @interface KNSKonashiPeripheralImpl ()
-{
-	// I2C
-	unsigned char i2cReadData[i2cDataMaxLength];
-}
 
 @end
 
@@ -197,81 +193,11 @@ static NSInteger const i2cDataMaxLength = 20;
 	return kns_CreateUUIDFromString(@"3015", uuid);
 }
 
-- (instancetype)initWithPeripheral:(CBPeripheral *)p
-{
-	self = [super initWithPeripheral:p];
-	if (self) {
-		// I2C
-		i2cSetting = KonashiI2CModeDisable;
-		for (NSInteger i = 0; i < [[self class] i2cDataMaxLength]; i++) {
-			i2cReadData[i] = 0;
-		}
-		i2cReadDataLength = 0;
-		i2cReadAddress = 0;
-	}
-	
-	return self;
-}
-
-- (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
-{
-	if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
-       self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
-        
-        // set variables
-        i2cReadAddress = (address<<1)|0x1;
-        i2cReadDataLength = length;
-        
-        // Set read params
-        Byte t[] = {length, i2cReadAddress};
-		[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadParamUUID]];
-
-        
-        // Request read i2c value
-		[self readDataWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] i2cReadUUID]];
-        
-        return KonashiResultSuccess;
-    }
-    else{
-        return KonashiResultFailure;
-    }
-}
-
-- (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
-{
-	int i;
-	
-    if(length==i2cReadDataLength){
-        for(i=0; i<i2cReadDataLength;i++){
-            data[i] = i2cReadData[i];
-        }
-        return KonashiResultSuccess;
-    }
-    else{
-        return KonashiResultFailure;
-    }
-}
-
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)serviceUUID characteristicUUID:(CBUUID*)characteristicUUID
 {
 	[super writeData:data serviceUUID:serviceUUID characteristicUUID:characteristicUUID];
     // konashi needs to sleep to get I2C right
     [NSThread sleepForTimeInterval:0.03];
-}
-
-#pragma mark - CBPeripheralDelegate
-
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
-	[super peripheral:peripheral didUpdateValueForCharacteristic:characteristic error:error];
-	if (!error) {
-		if ([characteristic.UUID kns_isEqualToUUID:[[self class] i2cReadUUID]]) {
-			[characteristic.value getBytes:i2cReadData length:i2cReadDataLength];
-			// [0]: MSB
-			
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventI2CReadCompleteNotification object:nil];
-		}
-	}
 }
 
 @end

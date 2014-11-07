@@ -39,6 +39,7 @@
 	unsigned char uartRxData;
 	
 	// I2C
+	NSData *i2cReadData;
 	unsigned char i2cSetting;
 	unsigned char i2cReadDataLength;
 	unsigned char i2cReadAddress;
