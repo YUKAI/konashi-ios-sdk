@@ -26,31 +26,6 @@ static NSInteger const i2cDataMaxLength = 20;
 	return i2cDataMaxLength;
 }
 
-+ (NSInteger)levelServiceReadLength
-{
-	return 1;
-}
-
-+ (NSInteger)pioInputNotificationReadLength
-{
-	return 1;
-}
-
-+ (NSInteger)analogReadLength
-{
-	return 2;
-}
-
-+ (NSInteger)uartRX_NotificationReadLength
-{
-	return 1;
-}
-
-+ (NSInteger)hardwareLowBatteryNotificationReadLength
-{
-	return 1;
-}
-
 // UUID
 + (CBUUID *)batteryServiceUUID
 {

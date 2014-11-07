@@ -11,6 +11,13 @@
 @protocol KNSPeripheralImplProtocol <NSObject>
 
 @required
++ (NSInteger)i2cDataMaxLength;
++ (NSInteger)levelServiceReadLength;
++ (NSInteger)pioInputNotificationReadLength;
++ (NSInteger)analogReadLength;
++ (NSInteger)uartRX_NotificationReadLength;
++ (NSInteger)hardwareLowBatteryNotificationReadLength;
+
 // UUID
 + (CBUUID *)batteryServiceUUID;
 + (CBUUID *)levelServiceUUID;
@@ -104,12 +111,5 @@
 
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
-
-+ (NSInteger)i2cDataMaxLength;
-+ (NSInteger)levelServiceReadLength;
-+ (NSInteger)pioInputNotificationReadLength;
-+ (NSInteger)analogReadLength;
-+ (NSInteger)uartRX_NotificationReadLength;
-+ (NSInteger)hardwareLowBatteryNotificationReadLength;
 
 @end
