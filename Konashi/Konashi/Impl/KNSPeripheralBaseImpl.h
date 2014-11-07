@@ -12,8 +12,9 @@
 #import "CBUUID+Konashi.h"
 #import "CBService+Konashi.h"
 #import "CBPeripheral+Konashi.h"
+#import "KNSPeripheralImplProtocol.h"
 
-@interface KNSPeripheralBaseImpl : NSObject <CBPeripheralDelegate>
+@interface KNSPeripheralBaseImpl : NSObject <CBPeripheralDelegate, KNSPeripheralImplProtocol>
 {
 	// status
 	BOOL isCallFind;
@@ -36,6 +37,12 @@
 	unsigned char uartSetting;
 	unsigned char uartBaudrate;
 	unsigned char uartRxData;
+	
+	// I2C
+	NSData *i2cReadData;
+	unsigned char i2cSetting;
+	unsigned char i2cReadDataLength;
+	unsigned char i2cReadAddress;
 	
 	// Hardware
 	int batteryLevel;
