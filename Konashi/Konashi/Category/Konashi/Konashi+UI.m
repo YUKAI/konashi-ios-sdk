@@ -44,7 +44,7 @@
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	[self performSelector:@selector(postNotification:) withObject:KONASHI_EVENT_PERIPHERAL_SELECTOR_DISMISSED];
+	[self performSelector:@selector(postNotification:) withObject:KonashiEventPeripheralSelectorDismissedNotification];
 }
 
 @end

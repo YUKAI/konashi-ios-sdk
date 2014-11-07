@@ -21,9 +21,9 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(recvUartRx) name:KONASHI_EVENT_UART_RX_COMPLETE];
+    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [Konashi addObserver:self selector:@selector(recvUartRx) name:KonashiEventUartRxCompleteNotification];
 }
 
 - (void)didReceiveMemoryWarning
