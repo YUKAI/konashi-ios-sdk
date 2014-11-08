@@ -66,10 +66,6 @@
 + (KonashiResult) pinModeAll:(int)mode;
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
 + (KonashiResult) pinPullupAll:(int)mode;
-+ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin;
-+ (int) digitalReadAll;
-+ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
-+ (KonashiResult) digitalWriteAll:(int)value;
 
 // PWM methods
 + (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
@@ -80,7 +76,6 @@
 // Analog IO methods
 + (int) analogReference;
 + (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
-+ (int) analogRead:(KonashiAnalogIOPin)pin;
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
 
 // I2C methods
@@ -90,21 +85,16 @@
 + (KonashiResult) i2cStopCondition;
 + (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
-+ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
 
 // UART methods
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
 + (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
 + (KonashiResult) uartWrite:(unsigned char)data;
-+ (unsigned char) uartRead;
 
 // Konashi hardware methods
 + (KonashiResult) reset;
 + (KonashiResult) batteryLevelReadRequest;
-+ (int) batteryLevelRead;
 + (KonashiResult) signalStrengthReadRequest;
-+ (int) signalStrengthRead;
-
 
 // Konashi event methods
 + (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;

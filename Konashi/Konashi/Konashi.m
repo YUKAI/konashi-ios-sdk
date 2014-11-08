@@ -111,26 +111,6 @@
     return [[Konashi shared].activePeripheral pinPullupAll:mode];
 }
 
-+ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
-{
-    return [[Konashi shared].activePeripheral digitalRead:pin];
-}
-
-+ (int) digitalReadAll
-{
-    return [[Konashi shared].activePeripheral digitalReadAll];
-}
-
-+ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
-{
-    return [[Konashi shared].activePeripheral digitalWrite:pin value:value];
-}
-
-+ (KonashiResult) digitalWriteAll:(int)value
-{
-    return [[Konashi shared].activePeripheral digitalWriteAll:value];
-}
-
 #pragma mark -
 #pragma mark - Konashi PWM public methods
 
@@ -165,11 +145,6 @@
 + (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
     return [[Konashi shared].activePeripheral analogReadRequest:pin];
-}
-
-+ (int) analogRead:(KonashiAnalogIOPin)pin
-{
-    return [[Konashi shared].activePeripheral analogRead:pin];
 }
 
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
@@ -210,14 +185,6 @@
     return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
 }
 
-+ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
-{
-    return [[Konashi shared].activePeripheral i2cRead:length data:data];
-}
-
-
-
-
 #pragma mark -
 #pragma mark - Konashi UART public methods
 
@@ -236,14 +203,6 @@
     return [[Konashi shared].activePeripheral uartWrite:data];
 }
 
-+ (unsigned char) uartRead
-{
-    return [[Konashi shared].activePeripheral uartRead];
-}
-
-
-
-
 #pragma mark -
 #pragma mark - Konashi hardware public methods
 
@@ -255,11 +214,6 @@
 + (KonashiResult) batteryLevelReadRequest
 {
     return [[Konashi shared].activePeripheral batteryLevelReadRequest];
-}
-
-+ (int) batteryLevelRead
-{
-    return [[Konashi shared].activePeripheral batteryLevelRead];
 }
 
 + (KonashiResult) signalStrengthReadRequest

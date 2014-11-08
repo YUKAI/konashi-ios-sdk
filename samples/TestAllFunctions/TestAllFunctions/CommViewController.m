@@ -7,6 +7,7 @@
 
 #import "CommViewController.h"
 #import "Konashi.h"
+#import "Konashi+LegacyAPI.h"
 
 @interface CommViewController ()
 
