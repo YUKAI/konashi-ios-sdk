@@ -51,6 +51,13 @@
 
     // 入力状態の変化イベントハンドラ
     [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventDigitalIODidUpdateNotification];
+	
+	[Konashi shared].digitalInputDidChangeValueHandler = ^(KonashiDigitalIOPin pin, int value) {
+		NSLog(@"pio input changed:%d(pin:%d)", value, pin);
+	};
+	[Konashi shared].digitalOutputDidChangeValueHandler = ^(KonashiDigitalIOPin pin, int value) {
+		NSLog(@"pio output changed:%d(pin:%d)", value, pin);
+	};
 }
 
 - (void)didReceiveMemoryWarning

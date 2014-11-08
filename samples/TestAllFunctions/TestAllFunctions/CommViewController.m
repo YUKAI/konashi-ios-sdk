@@ -22,10 +22,16 @@
     // UART系のイベントハンドラ
     [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
     [Konashi addObserver:self selector:@selector(onUartRx) name:KonashiEventUartRxCompleteNotification];
+	[Konashi shared].uartRxCompleteHandler = ^(unsigned char value) {
+		NSLog(@"uart RX complete:%d", value);
+	};
     
     // I2C系のイベントハンドラ
     [self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
     [Konashi addObserver:self selector:@selector(onI2cRecv) name:KonashiEventI2CReadCompleteNotification];
+	[Konashi shared].i2cReadCompleteHandler = ^(NSData *data) {
+		NSLog(@"i2c read complete:%@", [data description]);
+	};
 }
 
 - (void)didReceiveMemoryWarning

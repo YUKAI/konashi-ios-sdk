@@ -131,9 +131,6 @@
     return [[Konashi shared].activePeripheral digitalWriteAll:value];
 }
 
-
-
-
 #pragma mark -
 #pragma mark - Konashi PWM public methods
 
@@ -157,9 +154,6 @@
     return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
 }
 
-
-
-
 #pragma mark -
 #pragma mark - Konashi analog IO public methods
 
@@ -182,9 +176,6 @@
 {
     return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
 }
-
-
-
 
 #pragma mark -
 #pragma mark - Konashi I2C public methods
@@ -276,14 +267,62 @@
     return [[Konashi shared].activePeripheral signalStrengthReadRequest];
 }
 
-+ (int) signalStrengthRead
+#pragma mark -
+#pragma mark - Blocks
+
+- (void)setConnectedHander:(KonashiEventHandler)connectedHander
 {
-    return [[Konashi shared].activePeripheral signalStrengthRead];
+	_connectedHander = [connectedHander copy];
+	_activePeripheral.connectedHander = connectedHander;
 }
 
+- (void)setReadyHander:(KonashiEventHandler)readyHander
+{
+	_readyHander = [readyHander copy];
+	_activePeripheral.readyHander = readyHander;
+}
 
+- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+{
+	_digitalInputDidChangeValueHandler = [digitalInputDidChangeValueHandler copy];
+	_activePeripheral.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+}
 
+- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+{
+	_digitalOutputDidChangeValueHandler = [digitalOutputDidChangeValueHandler copy];
+	_activePeripheral.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
+}
 
+- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+{
+	_analogPinDidChangeValueHandler = [analogPinDidChangeValueHandler copy];
+	_activePeripheral.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
+{
+	_uartRxCompleteHandler = [uartRxCompleteHandler copy];
+	_activePeripheral.uartRxCompleteHandler = uartRxCompleteHandler;
+}
+
+- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+{
+	_i2cReadCompleteHandler = [i2cReadCompleteHandler copy];
+	_activePeripheral.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+{
+	_batteryLevelDidUpdateHandler = [batteryLevelDidUpdateHandler copy];
+	_activePeripheral.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+}
+
+- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+{
+	_signalStrengthDidUpdateHandler = [signalStrengthDidUpdateHandler copy];
+	_activePeripheral.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+}
 
 #pragma mark -
 #pragma mark - Konashi public event methods
@@ -308,9 +347,6 @@
     NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
     [[NSNotificationCenter defaultCenter] postNotification:n];
 }
-
-
-
 
 #pragma mark -
 #pragma mark - Konashi control private methods
@@ -520,12 +556,18 @@
 {
     KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", peripheral.identifier.UUIDString);
 	_activePeripheral = [[KNSPeripheral alloc] initWithPeripheral:peripheral];
+	_activePeripheral.connectedHander = self.connectedHander;
+	_activePeripheral.readyHander = self.readyHander;
+	_activePeripheral.batteryLevelDidUpdateHandler = self.batteryLevelDidUpdateHandler;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
-    
+	
+	if (self.disconnectedHander) {
+		self.disconnectedHander();
+	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
 

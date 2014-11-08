@@ -38,6 +38,17 @@
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;
 
+@property (nonatomic, copy) KonashiEventHandler connectedHander;
+@property (nonatomic, copy) KonashiEventHandler disconnectedHander;
+@property (nonatomic, copy) KonashiEventHandler readyHander;
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
+@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
+@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
+@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
+@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
+@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
+
 // Singleton
 + (Konashi *) shared;
 

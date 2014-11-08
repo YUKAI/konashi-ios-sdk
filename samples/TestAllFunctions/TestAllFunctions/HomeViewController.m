@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "Konashi.h"
+#import "Konashi+LegacyAPI.h"
 
 @interface HomeViewController ()
 
@@ -21,13 +22,29 @@
     
     // コネクション系
     [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+	[Konashi shared].connectedHander = ^() {
+		NSLog(@"connected");
+	};
     [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	[Konashi shared].readyHander = ^() {
+		NSLog(@"ready to use");
+	};
+	
+	[Konashi shared].disconnectedHander = ^() {
+		NSLog(@"disconnected");
+	};
     
     // 電波強度
     [Konashi addObserver:self selector:@selector(updateRSSI) name:KonashiEventSignalStrengthDidUpdateNotification];
-
+	[Konashi shared].signalStrengthDidUpdateHandler = ^(int value) {
+		NSLog(@"RSSI did update:%d", value);
+	};
+	
     // バッテリー
     [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KonashiEventBatteryLevelDidUpdateNotification];
+	[Konashi shared].batteryLevelDidUpdateHandler = ^(int value) {
+		NSLog(@"battery level did update:%d", value);
+	};
 }
 
 - (void)didReceiveMemoryWarning
