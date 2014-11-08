@@ -20,6 +20,8 @@
 	KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl_;
 }
 
+@property (nonatomic, readonly) NSString *softwareRevisionString;
+
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
 - (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

@@ -133,8 +133,10 @@
 			KNS_LOG(@"Finished discovering all services' characteristics");
 			// set konashi property
 			_ready = YES;
-			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
+			
+			//read software revision string
+			[self readDataWithServiceUUID:[CBUUID UUIDWithString:@"180a"] characteristicUUID:[CBUUID UUIDWithString:@"2a28"]];
 			
 			// Enable PIO input notification
 			[self enablePIOInputNotification];
@@ -198,6 +200,10 @@
 			batteryLevel = byte[0];
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventBatteryLevelDidUpdateNotification object:nil];
+		}
+		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:@"2a28"]]) {
+			_softwareRevisionString = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventFoundSoftwareRevisionStringNotification object:nil];
 		}
 	}
 }
