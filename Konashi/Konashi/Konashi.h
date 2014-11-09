@@ -27,7 +27,6 @@
 #import "KNSPeripheral.h"
 #import "KNSHandlerManager.h"
 
-// Konashi interface
 @interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 {
 	NSString *findName;
@@ -40,6 +39,10 @@
 }
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;
+
+/// ---------------------------------
+/// @name Event handler
+/// ---------------------------------
 
 /**
  *  このHandlerはKonashiが接続された際に呼び出されます。
@@ -91,7 +94,15 @@
  */
 @property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
-// Singleton
+/// ---------------------------------
+/// @name Basic method
+/// ---------------------------------
+
+/**
+ *  シングルトンを取得します。
+ *
+ *  @return Konashiのインスタンス。
+ */
 + (Konashi *) shared;
 
 /**
@@ -105,7 +116,7 @@
 
 /**
  *  iPhone周辺のkonashiを探します。
- *	この関数を実行した後、周りにあるkonashiのリストが出現します。リストに列挙されているkonashiのひとつをクリックすると、konashiに自動的に接続されます。その後、KonashiEventConnectedNotification と KonashiEventReadyToUseNotification のイベントが発行されます。
+ *	この関数を実行した後、周りにあるkonashiのリストが出現します。リストに列挙されているkonashiのひとつをクリックすると、konashiに自動的に接続されます。その後、KonashiEventConnectedNotification と KonashiEventReadyToUseNotification が発行されます。
  *
  *	@warning 本来、KonashiEventCentralManagerPowerOnNotification のイベント以前に find を実行しても無効ですが、この場合に限り、KonashiEventCentralManagerPowerOnNotification のイベント後に自動的に find が遅延実行されるように調整されています。
  *
@@ -156,6 +167,10 @@
  */
 + (NSString *)peripheralName;
 
+/// ---------------------------------
+/// @name Digital I/O (PIO)
+/// ---------------------------------
+
 /**
  *  PIOのピンを入力として使うか、出力として使うかの設定を行います。
  *
@@ -198,33 +213,224 @@
  */
 + (KonashiResult) pinPullupAll:(int)mode;
 
-// PWM methods
+/**
+ *  PIOの特定のピンの出力状態を設定します。
+ *
+ *  @param pin   PIOのピン名。
+ *  @param value 設定するPIOの出力状態。KonashiLevelHigh もしくは KonashiLevelLow が指定可能です。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
+
+/**
+ *  PIOの特定のピンの出力状態を設定します。
+ *	この関数での引数は、PIO0〜PIO7の出力状態が8bit(1byte)で表現されます。bitとピンの対応は以下です。
+ *
+ *  @param value PIO0〜PIO7の出力に設定する値。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) digitalWriteAll:(int)value;
+
+/// ---------------------------------
+/// @name PWM
+/// ---------------------------------
+
+/**
+ *  PIO の指定のピンを PWM として使用する/しないかを設定します。
+ *	PIO のいずれのピンも PWMモード に設定できます。
+ *
+ *  @param pin  PWMモードの設定をするPIOのピン名。
+ *  @param mode 設定するPWMのモード。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
+
+/**
+ *  指定のピンのPWM周期を設定します。
+ *	周期の単位はマイクロ秒(us)で指定してください。
+ *
+ *  @param pin    PIOのピン名。
+ *  @param period 周期。単位はマイクロ秒(us)で32bitで指定してください。最大2^32us = 71.5分です。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
+
+/**
+ *  指定のピンのPWMのデューティ(ONになっている時間)を設定します。
+ *	単位はマイクロ秒(us)で指定してください。
+ *
+ *  @param pin  PIOのピン名。
+ *  @param duty デューティ。単位はマイクロ秒(us)で32bitで指定してください。最大2^32us = 71.5分です。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
+
+/**
+ *  指定のピンのLEDの明るさを0%〜100%で指定します。
+ *	pwmLedDrive 関数を使うには pwmMode で KonashiPWMModeEnableLED を指定してください。
+ *
+ *  @param pin   PIOのピン名。
+ *  @param ratio LEDの明るさ。0〜100 をしてしてください。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
-// Analog IO methods
+/// ---------------------------------
+/// @name Analog I/O (AIO)
+/// ---------------------------------
+
+/**
+ *  アナログ入出力の基準電圧を返します。
+ *
+ *  @return アナログ入出力の基準電圧(mV)。
+ */
 + (int) analogReference;
+
+/**
+ *  AIO の指定のピンの入力電圧を取得するリクエストを konashi に送ります。
+ *	入力電圧の取得が完了した際は KonashiEventAnalogIODidUpdateNotification が発行されます。
+ *
+ *  @param pin AIOのピン名。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
+
+/**
+ *  AIO の指定のピンに任意の電圧を出力します。
+ *
+ *  @param pin       AIOのピン名。
+ *  @param milliVolt 設定する電圧をmVで指定します。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
 
-// I2C methods
+/// ---------------------------------
+/// @name I2C
+/// ---------------------------------
+
+/**
+ *  I2C を有効/無効を設定します。
+ *
+ *  @param mode 設定するI2Cのモード。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cMode:(KonashiI2CMode)mode;
+
+/**
+ *  I2C のスタートコンディションを発行します。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cStartCondition;
+
+/**
+ *  I2C のリスタートコンディションを発行します。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cRestartCondition;
+
+/**
+ *  I2C のストップコンディションを発行します。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cStopCondition;
+
+/**
+ *  I2C で指定したアドレスにデータを書き込みます。
+ 
+ 事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @param length  書き込むデータの長さ(byte)
+ *  @param data    書き込むデータ
+ *  @param address 書き込み先アドレス
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
+
+/**
+ *  I2C で指定したアドレスからデータを読み込むリクエストを行います。
+ *	この関数はリクエストを行うだけでデータは取得できません。
+ *
+ *  @param length  読み込むデータの長さ
+ *  @param address 読み込み先のアドレス
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
 
-// UART methods
+/// ---------------------------------
+/// @name UART
+/// ---------------------------------
+
+/**
+ *  UART の有効/無効を設定します。
+ *	有効にする前に、uartBaudrate でボーレートを設定しておいてください。
+ *
+ *  @param mode 設定するUARTのモード。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
+
+/**
+ *  UART の通信速度を設定します。
+ *
+ *  @param baudrate UARTの通信速度。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
+
+/**
+ *  UART でデータを送信します。
+ *
+ *  @param data 送信するデータ。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) uartWrite:(unsigned char)data;
 
-// Konashi hardware methods
+/// ---------------------------------
+/// @name Hardware Control
+/// ---------------------------------
+
+/**
+ *  konashi を再起動します。
+ *	konashi が再起動すると、自動的にBLEのコネクションは切断されてしまいます。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) reset;
+
+/**
+ *  konashi のバッテリ残量を取得するリクエストを konashi に送ります。
+ *	値の取得が成功した際には KonashiEventBatteryLevelDidUpdateNotification が発行されます。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) batteryLevelReadRequest;
+
+/**
+ *  konashi の電波強度を取得するリクエストを行います。
+ *	値の取得が成功した際には KonashiEventSignalStrengthDidUpdateNotification が発行されます。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) signalStrengthReadRequest;
 
 // Konashi event methods
