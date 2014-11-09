@@ -203,7 +203,7 @@
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:@"2a28"]]) {
 			_softwareRevisionString = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventFoundSoftwareRevisionStringNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
 		}
 	}
 }

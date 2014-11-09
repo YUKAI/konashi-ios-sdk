@@ -47,7 +47,7 @@ static NSString *const KonashiEventUartRxCompleteNotification = @"KonashiEventUa
 static NSString *const KonashiEventBatteryLevelDidUpdateNotification = @"KonashiEventUpdateBatteryLevel";
 static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"KonashiEventUpdateSignalStrength";
 
-static NSString *const KonashiEventFoundSoftwareRevisionStringNotification = @"KonashiEventFoundSoftwareRevisionStringNotification";
+static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
 static NSTimeInterval const KonashiFindTimeoutInterval = 2;
 
