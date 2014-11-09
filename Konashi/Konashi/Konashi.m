@@ -224,15 +224,15 @@
 #pragma mark -
 #pragma mark - Blocks
 
-- (void)setConnectedHander:(KonashiEventHandler)connectedHander
+- (void)setConnectedHandler:(KonashiEventHandler)connectedHander
 {
-	_connectedHander = [connectedHander copy];
+	_connectedHandler = [connectedHander copy];
 	_activePeripheral.connectedHander = connectedHander;
 }
 
-- (void)setReadyHander:(KonashiEventHandler)readyHander
+- (void)setReadyHandler:(KonashiEventHandler)readyHander
 {
-	_readyHander = [readyHander copy];
+	_readyHandler = [readyHander copy];
 	_activePeripheral.readyHander = readyHander;
 }
 
@@ -510,8 +510,8 @@
 {
     KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", peripheral.identifier.UUIDString);
 	_activePeripheral = [[KNSPeripheral alloc] initWithPeripheral:peripheral];
-	_activePeripheral.connectedHander = self.connectedHander;
-	_activePeripheral.readyHander = self.readyHander;
+	_activePeripheral.connectedHander = self.connectedHandler;
+	_activePeripheral.readyHander = self.readyHandler;
 	_activePeripheral.batteryLevelDidUpdateHandler = self.batteryLevelDidUpdateHandler;
 }
 
@@ -519,8 +519,8 @@
 {
     KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
 	
-	if (self.disconnectedHander) {
-		self.disconnectedHander();
+	if (self.disconnectedHandler) {
+		self.disconnectedHandler();
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }

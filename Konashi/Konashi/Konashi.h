@@ -38,9 +38,9 @@
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;
 
-@property (nonatomic, copy) KonashiEventHandler connectedHander;
-@property (nonatomic, copy) KonashiEventHandler disconnectedHander;
-@property (nonatomic, copy) KonashiEventHandler readyHander;
+@property (nonatomic, copy) KonashiEventHandler connectedHandler;
+@property (nonatomic, copy) KonashiEventHandler disconnectedHandler;
+@property (nonatomic, copy) KonashiEventHandler readyHandler;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
 @property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
