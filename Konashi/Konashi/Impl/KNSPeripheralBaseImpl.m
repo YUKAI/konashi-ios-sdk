@@ -162,12 +162,16 @@
 	
 	if (!error) {
 		if ([characteristic.UUID kns_isEqualToUUID:[[self class] pioInputNotificationUUID]]) {
+			// byteに更新されたPIOの値を格納する。
 			[characteristic.value getBytes:&byte length:[[self class] pioInputNotificationReadLength]];
+			// 更新前の値と最新の値のXORを取り、変化したpinの値を取得(8bitで表現される。変化あり:1/変化なし:0)。
 			int xor = (pioByte[0] ^ byte[0]) & (0xff ^ pioSetting);
+			// 次回更新時の値と比較するために現在の値はpioByteに格納しておく。
 			[characteristic.value getBytes:&pioByte length:[[self class] pioInputNotificationReadLength]];
 			pioInput = byte[0];
 			if (self.digitalInputDidChangeValueHandler) {
 				for (int i = 7; i >= 0; i--) {
+					// 各bitに対して更新されたか確認する。
 					if (xor & 1 << i) {
 						self.digitalInputDidChangeValueHandler(i, [self digitalRead:i]);
 					}
