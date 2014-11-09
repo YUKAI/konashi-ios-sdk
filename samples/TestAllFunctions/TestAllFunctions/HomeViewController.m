@@ -22,15 +22,15 @@
     
     // コネクション系
     [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
-	[Konashi shared].connectedHander = ^() {
+	[Konashi shared].connectedHandler = ^() {
 		NSLog(@"connected");
 	};
     [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-	[Konashi shared].readyHander = ^() {
+	[Konashi shared].readyHandler = ^() {
 		NSLog(@"ready to use");
 	};
 	
-	[Konashi shared].disconnectedHander = ^() {
+	[Konashi shared].disconnectedHandler = ^() {
 		NSLog(@"disconnected");
 	};
     

@@ -14,21 +14,14 @@
 #import "CBUUID+Konashi.h"
 #import "CBService+Konashi.h"
 #import "CBPeripheral+Konashi.h"
+#import "KNSHandlerManager.h"
 
 @interface KNSPeripheral : NSObject <CBPeripheralDelegate>
 {
 	KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl_;
 }
 
-@property (nonatomic, copy) KonashiEventHandler connectedHander;
-@property (nonatomic, copy) KonashiEventHandler readyHander;
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
-@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
-@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
-@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
-@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
-@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
+@property (nonatomic, weak) 	KNSHandlerManager *handlerManager;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

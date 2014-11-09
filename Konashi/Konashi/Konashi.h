@@ -25,6 +25,7 @@
 #import "KonashiConstant.h"
 #import "KNSPeripheralImpls.h"
 #import "KNSPeripheral.h"
+#import "KNSHandlerManager.h"
 
 // Konashi interface
 @interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
@@ -34,6 +35,8 @@
 	BOOL isCallFind;
     NSMutableArray *peripherals;
     CBCentralManager *cm;
+	
+	KNSHandlerManager *handlerManager;
 }
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;

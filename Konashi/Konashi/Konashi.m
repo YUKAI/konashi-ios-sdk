@@ -222,60 +222,63 @@
 }
 
 #pragma mark -
+
+- (instancetype)init
+{
+	self = [super init];
+	if (self) {
+		handlerManager = [KNSHandlerManager new];
+	}
+	
+	return self;
+}
+
+#pragma mark -
 #pragma mark - Blocks
 
 - (void)setConnectedHandler:(KonashiEventHandler)connectedHander
 {
-	_connectedHandler = [connectedHander copy];
-	_activePeripheral.connectedHander = connectedHander;
+	handlerManager.connectedHandler = connectedHander;
 }
 
 - (void)setReadyHandler:(KonashiEventHandler)readyHander
 {
-	_readyHandler = [readyHander copy];
-	_activePeripheral.readyHander = readyHander;
+	handlerManager.readyHandler = readyHander;
 }
 
 - (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
 {
-	_digitalInputDidChangeValueHandler = [digitalInputDidChangeValueHandler copy];
-	_activePeripheral.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+	handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
 }
 
 - (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
 {
-	_digitalOutputDidChangeValueHandler = [digitalOutputDidChangeValueHandler copy];
-	_activePeripheral.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
+	handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
 - (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
 {
-	_analogPinDidChangeValueHandler = [analogPinDidChangeValueHandler copy];
-	_activePeripheral.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+	handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
 }
 
 - (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
 {
-	_uartRxCompleteHandler = [uartRxCompleteHandler copy];
-	_activePeripheral.uartRxCompleteHandler = uartRxCompleteHandler;
+	handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
 }
 
 - (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
 {
-	_i2cReadCompleteHandler = [i2cReadCompleteHandler copy];
-	_activePeripheral.i2cReadCompleteHandler = i2cReadCompleteHandler;
+	handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
 }
 
 - (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
 {
-	_batteryLevelDidUpdateHandler = [batteryLevelDidUpdateHandler copy];
-	_activePeripheral.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+	handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
 }
 
 - (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
 {
-	_signalStrengthDidUpdateHandler = [signalStrengthDidUpdateHandler copy];
-	_activePeripheral.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+	handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
 }
 
 #pragma mark -
@@ -510,9 +513,7 @@
 {
     KNS_LOG(@"Connect to peripheral with UUID : %@ successfull", peripheral.identifier.UUIDString);
 	_activePeripheral = [[KNSPeripheral alloc] initWithPeripheral:peripheral];
-	_activePeripheral.connectedHander = self.connectedHandler;
-	_activePeripheral.readyHander = self.readyHandler;
-	_activePeripheral.batteryLevelDidUpdateHandler = self.batteryLevelDidUpdateHandler;
+	_activePeripheral.handlerManager = handlerManager;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error

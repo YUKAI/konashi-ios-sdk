@@ -22,48 +22,6 @@
 	return self;
 }
 
-- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
-{
-	_digitalInputDidChangeValueHandler = [digitalInputDidChangeValueHandler copy];
-	impl_.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
-}
-
-- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
-{
-	_digitalOutputDidChangeValueHandler = [_digitalOutputDidChangeValueHandler copy];
-	impl_.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
-}
-
-- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
-{
-	_analogPinDidChangeValueHandler = [analogPinDidChangeValueHandler copy];
-	impl_.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
-}
-
-- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
-{
-	_uartRxCompleteHandler = [uartRxCompleteHandler copy];
-	impl_.uartRxCompleteHandler = uartRxCompleteHandler;
-}
-
-- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
-{
-	_i2cReadCompleteHandler = [i2cReadCompleteHandler copy];
-	impl_.i2cReadCompleteHandler = i2cReadCompleteHandler;
-}
-
-- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
-{
-	_batteryLevelDidUpdateHandler = [batteryLevelDidUpdateHandler copy];
-	impl_.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
-}
-
-- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
-{
-	_signalStrengthDidUpdateHandler = [signalStrengthDidUpdateHandler copy];
-	impl_.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
-}
-
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
 {
 	[impl_ writeData:data serviceUUID:uuid characteristicUUID:charasteristicUUID];
@@ -287,18 +245,10 @@
 	}
 	
 	if (impl_ != nil) {
-		impl_.readyHander = self.readyHander;
-		impl_.digitalInputDidChangeValueHandler = self.digitalInputDidChangeValueHandler;
-		impl_.digitalOutputDidChangeValueHandler = self.digitalOutputDidChangeValueHandler;
-		impl_.analogPinDidChangeValueHandler = self.analogPinDidChangeValueHandler;
-		impl_.uartRxCompleteHandler = self.uartRxCompleteHandler;
-		impl_.i2cReadCompleteHandler = self.i2cReadCompleteHandler;
-		impl_.batteryLevelDidUpdateHandler = self.batteryLevelDidUpdateHandler;
-		impl_.signalStrengthDidUpdateHandler = self.signalStrengthDidUpdateHandler;
-
-		if (self.connectedHander) {
-			self.connectedHander();
+		if (self.handlerManager.connectedHandler) {
+			self.handlerManager.connectedHandler();
 		}
+		impl_.handlerManager = self.handlerManager;
 		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:nil];
 	}
 }
