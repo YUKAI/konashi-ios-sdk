@@ -9,6 +9,16 @@
 #import "KNSPeripheralBaseImpl.h"
 #import "KonashiUtils.h"
 
+// This UUID is defined by Bluetooth SIG
+// see also this page.
+// https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.device_information.xml
+static NSString *const kDeviceInformationServiceUUIDString = @"180a";
+
+// This UUID is defined by Bluetooth SIG
+// see also this page.
+// https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.software_revision_string.xml
+static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28";
+
 @implementation KNSPeripheralBaseImpl
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p
@@ -136,7 +146,7 @@
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			
 			//read software revision string
-			[self readDataWithServiceUUID:[CBUUID UUIDWithString:@"180a"] characteristicUUID:[CBUUID UUIDWithString:@"2a28"]];
+			[self readDataWithServiceUUID:[CBUUID UUIDWithString:kDeviceInformationServiceUUIDString] characteristicUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]];
 			
 			// Enable PIO input notification
 			[self enablePIOInputNotification];
@@ -201,7 +211,7 @@
 			
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventBatteryLevelDidUpdateNotification object:nil];
 		}
-		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:@"2a28"]]) {
+		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]]) {
 			_softwareRevisionString = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
 		}
