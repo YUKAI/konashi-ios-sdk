@@ -22,16 +22,6 @@
 	return [[Konashi shared].activePeripheral digitalReadAll];
 }
 
-+ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
-{
-	return [[Konashi shared].activePeripheral digitalWrite:pin value:value];
-}
-
-+ (KonashiResult) digitalWriteAll:(int)value
-{
-	return [[Konashi shared].activePeripheral digitalWriteAll:value];
-}
-
 #pragma mark - analog
 
 + (int) analogRead:(KonashiAnalogIOPin)pin

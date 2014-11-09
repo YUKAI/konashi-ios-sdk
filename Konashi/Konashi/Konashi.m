@@ -101,6 +101,16 @@
     return [[Konashi shared].activePeripheral pinModeAll:mode];
 }
 
++ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
+{
+	return [[Konashi shared].activePeripheral digitalWrite:pin value:value];
+}
+
++ (KonashiResult) digitalWriteAll:(int)value
+{
+	return [[Konashi shared].activePeripheral digitalWriteAll:value];
+}
+
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
     return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];

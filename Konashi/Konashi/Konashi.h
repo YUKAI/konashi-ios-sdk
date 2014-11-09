@@ -41,15 +41,54 @@
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;
 
+/**
+ *  このHandlerはKonashiが接続された際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiEventHandler connectedHandler;
+
+/**
+ *  このHandlerはKonashiが切断された際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiEventHandler disconnectedHandler;
+
+/**
+ *  このHandlerはKonashiが使用可能状態になった際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiEventHandler readyHandler;
+
+/**
+ *  このHandlerはKonashiPinModeInputに設定されているPIOの値が変化した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
+
+/**
+ *  このHandlerはKonashiPinModeOutputに設定されているPIOの値が変化した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
+
+/**
+ *  このHandlerはAIOの値が変化した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
+
+/**
+ *  このHandlerはUartで値を受信した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
+
+/**
+ *  このHandlerはI2Cで接続されたモジュールからデータを読みだした際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
+
+/**
+ *  このHandlerはバッテリー残量の値を取得した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
+
+/**
+ *  このHandlerはRSSIが変化した際に呼び出されます。
+ */
 @property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
 // Singleton
@@ -67,6 +106,8 @@
 // Digital PIO methods
 + (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
 + (KonashiResult) pinModeAll:(int)mode;
++ (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
++ (KonashiResult) digitalWriteAll:(int)value;
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
 + (KonashiResult) pinPullupAll:(int)mode;
 
