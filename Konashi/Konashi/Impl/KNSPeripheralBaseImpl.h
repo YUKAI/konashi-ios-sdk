@@ -13,6 +13,7 @@
 #import "CBService+Konashi.h"
 #import "CBPeripheral+Konashi.h"
 #import "KNSPeripheralImplProtocol.h"
+#import "KNSHandlerManager.h"
 
 @interface KNSPeripheralBaseImpl : NSObject <CBPeripheralDelegate, KNSPeripheralImplProtocol>
 {
@@ -24,6 +25,7 @@
 	unsigned char pioPullup;
 	unsigned char pioOutput;
 	unsigned char pioInput;
+	unsigned char pioByte[32];
 	
 	// PWM
 	unsigned char pwmSetting;
@@ -49,6 +51,7 @@
 	int rssi;
 }
 
+@property (nonatomic, weak) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly, getter=isReady) BOOL ready;
 @property (nonatomic, readonly) CBPeripheral *peripheral;
 

@@ -20,6 +20,7 @@
 
 
 #import "Konashi+ACDrive.h"
+#import "Konashi+LegacyAPI.h"
 
 @implementation Konashi (ACDrive)
 

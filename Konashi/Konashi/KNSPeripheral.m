@@ -245,6 +245,10 @@
 	}
 	
 	if (impl_ != nil) {
+		if (self.handlerManager.connectedHandler) {
+			self.handlerManager.connectedHandler();
+		}
+		impl_.handlerManager = self.handlerManager;
 		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:nil];
 	}
 }

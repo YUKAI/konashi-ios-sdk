@@ -7,6 +7,7 @@
 
 #import "AnalogViewController.h"
 #import "Konashi.h"
+#import "Konashi+LegacyAPI.h"
 
 @interface AnalogViewController ()
 
@@ -27,6 +28,10 @@
     [Konashi addObserver:self selector:@selector(onGetAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
     [Konashi addObserver:self selector:@selector(onGetAio1) name:KonashiEventAnalogIO1DidUpdateNotification];
     [Konashi addObserver:self selector:@selector(onGetAio2) name:KonashiEventAnalogIO2DidUpdateNotification];
+	
+	[Konashi shared].analogPinDidChangeValueHandler = ^(KonashiAnalogIOPin pin, int value) {
+		NSLog(@"aio changed:%d(pin:%d)", value, pin);
+	};
 }
 
 - (void)didReceiveMemoryWarning
