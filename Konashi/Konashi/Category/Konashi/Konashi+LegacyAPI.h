@@ -10,6 +10,10 @@
 
 @interface Konashi (LegacyAPI)
 
+/// ---------------------------------
+/// @name Digital I/O (PIO)
+/// ---------------------------------
+
 /**
  *  指定したPIOの値を取得します。
  *
@@ -28,6 +32,10 @@
  */
 + (int) digitalReadAll NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
+/// ---------------------------------
+/// @name Analog I/O (AIO)
+/// ---------------------------------
+
 /**
  *  AIOの値を取得します。 [Konashi analogReadRequest:] を用いてAIOの値の要求後に正しい値を取得可能です。
  *
@@ -37,6 +45,10 @@
  *	@warning このメソッドは非推奨です。 [Konashi analogPinDidChangeValueHandler] を用いて値の取得をしてください。
  */
 + (int) analogRead:(KonashiAnalogIOPin)pin NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name I2C
+/// ---------------------------------
 
 /**
  *  I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
@@ -49,6 +61,10 @@
  */
 + (KonashiResult) i2cRead:(int)length data:(unsigned char*)data NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
+/// ---------------------------------
+/// @name UART
+/// ---------------------------------
+
 /**
  *  uartの値を取得します。
  *
@@ -56,6 +72,10 @@
  *	@warning このメソッドは非推奨です。 [Konashi uartRxCompleteHandler] を用いて値を取得してください。
  */
 + (unsigned char) uartRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name Hardware Control
+/// ---------------------------------
 
 /**
  *  バッテリーの残量を取得します。
