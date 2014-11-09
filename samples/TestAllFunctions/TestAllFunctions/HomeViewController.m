@@ -62,7 +62,7 @@
 - (void)connected
 {
     NSLog(@"CONNECTED");
-	[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventFoundSoftwareRevisionStringNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+	[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 		self.softwareRevisionString.text = [NSString stringWithFormat:@"Software Revision:%@", [Konashi softwareRevisionString]];
 	}];
 }
