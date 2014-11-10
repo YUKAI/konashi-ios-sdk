@@ -98,6 +98,7 @@
 + (KonashiResult) initialize;
 + (KonashiResult) find;
 + (KonashiResult) findWithName:(NSString*)name;
++ (NSString *)softwareRevisionString;
 + (KonashiResult) disconnect;
 + (BOOL) isConnected;
 + (BOOL) isReady;

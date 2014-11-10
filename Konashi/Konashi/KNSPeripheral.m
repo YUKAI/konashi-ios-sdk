@@ -59,6 +59,11 @@
 	return _impl.findName;
 }
 
+- (NSString *)softwareRevisionString
+{
+	return impl_.softwareRevisionString;
+}
+
 - (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
 	return [_impl pinMode:pin mode:mode];
