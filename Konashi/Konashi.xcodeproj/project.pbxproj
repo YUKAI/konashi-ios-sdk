@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E91B713219C8F38100BC88A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B713119C8F38100BC88A4 /* UIKit.framework */; };
+		E91CD1A11A0FE3AA007DF79E /* KNSHandlerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91CD1A01A0FE3AA007DF79E /* KNSHandlerManager.m */; };
 		E91E549219C8F2750071D7C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E549119C8F2750071D7C9 /* Foundation.framework */; };
 		E91E54A019C8F2750071D7C9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E549F19C8F2750071D7C9 /* XCTest.framework */; };
 		E91E54A119C8F2750071D7C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E549119C8F2750071D7C9 /* Foundation.framework */; };
@@ -15,6 +16,7 @@
 		E91E54A619C8F2750071D7C9 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E548E19C8F2750071D7C9 /* libKonashi.a */; };
 		E91E54AC19C8F2750071D7C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E91E54AA19C8F2750071D7C9 /* InfoPlist.strings */; };
 		E91E54AE19C8F2750071D7C9 /* KonashiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E54AD19C8F2750071D7C9 /* KonashiTests.m */; };
+		E927D7F31A0E85B700572018 /* Konashi+LegacyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E927D7F21A0E85B700572018 /* Konashi+LegacyAPI.m */; };
 		E9BB34D319EBB6CC0088A3CE /* CBPeripheral+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34CE19EBB6CC0088A3CE /* CBPeripheral+Konashi.m */; };
 		E9BB34D419EBB6CC0088A3CE /* CBService+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34D019EBB6CC0088A3CE /* CBService+Konashi.m */; };
 		E9BB34D519EBB6CC0088A3CE /* CBUUID+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34D219EBB6CC0088A3CE /* CBUUID+Konashi.m */; };
@@ -94,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		E91B713119C8F38100BC88A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E91CD19F1A0FE3AA007DF79E /* KNSHandlerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSHandlerManager.h; sourceTree = "<group>"; };
+		E91CD1A01A0FE3AA007DF79E /* KNSHandlerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSHandlerManager.m; sourceTree = "<group>"; };
 		E91E548E19C8F2750071D7C9 /* libKonashi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKonashi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91E549119C8F2750071D7C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E91E549519C8F2750071D7C9 /* Konashi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Konashi-Prefix.pch"; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 		E91E54A919C8F2750071D7C9 /* KonashiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KonashiTests-Info.plist"; sourceTree = "<group>"; };
 		E91E54AB19C8F2750071D7C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E91E54AD19C8F2750071D7C9 /* KonashiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonashiTests.m; sourceTree = "<group>"; };
+		E927D7F11A0E85B700572018 /* Konashi+LegacyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+LegacyAPI.h"; sourceTree = "<group>"; };
+		E927D7F21A0E85B700572018 /* Konashi+LegacyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+LegacyAPI.m"; sourceTree = "<group>"; };
 		E954C5DC19CCC4140046F6D7 /* KNSPeripheralImpls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImpls.h; sourceTree = "<group>"; };
 		E954C60319CCD56E0046F6D7 /* KNSPeripheralBaseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralBaseImpl.h; sourceTree = "<group>"; };
 		E954C60419CCD56E0046F6D7 /* KNSPeripheralBaseImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSPeripheralBaseImpl.m; sourceTree = "<group>"; };
@@ -196,6 +202,8 @@
 				E9C02D1219CB25C8005E9F04 /* Impl */,
 				E9C02D1A19CB25C8005E9F04 /* KNSPeripheral.h */,
 				E9C02D1B19CB25C8005E9F04 /* KNSPeripheral.m */,
+				E91CD19F1A0FE3AA007DF79E /* KNSHandlerManager.h */,
+				E91CD1A01A0FE3AA007DF79E /* KNSHandlerManager.m */,
 				E9C02D1819CB25C8005E9F04 /* Konashi.h */,
 				E9C02D1919CB25C8005E9F04 /* Konashi.m */,
 				E9C02D1C19CB25C8005E9F04 /* KonashiUtils.h */,
@@ -287,6 +295,8 @@
 				E9C02D3119CB4021005E9F04 /* Konashi+Grove.m */,
 				E9C02D3219CB4021005E9F04 /* Konashi+UI.h */,
 				E9C02D3319CB4021005E9F04 /* Konashi+UI.m */,
+				E927D7F11A0E85B700572018 /* Konashi+LegacyAPI.h */,
+				E927D7F21A0E85B700572018 /* Konashi+LegacyAPI.m */,
 			);
 			path = Konashi;
 			sourceTree = "<group>";
@@ -375,12 +385,14 @@
 				E9BB34D919EBB6E80088A3CE /* CBPeripheral+Konashi.m in Sources */,
 				E9BB34DA19EBB6E80088A3CE /* CBService+Konashi.m in Sources */,
 				E9BB34DB19EBB6E80088A3CE /* CBUUID+Konashi.m in Sources */,
+				E91CD1A11A0FE3AA007DF79E /* KNSHandlerManager.m in Sources */,
 				E9CA77AF19CCEA1C00C9F3F7 /* Konashi+ACDrive.m in Sources */,
 				E9CA77B019CCEA1C00C9F3F7 /* Konashi+ADC.m in Sources */,
 				E9CA77B119CCEA1C00C9F3F7 /* Konashi+Grove.m in Sources */,
 				E9CA77B219CCEA1C00C9F3F7 /* Konashi+UI.m in Sources */,
 				E9CA77B619CCEA1C00C9F3F7 /* KNSPeripheralBaseImpl.m in Sources */,
 				E9CA77B719CCEA1C00C9F3F7 /* KNSKoshianPeripheralImpl.m in Sources */,
+				E927D7F31A0E85B700572018 /* Konashi+LegacyAPI.m in Sources */,
 				E9CA77B819CCEA1C00C9F3F7 /* KNSKonashiPeripheralImpl.m in Sources */,
 				E9CA77B919CCEA1C00C9F3F7 /* KNSPeripheral.m in Sources */,
 				E9CA77BA19CCEA1C00C9F3F7 /* Konashi.m in Sources */,

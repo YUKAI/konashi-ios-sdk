@@ -122,6 +122,9 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	
 	rssi = [peripheral.RSSI intValue];
 	
+	if (self.handlerManager.signalStrengthDidUpdateHandler) {
+		self.handlerManager.signalStrengthDidUpdateHandler(rssi);
+	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventSignalStrengthDidUpdateNotification object:nil];
 }
 
@@ -143,6 +146,10 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			KNS_LOG(@"Finished discovering all services' characteristics");
 			// set konashi property
 			_ready = YES;
+			
+			if (self.handlerManager.readyHandler) {
+				self.handlerManager.readyHandler();
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			
 			//read software revision string
@@ -168,14 +175,31 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	
 	if (!error) {
 		if ([characteristic.UUID kns_isEqualToUUID:[[self class] pioInputNotificationUUID]]) {
+			// byteに更新されたPIOの値を格納する。
 			[characteristic.value getBytes:&byte length:[[self class] pioInputNotificationReadLength]];
+			// 更新前の値と最新の値のXORを取り、変化したpinの値を取得(8bitで表現される。変化あり:1/変化なし:0)。
+			int xor = (pioByte[0] ^ byte[0]) & (0xff ^ pioSetting);
+			// 次回更新時の値と比較するために現在の値はpioByteに格納しておく。
+			[characteristic.value getBytes:&pioByte length:[[self class] pioInputNotificationReadLength]];
 			pioInput = byte[0];
+			if (self.handlerManager.digitalInputDidChangeValueHandler) {
+				for (int i = 7; i >= 0; i--) {
+					// 各bitに対して更新されたか確認する。
+					if (xor & 1 << i) {
+						self.handlerManager.digitalInputDidChangeValueHandler(i, [self digitalRead:i]);
+					}
+				}
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDigitalIODidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] analogReadUUIDWithPinNumber:0]]) {
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[0] = byte[0]<<8 | byte[1];
 			
+			int value = analogValue[0];
+			if (self.handlerManager.analogPinDidChangeValueHandler) {
+				self.handlerManager.analogPinDidChangeValueHandler(0, value);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO0DidUpdateNotification object:nil];
 		}
@@ -183,6 +207,10 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[1] = byte[0]<<8 | byte[1];
 			
+			int value = analogValue[1];
+			if (self.handlerManager.analogPinDidChangeValueHandler) {
+				self.handlerManager.analogPinDidChangeValueHandler(1, value);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO1DidUpdateNotification object:nil];
 		}
@@ -190,25 +218,35 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			[characteristic.value getBytes:&byte length:[[self class] analogReadLength]];
 			analogValue[2] = byte[0]<<8 | byte[1];
 			
+			int value = analogValue[2];
+			if (self.handlerManager.analogPinDidChangeValueHandler) {
+				self.handlerManager.analogPinDidChangeValueHandler(2, value);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO2DidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] i2cReadUUID]]) {
 			i2cReadData = [characteristic.value copy];
 			// [0]: MSB
-			
+			if (self.handlerManager.i2cReadCompleteHandler) {
+				self.handlerManager.i2cReadCompleteHandler(i2cReadData);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventI2CReadCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
 			[characteristic.value getBytes:&uartRxData length:1];
 			// [0]: MSB
-			
+			if (self.handlerManager.uartRxCompleteHandler) {
+				self.handlerManager.uartRxCompleteHandler(uartRxData);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] levelServiceUUID]]) {
 			[characteristic.value getBytes:&byte length:[[self class] levelServiceReadLength]];
 			batteryLevel = byte[0];
-			
+			if (self.handlerManager.batteryLevelDidUpdateHandler) {
+				self.handlerManager.batteryLevelDidUpdateHandler(batteryLevel);
+			}
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventBatteryLevelDidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]]) {
@@ -540,6 +578,10 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		}
 		
 		// Write value
+		if (self.handlerManager.digitalOutputDidChangeValueHandler) {
+			self.handlerManager.digitalOutputDidChangeValueHandler(pin, value);
+		}
+		
 		return [self writeValuePioOutput];
 	}
 	else{
@@ -551,8 +593,16 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 {
 	if(value >= 0x00 && value <= 0xFF){
 		// Set value
-		pioOutput = value;
+		int xor = pioOutput ^ value;
+		if (self.handlerManager.digitalOutputDidChangeValueHandler) {
+			for (int i = 7; i >= 0; i--) {
+				if (xor & 1 << i) {
+					self.handlerManager.digitalOutputDidChangeValueHandler(i, value);
+				}
+			}
+		}
 		
+		pioOutput = value;
 		// Write value
 		return [self writeValuePioOutput];
 	}

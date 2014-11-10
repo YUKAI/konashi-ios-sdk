@@ -139,4 +139,15 @@ typedef NS_ENUM(int, KonashiUartBaudrate) {
 	KonashiUartBaudrateRate9K6 = 0x0028
 };
 
+typedef void(^KonashiEventHandler)();
+typedef void(^KonashiEventHandler1)(int value);
+typedef void(^KonashiEventHandler2)(unsigned char value);
+typedef void(^KonashiEventHandler3)(NSData *data);
+typedef void(^KonashiDigitalPinDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
+typedef void(^KonashiAnalogPinDidChangeValueHandler)(KonashiAnalogIOPin pin, int value);
+typedef KonashiEventHandler2 KonashiUartRxCompleteHandler;
+typedef KonashiEventHandler3 KonashiI2CReadCompleteHandler;
+typedef KonashiEventHandler1 KonashiBatteryLevelDidUpdateHandler;
+typedef KonashiEventHandler1 KonashiSignalStrengthDidUpdateHandler;
+
 #endif
