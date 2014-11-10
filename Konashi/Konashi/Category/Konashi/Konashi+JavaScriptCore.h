@@ -8,7 +8,7 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "KonashiConstant.h"
-@class Konashi;
+#import "Konashi.h"
 
 @protocol KonashiJavaScriptBindings <JSExport>
 
@@ -50,7 +50,6 @@ JSExportAs(analogWrite, + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin mi
 + (KonashiResult) i2cStopCondition;
 JSExportAs(i2cWrite, + (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address);
 JSExportAs(i2dReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address);
-JSExportAs(i2cRead, + (KonashiResult) i2cRead:(int)length data:(unsigned char*)data);
 
 // UART methods
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
@@ -67,11 +66,16 @@ JSExportAs(i2cRead, + (KonashiResult) i2cRead:(int)length data:(unsigned char*)d
 
 @end
 
+@interface Konashi (JavaScriptBindings) <JSExport>
+
++ (NSData *) i2cRead:(int)length;
+
+@end
+
 @interface KNSJavaScriptVirtualMachine : NSObject
 
 + (JSValue *)evaluateScript:(NSString *)script;
 + (JSValue *)callFunctionWithKey:(NSString *)key args:(NSArray *)args;
-+ (void)addBridgeHandlerWithTarget:(id)target selector:(SEL)selector;
 + (void)addBridgeHandlerWithKey:(NSString *)key hendler:(void (^)(JSValue* value))handler;
 + (void)setBridgeVariableWithKey:(NSString *)key variable:(id)obj;
 + (JSValue *)getBridgeVariableWithKey:(NSString *)key;

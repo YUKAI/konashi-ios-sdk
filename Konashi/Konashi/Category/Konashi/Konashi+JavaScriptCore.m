@@ -7,7 +7,6 @@
 //
 
 #import "Konashi+JavaScriptCore.h"
-#import "Konashi.h"
 
 static NSString *const JS_KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON = @"centralManagerPoweredOn";
 static NSString *const JS_KONASHI_EVENT_PERIPHERAL_FOUND = @"peripheralFound";
@@ -22,10 +21,20 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE = @"updateAnalogValu
 static NSString *const JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0 = @"updateAnalogValueAio0";
 static NSString *const JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1 = @"updateAnalogValueAio1";
 static NSString *const JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2 = @"updateAnalogValueAio2";
-static NSString *const JS_KONASHI_EVENT_I2C_READ_COMPLETE = @"I2CReadComplete";
-static NSString *const JS_KONASHI_EVENT_UART_RX_COMPLETE = @"UartRxComplete";
+static NSString *const JS_KONASHI_EVENT_I2C_READ_COMPLETE = @"i2cReadComplete";
+static NSString *const JS_KONASHI_EVENT_UART_RX_COMPLETE = @"uartRxComplete";
 static NSString *const JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"updateBatteryLevel";
 static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalStrength";
+
+@implementation Konashi (JavaScriptBindings)
+
++ (NSData *) i2cRead:(int)length
+{
+	
+	return 0;
+}
+
+@end
 
 @interface KNSJavaScriptVirtualMachine ()
 
@@ -162,14 +171,6 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 {
 	KNSJavaScriptVirtualMachine *vm = [KNSJavaScriptVirtualMachine sharedInstance];
 	return [vm.context[key] callWithArguments:args];
-}
-
-+ (void)addBridgeHandlerWithTarget:(id)target selector:(SEL)selector
-{
-	KNSJavaScriptVirtualMachine *vm = [KNSJavaScriptVirtualMachine sharedInstance];
-	vm.context[@"KonashiBridgeHandler"][NSStringFromSelector(selector)] = ^(){
-		[target performSelector:@selector(selector)];
-	};
 }
 
 + (void)addBridgeHandlerWithKey:(NSString *)key hendler:(void (^)(JSValue* value))handler

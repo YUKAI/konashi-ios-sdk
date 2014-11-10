@@ -31,7 +31,7 @@
 		
 		self.dbBar.progress = progress / 100;
 
-		NSLog(@"BATTERY LEVEL: %f%%", progress);
+		NSLog(@"RSSI: %f", progress);
 	}];
 	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"updateBatteryLevel" hendler:^(JSValue *value) {
 		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"\

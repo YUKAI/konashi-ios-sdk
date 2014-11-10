@@ -24,9 +24,18 @@
     [self.dacBar2 addTarget:self action:@selector(onChangeDacBar:) forControlEvents:UIControlEventValueChanged];
     
     // ADC
-	[KNSJavaScriptVirtualMachine addBridgeHandlerWithTarget:self selector:@selector(onGetAio0)];
-	[KNSJavaScriptVirtualMachine addBridgeHandlerWithTarget:self selector:@selector(onGetAio1)];
-	[KNSJavaScriptVirtualMachine addBridgeHandlerWithTarget:self selector:@selector(onGetAio2)];
+	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"onGetAio0" hendler:^(JSValue *value) {
+		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.analogRead(Konashi.AIO0);"];
+		self.adc0.text = [NSString stringWithFormat:@"%.3f", (double)[v toDouble] / 1000];
+	}];
+	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"onGetAio1" hendler:^(JSValue *value) {
+		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.analogRead(Konashi.AIO1);"];
+		self.adc1.text = [NSString stringWithFormat:@"%.3f", (double)[v toDouble] / 1000];
+	}];
+	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"onGetAio2" hendler:^(JSValue *value) {
+		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.analogRead(Konashi.AIO2);"];
+		self.adc2.text = [NSString stringWithFormat:@"%.3f", (double)[v toDouble] / 1000];
+	}];
 	[KNSJavaScriptVirtualMachine evaluateScript:@"\
 	 Konashi.updateAnalogValueAio0 = function() {\
 		KonashiBridgeHandler.onGetAio0();\

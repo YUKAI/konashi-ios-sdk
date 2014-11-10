@@ -24,13 +24,30 @@
 	// I2C系のイベントハンドラ
     [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
 	[self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
-	[KNSJavaScriptVirtualMachine addBridgeHandlerWithTarget:self selector:@selector(onUartRx)];
-	[KNSJavaScriptVirtualMachine addBridgeHandlerWithTarget:self selector:@selector(onI2cRecv)];
+	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"onUartRx" hendler:^(JSValue *value) {
+		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.uartRead();"];
+		const char *data = [[v toString] UTF8String];
+		NSLog(@"UartRx data: %s", data);
+		
+		self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithUTF8String:data]];
+	}];
+	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"onI2cRecv" hendler:^(JSValue *value) {
+		//TODO: buggy
+		JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.i2cRead(%ld);", (long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]]];
+		[NSThread sleepForTimeInterval:0.01];
+		[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cStopCondition();"];
+		
+//		int i;
+//		for(i=0; i<(long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
+//			NSLog(@"I2C Recv data: %d", data);
+//			self.i2cRecvText.text = [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
+//		}
+	}];
 	[KNSJavaScriptVirtualMachine evaluateScript:@"\
-	 Konashi.UartRxComplete = function() {\
+	 Konashi.uartRxComplete = function() {\
 		KonashiBridgeHandler.onUartRx();\
 	 };\
-	 Konashi.I2CReadComplete = function() {\
+	 Konashi.i2cReadComplete = function() {\
 		KonashiBridgeHandler.onI2cRecv();\
 	 };"];
 }
@@ -73,20 +90,9 @@
     
     for(i=0; i<self.uartSendText.text.length; i++){
         data = (unsigned char)*[[self.uartSendText.text substringWithRange:NSMakeRange(i, 1)] UTF8String];
-		[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.uartWrite(%c);", data]];
+		[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.uartWrite('%c');", data]];
     }
 }
-
-- (void)onUartRx
-{
-	JSValue *v = [KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.uartRead();"];
-	unsigned char data = [[v toString] UTF8String][0];
-    NSLog(@"UartRx data: %d", data);
-
-    self.uartRecvText.text =
-        [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", data]];
-}
-
 
 /////////////////////////////////////
 // I2C
@@ -106,16 +112,16 @@
 }
 
 - (IBAction)i2cSend:(id)sender {
-    unsigned char t[18];
+    unsigned char t[(long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]];
     int i;
     
-    for(i=0; i<18; i++){
+    for(i=0; i<(long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
         t[i] = 'A' + i;
     }
 	
 	[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cStartCondition();"];
     [NSThread sleepForTimeInterval:0.01];
-	[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.i2cWrite(18, %s, 0x1F);", t]];
+	[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.i2cWrite(%ld, '%s', 0x1F);", (long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength], t]];
     [NSThread sleepForTimeInterval:0.01];
 	[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cStopCondition();"];
     [NSThread sleepForTimeInterval:0.01];
@@ -124,23 +130,7 @@
 - (IBAction)i2cRecv:(id)sender {
 	[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cStartCondition();"];
     [NSThread sleepForTimeInterval:0.01];
-	[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cReadRequest(18, 0x1F);"];
-}
-
-- (void)onI2cRecv
-{
-	//TODO: buggy
-    unsigned char data[18];
-	[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.i2cRead(18, %s);", data]];
-    [NSThread sleepForTimeInterval:0.01];
-	[KNSJavaScriptVirtualMachine evaluateScript:@"Konashi.i2cStopCondition();"];
-    
-    int i;
-    for(i=0; i<18; i++){
-        NSLog(@"I2C Recv data: %d", data[i]);
-        self.i2cRecvText.text =
-            [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
-    }
+	[KNSJavaScriptVirtualMachine evaluateScript:[NSString stringWithFormat:@"Konashi.i2cReadRequest(%ld, 0x1F);", (long)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]]];
 }
 
 @end
