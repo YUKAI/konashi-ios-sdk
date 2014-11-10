@@ -40,11 +40,13 @@
 		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
 #endif
 	}
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralSelectorDidSelectNotification object:@(buttonIndex)];
 }
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	[self performSelector:@selector(postNotification:) withObject:KonashiEventPeripheralSelectorDismissedNotification];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralSelectorDismissedNotification object:nil];
 }
 
 @end

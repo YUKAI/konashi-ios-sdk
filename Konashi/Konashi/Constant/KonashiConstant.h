@@ -28,6 +28,7 @@ static NSString *const KonashiEventPeripheralFoundNotification = @"KonashiEventP
 static NSString *const KonashiEventPeripheralNotFoundNotification = @"KonashiEventPeripheralNotFound";
 static NSString *const KonashiEventNoPeripheralsAvailableNotification = @"KonashiEventNoPeripheralsAvailable";
 static NSString *const KonashiEventPeripheralSelectorDismissedNotification = @"KonashiEventPeripheralSelectorDismissed";
+static NSString *const KonashiEventPeripheralSelectorDidSelectNotification = @"KonashiEventPeripheralSelectorDidSelectNotification";
 
 static NSString *const KonashiEventConnectedNotification = @"KonashiEventConnected";
 static NSString *const KonashiEventDisconnectedNotification = @"KonashiEventDisconnected";
