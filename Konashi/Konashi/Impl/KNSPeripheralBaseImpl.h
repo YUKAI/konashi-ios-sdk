@@ -51,6 +51,7 @@
 
 @property (nonatomic, readonly, getter=isReady) BOOL ready;
 @property (nonatomic, readonly) CBPeripheral *peripheral;
+@property (nonatomic, readonly) NSString *softwareRevisionString;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

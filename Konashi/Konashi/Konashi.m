@@ -66,6 +66,11 @@
     return [[Konashi shared] _findModuleWithName:name timeout:KonashiFindTimeoutInterval];
 }
 
++ (NSString *)softwareRevisionString
+{
+	return [[Konashi shared].activePeripheral softwareRevisionString];
+}
+
 + (KonashiResult) disconnect
 {
     return [[Konashi shared] _disconnectModule];
