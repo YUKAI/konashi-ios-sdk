@@ -51,7 +51,7 @@ JSExportAs(analogWrite, + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin mi
 JSExportAs(i2cWrite, + (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address);
 JSExportAs(i2dReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address);
 JSExportAs(i2cRead, + (KonashiResult) i2cRead:(int)length data:(unsigned char*)data);
-gi
+
 // UART methods
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
 + (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
