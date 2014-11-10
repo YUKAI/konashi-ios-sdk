@@ -28,6 +28,7 @@ static NSString *const KonashiEventPeripheralFoundNotification = @"KonashiEventP
 static NSString *const KonashiEventPeripheralNotFoundNotification = @"KonashiEventPeripheralNotFound";
 static NSString *const KonashiEventNoPeripheralsAvailableNotification = @"KonashiEventNoPeripheralsAvailable";
 static NSString *const KonashiEventPeripheralSelectorDismissedNotification = @"KonashiEventPeripheralSelectorDismissed";
+static NSString *const KonashiEventPeripheralSelectorDidSelectNotification = @"KonashiEventPeripheralSelectorDidSelectNotification";
 
 static NSString *const KonashiEventConnectedNotification = @"KonashiEventConnected";
 static NSString *const KonashiEventDisconnectedNotification = @"KonashiEventDisconnected";
@@ -46,6 +47,8 @@ static NSString *const KonashiEventUartRxCompleteNotification = @"KonashiEventUa
 
 static NSString *const KonashiEventBatteryLevelDidUpdateNotification = @"KonashiEventUpdateBatteryLevel";
 static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"KonashiEventUpdateSignalStrength";
+
+static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
 static NSTimeInterval const KonashiFindTimeoutInterval = 2;
 
@@ -135,5 +138,16 @@ typedef NS_ENUM(int, KonashiUartBaudrate) {
 	KonashiUartBaudrateRate2K4 = 0x000a,
 	KonashiUartBaudrateRate9K6 = 0x0028
 };
+
+typedef void(^KonashiEventHandler)();
+typedef void(^KonashiEventHandler1)(int value);
+typedef void(^KonashiEventHandler2)(unsigned char value);
+typedef void(^KonashiEventHandler3)(NSData *data);
+typedef void(^KonashiDigitalPinDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
+typedef void(^KonashiAnalogPinDidChangeValueHandler)(KonashiAnalogIOPin pin, int value);
+typedef KonashiEventHandler2 KonashiUartRxCompleteHandler;
+typedef KonashiEventHandler3 KonashiI2CReadCompleteHandler;
+typedef KonashiEventHandler1 KonashiBatteryLevelDidUpdateHandler;
+typedef KonashiEventHandler1 KonashiSignalStrengthDidUpdateHandler;
 
 #endif

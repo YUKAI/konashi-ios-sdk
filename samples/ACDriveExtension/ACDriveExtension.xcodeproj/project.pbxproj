@@ -20,6 +20,7 @@
 		32CC97311802D8340038AB97 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97301802D8340038AB97 /* ViewController.m */; };
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
 		E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712D19C8F2F100BC88A4 /* libKonashi.a */; };
+		E98BA8121A10C4200075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		32CC97301802D8340038AB97 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E91B712D19C8F2F100BC88A4 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
+		E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98BA8121A10C4200075F9B9 /* JavaScriptCore.framework in Frameworks */,
 				E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */,
 				32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */,
 				32CC97151802D8340038AB97 /* UIKit.framework in Frameworks */,
@@ -79,6 +82,7 @@
 		32CC97131802D8340038AB97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */,
 				E91B712D19C8F2F100BC88A4 /* libKonashi.a */,
 				32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */,
 				32CC97141802D8340038AB97 /* UIKit.framework */,

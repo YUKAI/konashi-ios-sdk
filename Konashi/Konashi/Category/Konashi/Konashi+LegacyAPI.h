@@ -7,8 +7,9 @@
 //
 
 #import "Konashi.h"
+#import "Konashi+JavaScriptCore.h"
 
-@interface Konashi (LegacyAPI)
+@interface Konashi (LegacyAPI) <KonashiJavaScriptBindings>
 
 /// ---------------------------------
 /// @name Digital I/O (PIO)
