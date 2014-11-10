@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Konashi+Grove.h"
+#import "Konashi+LegacyAPI.h"
 
 @interface ViewController ()
 
