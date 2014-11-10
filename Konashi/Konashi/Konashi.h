@@ -139,6 +139,13 @@
 + (KonashiResult) findWithName:(NSString*)name;
 
 /**
+ *  ファームウェアのバージョンを返します。
+ *
+ *  @return ファームウェアのバージョン文字列。
+ */
++ (NSString *)softwareRevisionString;
+
+/**
  *  konashiとの接続を解除します。
  *
  *  @return 切断した場合はKonashiResultSuccess、すでに切断されている及び何らかの原因で失敗した場合はKonashiResultFailure。
