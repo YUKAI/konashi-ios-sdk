@@ -61,7 +61,7 @@
 
 - (NSString *)softwareRevisionString
 {
-	return impl_.softwareRevisionString;
+	return _impl.softwareRevisionString;
 }
 
 - (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
