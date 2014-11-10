@@ -304,6 +304,7 @@
  *	入力電圧の取得が完了した際は KonashiEventAnalogIODidUpdateNotification が発行されます。
  *
  *  @param pin AIOのピン名。
+ *	@bug koshianでは正確な値を取得することができません。
  *
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
