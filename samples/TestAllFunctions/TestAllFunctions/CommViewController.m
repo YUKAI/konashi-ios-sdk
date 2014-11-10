@@ -101,7 +101,7 @@
 }
 
 - (IBAction)i2cSend:(id)sender {
-    unsigned char t[18];
+    unsigned char t[[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]];
     int i;
     
     for(i=0; i<(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
@@ -124,7 +124,7 @@
 
 - (void)onI2cRecv
 {
-    unsigned char data[18];
+    unsigned char data[[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]];
     
     [Konashi i2cRead:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] data:data];
     [NSThread sleepForTimeInterval:0.01];
