@@ -28,6 +28,7 @@ static NSString *const KonashiEventPeripheralFoundNotification = @"KonashiEventP
 static NSString *const KonashiEventPeripheralNotFoundNotification = @"KonashiEventPeripheralNotFound";
 static NSString *const KonashiEventNoPeripheralsAvailableNotification = @"KonashiEventNoPeripheralsAvailable";
 static NSString *const KonashiEventPeripheralSelectorDismissedNotification = @"KonashiEventPeripheralSelectorDismissed";
+static NSString *const KonashiEventPeripheralSelectorDidSelectNotification = @"KonashiEventPeripheralSelectorDidSelectNotification";
 
 static NSString *const KonashiEventConnectedNotification = @"KonashiEventConnected";
 static NSString *const KonashiEventDisconnectedNotification = @"KonashiEventDisconnected";
@@ -46,6 +47,8 @@ static NSString *const KonashiEventUartRxCompleteNotification = @"KonashiEventUa
 
 static NSString *const KonashiEventBatteryLevelDidUpdateNotification = @"KonashiEventUpdateBatteryLevel";
 static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"KonashiEventUpdateSignalStrength";
+
+static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
 static NSTimeInterval const KonashiFindTimeoutInterval = 2;
 

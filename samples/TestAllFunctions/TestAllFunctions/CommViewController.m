@@ -104,13 +104,13 @@
     unsigned char t[18];
     int i;
     
-    for(i=0; i<18; i++){
+    for(i=0; i<(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
         t[i] = 'A' + i;
     }
     
     [Konashi i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cWrite:18 data:t address:0x1F];
+    [Konashi i2cWrite:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] data:t address:0x1F];
     [NSThread sleepForTimeInterval:0.01];
     [Konashi i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
@@ -119,19 +119,19 @@
 - (IBAction)i2cRecv:(id)sender {
     [Konashi i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cReadRequest:18 address:0x1F];
+    [Konashi i2cReadRequest:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] address:0x1F];
 }
 
 - (void)onI2cRecv
 {
     unsigned char data[18];
     
-    [Konashi i2cRead:18 data:data];
+    [Konashi i2cRead:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] data:data];
     [NSThread sleepForTimeInterval:0.01];
     [Konashi i2cStopCondition];
     
     int i;
-    for(i=0; i<18; i++){
+    for(i=0; i<(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
         NSLog(@"I2C Recv data: %d", data[i]);
         self.i2cRecvText.text =
             [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];

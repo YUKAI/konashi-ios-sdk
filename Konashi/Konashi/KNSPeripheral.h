@@ -17,11 +17,10 @@
 #import "KNSHandlerManager.h"
 
 @interface KNSPeripheral : NSObject <CBPeripheralDelegate>
-{
-	KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl_;
-}
 
-@property (nonatomic, weak) 	KNSHandlerManager *handlerManager;
+@property (nonatomic, readonly) KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl;
+@property (nonatomic, weak) KNSHandlerManager *handlerManager;
+@property (nonatomic, readonly) NSString *softwareRevisionString;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
