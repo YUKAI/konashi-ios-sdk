@@ -131,7 +131,7 @@
 
 - (int) analogReference
 {
-	return [_impl analogReference];
+	return [[_impl class] analogReference];
 }
 
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin

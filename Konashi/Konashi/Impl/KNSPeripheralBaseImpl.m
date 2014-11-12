@@ -433,6 +433,11 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	return nil;
 }
 
++ (int) analogReference
+{
+	return 1300;
+}
+
 - (CBPeripheralState)state
 {
 	return self.peripheral.state;
@@ -741,11 +746,6 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	}
 }
 
-- (int) analogReference
-{
-	return 1300;
-}
-
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
 	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2){
@@ -768,7 +768,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= [self analogReference] &&
+	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= [[self class] analogReference] &&
 	   self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
 		Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
 		[self writeData:[NSData dataWithBytes:t length:3] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] analogDriveUUID]];

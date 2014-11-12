@@ -54,6 +54,7 @@
 // Hardware
 + (CBUUID *)hardwareResetUUID;
 + (CBUUID *)lowBatteryNotificationUUID;
++ (int) analogReference;
 
 @optional
 - (CBPeripheralState)state;
@@ -84,7 +85,6 @@
 
 - (KonashiResult) readValueAio:(KonashiAnalogIOPin)pin;
 
-- (int) analogReference;
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
 - (int) analogRead:(KonashiAnalogIOPin)pin;
 - (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
