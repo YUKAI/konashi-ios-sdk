@@ -11,6 +11,6 @@
 
 @interface Konashi (UI) <UIActionSheetDelegate>
 
-- (void)showModulePicker;
+- (void)showModulePickerWithPeripherals:(NSArray *)peripherals;
 
 @end

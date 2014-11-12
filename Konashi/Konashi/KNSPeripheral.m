@@ -9,14 +9,18 @@
 #import "KNSPeripheral.h"
 #import "KNSPeripheralImpls.h"
 
+@interface KNSPeripheral ()
+
+@end
+
 @implementation KNSPeripheral
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p
 {
 	self = [super init];
 	if (self) {
+		_assignedPeripheral = p;
 		p.delegate = self;
-		[p kns_discoverAllServices];
 	}
 	
 	return self;
@@ -269,7 +273,10 @@
 			self.handlerManager.connectedHandler();
 		}
 		_impl.handlerManager = self.handlerManager;
-		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventImplReadyToUseNotification object:_impl queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil userInfo:@{KonashiPeripheralKey:self}];
+		}];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:self userInfo:@{KonashiPeripheralKey:self}];
 	}
 }
 

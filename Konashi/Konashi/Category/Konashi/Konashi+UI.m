@@ -11,8 +11,11 @@
 
 @implementation Konashi (UI)
 
-- (void)showModulePicker
+static NSArray *peripherals_;
+
+- (void)showModulePickerWithPeripherals:(NSArray *)peripherals
 {
+	peripherals_ = peripherals;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Module" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 	for (CBPeripheral *p in peripherals) {
 		NSString *name = p.name;
@@ -30,18 +33,20 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	NSInteger selectedIndex = buttonIndex;
 	if (buttonIndex == [actionSheet cancelButtonIndex]) {
+		selectedIndex = -1;
 		[self actionSheetCancel:actionSheet];
 	}
 	else {
-		CBPeripheral *peripheral = peripherals[buttonIndex];
-		[cm connectPeripheral:peripheral options:nil];
+		CBPeripheral *peripheral = peripherals_[buttonIndex];
+		[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
 #ifdef KONASHI_DEBUG
 		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
 #endif
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralSelectorDidSelectNotification object:@(buttonIndex)];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralSelectorDidSelectNotification object:@(selectedIndex)];
 }
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet

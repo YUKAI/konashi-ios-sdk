@@ -19,6 +19,7 @@
 		E93108581A13566F00B10F72 /* KonashiJavaScriptBindingsProtocol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E95504E61A134B1400691932 /* KonashiJavaScriptBindingsProtocol.h */; };
 		E93108591A13566F00B10F72 /* Konashi+JavaScriptBindings.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptBindings.h */; };
 		E931085B1A1356BA00B10F72 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E931085A1A1356BA00B10F72 /* JavaScriptCore.framework */; };
+		E93108931A13CB6D00B10F72 /* KNSCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93108921A13CB6D00B10F72 /* KNSCentralManager.m */; };
 		E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m */; };
 		E9BB34D319EBB6CC0088A3CE /* CBPeripheral+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34CE19EBB6CC0088A3CE /* CBPeripheral+Konashi.m */; };
 		E9BB34D419EBB6CC0088A3CE /* CBService+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34D019EBB6CC0088A3CE /* CBService+Konashi.m */; };
@@ -113,6 +114,8 @@
 		E91E54AB19C8F2750071D7C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E91E54AD19C8F2750071D7C9 /* KonashiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonashiTests.m; sourceTree = "<group>"; };
 		E931085A1A1356BA00B10F72 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E93108911A13CB6D00B10F72 /* KNSCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSCentralManager.h; sourceTree = "<group>"; };
+		E93108921A13CB6D00B10F72 /* KNSCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSCentralManager.m; sourceTree = "<group>"; };
 		E954C5DC19CCC4140046F6D7 /* KNSPeripheralImpls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImpls.h; sourceTree = "<group>"; };
 		E954C60319CCD56E0046F6D7 /* KNSPeripheralBaseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralBaseImpl.h; sourceTree = "<group>"; };
 		E954C60419CCD56E0046F6D7 /* KNSPeripheralBaseImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSPeripheralBaseImpl.m; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				E9C02D0619CB25C8005E9F04 /* Category */,
 				E9C02D0F19CB25C8005E9F04 /* Constant */,
 				E9C02D1219CB25C8005E9F04 /* Impl */,
+				E93108911A13CB6D00B10F72 /* KNSCentralManager.h */,
+				E93108921A13CB6D00B10F72 /* KNSCentralManager.m */,
 				E9C02D1A19CB25C8005E9F04 /* KNSPeripheral.h */,
 				E9C02D1B19CB25C8005E9F04 /* KNSPeripheral.m */,
 				E91CD19F1A0FE3AA007DF79E /* KNSHandlerManager.h */,
@@ -406,6 +411,7 @@
 				E9CA77B919CCEA1C00C9F3F7 /* KNSPeripheral.m in Sources */,
 				E9CA77BA19CCEA1C00C9F3F7 /* Konashi.m in Sources */,
 				E9CA77BB19CCEA1C00C9F3F7 /* KonashiUtils.m in Sources */,
+				E93108931A13CB6D00B10F72 /* KNSCentralManager.m in Sources */,
 				E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

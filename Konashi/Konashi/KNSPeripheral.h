@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl;
 @property (nonatomic, weak) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly) NSString *softwareRevisionString;
+@property (nonatomic, readonly) 	CBPeripheral *assignedPeripheral;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

@@ -141,7 +141,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		}
 #endif
 		
-		CBService *s = [peripheral.services objectAtIndex:(peripheral.services.count - 1)];
+		CBService *s = [peripheral.services lastObject];
 		if([service.UUID kns_isEqualToUUID:s.UUID]) {
 			KNS_LOG(@"Finished discovering all services' characteristics");
 			// set konashi property
@@ -150,7 +150,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			if (self.handlerManager.readyHandler) {
 				self.handlerManager.readyHandler();
 			}
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventImplReadyToUseNotification object:self];
 			
 			//read software revision string
 			[self readDataWithServiceUUID:[CBUUID UUIDWithString:kDeviceInformationServiceUUIDString] characteristicUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]];

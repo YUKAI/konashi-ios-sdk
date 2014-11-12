@@ -15,11 +15,16 @@
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(...) NSLog(__VA_ARGS__)
-#define KNS_LOG_METHOD NSLog(@"%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
+#define KNS_LOG_METHOD NSLog(@"[Konashi]%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
 #else
 #define KNS_LOG(...)
 #define KNS_LOG_METHOD
 #endif
+
+// Konashi keys
+
+static NSString *const KonashiPeripheralKey = @"KonashiPeripheralKey";
+static NSString *const KonashiErrorKey = @"KonashiErrorKey";
 
 // Konashi Events
 static NSString *const KonashiEventCentralManagerPowerOnNotification = @"KonashiEventCentralManagerPoweredOn";
@@ -30,9 +35,12 @@ static NSString *const KonashiEventNoPeripheralsAvailableNotification = @"Konash
 static NSString *const KonashiEventPeripheralSelectorDismissedNotification = @"KonashiEventPeripheralSelectorDismissed";
 static NSString *const KonashiEventPeripheralSelectorDidSelectNotification = @"KonashiEventPeripheralSelectorDidSelectNotification";
 
+static NSString *const KonashiEventConnectingNotification = @"KonashiEventConnectingNotification";
+static NSString *const KonashiEventDidFailToConnectNotification = @"KonashiEventDidFailToConnectNotification";
 static NSString *const KonashiEventConnectedNotification = @"KonashiEventConnected";
 static NSString *const KonashiEventDisconnectedNotification = @"KonashiEventDisconnected";
 static NSString *const KonashiEventReadyToUseNotification = @"KonashiEventReady";
+static NSString *const KonashiEventImplReadyToUseNotification = @"KonashiEventImplReadyToUseNotification";
 
 static NSString *const KonashiEventDigitalIODidUpdateNotification = @"KonashiEventUpdatePioInput";
 

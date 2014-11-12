@@ -17,28 +17,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ======================================================================== */
-
-
+#define KONASHI_DEBUG
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
 #import "KonashiConstant.h"
-#import "KNSPeripheralImpls.h"
 #import "KNSPeripheral.h"
-#import "KNSHandlerManager.h"
+#import "KNSCentralManager.h"
 #import "KonashiJavaScriptBindingsProtocol.h"
 
-// Konashi interface
-@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, KonashiJavaScriptBindings>
-{
-	NSString *findName;
-	BOOL isReady;
-	BOOL isCallFind;
-    NSMutableArray *peripherals;
-    CBCentralManager *cm;
-	
-	KNSHandlerManager *handlerManager;
-}
+@class KNSHandlerManager;
+@interface Konashi : NSObject <CBPeripheralDelegate, KonashiJavaScriptBindings>
 
 @property (nonatomic, readonly) KNSPeripheral *activePeripheral;
 
@@ -106,15 +95,6 @@
  *  @return Konashiのインスタンス。
  */
 + (Konashi *) shared;
-
-/**
- *  konashiの初期化を行います。
- *
- *	@warning 一番最初に表示されるViewControllerのviewDidLoadなど、konashiを使う前に必ず initialize をしてください。
- *
- *  @return 初期化した場合はKonashiResultSuccess、既に初期化されていた場合はKonashiResultFailure。
- */
-+ (KonashiResult) initialize;
 
 /**
  *  iPhone周辺のkonashiを探します。
