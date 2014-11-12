@@ -527,7 +527,7 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
 
-#pragma mark - Depricated
+#pragma mark - Depricated methods
 
 #pragma mark - digital
 
@@ -585,6 +585,26 @@
 + (int) signalStrengthRead
 {
 	return [[Konashi shared].activePeripheral signalStrengthRead];
+}
+
+#pragma mark - Notification
+
++ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName
+{
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:notificationObserver selector:notificationSelector name:notificationName object:nil];
+}
+
++ (void) removeObserver:(id)notificationObserver
+{
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc removeObserver:notificationObserver];
+}
+
+- (void) postNotification:(NSString*)notificationName
+{
+	NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
+	[[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
 @end

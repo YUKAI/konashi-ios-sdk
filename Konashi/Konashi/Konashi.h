@@ -563,4 +563,7 @@
  */
 + (int) signalStrengthRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
++ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (void) removeObserver:(id)notificationObserver NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
 @end
