@@ -751,7 +751,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="I2C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-FT-VGF">
-                                <rect key="frame" x="20" y="227" width="27" height="21"/>
+                                <rect key="frame" x="20" y="224" width="27" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -763,7 +763,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CK4-yR-gAp">
-                                <rect key="frame" x="73" y="8" width="136" height="48"/>
+                                <rect key="frame" x="73" y="8" width="136" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="UF9-bF-eHH"/>
                                 </constraints>
@@ -838,7 +838,7 @@
                                 <rect key="frame" x="223" y="222" width="79" height="27"/>
                             </switch>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="406-PS-9IK">
-                                <rect key="frame" x="73" y="213" width="136" height="48"/>
+                                <rect key="frame" x="73" y="213" width="136" height="44"/>
                                 <segments>
                                     <segment title="100k"/>
                                     <segment title="400k"/>

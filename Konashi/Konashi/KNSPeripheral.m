@@ -179,6 +179,11 @@
 	return [_impl i2cWrite:length data:data address:address];
 }
 
+- (KonashiResult) i2cWrite:(NSData *)data address:(unsigned char)address
+{
+	return [_impl i2cWrite:data address:address];
+}
+
 - (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
 	return [_impl i2cReadRequest:length address:address];
@@ -187,6 +192,11 @@
 - (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
 {
 	return [_impl i2cRead:length data:data];
+}
+
+- (NSData *)i2cReadData
+{
+	return [_impl i2cReadData];
 }
 
 - (KonashiResult) uartMode:(KonashiUartMode)mode
@@ -201,12 +211,17 @@
 
 - (KonashiResult) uartWrite:(unsigned char)data
 {
-	return [_impl uartWrite:data];
+	return [_impl uartWriteData:[NSData dataWithBytes:&data length:1]];
 }
 
-- (unsigned char) uartRead
+- (KonashiResult) uartWriteData:(NSData *)data
 {
-	return [_impl uartRead];
+	return [_impl uartWriteData:data];
+}
+
+- (NSData *) readUartData
+{
+	return [_impl readUartData];
 }
 
 - (KonashiResult) reset

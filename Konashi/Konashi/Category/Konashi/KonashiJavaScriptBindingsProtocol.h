@@ -1,18 +1,19 @@
 //
-//  Konashi+JavaScriptCore.h
+//  KonashiJavaScriptBindingsProtocol.h
 //  Konashi
 //
-//  Created by Akira Matsuda on 10/21/14.
+//  Created by Akira Matsuda on 11/12/14.
 //  Copyright (c) 2014 Akira Matsuda. All rights reserved.
 //
 
-#import <JavaScriptCore/JavaScriptCore.h>
-#import "KonashiConstant.h"
+#ifndef Konashi_KonashiJavaScriptBindingsProtocol_h
+#define Konashi_KonashiJavaScriptBindingsProtocol_h
+
 #import "Konashi.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol KonashiJavaScriptBindings <JSExport>
 
-+ (Konashi *) shared;
 + (KonashiResult) initialize;
 + (KonashiResult) find;
 + (KonashiResult) findWithName:(NSString*)name;
@@ -48,14 +49,13 @@ JSExportAs(analogWrite, + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin mi
 + (KonashiResult) i2cStartCondition;
 + (KonashiResult) i2cRestartCondition;
 + (KonashiResult) i2cStopCondition;
-JSExportAs(i2cWrite, + (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address);
-JSExportAs(i2dReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address);
+JSExportAs(i2cReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address);
++ (NSData *)i2cReadData;
 
 // UART methods
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
 + (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
-+ (KonashiResult) uartWrite:(unsigned char)data;
-+ (unsigned char) uartRead;
++ (NSData *) readUartData;
 
 // Konashi hardware methods
 + (KonashiResult) reset;
@@ -66,26 +66,4 @@ JSExportAs(i2dReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:
 
 @end
 
-@interface Konashi (JavaScriptBindings) <JSExport>
-
-+ (NSData *) i2cRead:(int)length;
-
-@end
-
-@interface KNSJavaScriptVirtualMachine : NSObject
-
-+ (JSValue *)evaluateScript:(NSString *)script;
-+ (JSValue *)callFunctionWithKey:(NSString *)key args:(NSArray *)args;
-+ (void)addBridgeHandlerWithKey:(NSString *)key hendler:(void (^)(JSValue* value))handler;
-+ (void)setBridgeVariableWithKey:(NSString *)key variable:(id)obj;
-+ (JSValue *)getBridgeVariableWithKey:(NSString *)key;
-
-@end
-
-@interface KNSWebView : UIView
-{
-	UIWebView *webView;
-	KNSJavaScriptVirtualMachine *vm;
-}
-
-@end
+#endif

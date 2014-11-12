@@ -7,7 +7,7 @@
 
 #import "PioViewController.h"
 #import "Konashi.h"
-#import "Konashi+JavaScriptCore.h"
+#import "Konashi+JavaScriptBindings.h"
 
 @interface PioViewController ()
 

@@ -6,7 +6,30 @@
 //  Copyright (c) 2014 Akira Matsuda. All rights reserved.
 //
 
-#import "Konashi+JavaScriptCore.h"
+#import "Konashi.h"
+#import "Konashi+JavaScriptBindings.h"
+
+@implementation Konashi (JavaScriptBindings)
+
++ (KonashiResult) uartWriteString:(NSString *)string
+{
+	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
+}
+
++ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address
+{
+	return [[Konashi shared].activePeripheral i2cWrite:(int)data.length - 1 data:(unsigned char *)data.UTF8String address:address];
+}
+
+@end
+
+@interface KNSJavaScriptVirtualMachine ()
+
+@property (nonatomic, readonly) JSContext *context;
+
+@end
+
+@implementation KNSJavaScriptVirtualMachine
 
 static NSString *const JS_KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON = @"centralManagerPoweredOn";
 static NSString *const JS_KONASHI_EVENT_PERIPHERAL_FOUND = @"peripheralFound";
@@ -25,24 +48,6 @@ static NSString *const JS_KONASHI_EVENT_I2C_READ_COMPLETE = @"i2cReadComplete";
 static NSString *const JS_KONASHI_EVENT_UART_RX_COMPLETE = @"uartRxComplete";
 static NSString *const JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"updateBatteryLevel";
 static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalStrength";
-
-@implementation Konashi (JavaScriptBindings)
-
-+ (NSData *) i2cRead:(int)length
-{
-	
-	return 0;
-}
-
-@end
-
-@interface KNSJavaScriptVirtualMachine ()
-
-@property (nonatomic, readonly) JSContext *context;
-
-@end
-
-@implementation KNSJavaScriptVirtualMachine
 
 - (instancetype)init
 {
@@ -190,5 +195,9 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 	KNSJavaScriptVirtualMachine *vm = [KNSJavaScriptVirtualMachine sharedInstance];
 	return vm.context[@"KonashiBridgeStore"][key];
 }
+
+@end
+
+@implementation KNSWebView
 
 @end

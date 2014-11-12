@@ -38,7 +38,7 @@
 	// UART
 	unsigned char uartSetting;
 	unsigned char uartBaudrate;
-	unsigned char uartRxData;
+	NSData *uartRxData;
 	
 	// I2C
 	NSData *i2cReadData;

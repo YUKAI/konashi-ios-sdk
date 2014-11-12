@@ -16,8 +16,10 @@
 		E91E54A619C8F2750071D7C9 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E548E19C8F2750071D7C9 /* libKonashi.a */; };
 		E91E54AC19C8F2750071D7C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E91E54AA19C8F2750071D7C9 /* InfoPlist.strings */; };
 		E91E54AE19C8F2750071D7C9 /* KonashiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E91E54AD19C8F2750071D7C9 /* KonashiTests.m */; };
-		E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptCore.m in Sources */ = {isa = PBXBuildFile; fileRef = E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptCore.m */; };
-		E98BA8101A10C3D60075F9B9 /* Konashi+LegacyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BA80F1A10C3D60075F9B9 /* Konashi+LegacyAPI.m */; };
+		E93108581A13566F00B10F72 /* KonashiJavaScriptBindingsProtocol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E95504E61A134B1400691932 /* KonashiJavaScriptBindingsProtocol.h */; };
+		E93108591A13566F00B10F72 /* Konashi+JavaScriptBindings.h in Copy Files */ = {isa = PBXBuildFile; fileRef = E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptBindings.h */; };
+		E931085B1A1356BA00B10F72 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E931085A1A1356BA00B10F72 /* JavaScriptCore.framework */; };
+		E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m */; };
 		E9BB34D319EBB6CC0088A3CE /* CBPeripheral+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34CE19EBB6CC0088A3CE /* CBPeripheral+Konashi.m */; };
 		E9BB34D419EBB6CC0088A3CE /* CBService+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34D019EBB6CC0088A3CE /* CBService+Konashi.m */; };
 		E9BB34D519EBB6CC0088A3CE /* CBUUID+Konashi.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BB34D219EBB6CC0088A3CE /* CBUUID+Konashi.m */; };
@@ -73,6 +75,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E93108581A13566F00B10F72 /* KonashiJavaScriptBindingsProtocol.h in Copy Files */,
+				E93108591A13566F00B10F72 /* Konashi+JavaScriptBindings.h in Copy Files */,
 				E9BB34D619EBB6DB0088A3CE /* CBPeripheral+Konashi.h in Copy Files */,
 				E9BB34D719EBB6DB0088A3CE /* CBService+Konashi.h in Copy Files */,
 				E9BB34D819EBB6DB0088A3CE /* CBUUID+Konashi.h in Copy Files */,
@@ -108,14 +112,14 @@
 		E91E54A919C8F2750071D7C9 /* KonashiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KonashiTests-Info.plist"; sourceTree = "<group>"; };
 		E91E54AB19C8F2750071D7C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E91E54AD19C8F2750071D7C9 /* KonashiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KonashiTests.m; sourceTree = "<group>"; };
+		E931085A1A1356BA00B10F72 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E954C5DC19CCC4140046F6D7 /* KNSPeripheralImpls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImpls.h; sourceTree = "<group>"; };
 		E954C60319CCD56E0046F6D7 /* KNSPeripheralBaseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralBaseImpl.h; sourceTree = "<group>"; };
 		E954C60419CCD56E0046F6D7 /* KNSPeripheralBaseImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNSPeripheralBaseImpl.m; sourceTree = "<group>"; };
 		E954C60719CCE0C00046F6D7 /* KNSPeripheralImplProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNSPeripheralImplProtocol.h; sourceTree = "<group>"; };
-		E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+JavaScriptCore.h"; sourceTree = "<group>"; };
-		E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+JavaScriptCore.m"; sourceTree = "<group>"; };
-		E98BA80E1A10C3D60075F9B9 /* Konashi+LegacyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+LegacyAPI.h"; sourceTree = "<group>"; };
-		E98BA80F1A10C3D60075F9B9 /* Konashi+LegacyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+LegacyAPI.m"; sourceTree = "<group>"; };
+		E95504E61A134B1400691932 /* KonashiJavaScriptBindingsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KonashiJavaScriptBindingsProtocol.h; sourceTree = "<group>"; };
+		E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+JavaScriptBindings.h"; sourceTree = "<group>"; };
+		E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+JavaScriptBindings.m"; sourceTree = "<group>"; };
 		E9BB34CD19EBB6CC0088A3CE /* CBPeripheral+Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+Konashi.h"; sourceTree = "<group>"; };
 		E9BB34CE19EBB6CC0088A3CE /* CBPeripheral+Konashi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+Konashi.m"; sourceTree = "<group>"; };
 		E9BB34CF19EBB6CC0088A3CE /* CBService+Konashi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+Konashi.h"; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E931085B1A1356BA00B10F72 /* JavaScriptCore.framework in Frameworks */,
 				E91B713219C8F38100BC88A4 /* UIKit.framework in Frameworks */,
 				E91E549219C8F2750071D7C9 /* Foundation.framework in Frameworks */,
 			);
@@ -189,6 +194,7 @@
 		E91E549019C8F2750071D7C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E931085A1A1356BA00B10F72 /* JavaScriptCore.framework */,
 				E91B713119C8F38100BC88A4 /* UIKit.framework */,
 				E91E549119C8F2750071D7C9 /* Foundation.framework */,
 				E91E549F19C8F2750071D7C9 /* XCTest.framework */,
@@ -298,10 +304,9 @@
 				E9C02D3119CB4021005E9F04 /* Konashi+Grove.m */,
 				E9C02D3219CB4021005E9F04 /* Konashi+UI.h */,
 				E9C02D3319CB4021005E9F04 /* Konashi+UI.m */,
-				E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptCore.h */,
-				E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptCore.m */,
-				E98BA80E1A10C3D60075F9B9 /* Konashi+LegacyAPI.h */,
-				E98BA80F1A10C3D60075F9B9 /* Konashi+LegacyAPI.m */,
+				E95504E61A134B1400691932 /* KonashiJavaScriptBindingsProtocol.h */,
+				E987D42A19F61D6800BDC6CF /* Konashi+JavaScriptBindings.h */,
+				E987D42B19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m */,
 			);
 			path = Konashi;
 			sourceTree = "<group>";
@@ -392,9 +397,7 @@
 				E9BB34DB19EBB6E80088A3CE /* CBUUID+Konashi.m in Sources */,
 				E91CD1A11A0FE3AA007DF79E /* KNSHandlerManager.m in Sources */,
 				E9CA77AF19CCEA1C00C9F3F7 /* Konashi+ACDrive.m in Sources */,
-				E98BA8101A10C3D60075F9B9 /* Konashi+LegacyAPI.m in Sources */,
 				E9CA77B019CCEA1C00C9F3F7 /* Konashi+ADC.m in Sources */,
-				E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptCore.m in Sources */,
 				E9CA77B119CCEA1C00C9F3F7 /* Konashi+Grove.m in Sources */,
 				E9CA77B219CCEA1C00C9F3F7 /* Konashi+UI.m in Sources */,
 				E9CA77B619CCEA1C00C9F3F7 /* KNSPeripheralBaseImpl.m in Sources */,
@@ -403,6 +406,7 @@
 				E9CA77B919CCEA1C00C9F3F7 /* KNSPeripheral.m in Sources */,
 				E9CA77BA19CCEA1C00C9F3F7 /* Konashi.m in Sources */,
 				E9CA77BB19CCEA1C00C9F3F7 /* KonashiUtils.m in Sources */,
+				E987D42C19F61D6800BDC6CF /* Konashi+JavaScriptBindings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

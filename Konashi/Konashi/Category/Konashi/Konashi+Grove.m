@@ -20,7 +20,6 @@
 
 
 #import "Konashi+Grove.h"
-#import "Konashi+LegacyAPI.h"
 
 @implementation Konashi (Grove)
 

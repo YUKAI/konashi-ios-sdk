@@ -7,7 +7,7 @@
 
 #import "HomeViewController.h"
 #import "Konashi.h"
-#import "Konashi+JavaScriptCore.h"
+#import "Konashi+JavaScriptBindings.h"
 
 @interface HomeViewController ()
 
