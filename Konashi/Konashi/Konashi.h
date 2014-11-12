@@ -455,10 +455,6 @@
  */
 + (KonashiResult) signalStrengthReadRequest;
 
-// Konashi event methods
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
-+ (void) removeObserver:(id)notificationObserver;
-
 #pragma mark - Depricated
 
 /// ---------------------------------

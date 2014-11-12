@@ -307,30 +307,6 @@
 }
 
 #pragma mark -
-#pragma mark - Konashi public event methods
-
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName
-{
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:notificationObserver selector:notificationSelector name:notificationName object:nil];
-}
-
-+ (void) removeObserver:(id)notificationObserver
-{
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc removeObserver:notificationObserver];
-}
-
-#pragma mark -
-#pragma mark - Konashi private event methods
-
-- (void) postNotification:(NSString*)notificationName
-{
-    NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
-    [[NSNotificationCenter defaultCenter] postNotification:n];
-}
-
-#pragma mark -
 #pragma mark - Konashi control private methods
 
 - (KonashiResult) _initializeKonashi
@@ -410,7 +386,7 @@
     if (targetIsExist) {
         [self connectTargetPeripheral:indexOfTarget];
     } else {
-        [[Konashi shared] postNotification:KonashiEventPeripheralNotFoundNotification];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralNotFoundNotification object:nil];
     }
 }
 
@@ -421,10 +397,10 @@
     KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
     
     if ( [peripherals count] > 0 ) {
-        [[Konashi shared] postNotification:KonashiEventPeripheralFoundNotification];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralFoundNotification object:nil];
 		[self showModulePicker];
     } else {
-        [[Konashi shared] postNotification:KonashiEventNoPeripheralsAvailableNotification];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventNoPeripheralsAvailableNotification object:nil];
     }
 }
 
@@ -494,7 +470,7 @@
     KNS_LOG(@"Status of CoreBluetooth central manager changed %ld (%@)\r\n", central.state, NSStringFromCBCentralManagerState(cm.state));
 
     if (central.state == CBCentralManagerStatePoweredOn) {
-        [[Konashi shared] postNotification:KonashiEventCentralManagerPowerOnNotification];
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventCentralManagerPowerOnNotification object:nil];
         
         // Check already find
         if(isCallFind){
