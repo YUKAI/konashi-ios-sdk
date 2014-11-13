@@ -26,8 +26,10 @@
 #import "KNSPeripheralImpls.h"
 #import "KNSPeripheral.h"
 #import "KNSHandlerManager.h"
+#import "KonashiJavaScriptBindingsProtocol.h"
 
-@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+// Konashi interface
+@interface Konashi : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, KonashiJavaScriptBindings>
 {
 	NSString *findName;
 	BOOL isReady;
@@ -359,16 +361,25 @@
 
 /**
  *  I2C で指定したアドレスにデータを書き込みます。
- 
- 事前に i2cMode で I2C を有効にしておいてください。
+ *	事前に i2cMode で I2C を有効にしておいてください。
  *
- *  @param length  書き込むデータの長さ(byte)
  *  @param data    書き込むデータ
  *  @param address 書き込み先アドレス
  *
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
++ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address;
+
+/**
+ *  I2C で指定したアドレスに文字列を書き込みます。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @param data    書き込む文字列
+ *  @param address 書き込み先アドレス
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address;
 
 /**
  *  I2C で指定したアドレスからデータを読み込むリクエストを行います。
@@ -380,6 +391,13 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
+
+/**
+ *	I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
+ *
+ *  @return 取得したデータ
+ */
++ (NSData *)i2cReadData;
 
 /// ---------------------------------
 /// @name UART
@@ -411,7 +429,23 @@
  *
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult) uartWrite:(unsigned char)data;
++ (KonashiResult) uartWriteData:(NSData *)data;
+
+/**
+ *  UART で文字列を送信します。
+ *
+ *  @param string 送信する文字列
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) uartWriteString:(NSString *)string;
+
+/**
+ *  uartの値を取得します。
+ *
+ *  @return 取得した値。
+ */
++ (NSData *) readUartData;
 
 /// ---------------------------------
 /// @name Hardware Control
@@ -444,5 +478,113 @@
 // Konashi event methods
 + (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
 + (void) removeObserver:(id)notificationObserver;
+
+#pragma mark - Deprecated
+
+/// ---------------------------------
+/// @name Digital I/O (PIO)
+/// ---------------------------------
+
+/**
+ *  指定したPIOの値を取得します。
+ *
+ *  @param pin PIOの番号
+ *
+ *  @return 指定したPIOの値。KonashiLevelHigh及びKonashiLevelLow。
+ *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
+ */
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/**
+ *  PIOの値を取得します。
+ *
+ *  @return PIOの状態。各bitにおいてHighの場合は1、Lowの場合は0がセットされている。
+ *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
+ */
++ (int) digitalReadAll NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name Analog I/O (AIO)
+/// ---------------------------------
+
+/**
+ *  AIOの値を取得します。 [Konashi analogReadRequest:] を用いてAIOの値の要求後に正しい値を取得可能です。
+ *
+ *  @param pin AIOの番号
+ *
+ *  @return AIOの値。
+ *	@warning このメソッドは非推奨です。 [Konashi analogPinDidChangeValueHandler] を用いて値の取得をしてください。
+ */
++ (int) analogRead:(KonashiAnalogIOPin)pin NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name I2C
+/// ---------------------------------
+
+/**
+ *  I2C で指定したアドレスにデータを書き込みます。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @param length  書き込むデータの長さ(byte)
+ *  @param data    書き込むデータ
+ *  @param address 書き込み先アドレス
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ *	@warning このメソッドは非推奨です。 [Konashi i2cWriteData:address] を用いてデータの書き込んでください。
+ */
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
+
+/**
+ *  I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
+ *
+ *  @param length データの長さ(byte)
+ *  @param data 格納する変数
+ *
+ *  @return 値の取得に成功した場合はKonashiResultSuccess、失敗した場合はKonashiResultFailure。
+ *	@warning このメソッドは非推奨です。 [Konashi i2cReadCompleteHandler] を用いてデータの取得をしてください。
+ */
++ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name UART
+/// ---------------------------------
+
+/**
+ *  UART でデータを送信します。
+ *
+ *  @param data 送信するデータ。
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ *	@warning このメソッドは非推奨です。 [Konashi uartWriteData:] を用いでデータを送信してください。
+ */
++ (KonashiResult) uartWrite:(unsigned char)data;
+
+/**
+ *  uartの値を取得します。
+ *
+ *  @return 取得した値。
+ *	@warning このメソッドは非推奨です。 [Konashi uartRxCompleteHandler] 及び [Konashi readUartData] を用いて値を取得してください。
+ */
++ (unsigned char) uartRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/// ---------------------------------
+/// @name Hardware Control
+/// ---------------------------------
+
+/**
+ *  バッテリーの残量を取得します。
+ *
+ *  @return バッテリーの残量(%)
+ *	@warning このメソッドは非推奨です。 [Konashi batteryLevelDidUpdateHandler] を用いて残量を取得してください。
+ */
++ (int) batteryLevelRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/**
+ *  RSSIの値を取得します。
+ *
+ *  @return RSSIの値。
+ *	@warning このメソッドは非推奨です。 [Konashi signalStrengthDidUpdateHandler] を用いてRSSIを取得してください。
+ */
++ (int) signalStrengthRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
 @end

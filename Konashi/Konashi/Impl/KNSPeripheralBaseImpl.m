@@ -234,7 +234,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventI2CReadCompleteNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
-			[characteristic.value getBytes:&uartRxData length:1];
+			uartRxData = [characteristic.value copy];
 			// [0]: MSB
 			if (self.handlerManager.uartRxCompleteHandler) {
 				self.handlerManager.uartRxCompleteHandler(uartRxData);
@@ -431,6 +431,11 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 {
 	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
 	return nil;
+}
+
++ (int) analogReference
+{
+	return 1300;
 }
 
 - (CBPeripheralState)state
@@ -741,11 +746,6 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	}
 }
 
-- (int) analogReference
-{
-	return 1300;
-}
-
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
 	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2){
@@ -768,7 +768,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= [self analogReference] &&
+	if(pin >= KonashiAnalogIO0 && pin <= KonashiAnalogIO2 && milliVolt >= 0 && milliVolt <= [[self class] analogReference] &&
 	   self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
 		Byte t[] = {pin, (milliVolt>>8)&0xFF, milliVolt&0xFF};
 		[self writeData:[NSData dataWithBytes:t length:3] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] analogDriveUUID]];
@@ -829,7 +829,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
 	int i;
-	unsigned char t[[[self class] i2cDataMaxLength]];
+	// I2Cの仕様で先頭にアドレスとデータ長を付け加えるために、配列の長さを+2する。
+	unsigned char t[[[self class] i2cDataMaxLength] + 2];
 	
 	if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
 	   self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
@@ -846,6 +847,11 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	else{
 		return KonashiResultFailure;
 	}
+}
+
+- (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address
+{
+	return [self i2cWrite:(int)data.length data:(unsigned char *)[data bytes] address:address];
 }
 
 - (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
@@ -880,6 +886,11 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	else{
 		return KonashiResultFailure;
 	}
+}
+
+- (NSData *)i2cReadData
+{
+	return i2cReadData;
 }
 
 - (KonashiResult) uartMode:(KonashiUartMode)mode
@@ -920,8 +931,13 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) uartWrite:(unsigned char)data
 {
+	return [self uartWriteData:[NSData dataWithBytes:&data length:1]];
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		[self writeData:[NSData dataWithBytes:&data length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
 		return KonashiResultSuccess;
 	}
 	else{
@@ -929,7 +945,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	}
 }
 
-- (unsigned char) uartRead
+- (NSData *) readUartData
 {
 	return uartRxData;
 }

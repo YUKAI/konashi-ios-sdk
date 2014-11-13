@@ -190,14 +190,24 @@
     return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
-+ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
++ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address
 {
-    return [[Konashi shared].activePeripheral i2cWrite:length data:data address:address];
+	return [[Konashi shared].activePeripheral i2cWrite:data address:address];
+}
+
++ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address
+{
+	return [[Konashi shared].activePeripheral i2cWrite:(int)MIN(data.length, [[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]) data:(unsigned char *)data.UTF8String address:address];
 }
 
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
     return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
+}
+
++ (NSData *)i2cReadData
+{
+	return [[Konashi shared].activePeripheral i2cReadData];
 }
 
 #pragma mark -
@@ -213,9 +223,19 @@
     return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
 }
 
-+ (KonashiResult) uartWrite:(unsigned char)data
++ (KonashiResult) uartWriteData:(NSData *)data
 {
-    return [[Konashi shared].activePeripheral uartWrite:data];
+	return [[Konashi shared].activePeripheral uartWriteData:data];
+}
+
++ (KonashiResult) uartWriteString:(NSString *)string
+{
+	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
+}
+
++ (NSData *)readUartData
+{
+	return [[Konashi shared].activePeripheral readUartData];
 }
 
 #pragma mark -
@@ -539,6 +559,66 @@
 		self.disconnectedHandler();
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
+}
+
+#pragma mark - Deprecated
+
+#pragma mark - digital
+
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
+{
+	return [[Konashi shared].activePeripheral digitalRead:pin];
+}
+
++ (int) digitalReadAll
+{
+	return [[Konashi shared].activePeripheral digitalReadAll];
+}
+
+#pragma mark - analog
+
++ (int) analogRead:(KonashiAnalogIOPin)pin
+{
+	return [[Konashi shared].activePeripheral analogRead:pin];
+}
+
+#pragma mark - I2C
+
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
+{
+	return [[Konashi shared].activePeripheral i2cWrite:length data:data address:address];
+}
+
++ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
+{
+	return [[Konashi shared].activePeripheral i2cRead:length data:data];
+}
+
+#pragma mark - Uart
+
++ (KonashiResult) uartWrite:(unsigned char)data
+{
+	return [[Konashi shared].activePeripheral uartWrite:data];
+}
+
++ (unsigned char) uartRead
+{
+	NSData *d = [[Konashi shared].activePeripheral readUartData];
+	unsigned char data;
+	[d getBytes:&data length:1];
+	return data;
+}
+
+#pragma mark - Hardware
+
++ (int) batteryLevelRead
+{
+	return [[Konashi shared].activePeripheral batteryLevelRead];
+}
+
++ (int) signalStrengthRead
+{
+	return [[Konashi shared].activePeripheral signalStrengthRead];
 }
 
 @end

@@ -7,7 +7,6 @@
 
 #import "HomeViewController.h"
 #import "Konashi.h"
-#import "Konashi+LegacyAPI.h"
 
 @interface HomeViewController ()
 

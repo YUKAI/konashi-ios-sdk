@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.1'
   s.source_files = 'Konashi/Konashi/*.{h,m}','Konashi/Konashi/**/*.{h,m}'
   s.requires_arc = true
-  s.framework  = 'CoreBluetooth'
+  s.framework  = 'CoreBluetooth', 'JavaScriptCore'
 end

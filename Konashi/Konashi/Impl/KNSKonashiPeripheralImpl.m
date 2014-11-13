@@ -9,7 +9,7 @@
 #import "KNSKonashiPeripheralImpl.h"
 #import "KonashiUtils.h"
 
-static NSInteger const i2cDataMaxLength = 20;
+static NSInteger const i2cDataMaxLength = 18;
 
 @interface KNSKonashiPeripheralImpl ()
 
