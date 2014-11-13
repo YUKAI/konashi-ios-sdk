@@ -561,7 +561,7 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
 
-#pragma mark - Depricated
+#pragma mark - Deprecated
 
 #pragma mark - digital
 

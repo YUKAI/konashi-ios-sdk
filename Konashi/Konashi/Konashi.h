@@ -479,7 +479,7 @@
 + (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
 + (void) removeObserver:(id)notificationObserver;
 
-#pragma mark - Depricated
+#pragma mark - Deprecated
 
 /// ---------------------------------
 /// @name Digital I/O (PIO)
