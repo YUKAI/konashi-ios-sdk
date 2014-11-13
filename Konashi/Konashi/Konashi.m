@@ -130,7 +130,7 @@
 
 + (NSString *) peripheralName
 {
-    return [[Konashi shared].activePeripheral findName];
+    return [Konashi shared].activePeripheral.peripheral.name;
 }
 
 #pragma mark -

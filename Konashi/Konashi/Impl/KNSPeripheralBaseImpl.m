@@ -443,11 +443,6 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	return self.peripheral.state;
 }
 
-- (NSString *)findName
-{
-	return self.peripheral.name;
-}
-
 - (KonashiResult) writeValuePioSetting
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
