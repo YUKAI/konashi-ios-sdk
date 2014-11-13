@@ -488,7 +488,7 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi i2cWriteData:address] を用いてデータの書き込んでください。
  */
-+ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
 /**
  *  I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
