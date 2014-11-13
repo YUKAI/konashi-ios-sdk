@@ -235,6 +235,11 @@
 	return [[Konashi shared].activePeripheral i2cWrite:data address:address];
 }
 
++ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address
+{
+	return [[Konashi shared].activePeripheral i2cWrite:(int)MIN(data.length, [[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]) data:(unsigned char *)data.UTF8String address:address];
+}
+
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
     return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
@@ -261,6 +266,11 @@
 + (KonashiResult) uartWriteData:(NSData *)data
 {
 	return [[Konashi shared].activePeripheral uartWriteData:data];
+}
+
++ (KonashiResult) uartWriteString:(NSString *)string
+{
+	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
 }
 
 + (NSData *)readUartData
