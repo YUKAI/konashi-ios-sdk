@@ -17,7 +17,7 @@ Physical computing toolkit for smartphones and tablets
 
 ```
 source "https://github.com/CocoaPods/Specs.git"
-platform :ios, "6.1"
+platform :ios, "7.1"
 pod "konashi-ios-sdk", "~> 2.0"
 ```
 
@@ -32,7 +32,7 @@ $ pod install
 
 - [公式ページの Getting Started](http://konashi.ux-xu.com/getting_started/)
   - konashi の基板上の LED を点灯させるまで
-  
+
 
 ## 開発について
 
@@ -50,7 +50,7 @@ $ pod install
   - もしくは konashi をキーワードにブログに書いてください。
 - [contact@ux-xu.com](contact@ux-xu.com) にメールする
   - メールでの報告も受け付けています。
-  
+
 ### ブランチの運用
 [git-flow](https://github.com/nvie/gitflow) を使用しています。各ブランチの役割は以下です。
 
