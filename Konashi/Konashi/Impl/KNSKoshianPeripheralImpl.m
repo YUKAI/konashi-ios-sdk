@@ -114,7 +114,7 @@ static NSInteger const i2cDataMaxLength = 16;
 			break;
 		case 2: {
 			static CBUUID *uuid2;
-			uuid = kns_CreateUUIDFromString(@"229B3009-03FB-40DA-98A7-B0DEF65C2D4B", uuid2);
+			uuid = kns_CreateUUIDFromString(@"229B300A-03FB-40DA-98A7-B0DEF65C2D4B", uuid2);
 		}
 			break;
 		default:
