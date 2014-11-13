@@ -81,9 +81,6 @@
 			_activePeripheral = connectedPeripheral;
 			_activePeripheral.handlerManager = handlerManager;
 		}];
-		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [note userInfo][KonashiPeripheralKey], [note userInfo][KonashiErrorKey]);
-		}];
 	}
 	
 	return self;
