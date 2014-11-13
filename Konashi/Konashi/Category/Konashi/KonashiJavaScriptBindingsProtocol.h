@@ -50,11 +50,13 @@ JSExportAs(analogWrite, + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin mi
 + (KonashiResult) i2cRestartCondition;
 + (KonashiResult) i2cStopCondition;
 JSExportAs(i2cReadRequest, + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address);
+JSExportAs(i2cWriteString, + (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address);
 + (NSData *)i2cReadData;
 
 // UART methods
 + (KonashiResult) uartMode:(KonashiUartMode)mode;
 + (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
++ (KonashiResult) uartWriteString:(NSString *)string;
 + (NSData *) readUartData;
 
 // Konashi hardware methods

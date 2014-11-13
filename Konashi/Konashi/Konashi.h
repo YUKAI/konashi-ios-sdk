@@ -370,6 +370,8 @@
  */
 + (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address;
 
++ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address;
+
 /**
  *  I2C で指定したアドレスからデータを読み込むリクエストを行います。
  *	この関数はリクエストを行うだけでデータは取得できません。
@@ -419,6 +421,8 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
 + (KonashiResult) uartWriteData:(NSData *)data;
+
++ (KonashiResult) uartWriteString:(NSString *)string;
 
 /**
  *  uartの値を取得します。

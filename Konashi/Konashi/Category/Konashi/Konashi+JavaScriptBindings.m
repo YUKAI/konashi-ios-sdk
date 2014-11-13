@@ -11,20 +11,6 @@
 #import "KNSKoshianPeripheralImpl.h"
 #import "Konashi+JavaScriptBindings.h"
 
-@implementation Konashi (JavaScriptBindings)
-
-+ (KonashiResult) uartWriteString:(NSString *)string
-{
-	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
-}
-
-+ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address
-{
-	return [[Konashi shared].activePeripheral i2cWrite:(int)data.length - 1 data:(unsigned char *)data.UTF8String address:address];
-}
-
-@end
-
 @interface KNSJavaScriptVirtualMachine ()
 
 @property (nonatomic, readonly) JSContext *context;

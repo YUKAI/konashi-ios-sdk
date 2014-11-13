@@ -9,20 +9,6 @@
 #import "Konashi.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@protocol KonashiJavaScriptBindings2 <JSExport>
-
-+ (KonashiResult) uartWriteString:(NSString *)string;
-JSExportAs(i2cWriteString, + (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address);
-
-@end
-
-@interface Konashi (JavaScriptBindings) <KonashiJavaScriptBindings2>
-
-+ (KonashiResult) uartWriteString:(NSString *)string;
-+ (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address;
-
-@end
-
 @interface KNSJavaScriptVirtualMachine : NSObject
 
 + (JSValue *)evaluateScript:(NSString *)script;
