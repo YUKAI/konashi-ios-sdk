@@ -370,6 +370,15 @@
  */
 + (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address;
 
+/**
+ *  I2C で指定したアドレスに文字列を書き込みます。
+ *	事前に i2cMode で I2C を有効にしておいてください。
+ *
+ *  @param data    書き込む文字列
+ *  @param address 書き込み先アドレス
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address;
 
 /**
@@ -422,6 +431,13 @@
  */
 + (KonashiResult) uartWriteData:(NSData *)data;
 
+/**
+ *  UART で文字列を送信します。
+ *
+ *  @param string 送信する文字列
+ *
+ *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
 + (KonashiResult) uartWriteString:(NSString *)string;
 
 /**
