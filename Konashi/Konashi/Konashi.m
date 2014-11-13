@@ -230,7 +230,7 @@
 
 + (KonashiResult) uartWriteString:(NSString *)string
 {
-	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
+	return [[Konashi shared].activePeripheral uartWriteData:[string dataUsingEncoding:NSASCIIStringEncoding]];
 }
 
 + (NSData *)readUartData
