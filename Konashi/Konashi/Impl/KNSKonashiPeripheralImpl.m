@@ -200,4 +200,25 @@ static NSInteger const i2cDataMaxLength = 18;
     [NSThread sleepForTimeInterval:0.03];
 }
 
+#pragma mark -
+
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
+{
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
+		if(KonashiUartBaudrateRate9K6 == baudrate){
+			Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
+			[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+			uartBaudrate = baudrate;
+			
+			return KonashiResultSuccess;
+		}
+		else{
+			return KonashiResultFailure;
+		}
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
+
 @end
