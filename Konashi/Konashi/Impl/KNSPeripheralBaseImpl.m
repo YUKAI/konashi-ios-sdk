@@ -824,6 +824,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
 	int i;
+	// I2Cの仕様で先頭にアドレスとデータ長を付け加えるために、配列の長さを+2する。
 	unsigned char t[[[self class] i2cDataMaxLength] + 2];
 	
 	if(length > 0 && (i2cSetting == KonashiI2CModeEnable || i2cSetting == KonashiI2CModeEnable100K || i2cSetting == KonashiI2CModeEnable400K) &&
