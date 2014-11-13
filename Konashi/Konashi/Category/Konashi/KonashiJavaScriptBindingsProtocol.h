@@ -14,7 +14,6 @@
 
 @protocol KonashiJavaScriptBindings <JSExport>
 
-+ (KonashiResult) initialize;
 + (KonashiResult) find;
 + (KonashiResult) findWithName:(NSString*)name;
 + (KonashiResult) disconnect;
