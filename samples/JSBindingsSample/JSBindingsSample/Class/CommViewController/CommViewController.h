@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *uartBaudrate;
 @property (weak, nonatomic) IBOutlet UITextField *uartSendText;
 @property (weak, nonatomic) IBOutlet UITextView *uartRecvText;
+- (IBAction)changeBaudrate:(id)sender;
 - (IBAction)uartSend:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISwitch *i2cSetting;

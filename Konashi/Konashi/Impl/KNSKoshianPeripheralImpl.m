@@ -9,7 +9,7 @@
 #import "KNSKoshianPeripheralImpl.h"
 #import "KonashiUtils.h"
 
-static NSInteger const i2cDataMaxLength = 16;
+static NSString *const kLatestFirmwareVersion = @"2.0.0";
 
 @interface KNSKoshianPeripheralImpl ()
 
@@ -17,9 +17,14 @@ static NSInteger const i2cDataMaxLength = 16;
 
 @implementation KNSKoshianPeripheralImpl
 
+- (NSInteger)uartDataMaxLength
+{
+	return [self uartDataMaxLengthByRevisionString:self.softwareRevisionString];
+}
+
 + (NSInteger)i2cDataMaxLength
 {
-	return i2cDataMaxLength;
+	return 16;
 }
 
 // UUID
@@ -209,6 +214,45 @@ static NSInteger const i2cDataMaxLength = 16;
 {
 	static CBUUID *uuid;
 	return kns_CreateUUIDFromString(	@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
+		// revision stringが2.0.0の時はマルチバイトで送信できる
+		if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+			// 先頭1バイトはデータ長
+			NSMutableData *d = [NSMutableData new];
+			[d appendBytes:(const void *)data.length length:1];
+			[d appendData:data];
+			[self writeData:d serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+		}
+		else {
+			// 先頭1バイトはデータ長
+			unsigned char *d = (unsigned char *)[data bytes];
+			for (NSInteger i = 0; i < data.length; i++) {
+				[self writeData:[NSData dataWithBytes:&d[i] length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+			}
+		}
+		
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
+
+#pragma mark -
+
+- (NSInteger)uartDataMaxLengthByRevisionString:(NSString *)revisionString
+{
+	NSInteger dataLength = 1;
+	// revision stringが2.0.0の時だけマルチバイトで送信できる
+	if ([revisionString isEqualToString:@"2.0.0"]) {
+		dataLength = 18;
+	}
+	
+	return dataLength;
 }
 
 @end

@@ -145,12 +145,9 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		if([service.UUID kns_isEqualToUUID:s.UUID]) {
 			KNS_LOG(@"Finished discovering all services' characteristics");
 			// set konashi property
-			_ready = YES;
-			
 			if (self.handlerManager.readyHandler) {
 				self.handlerManager.readyHandler();
 			}
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			
 			//read software revision string
 			[self readDataWithServiceUUID:[CBUUID UUIDWithString:kDeviceInformationServiceUUIDString] characteristicUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]];
@@ -251,12 +248,19 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]]) {
 			_softwareRevisionString = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+			_ready = YES;
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
 		}
 	}
 }
 
 #pragma mark - KNSPeripheralImplProtocol
+
+- (NSInteger)uartDataMaxLength
+{
+	return 1;
+}
 
 + (NSInteger)i2cDataMaxLength
 {
@@ -910,21 +914,30 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
 {
+	KonashiResult result = KonashiResultFailure;
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
-		if(KonashiUartBaudrateRate9K6 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
-			Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
-			[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
-			uartBaudrate = baudrate;
-			
-			return KonashiResultSuccess;
+		// Konashi
+		if ([self.softwareRevisionString isEqualToString:KonashiLegacyRevisionString]) {
+			if(KonashiUartBaudrateRate2K4 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
+				result = KonashiResultSuccess;
+			}
 		}
-		else{
-			return KonashiResultFailure;
+		// Koshian
+		else {
+			if(KonashiUartBaudrateRate9K6 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
+				result = KonashiResultSuccess;
+			}
 		}
 	}
-	else{
-		return KonashiResultFailure;
+	
+	if (result == KonashiResultSuccess) {
+		Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
+		NSData *baudrateData = [NSData dataWithBytes:t length:2];
+		[self writeData:baudrateData serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+		uartBaudrate = baudrate;
 	}
+	
+	return result;
 }
 
 - (KonashiResult) uartWrite:(unsigned char)data

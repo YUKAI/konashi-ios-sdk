@@ -11,6 +11,7 @@
 @protocol KNSPeripheralImplProtocol <NSObject>
 
 @required
+- (NSInteger)uartDataMaxLength;
 + (NSInteger)i2cDataMaxLength;
 + (NSInteger)levelServiceReadLength;
 + (NSInteger)pioInputNotificationReadLength;

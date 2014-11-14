@@ -89,6 +89,9 @@
     }
 }
 
+- (IBAction)changeBaudrate:(id)sender {
+}
+
 - (IBAction)uartSend:(id)sender {
     int i;
     for(i=0; i<self.uartSendText.text.length; i++){

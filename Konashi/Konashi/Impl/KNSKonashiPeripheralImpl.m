@@ -9,8 +9,6 @@
 #import "KNSKonashiPeripheralImpl.h"
 #import "KonashiUtils.h"
 
-static NSInteger const i2cDataMaxLength = 18;
-
 @interface KNSKonashiPeripheralImpl ()
 
 @end
@@ -19,7 +17,7 @@ static NSInteger const i2cDataMaxLength = 18;
 
 + (NSInteger)i2cDataMaxLength
 {
-	return i2cDataMaxLength;
+	return 18;
 }
 
 // UUID
@@ -205,7 +203,7 @@ static NSInteger const i2cDataMaxLength = 18;
 - (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
-		if(KonashiUartBaudrateRate9K6 == baudrate){
+		if(baudrate == KonashiUartBaudrateRate2K4 && KonashiUartBaudrateRate9K6 == baudrate){
 			Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
 			[self writeData:[NSData dataWithBytes:t length:2] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
 			uartBaudrate = baudrate;
