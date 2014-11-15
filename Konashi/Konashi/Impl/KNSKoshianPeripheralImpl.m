@@ -17,6 +17,31 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 
 @implementation KNSKoshianPeripheralImpl
 
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+	[super peripheral:peripheral didUpdateValueForCharacteristic:characteristic error:error];
+	unsigned char byte[32];
+	
+	KNS_LOG(@"didUpdateValueForCharacteristic");
+	
+	if (!error) {
+		if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
+			if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+				[characteristic.value getBytes:byte range:NSMakeRange(1, characteristic.value.length - 1)];
+				uartRxData = [[NSData alloc] initWithBytes:byte length:characteristic.value.length - 1];
+			}
+			else {
+				uartRxData = [characteristic.value copy];
+			}
+			// [0]: MSB
+			if (self.handlerManager.uartRxCompleteHandler) {
+				self.handlerManager.uartRxCompleteHandler(uartRxData);
+			}
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
+		}
+	}
+}
+
 - (NSInteger)uartDataMaxLength
 {
 	return [self uartDataMaxLengthByRevisionString:self.softwareRevisionString];
@@ -223,7 +248,8 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 		if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
 			// 先頭1バイトはデータ長
 			NSMutableData *d = [NSMutableData new];
-			[d appendBytes:(const void *)data.length length:1];
+			NSUInteger length = data.length;
+			[d appendBytes:&length length:1];
 			[d appendData:data];
 			[self writeData:d serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
 		}
@@ -240,6 +266,32 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 	else{
 		return KonashiResultFailure;
 	}
+}
+
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
+{
+	KonashiResult result = KonashiResultFailure;
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
+		if ([self.softwareRevisionString isEqualToString:@"1.0.0"]) {
+			if(KonashiUartBaudrateRate9K6 == baudrate){
+				result = KonashiResultSuccess;
+			}
+		}
+		else {
+			if(KonashiUartBaudrateRate9K6 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
+				result = KonashiResultSuccess;
+			}
+		}
+	}
+	
+	if (result == KonashiResultSuccess) {
+		Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
+		NSData *baudrateData = [NSData dataWithBytes:t length:2];
+		[self writeData:baudrateData serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+		uartBaudrate = baudrate;
+	}
+	
+	return result;
 }
 
 #pragma mark -

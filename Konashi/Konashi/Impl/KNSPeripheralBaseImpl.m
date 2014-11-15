@@ -247,7 +247,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventBatteryLevelDidUpdateNotification object:nil];
 		}
 		else if ([characteristic.UUID kns_isEqualToUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]]) {
-			_softwareRevisionString = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+			_softwareRevisionString = [[NSString alloc] initWithBytes:characteristic.value.bytes length:characteristic.value.length - 1 encoding:NSASCIIStringEncoding];
 			_ready = YES;
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
@@ -916,17 +916,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 {
 	KonashiResult result = KonashiResultFailure;
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
-		// Konashi
-		if ([self.softwareRevisionString isEqualToString:KonashiLegacyRevisionString]) {
-			if(KonashiUartBaudrateRate2K4 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
-				result = KonashiResultSuccess;
-			}
-		}
-		// Koshian
-		else {
-			if(KonashiUartBaudrateRate9K6 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
-				result = KonashiResultSuccess;
-			}
+		if(KonashiUartBaudrateRate2K4 <= baudrate && baudrate <= KonashiUartBaudrateRate9K6){
+			result = KonashiResultSuccess;
 		}
 	}
 	
