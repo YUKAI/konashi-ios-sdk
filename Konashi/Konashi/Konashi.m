@@ -555,8 +555,8 @@
 {
     KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
 	
-	if (self.disconnectedHandler) {
-		self.disconnectedHandler();
+	if (handlerManager.disconnectedHandler) {
+		handlerManager.disconnectedHandler();
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
