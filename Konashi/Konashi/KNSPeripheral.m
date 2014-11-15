@@ -8,12 +8,31 @@
 
 #import "KNSPeripheral.h"
 #import "KNSPeripheralImpls.h"
+#import "KNSCentralManager.h"
+#import "Konashi+UI.h"
 
 @interface KNSPeripheral ()
+{
+	NSString *findName;
+	BOOL isReady;
+	BOOL isCallFind;
+}
+
+@property (nonatomic, readonly) 	CBPeripheral *assignedPeripheral;
 
 @end
 
 @implementation KNSPeripheral
+
++ (KNSPeripheral *)peripheraliWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler
+{
+	KNSPeripheral *p = [KNSPeripheral new];
+	p.handlerManager.connectedHandler = connectedHandler;
+	p.handlerManager.disconnectedHandler = disconnectedHander;
+	p.handlerManager.readyHandler = readyHandler;
+	
+	return p;
+}
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p
 {
@@ -21,6 +40,24 @@
 	if (self) {
 		_assignedPeripheral = p;
 		p.delegate = self;
+		
+		__weak typeof(findName) bfindName = findName;
+		__block typeof(isCallFind) bisCallFind = isCallFind;
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if (bisCallFind) {
+				bisCallFind = NO;
+				if (bfindName) {
+					KNS_LOG(@"Try findWithName");
+					[self connectWithName:bfindName timeout:KonashiFindTimeoutInterval];
+				}
+				else {
+					[self connectWithTimeoutInterval:KonashiFindTimeoutInterval];
+				}
+			}
+		}];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [note userInfo][KonashiPeripheralKey], [note userInfo][KonashiErrorKey]);
+		}];
 	}
 	
 	return self;
@@ -45,7 +82,7 @@
 
 - (CBPeripheral *)peripheral
 {
-	return _impl.peripheral;
+	return _impl.peripheral ?: self.assignedPeripheral;
 }
 
 - (CBPeripheralState)state
@@ -58,9 +95,68 @@
 	return _impl.isReady;
 }
 
-- (NSString *)findName
+- (KonashiResult)connectWithTimeoutInterval:(NSTimeInterval)timeout
 {
-	return _impl.findName;
+	if(self.state == CBPeripheralStateConnected){
+		return KonashiResultFailure;
+	}
+	
+	if ([KNSCentralManager sharedInstance].state  != CBCentralManagerStatePoweredOn) {
+		KNS_LOG(@"CoreBluetooth not correctly initialized !");
+		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
+		return KonashiResultSuccess;
+	}
+	
+	[[KNSCentralManager sharedInstance] discover:^(CBPeripheral *peripheral, BOOL *stop) {
+	} timeoutBlock:^(NSSet *peripherals) {
+		if ([peripherals count] > 0) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralFoundNotification object:nil];
+		}
+		else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventNoPeripheralsAvailableNotification object:nil];
+		}
+	} timeoutInterval:KonashiFindTimeoutInterval];
+	
+	return KonashiResultSuccess;
+}
+
+- (KonashiResult)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout
+{
+	if(self.state == CBPeripheralStateConnected){
+		return KonashiResultFailure;
+	}
+	
+	if ([KNSCentralManager sharedInstance].state  != CBCentralManagerStatePoweredOn) {
+		KNS_LOG(@"CoreBluetooth not correctly initialized !");
+		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
+		return KonashiResultSuccess;
+	}
+	[[KNSCentralManager sharedInstance] discover:^(CBPeripheral *peripheral, BOOL *stop) {
+		if ([peripheral.name isEqualToString:name]) {
+			[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
+			*stop = YES;
+		}
+	} timeoutBlock:^(NSSet *peripherals) {
+		KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
+		__block CBPeripheral *peripheral = nil;
+		if ([peripherals count] > 0) {
+			[peripherals enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+				CBPeripheral *p = obj;
+				if ([[p name] isEqualToString:name]) {
+					peripheral = p;
+					*stop = YES;
+				}
+			}];
+		}
+		if (peripheral) {
+			[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
+		}
+		else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralNotFoundNotification object:nil];
+		}
+	} timeoutInterval:timeout];
+	
+	return KonashiResultSuccess;
 }
 
 - (NSString *)softwareRevisionString

@@ -21,7 +21,6 @@
 @property (nonatomic, readonly) KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl;
 @property (nonatomic, weak) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly) NSString *softwareRevisionString;
-@property (nonatomic, readonly) 	CBPeripheral *assignedPeripheral;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
@@ -32,7 +31,9 @@
 
 - (CBPeripheralState)state;
 - (BOOL)isReady;
-- (NSString *)findName;
+
+- (KonashiResult)connectWithTimeoutInterval:(NSTimeInterval)timeout;
+- (KonashiResult)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout;
 
 - (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
 - (KonashiResult) pinModeAll:(int)mode;

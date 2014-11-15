@@ -137,7 +137,7 @@ static KNSCentralManager *c;
 {
 	KNSPeripheral *result = nil;
 	for (KNSPeripheral *p in activePeripherals_) {
-		if (p.assignedPeripheral == peripheral) {
+		if (p.peripheral == peripheral) {
 			result = p;
 			break;
 		}
@@ -245,7 +245,7 @@ static KNSCentralManager *c;
 	}
 	
 	KNSPeripheral *p = [self findActivePeripheralWithPeripheral:peripheral];
-	[p.assignedPeripheral kns_discoverAllServices];
+	[p.peripheral kns_discoverAllServices];
 	if (self.didConnectPeripheral) {
 		self.didConnectPeripheral(central, p);
 	}

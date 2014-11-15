@@ -91,11 +91,13 @@
 
 + (KonashiResult) find
 {
+//TODO: use KNSPeripheral
     return [[Konashi shared] findModule:KonashiFindTimeoutInterval];
 }
 
 + (KonashiResult) findWithName:(NSString*)name
 {
+//TODO : use KNSPeripheral
     return [[Konashi shared] findModuleWithName:name timeout:KonashiFindTimeoutInterval];
 }
 
