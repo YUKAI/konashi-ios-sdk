@@ -273,7 +273,9 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 {
 	if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
 		unsigned char byte[32];
-		[data getBytes:byte range:NSMakeRange(1, data.length - 1)];
+		[data getBytes:byte length:1];
+		char length = byte[0];
+		[data getBytes:byte range:NSMakeRange(1, length)];
 		uartRxData = [[NSData alloc] initWithBytes:byte length:data.length - 1];
 	}
 	else {
