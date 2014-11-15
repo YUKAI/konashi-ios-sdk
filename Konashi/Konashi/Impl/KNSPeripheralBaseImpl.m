@@ -388,6 +388,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	return self.peripheral.state;
 }
 
+#pragma mark - Digital
+
 - (KonashiResult) writeValuePioSetting
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
