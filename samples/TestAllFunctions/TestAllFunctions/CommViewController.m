@@ -63,14 +63,8 @@
     }
 }
 
-- (IBAction)uartSend:(id)sender {
-    unsigned char data;
-    int i;
-    
-//    for(i=0; i<self.uartSendText.text.length; i++){
-//        data = (unsigned char)*[[self.uartSendText.text substringWithRange:NSMakeRange(i, 1)] UTF8String];
-//        [Konashi uartWrite:data];
-//    }
+- (IBAction)uartSend:(id)sender
+{
 	[Konashi uartWriteData:[self.uartSendText.text dataUsingEncoding:NSASCIIStringEncoding]];
 }
 
@@ -92,6 +86,10 @@
     self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", data]];
 }
 
+- (IBAction)clearUartTextView:(id)sender
+{
+	self.uartRecvText.text = @"";
+}
 
 /////////////////////////////////////
 // I2C
@@ -120,7 +118,7 @@
     
     [Konashi i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-	[Konashi i2cWrite:[NSData dataWithBytes:t length:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]] address:0x1F];
+	[Konashi i2cWriteData:[NSData dataWithBytes:t length:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]] address:0x1F];
     [NSThread sleepForTimeInterval:0.01];
     [Konashi i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
@@ -145,6 +143,11 @@
         NSLog(@"I2C Recv data: %d", data[i]);
         self.i2cRecvText.text = [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
     }
+}
+
+- (IBAction)clearI2CTextView:(id)sender
+{
+	self.i2cRecvText.text = @"";
 }
 
 #pragma mark - UIActionSheetDelegate

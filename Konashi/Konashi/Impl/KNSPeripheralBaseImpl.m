@@ -853,7 +853,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	}
 }
 
-- (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address
+- (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address
 {
 	return [self i2cWrite:(int)data.length data:(unsigned char *)[data bytes] address:address];
 }

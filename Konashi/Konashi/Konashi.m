@@ -190,9 +190,9 @@
     return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
-+ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address
++ (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address
 {
-	return [[Konashi shared].activePeripheral i2cWrite:data address:address];
+	return [[Konashi shared].activePeripheral i2cWriteData:data address:address];
 }
 
 + (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address

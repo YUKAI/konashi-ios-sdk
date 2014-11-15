@@ -179,9 +179,9 @@
 	return [_impl i2cWrite:length data:data address:address];
 }
 
-- (KonashiResult) i2cWrite:(NSData *)data address:(unsigned char)address
+- (KonashiResult) i2cWriteData:(NSData *)data address:(unsigned char)address
 {
-	return [_impl i2cWrite:data address:address];
+	return [_impl i2cWriteData:data address:address];
 }
 
 - (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address

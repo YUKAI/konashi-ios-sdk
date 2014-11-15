@@ -60,7 +60,7 @@
 - (KonashiResult) i2cRestartCondition;
 - (KonashiResult) i2cStopCondition;
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
-- (KonashiResult) i2cWrite:(NSData *)data address:(unsigned char)address;
+- (KonashiResult) i2cWriteData:(NSData *)data address:(unsigned char)address;
 - (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
 - (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
 - (NSData *) i2cReadData;
