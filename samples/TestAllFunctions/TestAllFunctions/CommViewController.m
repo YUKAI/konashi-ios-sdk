@@ -24,14 +24,13 @@
 	// Do any additional setup after loading the view.
     
     // UART系のイベントハンドラ
-    [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
-    [Konashi addObserver:self selector:@selector(onUartRx) name:KonashiEventUartRxCompleteNotification];
 	[Konashi shared].uartRxCompleteHandler = ^(NSData *data) {
 		NSLog(@"uart RX complete:%@", [data description]);
+		NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+		self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:string];
 	};
     
     // I2C系のイベントハンドラ
-    [self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
     [Konashi addObserver:self selector:@selector(onI2cRecv) name:KonashiEventI2CReadCompleteNotification];
 	[Konashi shared].i2cReadCompleteHandler = ^(NSData *data) {
 		NSLog(@"i2c read complete:%@(%ld)", [data description], data.length);
@@ -40,6 +39,9 @@
 	baudrate = KonashiUartBaudrateRate2K4;
 	baudrateList = @[@"2400", @"9600", @"19200", @"38400", @"57600", @"76800", @"115200"];
 	self.uartBaudrateLabel.text = @"2400";
+	
+	[self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
+	[self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,14 +78,6 @@
 	}
 	[actionSheet setCancelButtonIndex:0];
 	[actionSheet showInView:self.view];
-}
-
-- (void)onUartRx
-{
-    unsigned char data = [Konashi uartRead];
-    NSLog(@"UartRx data: %c", data);
-
-    self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", data]];
 }
 
 - (IBAction)clearUartTextView:(id)sender

@@ -17,31 +17,6 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 
 @implementation KNSKoshianPeripheralImpl
 
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
-	[super peripheral:peripheral didUpdateValueForCharacteristic:characteristic error:error];
-	unsigned char byte[32];
-	
-	KNS_LOG(@"didUpdateValueForCharacteristic");
-	
-	if (!error) {
-		if ([characteristic.UUID kns_isEqualToUUID:[[self class] uartRX_NotificationUUID]]) {
-			if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
-				[characteristic.value getBytes:byte range:NSMakeRange(1, characteristic.value.length - 1)];
-				uartRxData = [[NSData alloc] initWithBytes:byte length:characteristic.value.length - 1];
-			}
-			else {
-				uartRxData = [characteristic.value copy];
-			}
-			// [0]: MSB
-			if (self.handlerManager.uartRxCompleteHandler) {
-				self.handlerManager.uartRxCompleteHandler(uartRxData);
-			}
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
-		}
-	}
-}
-
 - (NSInteger)uartDataMaxLength
 {
 	return [self uartDataMaxLengthByRevisionString:self.softwareRevisionString];
@@ -292,6 +267,23 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 	}
 	
 	return result;
+}
+
+- (void)uartDataDidUpdate:(NSData *)data
+{
+	if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+		unsigned char byte[32];
+		[data getBytes:byte range:NSMakeRange(1, data.length - 1)];
+		uartRxData = [[NSData alloc] initWithBytes:byte length:data.length - 1];
+	}
+	else {
+		uartRxData = [data copy];
+	}
+	// [0]: MSB
+	if (self.handlerManager.uartRxCompleteHandler) {
+		self.handlerManager.uartRxCompleteHandler(uartRxData);
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
 }
 
 #pragma mark -
