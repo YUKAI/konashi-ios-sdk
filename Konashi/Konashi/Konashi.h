@@ -348,7 +348,7 @@
  *
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address;
++ (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address;
 
 /**
  *  I2C で指定したアドレスに文字列を書き込みます。

@@ -55,14 +55,18 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 		vm = [KNSJavaScriptVirtualMachine new];
 		vm.context[@"Konashi"] = [Konashi class];
 		vm.context[@"Konashi"][@"KONASHI_URL_SCHEME"] = @"konashijs";
+		
 		vm.context[@"Konashi"][@"HIGH"] = @(KonashiLevelHigh);
 		vm.context[@"Konashi"][@"LOW"] = @(KonashiLevelLow);
+		
 		vm.context[@"Konashi"][@"INPUT"] = @(KonashiPinModeInput);
 		vm.context[@"Konashi"][@"OUTPUT"] = @(KonashiPinModeOutput);
 		vm.context[@"Konashi"][@"PULLUP"] = @(KonashiPinModePullup);
 		vm.context[@"Konashi"][@"NO_PULLS"] = @(KonashiPinModeNoPulls);
+		
 		vm.context[@"Konashi"][@"ENABLE"] = @YES;
 		vm.context[@"Konashi"][@"DISABLE"] = @NO;
+		
 		vm.context[@"Konashi"][@"PIO0"] = @(KonashiDigitalIO0);
 		vm.context[@"Konashi"][@"PIO1"] = @(KonashiDigitalIO1);
 		vm.context[@"Konashi"][@"PIO2"] = @(KonashiDigitalIO2);
@@ -71,6 +75,7 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 		vm.context[@"Konashi"][@"PIO5"] = @(KonashiDigitalIO5);
 		vm.context[@"Konashi"][@"PIO6"] = @(KonashiDigitalIO6);
 		vm.context[@"Konashi"][@"PIO7"] = @(KonashiDigitalIO7);
+		
 		vm.context[@"Konashi"][@"S1"] = @(KonashiS1);
 		vm.context[@"Konashi"][@"LED2"] = @(KonashiLED2);
 		vm.context[@"Konashi"][@"LED3"] = @(KonashiLED3);
@@ -79,18 +84,29 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 		vm.context[@"Konashi"][@"AIO0"] = @(KonashiAnalogIO0);
 		vm.context[@"Konashi"][@"AIO1"] = @(KonashiAnalogIO1);
 		vm.context[@"Konashi"][@"AIO2"] = @(KonashiAnalogIO2);
+		
 		vm.context[@"Konashi"][@"I2C_SDA"] = @(KonashiI2C_SDA);
 		vm.context[@"Konashi"][@"I2C_SCL"] = @(KonashiI2C_SCL);
+		
 		vm.context[@"Konashi"][@"KONASHI_SUCCESS"] = @(KonashiResultSuccess);
 		vm.context[@"Konashi"][@"KONASHI_FAILURE"] = @(KonashiResultFailure);
+		
 		vm.context[@"Konashi"][@"KONASHI_PWM_DISABLE"] = @(KonashiPWMModeDisable);
 		vm.context[@"Konashi"][@"KONASHI_PWM_ENABLE"] = @(KonashiPWMModeEnable);
 		vm.context[@"Konashi"][@"KONASHI_PWM_ENABLE_LED_MODE"] = @(KonashiPWMModeEnableLED);
 		vm.context[@"Konashi"][@"KONASHI_PWM_LED_PERIOD"] = @(KonashiLEDPeriod);
+		
 		vm.context[@"Konashi"][@"KONASHI_ANALOG_REFERENCE"] = @([[KNSKonashiPeripheralImpl class] analogReference]);
 		vm.context[@"Konashi"][@"KOSHIAN_ANALOG_REFERENCE"] = @([[KNSKoshianPeripheralImpl class] analogReference]);
+		
 		vm.context[@"Konashi"][@"KONASHI_UART_RATE_2K4"] = @(KonashiUartBaudrateRate2K4);
 		vm.context[@"Konashi"][@"KONASHI_UART_RATE_9K6"] = @(KonashiUartBaudrateRate9K6);
+		vm.context[@"Konashi"][@"KONASHI_UART_RATE_19K2"] = @(KonashiUartBaudrateRate19K2);
+		vm.context[@"Konashi"][@"KONASHI_UART_RATE_38K4"] = @(KonashiUartBaudrateRate38K4);
+		vm.context[@"Konashi"][@"KONASHI_UART_RATE_57K6"] = @(KonashiUartBaudrateRate57K6);
+		vm.context[@"Konashi"][@"KONASHI_UART_RATE_76K8"] = @(KonashiUartBaudrateRate76K8);
+		vm.context[@"Konashi"][@"KONASHI_UART_RATE_115K2"] = @(KonashiUartBaudrateRate115K2);
+		
 		vm.context[@"Konashi"][@"KONASHI_I2C_DATA_MAX_LENGTH"] = @([[KNSKonashiPeripheralImpl class] i2cDataMaxLength]);
 		vm.context[@"Konashi"][@"KOSHIAN_I2C_DATA_MAX_LENGTH"] = @([[KNSKoshianPeripheralImpl class] i2cDataMaxLength]);
 		vm.context[@"Konashi"][@"KONASHI_I2C_DISABLE"] = @(KonashiI2CModeDisable);
@@ -100,8 +116,12 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 		vm.context[@"Konashi"][@"KONASHI_I2C_STOP_CONDITION"] = @(KonashiI2CConditionStop);
 		vm.context[@"Konashi"][@"KONASHI_I2C_START_CONDITION"] = @(KonashiI2CConditionStart);
 		vm.context[@"Konashi"][@"KONASHI_I2C_RESTART_CONDITION"] = @(KonashiI2CConditionRestart);
+		
 		vm.context[@"Konashi"][@"KONASHI_UART_DISABLE"] = @(KonashiUartModeDisable);
 		vm.context[@"Konashi"][@"KONASHI_UART_ENABLE"] = @(KonashiUartModeEnable);
+		vm.context[@"Konashi"][@"KONASHI_UART_MAX_DATA_LENGTH"] = @([[KNSKonashiPeripheralImpl class] uartDataMaxLength]);
+		vm.context[@"Konashi"][@"KOSHIAN_1_0_UART_MAX_DATA_LENGTH"] = @(1);
+		vm.context[@"Konashi"][@"KOSHIAN_2_0_UART_MAX_DATA_LENGTH"] = @(18);
 		
 		NSDictionary *events = @{KonashiEventCentralManagerPowerOnNotification : JS_KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON,
 								 KonashiEventPeripheralNotFoundNotification : JS_KONASHI_EVENT_PERIPHERAL_NOT_FOUND,

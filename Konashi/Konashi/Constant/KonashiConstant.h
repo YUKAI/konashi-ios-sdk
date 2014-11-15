@@ -58,6 +58,8 @@ static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"Konas
 
 static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
+static NSString *const KonashiLegacyRevisionString = @"T1.0.0";
+
 static NSTimeInterval const KonashiFindTimeoutInterval = 2;
 
 // Konashi common
@@ -144,7 +146,12 @@ typedef NS_ENUM(int, KonashiUartMode) {
 // Konashi UART baudrate
 typedef NS_ENUM(int, KonashiUartBaudrate) {
 	KonashiUartBaudrateRate2K4 = 0x000a,
-	KonashiUartBaudrateRate9K6 = 0x0028
+	KonashiUartBaudrateRate9K6 = 0x0028,
+	KonashiUartBaudrateRate19K2 = 0x0050,
+	KonashiUartBaudrateRate38K4 = 0x00a0,
+	KonashiUartBaudrateRate57K6 = 0x00f0,
+	KonashiUartBaudrateRate76K8 = 0x0140,
+	KonashiUartBaudrateRate115K2 = 0x01e0
 };
 
 typedef void(^KonashiEventHandler)();

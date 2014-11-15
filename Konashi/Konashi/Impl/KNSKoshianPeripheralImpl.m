@@ -9,7 +9,7 @@
 #import "KNSKoshianPeripheralImpl.h"
 #import "KonashiUtils.h"
 
-static NSInteger const i2cDataMaxLength = 16;
+static NSString *const kLatestFirmwareVersion = @"2.0.0";
 
 @interface KNSKoshianPeripheralImpl ()
 
@@ -17,9 +17,14 @@ static NSInteger const i2cDataMaxLength = 16;
 
 @implementation KNSKoshianPeripheralImpl
 
+- (NSInteger)uartDataMaxLength
+{
+	return [self uartDataMaxLengthByRevisionString:self.softwareRevisionString];
+}
+
 + (NSInteger)i2cDataMaxLength
 {
-	return i2cDataMaxLength;
+	return 16;
 }
 
 // UUID
@@ -209,6 +214,89 @@ static NSInteger const i2cDataMaxLength = 16;
 {
 	static CBUUID *uuid;
 	return kns_CreateUUIDFromString(	@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
+		// revision stringが2.0.0の時はマルチバイトで送信できる
+		if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+			// 先頭1バイトはデータ長
+			NSMutableData *d = [NSMutableData new];
+			NSUInteger length = data.length;
+			[d appendBytes:&length length:1];
+			[d appendData:data];
+			[self writeData:d serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+		}
+		else {
+			// 先頭1バイトはデータ長
+			unsigned char *d = (unsigned char *)[data bytes];
+			for (NSInteger i = 0; i < data.length; i++) {
+				[self writeData:[NSData dataWithBytes:&d[i] length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+			}
+		}
+		
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
+
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
+{
+	KonashiResult result = KonashiResultFailure;
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeDisable){
+		if ([self.softwareRevisionString isEqualToString:@"1.0.0"]) {
+			if(KonashiUartBaudrateRate9K6 == baudrate){
+				result = KonashiResultSuccess;
+			}
+		}
+		else {
+			if(KonashiUartBaudrateRate9K6 <= baudrate && baudrate <= KonashiUartBaudrateRate115K2){
+				result = KonashiResultSuccess;
+			}
+		}
+	}
+	
+	if (result == KonashiResultSuccess) {
+		Byte t[] = {(baudrate>>8)&0xff, baudrate&0xff};
+		NSData *baudrateData = [NSData dataWithBytes:t length:2];
+		[self writeData:baudrateData serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+		uartBaudrate = baudrate;
+	}
+	
+	return result;
+}
+
+- (void)uartDataDidUpdate:(NSData *)data
+{
+	if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+		unsigned char byte[32];
+		[data getBytes:byte range:NSMakeRange(1, data.length - 1)];
+		uartRxData = [[NSData alloc] initWithBytes:byte length:data.length - 1];
+	}
+	else {
+		uartRxData = [data copy];
+	}
+	// [0]: MSB
+	if (self.handlerManager.uartRxCompleteHandler) {
+		self.handlerManager.uartRxCompleteHandler(uartRxData);
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
+}
+
+#pragma mark -
+
+- (NSInteger)uartDataMaxLengthByRevisionString:(NSString *)revisionString
+{
+	NSInteger dataLength = 1;
+	// revision stringが2.0.0の時だけマルチバイトで送信できる
+	if ([revisionString isEqualToString:@"2.0.0"]) {
+		dataLength = 18;
+	}
+	
+	return dataLength;
 }
 
 @end

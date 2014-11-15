@@ -9,6 +9,10 @@
 #import "Konashi.h"
 
 @interface CommViewController ()
+{
+	KonashiUartBaudrate baudrate;
+	NSArray *baudrateList;
+}
 
 @end
 
@@ -20,18 +24,24 @@
 	// Do any additional setup after loading the view.
     
     // UART系のイベントハンドラ
-    [self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
-    [Konashi addObserver:self selector:@selector(onUartRx) name:KonashiEventUartRxCompleteNotification];
 	[Konashi shared].uartRxCompleteHandler = ^(NSData *data) {
 		NSLog(@"uart RX complete:%@", [data description]);
+		NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+		self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:string];
 	};
     
     // I2C系のイベントハンドラ
-    [self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
     [Konashi addObserver:self selector:@selector(onI2cRecv) name:KonashiEventI2CReadCompleteNotification];
 	[Konashi shared].i2cReadCompleteHandler = ^(NSData *data) {
 		NSLog(@"i2c read complete:%@(%ld)", [data description], data.length);
 	};
+	
+	baudrate = KonashiUartBaudrateRate2K4;
+	baudrateList = @[@"2400", @"9600", @"19200", @"38400", @"57600", @"76800", @"115200"];
+	self.uartBaudrateLabel.text = @"2400";
+	
+	[self.uartSetting addTarget:self action:@selector(onChageUartSetting:) forControlEvents:UIControlEventValueChanged];
+	[self.i2cSetting addTarget:self action:@selector(onChageI2cSetting:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,14 +57,7 @@
 - (void)onChageUartSetting:(id)sender
 {
     if(self.uartSetting.on){
-        if(self.uartBaudrate.selectedSegmentIndex == 0) {
-            NSLog(@"2400");
-            [Konashi uartBaudrate:KonashiUartBaudrateRate2K4];
-        } else {
-            NSLog(@"9600");
-            [Konashi uartBaudrate:KonashiUartBaudrateRate9K6];
-        }
-        
+		[Konashi uartBaudrate:baudrate];
         [Konashi uartMode:KonashiUartModeEnable];
     }
     else {
@@ -62,24 +65,25 @@
     }
 }
 
-- (IBAction)uartSend:(id)sender {
-    unsigned char data;
-    int i;
-    
-    for(i=0; i<self.uartSendText.text.length; i++){
-        data = (unsigned char)*[[self.uartSendText.text substringWithRange:NSMakeRange(i, 1)] UTF8String];
-        [Konashi uartWrite:data];
-    }
-}
-
-- (void)onUartRx
+- (IBAction)uartSend:(id)sender
 {
-    unsigned char data = [Konashi uartRead];
-    NSLog(@"UartRx data: %c", data);
-
-    self.uartRecvText.text = [self.uartRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%c", data]];
+	[Konashi uartWriteData:[self.uartSendText.text dataUsingEncoding:NSASCIIStringEncoding]];
 }
 
+- (IBAction)changeBaudrate:(id)sender
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select baudrate" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+	for (NSString *title in baudrateList) {
+		[actionSheet addButtonWithTitle:title];
+	}
+	[actionSheet setCancelButtonIndex:0];
+	[actionSheet showInView:self.view];
+}
+
+- (IBAction)clearUartTextView:(id)sender
+{
+	self.uartRecvText.text = @"";
+}
 
 /////////////////////////////////////
 // I2C
@@ -108,7 +112,7 @@
     
     [Konashi i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
-	[Konashi i2cWrite:[NSData dataWithBytes:t length:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]] address:0x1F];
+	[Konashi i2cWriteData:[NSData dataWithBytes:t length:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]] address:0x1F];
     [NSThread sleepForTimeInterval:0.01];
     [Konashi i2cStopCondition];
     [NSThread sleepForTimeInterval:0.01];
@@ -133,6 +137,22 @@
         NSLog(@"I2C Recv data: %d", data[i]);
         self.i2cRecvText.text = [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
     }
+}
+
+- (IBAction)clearI2CTextView:(id)sender
+{
+	self.i2cRecvText.text = @"";
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex > 0) {
+		baudrate = (KonashiUartBaudrate)([baudrateList[buttonIndex - 1] integerValue] / 240);
+		self.uartBaudrateLabel.text = baudrateList[buttonIndex - 1];
+		[Konashi uartBaudrate:baudrate];
+	}
 }
 
 @end
