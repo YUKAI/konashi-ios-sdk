@@ -118,8 +118,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
-	//KNS_LOG(@"peripheralDidUpdateRSSI");
-	
+	KNS_LOG(@"peripheralDidUpdateRSSI");
 	rssi = [peripheral.RSSI intValue];
 	
 	if (self.handlerManager.signalStrengthDidUpdateHandler) {
