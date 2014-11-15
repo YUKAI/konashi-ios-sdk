@@ -213,14 +213,9 @@
 #pragma mark -
 #pragma mark - Konashi UART public methods
 
-+ (KonashiResult) uartMode:(KonashiUartMode)mode
++ (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
 {
-    return [[Konashi shared].activePeripheral uartMode:mode];
-}
-
-+ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
-{
-    return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
+	return [[Konashi shared].activePeripheral uartMode:mode baudrate:baudrate];
 }
 
 + (KonashiResult) uartWriteData:(NSData *)data
@@ -595,6 +590,16 @@
 }
 
 #pragma mark - Uart
+
++ (KonashiResult) uartMode:(KonashiUartMode)mode
+{
+	return [[Konashi shared].activePeripheral uartMode:mode];
+}
+
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
+{
+	return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
+}
 
 + (KonashiResult) uartWrite:(unsigned char)data
 {

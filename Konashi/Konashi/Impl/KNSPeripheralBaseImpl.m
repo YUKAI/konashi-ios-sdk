@@ -893,6 +893,31 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 #pragma mark - UART
 
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
+{
+	KonashiResult result = KonashiResultFailure;
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
+		if(KonashiUartBaudrateRate2K4 <= baudrate && baudrate <= KonashiUartBaudrateRate9K6){
+			result = KonashiResultSuccess;
+		}
+		if(mode == KonashiUartModeDisable || mode == KonashiUartModeEnable) {
+			result = (result == KonashiResultSuccess);
+		}
+	}
+	
+	if (result == KonashiResultSuccess) {
+		[self writeData:[NSData dataWithBytes:&mode length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartConfigUUID]];
+		Byte t[] = {(baudrate >> 8) & 0xff, baudrate & 0xff};
+		NSData *baudrateData = [NSData dataWithBytes:t length:2];
+		[self writeData:baudrateData serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+		
+		uartSetting = mode;
+		uartBaudrate = baudrate;
+	}
+	
+	return result;
+}
+
 - (KonashiResult) uartMode:(KonashiUartMode)mode
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected &&

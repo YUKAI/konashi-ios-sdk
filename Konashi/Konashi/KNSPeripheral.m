@@ -64,6 +64,9 @@
 	return _impl.softwareRevisionString;
 }
 
+
+#pragma mark - Digital
+
 - (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
 	return [_impl pinMode:pin mode:mode];
@@ -104,6 +107,8 @@
 	return [_impl digitalWriteAll:value];
 }
 
+#pragma mark PWM
+
 - (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
 	return [_impl pwmMode:pin mode:mode];
@@ -129,6 +134,8 @@
 	return [_impl readValueAio:pin];
 }
 
+#pragma mark - Analog
+
 - (int) analogReference
 {
 	return [[_impl class] analogReference];
@@ -148,6 +155,8 @@
 {
 	return [_impl analogWrite:pin milliVolt:milliVolt];
 }
+
+#pragma mark - I2C
 
 - (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
@@ -197,6 +206,13 @@
 - (NSData *)i2cReadData
 {
 	return [_impl i2cReadData];
+}
+
+#pragma mark - UART
+
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
+{
+	return [_impl uartMode:mode baudrate:baudrate];
 }
 
 - (KonashiResult) uartMode:(KonashiUartMode)mode

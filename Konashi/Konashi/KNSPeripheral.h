@@ -65,6 +65,7 @@
 - (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
 - (NSData *) i2cReadData;
 
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartMode:(KonashiUartMode)mode;
 - (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartWrite:(unsigned char)data;
