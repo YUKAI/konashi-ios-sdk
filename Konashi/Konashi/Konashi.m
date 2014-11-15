@@ -271,6 +271,11 @@
 	handlerManager.connectedHandler = connectedHander;
 }
 
+- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+{
+	handlerManager.disconnectedHandler = disconnectedHandler;
+}
+
 - (void)setReadyHandler:(KonashiEventHandler)readyHander
 {
 	handlerManager.readyHandler = readyHander;
