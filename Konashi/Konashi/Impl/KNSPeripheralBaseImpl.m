@@ -901,7 +901,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			result = KonashiResultSuccess;
 		}
 		if(mode == KonashiUartModeDisable || mode == KonashiUartModeEnable) {
-			result = (result == KonashiResultSuccess);
+			result = (result == KonashiResultSuccess) ? KonashiResultSuccess : KonashiResultFailure;
 		}
 	}
 	
