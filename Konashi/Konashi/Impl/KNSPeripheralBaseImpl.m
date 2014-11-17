@@ -954,18 +954,25 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) uartWrite:(unsigned char)data
 {
-	return [self uartWriteData:[NSData dataWithBytes:&data length:1]];
-}
-
-- (KonashiResult) uartWriteData:(NSData *)data
-{
-	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable) {
+		[self writeData:[NSData dataWithBytes:&data length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
 		return KonashiResultSuccess;
 	}
 	else{
 		return KonashiResultFailure;
 	}
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
+	KonashiResult result = KonashiResultFailure;
+	
+	unsigned char *d = (unsigned char *)[data bytes];
+	for (NSInteger i = 0; i < data.length; i++) {
+		result = ([self uartWrite:d[i]] == KonashiResultSuccess);
+	}
+	
+	return result;
 }
 
 - (NSData *) readUartData
