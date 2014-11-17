@@ -969,7 +969,10 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	
 	unsigned char *d = (unsigned char *)[data bytes];
 	for (NSInteger i = 0; i < data.length; i++) {
-		result = ([self uartWrite:d[i]] == KonashiResultSuccess);
+		result = [self uartWrite:d[i]];
+		if (result == KonashiResultFailure) {
+			break;
+		}
 	}
 	
 	return result;
