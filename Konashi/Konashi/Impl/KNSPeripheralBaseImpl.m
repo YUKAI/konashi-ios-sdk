@@ -762,7 +762,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		self.handlerManager.analogPinDidChangeValueHandler(pin, value);
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO0DidUpdateNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@[KonashiEventAnalogIO0DidUpdateNotification, KonashiEventAnalogIO1DidUpdateNotification, KonashiEventAnalogIO2DidUpdateNotification][pin] object:nil];
 }
 
 #pragma mark - I2C
