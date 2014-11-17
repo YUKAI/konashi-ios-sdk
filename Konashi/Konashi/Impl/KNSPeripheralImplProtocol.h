@@ -11,6 +11,7 @@
 @protocol KNSPeripheralImplProtocol <NSObject>
 
 @required
+- (NSInteger)uartDataMaxLength;
 + (NSInteger)i2cDataMaxLength;
 + (NSInteger)levelServiceReadLength;
 + (NSInteger)pioInputNotificationReadLength;
@@ -73,6 +74,7 @@
 - (int) digitalReadAll;
 - (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
 - (KonashiResult) digitalWriteAll:(int)value;
+- (void)digitalIODidUpdate:(NSData *)data;
 
 - (KonashiResult) writeValuePwmSetting;
 - (KonashiResult) writeValuePwmPeriod:(KonashiDigitalIOPin)pin;
@@ -88,30 +90,34 @@
 - (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
 - (int) analogRead:(KonashiAnalogIOPin)pin;
 - (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
+- (void)analogIODidUpdate:(NSData *)data pin:(KonashiAnalogIOPin)pin;
 
 - (KonashiResult) i2cMode:(KonashiI2CMode)mode;
 - (KonashiResult) i2cSendCondition:(KonashiI2CCondition)condition;
 - (KonashiResult) i2cStartCondition;
 - (KonashiResult) i2cRestartCondition;
 - (KonashiResult) i2cStopCondition;
-
 - (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
-- (KonashiResult) i2cWrite:(NSData *)data address:(unsigned char)address;
+- (KonashiResult) i2cWriteData:(NSData *)data address:(unsigned char)address;
 - (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
 - (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
 - (NSData *)i2cReadData;
+- (void)i2cDataDidUpdate:(NSData *)data;
 
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartMode:(KonashiUartMode)mode;
 - (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartWriteData:(NSData *)data;
 - (NSData *) readUartData;
+- (void)uartDataDidUpdate:(NSData *)data;
 
+- (void)didReceiveSoftwareRevisionStringData:(NSData *)data;
 - (KonashiResult) reset;
 - (KonashiResult) batteryLevelReadRequest;
+- (void)batteryLevelDataDidUpdate:(NSData *)data;
 - (int) batteryLevelRead;
 - (KonashiResult) signalStrengthReadRequest;
 - (int) signalStrengthRead;
-
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
 

@@ -368,7 +368,7 @@
  *
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address;
++ (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address;
 
 /**
  *  I2C で指定したアドレスに文字列を書き込みます。
@@ -408,19 +408,11 @@
  *	有効にする前に、uartBaudrate でボーレートを設定しておいてください。
  *
  *  @param mode 設定するUARTのモード。
+ *  @param baudrate 設定するUARTのボーレート。
  *
  *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult) uartMode:(KonashiUartMode)mode;
-
-/**
- *  UART の通信速度を設定します。
- *
- *  @param baudrate UARTの通信速度。
- *
- *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
- */
-+ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
++ (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate;
 
 /**
  *  UART でデータを送信します。
@@ -532,7 +524,7 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi i2cWriteData:address] を用いてデータの書き込んでください。
  */
-+ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
 /**
  *  I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
@@ -550,6 +542,25 @@
 /// ---------------------------------
 
 /**
+ *  UART の有効/無効を設定します。
+ *	有効にする前に、uartBaudrate でボーレートを設定しておいてください。
+ *
+ *  @param mode 設定するUARTのモード。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) uartMode:(KonashiUartMode)mode NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/**
+ *  UART の通信速度を設定します。
+ *
+ *  @param baudrate UARTの通信速度。
+ *
+ *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
+ */
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate NS_DEPRECATED(NA, NA, 5_0, 8_0);
+
+/**
  *  UART でデータを送信します。
  *
  *  @param data 送信するデータ。
@@ -557,7 +568,7 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi uartWriteData:] を用いでデータを送信してください。
  */
-+ (KonashiResult) uartWrite:(unsigned char)data;
++ (KonashiResult) uartWrite:(unsigned char)data NS_DEPRECATED(NA, NA, 5_0, 8_0);
 
 /**
  *  uartの値を取得します。

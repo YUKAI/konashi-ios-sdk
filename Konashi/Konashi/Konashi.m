@@ -190,9 +190,9 @@
     return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
-+ (KonashiResult)i2cWrite:(NSData *)data address:(unsigned char)address
++ (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address
 {
-	return [[Konashi shared].activePeripheral i2cWrite:data address:address];
+	return [[Konashi shared].activePeripheral i2cWriteData:data address:address];
 }
 
 + (KonashiResult) i2cWriteString:(NSString *)data address:(unsigned char)address
@@ -213,14 +213,9 @@
 #pragma mark -
 #pragma mark - Konashi UART public methods
 
-+ (KonashiResult) uartMode:(KonashiUartMode)mode
++ (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
 {
-    return [[Konashi shared].activePeripheral uartMode:mode];
-}
-
-+ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
-{
-    return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
+	return [[Konashi shared].activePeripheral uartMode:mode baudrate:baudrate];
 }
 
 + (KonashiResult) uartWriteData:(NSData *)data
@@ -230,7 +225,7 @@
 
 + (KonashiResult) uartWriteString:(NSString *)string
 {
-	return [[Konashi shared].activePeripheral uartWrite:[string UTF8String][0]];
+	return [[Konashi shared].activePeripheral uartWriteData:[string dataUsingEncoding:NSASCIIStringEncoding]];
 }
 
 + (NSData *)readUartData
@@ -274,6 +269,11 @@
 - (void)setConnectedHandler:(KonashiEventHandler)connectedHander
 {
 	handlerManager.connectedHandler = connectedHander;
+}
+
+- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+{
+	handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
 - (void)setReadyHandler:(KonashiEventHandler)readyHander
@@ -555,8 +555,8 @@
 {
     KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [peripheral name], error);
 	
-	if (self.disconnectedHandler) {
-		self.disconnectedHandler();
+	if (handlerManager.disconnectedHandler) {
+		handlerManager.disconnectedHandler();
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:nil];
 }
@@ -595,6 +595,16 @@
 }
 
 #pragma mark - Uart
+
++ (KonashiResult) uartMode:(KonashiUartMode)mode
+{
+	return [[Konashi shared].activePeripheral uartMode:mode];
+}
+
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
+{
+	return [[Konashi shared].activePeripheral uartBaudrate:baudrate];
+}
 
 + (KonashiResult) uartWrite:(unsigned char)data
 {
