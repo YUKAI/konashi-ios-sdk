@@ -997,7 +997,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (void)didReceiveSoftwareRevisionStringData:(NSData *)data
 {
-	_softwareRevisionString = [[NSString alloc] initWithBytes:data.bytes length:data.length - 1 encoding:NSASCIIStringEncoding];
+	_softwareRevisionString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	_softwareRevisionString = [_softwareRevisionString stringByReplacingOccurrencesOfString:@"\0" withString:@""];
 	_ready = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
