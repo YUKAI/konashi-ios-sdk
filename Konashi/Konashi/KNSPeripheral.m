@@ -8,7 +8,6 @@
 
 #import "KNSPeripheral.h"
 #import "KNSPeripheralImpls.h"
-#import "KNSUUIDExtern.h"
 
 @implementation KNSPeripheral
 
@@ -25,209 +24,245 @@
 
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
 {
-	[impl_ writeData:data serviceUUID:uuid characteristicUUID:charasteristicUUID];
+	[_impl writeData:data serviceUUID:uuid characteristicUUID:charasteristicUUID];
 }
 
 - (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
 {
-	[impl_ readDataWithServiceUUID:uuid characteristicUUID:charasteristicUUID];
+	[_impl readDataWithServiceUUID:uuid characteristicUUID:charasteristicUUID];
 }
 
 - (void)notificationWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on
 {
-	[impl_ notificationWithServiceUUID:uuid characteristicUUID:characteristicUUID on:on];
+	[_impl notificationWithServiceUUID:uuid characteristicUUID:characteristicUUID on:on];
 }
 
 #pragma mark -
 
 - (CBPeripheral *)peripheral
 {
-	return impl_.peripheral;
+	return _impl.peripheral;
 }
 
 - (CBPeripheralState)state
 {
-	return impl_.peripheral.state;
+	return _impl.peripheral.state;
 }
 
 - (BOOL)isReady
 {
-	return impl_.isReady;
+	return _impl.isReady;
 }
 
 - (NSString *)findName
 {
-	return impl_.findName;
+	return _impl.findName;
 }
 
-- (int) pinMode:(int)pin mode:(int)mode
+- (NSString *)softwareRevisionString
 {
-	return [impl_ pinMode:pin mode:mode];
+	return _impl.softwareRevisionString;
 }
 
-- (int) pinModeAll:(int)mode
+
+#pragma mark - Digital
+
+- (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
-	return [impl_ pinModeAll:mode];
+	return [_impl pinMode:pin mode:mode];
 }
 
-- (int) pinPullup:(int)pin mode:(int)mode
+- (KonashiResult) pinModeAll:(int)mode
 {
-	return [impl_ pinPullup:pin mode:mode];
+	return [_impl pinModeAll:mode];
 }
 
-- (int) pinPullupAll:(int)mode
+- (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
-	return [impl_ pinPullupAll:mode];
+	return [_impl pinPullup:pin mode:mode];
 }
 
-- (int) digitalRead:(int)pin
+- (KonashiResult) pinPullupAll:(int)mode
 {
-	return [impl_ digitalRead:pin];
+	return [_impl pinPullupAll:mode];
+}
+
+- (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
+{
+	return [_impl digitalRead:pin];
 }
 
 - (int) digitalReadAll
 {
-	return [impl_ digitalReadAll];
+	return [_impl digitalReadAll];
 }
 
-- (int) digitalWrite:(int)pin value:(int)value
+- (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
 {
-	return [impl_ digitalWrite:pin value:value];
+	return [_impl digitalWrite:pin value:value];
 }
 
-- (int) digitalWriteAll:(int)value
+- (KonashiResult) digitalWriteAll:(int)value
 {
-	return [impl_ digitalWriteAll:value];
+	return [_impl digitalWriteAll:value];
 }
 
-- (int) pwmMode:(int)pin mode:(int)mode
+#pragma mark PWM
+
+- (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
-	return [impl_ pwmMode:pin mode:mode];
+	return [_impl pwmMode:pin mode:mode];
 }
 
-- (int) pwmPeriod:(int)pin period:(unsigned int)period
+- (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period
 {
-	return [impl_ pwmPeriod:pin period:period];
+	return [_impl pwmPeriod:pin period:period];
 }
 
-- (int) pwmDuty:(int)pin duty:(unsigned int)duty
+- (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty
 {
-	return [impl_ pwmDuty:pin duty:duty];
+	return [_impl pwmDuty:pin duty:duty];
 }
 
-- (int) pwmLedDrive:(int)pin dutyRatio:(int)ratio
+- (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
-	return [impl_ pwmLedDrive:pin dutyRatio:ratio];
+	return [_impl pwmLedDrive:pin dutyRatio:ratio];
 }
 
-- (int) readValueAio:(int)pin
+- (KonashiResult) readValueAio:(KonashiAnalogIOPin)pin
 {
-	return [impl_ readValueAio:pin];
+	return [_impl readValueAio:pin];
 }
+
+#pragma mark - Analog
 
 - (int) analogReference
 {
-	return [impl_ analogReference];
+	return [[_impl class] analogReference];
 }
 
-- (int) analogReadRequest:(int)pin
+- (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
-	return [impl_ analogReadRequest:pin];
+	return [_impl analogReadRequest:pin];
 }
 
-- (int) analogRead:(int)pin
+- (int) analogRead:(KonashiAnalogIOPin)pin
 {
-	return [impl_ analogRead:pin];
+	return [_impl analogRead:pin];
 }
 
-- (int) analogWrite:(int)pin milliVolt:(int)milliVolt
+- (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-	return [impl_ analogWrite:pin milliVolt:milliVolt];
+	return [_impl analogWrite:pin milliVolt:milliVolt];
 }
 
-- (int) i2cMode:(int)mode
+#pragma mark - I2C
+
+- (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
-	return [impl_ i2cMode:mode];
+	return [_impl i2cMode:mode];
 }
 
-- (int) i2cSendCondition:(int)condition
+- (KonashiResult) i2cSendCondition:(KonashiI2CCondition)condition
 {
-	return [impl_ i2cSendCondition:condition];
+	return [_impl i2cSendCondition:condition];
 }
 
-- (int) i2cStartCondition
+- (KonashiResult) i2cStartCondition
 {
-	return [impl_ i2cStartCondition];
+	return [_impl i2cStartCondition];
 }
 
-- (int) i2cRestartCondition
+- (KonashiResult) i2cRestartCondition
 {
-	return [impl_ i2cRestartCondition];
+	return [_impl i2cRestartCondition];
 }
 
-- (int) i2cStopCondition
+- (KonashiResult) i2cStopCondition
 {
-	return [impl_ i2cStopCondition];
+	return [_impl i2cStopCondition];
 }
 
-- (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
+- (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address
 {
-	return [impl_ i2cWrite:length data:data address:address];
+	return [_impl i2cWrite:length data:data address:address];
 }
 
-- (int) i2cReadRequest:(int)length address:(unsigned char)address
+- (KonashiResult) i2cWriteData:(NSData *)data address:(unsigned char)address
 {
-	return [impl_ i2cReadRequest:length address:address];
+	return [_impl i2cWriteData:data address:address];
 }
 
-- (int) i2cRead:(int)length data:(unsigned char*)data
+- (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
-	return [impl_ i2cRead:length data:data];
+	return [_impl i2cReadRequest:length address:address];
 }
 
-- (int) uartMode:(int)mode
+- (KonashiResult) i2cRead:(int)length data:(unsigned char*)data
 {
-	return [impl_ uartMode:mode];
+	return [_impl i2cRead:length data:data];
 }
 
-- (int) uartBaudrate:(int)baudrate
+- (NSData *)i2cReadData
 {
-	return [impl_ uartBaudrate:baudrate];
+	return [_impl i2cReadData];
 }
 
-- (int) uartWrite:(unsigned char)data
+#pragma mark - UART
+
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
 {
-	return [impl_ uartWrite:data];
+	return [_impl uartMode:mode baudrate:baudrate];
 }
 
-- (unsigned char) uartRead
+- (KonashiResult) uartMode:(KonashiUartMode)mode
 {
-	return [impl_ uartRead];
+	return [_impl uartMode:mode];
 }
 
-- (int) reset
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate
 {
-	return [impl_ reset];
+	return [_impl uartBaudrate:baudrate];
 }
 
-- (int) batteryLevelReadRequest
+- (KonashiResult) uartWrite:(unsigned char)data
 {
-	return [impl_ batteryLevelReadRequest];
+	return [_impl uartWriteData:[NSData dataWithBytes:&data length:1]];
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
+	return [_impl uartWriteData:data];
+}
+
+- (NSData *) readUartData
+{
+	return [_impl readUartData];
+}
+
+- (KonashiResult) reset
+{
+	return [_impl reset];
+}
+
+- (KonashiResult) batteryLevelReadRequest
+{
+	return [_impl batteryLevelReadRequest];
 }
 
 - (int) batteryLevelRead
 {
-	return [impl_ batteryLevelRead];
+	return [_impl batteryLevelRead];
 }
 
-- (int) signalStrengthReadRequest
+- (KonashiResult) signalStrengthReadRequest
 {
-	return [impl_ signalStrengthReadRequest];
+	return [_impl signalStrengthReadRequest];
 }
 
 - (int) signalStrengthRead
 {
-	return [impl_ signalStrengthRead];
+	return [_impl signalStrengthRead];
 }
 
 #pragma mark - CBPeripheralDelegate
@@ -235,29 +270,33 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 	for (CBService *service in peripheral.services) {
-		if ([service.UUID kns_isEqualToUUID:KONASHI_SERVICE_UUID]) {
-			impl_ = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
+		if ([service.UUID kns_isEqualToUUID:[[KNSKonashiPeripheralImpl class] serviceUUID]]) {
+			_impl = (KNSKonashiPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKonashiPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
-		else if ([service.UUID kns_isEqualToUUID:KOSHIAN_SERVICE_UUID]){
-			impl_ = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
+		else if ([service.UUID kns_isEqualToUUID:[[KNSKoshianPeripheralImpl class] serviceUUID]]){
+			_impl = (KNSKoshianPeripheralImpl<KNSPeripheralImplProtocol>*)[[KNSKoshianPeripheralImpl alloc] initWithPeripheral:peripheral];
 			break;
 		}
 	}
 	
-	if (impl_ != nil) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:KONASHI_EVENT_CONNECTED object:nil];
+	if (_impl != nil) {
+		if (self.handlerManager.connectedHandler) {
+			self.handlerManager.connectedHandler();
+		}
+		_impl.handlerManager = self.handlerManager;
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:nil];
 	}
 }
 
 - (void)enablePIOInputNotification
 {
-	[impl_ enablePIOInputNotification];
+	[_impl enablePIOInputNotification];
 }
 
 - (void)enableUART_RXNotification
 {
-	[impl_ enableUART_RXNotification];
+	[_impl enableUART_RXNotification];
 }
 
 @end

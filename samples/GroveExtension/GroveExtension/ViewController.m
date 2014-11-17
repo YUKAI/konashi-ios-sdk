@@ -20,8 +20,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(completeAnalogRead) name:KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [Konashi addObserver:self selector:@selector(completeAnalogRead) name:KonashiEventAnalogIO0DidUpdateNotification];
     
     timer=[NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(readBrightness) userInfo:nil repeats:YES];
     [timer fire];
@@ -36,19 +36,19 @@
 - (void)ready
 {
     NSLog(@"Ready");
-    [Konashi pwmMode:LED2 mode:KONASHI_PWM_ENABLE_LED_MODE];
+    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
 }
 
 - (void)completeAnalogRead
 {
-    int aioValue=[Konashi analogRead:AIO0];
-    [Konashi pwmLedDrive:LED2 dutyRatio:aioValue/13];
+    int aioValue=[Konashi analogRead:KonashiAnalogIO0];
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:aioValue/13];
     NSLog(@"Brightness:%d",aioValue);
 }
 
 - (void)readBrightness
 {
-    [Konashi readGroveAnalogPort:A0];
+    [Konashi readGroveAnalogPort:KonashiAnalogIO0];
 }
 
 - (IBAction)find:(id)sender {

@@ -11,59 +11,113 @@
 @protocol KNSPeripheralImplProtocol <NSObject>
 
 @required
+- (NSInteger)uartDataMaxLength;
++ (NSInteger)i2cDataMaxLength;
++ (NSInteger)levelServiceReadLength;
++ (NSInteger)pioInputNotificationReadLength;
++ (NSInteger)analogReadLength;
++ (NSInteger)uartRX_NotificationReadLength;
++ (NSInteger)hardwareLowBatteryNotificationReadLength;
+
+// UUID
++ (CBUUID *)batteryServiceUUID;
++ (CBUUID *)levelServiceUUID;
++ (CBUUID *)powerStateUUID;
++ (CBUUID *)serviceUUID;
+// PIO
++ (CBUUID *)pioSettingUUID;
++ (CBUUID *)pioPullupUUID;
++ (CBUUID *)pioOutputUUID;
++ (CBUUID *)pioInputNotificationUUID;
+
+// PWM
++ (CBUUID *)pwmConfigUUID;
++ (CBUUID *)pwmParamUUID;
++ (CBUUID *)pwmDutyUUID;
+
+// Analog
++ (CBUUID *)analogDriveUUID;
++ (CBUUID *)analogReadUUIDWithPinNumber:(NSInteger)pin;
+
+// I2C
++ (CBUUID *)i2cConfigUUID;
++ (CBUUID *)i2cStartStopUUID;
++ (CBUUID *)i2cWriteUUID;
++ (CBUUID *)i2cReadParamUUID;
++ (CBUUID *)i2cReadUUID;
+
+// UART
++ (CBUUID *)uartConfigUUID;
++ (CBUUID *)uartBaudrateUUID;
++ (CBUUID *)uartTX_UUID;
++ (CBUUID *)uartRX_NotificationUUID;
+
+// Hardware
++ (CBUUID *)hardwareResetUUID;
++ (CBUUID *)lowBatteryNotificationUUID;
++ (int) analogReference;
+
+@optional
 - (CBPeripheralState)state;
 - (BOOL)isReady;
 - (NSString *)findName;
 
-- (int)writeValuePioSetting;
-- (int)writeValuePioPullup;
-- (int)writeValuePioOutput;
+- (KonashiResult)writeValuePioSetting;
+- (KonashiResult)writeValuePioPullup;
+- (KonashiResult)writeValuePioOutput;
 
-- (int) pinMode:(int)pin mode:(int)mode;
-- (int) pinModeAll:(int)mode;
-- (int) pinPullup:(int)pin mode:(int)mode;
-- (int) pinPullupAll:(int)mode;
-- (int) digitalRead:(int)pin;
+- (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
+- (KonashiResult) pinModeAll:(int)mode;
+- (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
+- (KonashiResult) pinPullupAll:(int)mode;
+- (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin;
 - (int) digitalReadAll;
-- (int) digitalWrite:(int)pin value:(int)value;
-- (int) digitalWriteAll:(int)value;
+- (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value;
+- (KonashiResult) digitalWriteAll:(int)value;
+- (void)digitalIODidUpdate:(NSData *)data;
 
-- (int) writeValuePwmSetting;
-- (int) writeValuePwmPeriod:(int)pin;
-- (int) writeValuePwmDuty:(int)pin;
+- (KonashiResult) writeValuePwmSetting;
+- (KonashiResult) writeValuePwmPeriod:(KonashiDigitalIOPin)pin;
+- (KonashiResult) writeValuePwmDuty:(KonashiDigitalIOPin)pin;
 
-- (int) pwmMode:(int)pin mode:(int)mode;
-- (int) pwmPeriod:(int)pin period:(unsigned int)period;
-- (int) pwmDuty:(int)pin duty:(unsigned int)duty;
-- (int) pwmLedDrive:(int)pin dutyRatio:(int)ratio;
+- (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode;
+- (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period;
+- (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty;
+- (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio;
 
-- (int) readValueAio:(int)pin;
+- (KonashiResult) readValueAio:(KonashiAnalogIOPin)pin;
 
-- (int) analogReference;
-- (int) analogReadRequest:(int)pin;
-- (int) analogRead:(int)pin;
-- (int) analogWrite:(int)pin milliVolt:(int)milliVolt;
+- (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin;
+- (int) analogRead:(KonashiAnalogIOPin)pin;
+- (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
+- (void)analogIODidUpdate:(NSData *)data pin:(KonashiAnalogIOPin)pin;
 
-- (int) i2cMode:(int)mode;
-- (int) i2cSendCondition:(int)condition;
-- (int) i2cStartCondition;
-- (int) i2cRestartCondition;
-- (int) i2cStopCondition;
-- (int) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
-- (int) i2cReadRequest:(int)length address:(unsigned char)address;
-- (int) i2cRead:(int)length data:(unsigned char*)data;
+- (KonashiResult) i2cMode:(KonashiI2CMode)mode;
+- (KonashiResult) i2cSendCondition:(KonashiI2CCondition)condition;
+- (KonashiResult) i2cStartCondition;
+- (KonashiResult) i2cRestartCondition;
+- (KonashiResult) i2cStopCondition;
+- (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address;
+- (KonashiResult) i2cWriteData:(NSData *)data address:(unsigned char)address;
+- (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address;
+- (KonashiResult) i2cRead:(int)length data:(unsigned char*)data;
+- (NSData *)i2cReadData;
+- (void)i2cDataDidUpdate:(NSData *)data;
 
-- (int) uartMode:(int)mode;
-- (int) uartBaudrate:(int)baudrate;
-- (int) uartWrite:(unsigned char)data;
-- (unsigned char) uartRead;
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate;
+- (KonashiResult) uartMode:(KonashiUartMode)mode;
+- (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
+- (KonashiResult) uartWriteData:(NSData *)data;
+- (NSData *) readUartData;
+- (void)uartDataDidUpdate:(NSData *)data;
 
-- (int) reset;
-- (int) batteryLevelReadRequest;
+- (void)didReceiveSoftwareRevisionStringData:(NSData *)data;
+- (KonashiResult) reset;
+- (KonashiResult) batteryLevelReadRequest;
+- (void)batteryLevelDataDidUpdate:(NSData *)data;
 - (int) batteryLevelRead;
-- (int) signalStrengthReadRequest;
+- (KonashiResult) signalStrengthReadRequest;
 - (int) signalStrengthRead;
-
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
 

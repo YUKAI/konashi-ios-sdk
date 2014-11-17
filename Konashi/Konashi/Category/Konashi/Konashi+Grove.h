@@ -21,25 +21,6 @@
 
 #import "Konashi.h"
 
-/* Macros */
-
-// Digital Port
-#define D0 PIO0
-#define D1 PIO1
-#define D2 PIO2
-#define D3 PIO3
-#define D4 PIO4
-#define D5 PIO5
-#define D6 PIO6
-#define D7 PIO7
-
-// Analog Port
-#define A0 AIO0
-#define A1 AIO1
-#define A2 AIO2
-
-/* Functions */
-
 @interface Konashi (Grove)
 
 + (int)readGroveDigitalPort:(int)port;

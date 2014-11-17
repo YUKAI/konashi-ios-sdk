@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusMessage;
 @property (weak, nonatomic) IBOutlet UIProgressView *dbBar;
 @property (weak, nonatomic) IBOutlet UIProgressView *batteryBar;
+@property (weak, nonatomic) IBOutlet UILabel *softwareRevisionString;
 
 
 

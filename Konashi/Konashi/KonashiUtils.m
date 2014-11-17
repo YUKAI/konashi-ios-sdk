@@ -104,3 +104,12 @@ NSString *NSStringFromCBCharacteristicProperty(CBCharacteristicProperties state)
     }
     return ret;
 }
+
+CBUUID *kns_CreateUUIDFromString(NSString *string, CBUUID *uuid)
+{
+	if (uuid == nil) {
+		uuid = [CBUUID UUIDWithString:string];
+	}
+	
+	return uuid;
+}

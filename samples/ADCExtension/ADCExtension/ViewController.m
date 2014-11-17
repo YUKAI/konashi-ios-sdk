@@ -22,8 +22,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(completeI2cRead) name:KONASHI_EVENT_I2C_READ_COMPLETE];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [Konashi addObserver:self selector:@selector(completeI2cRead) name:KonashiEventI2CReadCompleteNotification];
     
     timer=[NSTimer scheduledTimerWithTimeInterval:0.9f target:self selector:@selector(readValue) userInfo:nil repeats:YES];
     [timer fire];

@@ -22,10 +22,10 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
-    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
-    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [Konashi addObserver:self selector:@selector(updateRSSI) name:KonashiEventSignalStrengthDidUpdateNotification];
+    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KonashiEventBatteryLevelDidUpdateNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,8 +58,8 @@
     self.statusMessage.hidden = FALSE;
     
     // LED2 on
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi digitalWrite:LED2 value:HIGH];
+    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+    [Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
     
     // Set RSSI timer
     NSTimer *tm = [NSTimer

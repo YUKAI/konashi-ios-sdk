@@ -23,8 +23,8 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +56,7 @@
     
     self.statusMessage.hidden = FALSE;
     
-    [Konashi i2cMode:KONASHI_I2C_ENABLE_100K];
+    [Konashi i2cMode:KonashiI2CModeEnable100K];
 }
 
 - (void) writeCmd:(unsigned char)cmd

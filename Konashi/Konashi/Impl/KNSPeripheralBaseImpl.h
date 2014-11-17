@@ -12,8 +12,10 @@
 #import "CBUUID+Konashi.h"
 #import "CBService+Konashi.h"
 #import "CBPeripheral+Konashi.h"
+#import "KNSPeripheralImplProtocol.h"
+#import "KNSHandlerManager.h"
 
-@interface KNSPeripheralBaseImpl : NSObject <CBPeripheralDelegate>
+@interface KNSPeripheralBaseImpl : NSObject <CBPeripheralDelegate, KNSPeripheralImplProtocol>
 {
 	// status
 	BOOL isCallFind;
@@ -23,6 +25,7 @@
 	unsigned char pioPullup;
 	unsigned char pioOutput;
 	unsigned char pioInput;
+	unsigned char pioByte[32];
 	
 	// PWM
 	unsigned char pwmSetting;
@@ -32,24 +35,26 @@
 	// Analog IO
 	unsigned int analogValue[3];
 	
-	// I2C
-	unsigned char i2cSetting;
-	unsigned char i2cReadData[KONASHI_I2C_DATA_MAX_LENGTH];
-	unsigned char i2cReadDataLength;
-	unsigned char i2cReadAddress;
-	
 	// UART
 	unsigned char uartSetting;
 	unsigned char uartBaudrate;
-	unsigned char uartRxData;
+	NSData *uartRxData;
+	
+	// I2C
+	NSData *i2cReadData;
+	unsigned char i2cSetting;
+	unsigned char i2cReadDataLength;
+	unsigned char i2cReadAddress;
 	
 	// Hardware
 	int batteryLevel;
 	int rssi;
 }
 
+@property (nonatomic, weak) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly, getter=isReady) BOOL ready;
 @property (nonatomic, readonly) CBPeripheral *peripheral;
+@property (nonatomic, readonly) NSString *softwareRevisionString;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

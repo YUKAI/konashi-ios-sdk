@@ -20,14 +20,30 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // コネクション系
-    [Konashi addObserver:self selector:@selector(connected) name:KONASHI_EVENT_CONNECTED];
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
+	[Konashi shared].connectedHandler = ^() {
+		NSLog(@"connected");
+	};
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	[Konashi shared].readyHandler = ^() {
+		NSLog(@"ready to use");
+	};
+	
+	[Konashi shared].disconnectedHandler = ^() {
+		NSLog(@"disconnected");
+	};
     
     // 電波強度
-    [Konashi addObserver:self selector:@selector(updateRSSI) name:KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH];
-
+    [Konashi addObserver:self selector:@selector(updateRSSI) name:KonashiEventSignalStrengthDidUpdateNotification];
+	[Konashi shared].signalStrengthDidUpdateHandler = ^(int value) {
+		NSLog(@"RSSI did update:%d", value);
+	};
+	
     // バッテリー
-    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KONASHI_EVENT_UPDATE_BATTERY_LEVEL];
+    [Konashi addObserver:self selector:@selector(updateBatteryLevel) name:KonashiEventBatteryLevelDidUpdateNotification];
+	[Konashi shared].batteryLevelDidUpdateHandler = ^(int value) {
+		NSLog(@"battery level did update:%d", value);
+	};
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +78,9 @@
 - (void)connected
 {
     NSLog(@"CONNECTED");
+	[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+		self.softwareRevisionString.text = [NSString stringWithFormat:@"Software Revision:%@", [Konashi softwareRevisionString]];
+	}];
 }
 
 - (void)ready
