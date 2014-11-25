@@ -431,6 +431,27 @@
 
 #pragma mark - Depricated methods
 
+- (BOOL) _isConnected
+{
+    return (self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected);
+}
+
+- (BOOL) _isReady
+{
+    return [[Konashi shared].activePeripheral isReady];
+}
+
+- (NSString *) _peripheralName
+{
+    if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
+        return self.activePeripheral.peripheral.name;
+    } else {
+        return @"";
+    }
+}
+
+#pragma mark - Deprecated
+
 #pragma mark - digital
 
 + (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
