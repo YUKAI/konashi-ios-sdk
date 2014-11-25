@@ -758,7 +758,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 		self.handlerManager.analogPinDidChangeValueHandler(pin, value);
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIODidUpdateNotification object:nil];
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventAnalogIO0DidUpdateNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@[KonashiEventAnalogIO0DidUpdateNotification, KonashiEventAnalogIO1DidUpdateNotification, KonashiEventAnalogIO2DidUpdateNotification][pin] object:nil];
 }
 
 #pragma mark - I2C
@@ -889,6 +889,31 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 #pragma mark - UART
 
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
+{
+	KonashiResult result = KonashiResultFailure;
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected){
+		if(KonashiUartBaudrateRate2K4 <= baudrate && baudrate <= KonashiUartBaudrateRate9K6){
+			result = KonashiResultSuccess;
+		}
+		if(mode == KonashiUartModeDisable || mode == KonashiUartModeEnable) {
+			result = (result == KonashiResultSuccess) ? KonashiResultSuccess : KonashiResultFailure;
+		}
+	}
+	
+	if (result == KonashiResultSuccess) {
+		[self writeData:[NSData dataWithBytes:&mode length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartConfigUUID]];
+		Byte t[] = {(baudrate >> 8) & 0xff, baudrate & 0xff};
+		NSData *baudrateData = [NSData dataWithBytes:t length:2];
+		[self writeData:baudrateData serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartBaudrateUUID]];
+		
+		uartSetting = mode;
+		uartBaudrate = baudrate;
+	}
+	
+	return result;
+}
+
 - (KonashiResult) uartMode:(KonashiUartMode)mode
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected &&
@@ -925,18 +950,28 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (KonashiResult) uartWrite:(unsigned char)data
 {
-	return [self uartWriteData:[NSData dataWithBytes:&data length:1]];
-}
-
-- (KonashiResult) uartWriteData:(NSData *)data
-{
-	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable) {
+		[self writeData:[NSData dataWithBytes:&data length:1] serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] uartTX_UUID]];
 		return KonashiResultSuccess;
 	}
 	else{
 		return KonashiResultFailure;
 	}
+}
+
+- (KonashiResult) uartWriteData:(NSData *)data
+{
+	KonashiResult result = KonashiResultFailure;
+	
+	unsigned char *d = (unsigned char *)[data bytes];
+	for (NSInteger i = 0; i < data.length; i++) {
+		result = [self uartWrite:d[i]];
+		if (result == KonashiResultFailure) {
+			break;
+		}
+	}
+	
+	return result;
 }
 
 - (NSData *) readUartData
@@ -958,7 +993,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 
 - (void)didReceiveSoftwareRevisionStringData:(NSData *)data
 {
-	_softwareRevisionString = [[NSString alloc] initWithBytes:data.bytes length:data.length - 1 encoding:NSASCIIStringEncoding];
+	_softwareRevisionString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	_softwareRevisionString = [_softwareRevisionString stringByReplacingOccurrencesOfString:@"\0" withString:@""];
 	_ready = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];

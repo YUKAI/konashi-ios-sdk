@@ -103,6 +103,7 @@
 - (NSData *)i2cReadData;
 - (void)i2cDataDidUpdate:(NSData *)data;
 
+- (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartMode:(KonashiUartMode)mode;
 - (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate;
 - (KonashiResult) uartWriteData:(NSData *)data;
