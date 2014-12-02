@@ -461,7 +461,7 @@
  *  @return 指定したPIOの値。KonashiLevelHigh及びKonashiLevelLow。
  *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
  */
-+ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin __attribute__ ((deprecated));
 
 /**
  *  PIOの値を取得します。
@@ -469,7 +469,7 @@
  *  @return PIOの状態。各bitにおいてHighの場合は1、Lowの場合は0がセットされている。
  *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
  */
-+ (int) digitalReadAll NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (int) digitalReadAll __attribute__ ((deprecated));
 
 /// ---------------------------------
 /// @name Analog I/O (AIO)
@@ -483,7 +483,7 @@
  *  @return AIOの値。
  *	@warning このメソッドは非推奨です。 [Konashi analogPinDidChangeValueHandler] を用いて値の取得をしてください。
  */
-+ (int) analogRead:(KonashiAnalogIOPin)pin NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (int) analogRead:(KonashiAnalogIOPin)pin __attribute__ ((deprecated));
 
 /// ---------------------------------
 /// @name I2C
@@ -500,7 +500,7 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi i2cWriteData:address] を用いてデータの書き込んでください。
  */
-+ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiResult) i2cWrite:(int)length data:(unsigned char*)data address:(unsigned char)address __attribute__ ((deprecated));
 
 /**
  *  I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
@@ -511,7 +511,7 @@
  *  @return 値の取得に成功した場合はKonashiResultSuccess、失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi i2cReadCompleteHandler] を用いてデータの取得をしてください。
  */
-+ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiResult) i2cRead:(int)length data:(unsigned char*)data __attribute__ ((deprecated));
 
 /// ---------------------------------
 /// @name UART
@@ -525,7 +525,7 @@
  *
  *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult) uartMode:(KonashiUartMode)mode NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiResult) uartMode:(KonashiUartMode)mode __attribute__ ((deprecated));
 
 /**
  *  UART の通信速度を設定します。
@@ -534,7 +534,7 @@
  *
  *  @return 設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
-+ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiResult) uartBaudrate:(KonashiUartBaudrate)baudrate __attribute__ ((deprecated));
 
 /**
  *  UART でデータを送信します。
@@ -544,7 +544,7 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  *	@warning このメソッドは非推奨です。 [Konashi uartWriteData:] を用いでデータを送信してください。
  */
-+ (KonashiResult) uartWrite:(unsigned char)data NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (KonashiResult) uartWrite:(unsigned char)data __attribute__ ((deprecated));
 
 /**
  *  uartの値を取得します。
@@ -552,7 +552,7 @@
  *  @return 取得した値。
  *	@warning このメソッドは非推奨です。 [Konashi uartRxCompleteHandler] 及び [Konashi readUartData] を用いて値を取得してください。
  */
-+ (unsigned char) uartRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (unsigned char) uartRead __attribute__ ((deprecated));
 
 /// ---------------------------------
 /// @name Hardware Control
@@ -564,7 +564,7 @@
  *  @return バッテリーの残量(%)
  *	@warning このメソッドは非推奨です。 [Konashi batteryLevelDidUpdateHandler] を用いて残量を取得してください。
  */
-+ (int) batteryLevelRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (int) batteryLevelRead __attribute__ ((deprecated));
 
 /**
  *  RSSIの値を取得します。
@@ -572,7 +572,7 @@
  *  @return RSSIの値。
  *	@warning このメソッドは非推奨です。 [Konashi signalStrengthDidUpdateHandler] を用いてRSSIを取得してください。
  */
-+ (int) signalStrengthRead NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (int) signalStrengthRead __attribute__ ((deprecated));
 
 + (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName NS_DEPRECATED(NA, NA, 5_0, 8_0);
 + (void) removeObserver:(id)notificationObserver NS_DEPRECATED(NA, NA, 5_0, 8_0);
