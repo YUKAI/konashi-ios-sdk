@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="6000" identifier="xcode"/>
@@ -487,7 +487,7 @@
                                     <action selector="getAio1:" destination="MDG-oH-bIC" eventType="touchUpInside" id="HrN-km-Eod"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0km-fX-NOG">
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0km-fX-NOG">
                                 <rect key="frame" x="20" y="339" width="94" height="42"/>
                                 <state key="normal" title="AIO2電圧取得">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -733,8 +733,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CK4-yR-gAp">
-                                <rect key="frame" x="73" y="11" width="136" height="42"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CK4-yR-gAp">
+                                <rect key="frame" x="73" y="12" width="136" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="UF9-bF-eHH"/>
                                 </constraints>
@@ -842,14 +842,14 @@
                             <constraint firstItem="5XC-8w-yiR" firstAttribute="leading" secondItem="mMI-kJ-hPk" secondAttribute="leading" constant="-21" id="VFq-EX-tz6"/>
                             <constraint firstItem="c4T-0H-RyO" firstAttribute="top" secondItem="ME8-le-Q3W" secondAttribute="bottom" constant="8" symbolic="YES" id="VMH-E2-hMJ"/>
                             <constraint firstItem="zkS-nA-jIt" firstAttribute="leading" secondItem="2Je-je-iRD" secondAttribute="leading" id="Y0N-YI-oHS"/>
-                            <constraint firstItem="3Dj-lU-7DZ" firstAttribute="baseline" secondItem="CK4-yR-gAp" secondAttribute="baseline" id="bDm-Vc-PpC"/>
+                            <constraint firstItem="3Dj-lU-7DZ" firstAttribute="baseline" secondItem="CK4-yR-gAp" secondAttribute="baseline" constant="1" id="bDm-Vc-PpC"/>
                             <constraint firstItem="406-PS-9IK" firstAttribute="leading" secondItem="CK4-yR-gAp" secondAttribute="leading" id="bsM-3k-1od"/>
                             <constraint firstItem="ME8-le-Q3W" firstAttribute="top" secondItem="mJm-rL-wZo" secondAttribute="bottom" constant="8" symbolic="YES" id="ce8-yk-b6o"/>
                             <constraint firstItem="JVt-zC-HSe" firstAttribute="trailing" secondItem="ShL-Xb-M9V" secondAttribute="trailing" id="eoK-qy-Z2P"/>
                             <constraint firstItem="CJ1-Aj-y02" firstAttribute="baseline" secondItem="sEx-bs-Pf6" secondAttribute="baseline" id="fnd-hX-qfJ"/>
                             <constraint firstItem="CK4-yR-gAp" firstAttribute="leading" secondItem="3Dj-lU-7DZ" secondAttribute="trailing" constant="8" symbolic="YES" id="g5m-BR-VPn"/>
                             <constraint firstItem="zkS-nA-jIt" firstAttribute="leading" secondItem="c4T-0H-RyO" secondAttribute="leading" id="j1J-sq-L3w"/>
-                            <constraint firstItem="3Dj-lU-7DZ" firstAttribute="baseline" secondItem="CK4-yR-gAp" secondAttribute="firstBaseline" id="qBt-AS-7CM"/>
+                            <constraint firstItem="3Dj-lU-7DZ" firstAttribute="baseline" secondItem="CK4-yR-gAp" secondAttribute="firstBaseline" constant="1" id="qBt-AS-7CM"/>
                             <constraint firstItem="mIX-FT-VGF" firstAttribute="baseline" secondItem="406-PS-9IK" secondAttribute="baseline" id="sOy-D2-C4H"/>
                             <constraint firstItem="406-PS-9IK" firstAttribute="trailing" secondItem="CK4-yR-gAp" secondAttribute="trailing" id="tck-IU-z82"/>
                             <constraint firstItem="JBh-pp-EmR" firstAttribute="top" secondItem="mMI-kJ-hPk" secondAttribute="top" constant="222" id="y2X-4h-hZM"/>
