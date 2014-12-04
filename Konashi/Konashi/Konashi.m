@@ -29,7 +29,6 @@
 @interface Konashi ()
 {
 	NSString *findName;
-	BOOL isReady;
 	KNSHandlerManager *handlerManager;
 }
 
@@ -63,10 +62,9 @@
 		[KNSCentralManager sharedInstance];
 		handlerManager = [KNSHandlerManager new];
 		__weak typeof(findName) bfindName = findName;
-		__block BOOL bisCallFind = _callFind;
 		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			if (bisCallFind) {
-				bisCallFind = NO;
+			if (_callFind) {
+				_callFind = NO;
 				if (bfindName) {
 					KNS_LOG(@"Try findWithName");
 					[Konashi findWithName:bfindName];
@@ -81,6 +79,10 @@
 			KNS_LOG(@"Peripheral(UUID : %@) is ready to use.", connectedPeripheral.peripheral.identifier.UUIDString);
 			_activePeripheral = connectedPeripheral;
 			_activePeripheral.handlerManager = handlerManager;
+			// Enable PIO input notification
+			[_activePeripheral enablePIOInputNotification];
+			// Enable UART RX notification
+			[_activePeripheral enableUART_RXNotification];
 		}];
 	}
 	
@@ -376,23 +378,6 @@
 - (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
 {
 	handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
-}
-
-#pragma mark -
-#pragma mark - Konashi control private methods
-
-- (void) readyModule
-{
-    // set konashi property
-    isReady = YES;
-    
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
-	
-    // Enable PIO input notification
-	[_activePeripheral enablePIOInputNotification];
-	
-    // Enable UART RX notification
-	[_activePeripheral enableUART_RXNotification];
 }
 
 #pragma mark - Depricated methods
