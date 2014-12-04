@@ -18,6 +18,7 @@
 
 @interface KNSPeripheral : NSObject <CBPeripheralDelegate>
 
+@property (nonatomic, readonly, getter=isReady) BOOL ready;
 @property (nonatomic, readonly) KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl;
 @property (nonatomic, weak) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly) NSString *softwareRevisionString;

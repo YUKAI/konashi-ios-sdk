@@ -14,7 +14,6 @@
 @interface KNSPeripheral ()
 {
 	NSString *findName;
-	BOOL isReady;
 	BOOL isCallFind;
 }
 
