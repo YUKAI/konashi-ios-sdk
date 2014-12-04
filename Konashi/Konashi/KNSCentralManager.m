@@ -159,9 +159,8 @@ static KNSCentralManager *c;
 
 - (void)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout connectedHandler:(void (^)(KNSPeripheral *connectedPeripheral))connectedHandler
 {
-	if (self.state  != CBCentralManagerStatePoweredOn) {
+	if (self.state != CBCentralManagerStatePoweredOn) {
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
-//		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
 	}
 	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
 		if ([peripheral.name isEqualToString:name]) {
@@ -280,7 +279,12 @@ static KNSCentralManager *c;
 	if (self.didDisconnectPeripheralBlock) {
 		self.didDisconnectPeripheralBlock(central, p, error);
 	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:self userInfo:@{KonashiPeripheralKey:p, KonashiErrorKey: error}];
+	NSMutableDictionary *userInfo = [NSMutableDictionary new];
+	userInfo[KonashiPeripheralKey] = p;
+	if (error) {
+		userInfo[KonashiErrorKey] = error;
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDisconnectedNotification object:self userInfo:userInfo];
 	[connectedPeripherals_ removeObject:peripheral];
 	[peripherals_ removeObject:peripheral];
 	[activePeripherals_ removeObject:p];
