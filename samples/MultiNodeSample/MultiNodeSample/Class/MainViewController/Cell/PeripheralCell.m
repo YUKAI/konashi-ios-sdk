@@ -13,7 +13,8 @@
 - (void)setPeripheral:(KNSPeripheral *)peripheral
 {
 	_peripheral = peripheral;
-
+	_titleLabel.text = peripheral.peripheral.name;
+	
 	__weak typeof(self) bself = self;
 	_peripheral.signalStrengthDidUpdateHandler = ^(int value) {
 		NSLog(@"RSSI did update:%d", value);

@@ -7,12 +7,100 @@
 //
 
 #import "MainViewController.h"
+#import "Konashi.h"
+#import "KNSCentralManager+UI.h"
+#import "PeripheralCell.h"
+
+@interface MainViewController ()
+{
+	NSOperationQueue *queue;
+	NSArray *peripherals;
+}
+
+@end
 
 @implementation MainViewController
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	queue = [NSOperationQueue new];
+	
+	UIBarButtonItem *discoverButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(discover)];
+	self.navigationItem.rightBarButtonItem = discoverButton;
+	[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blinkPeripheralLED) userInfo:nil repeats:YES];
+	[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventReadyToUseNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+		KNSPeripheral *p = note.userInfo[KonashiPeripheralKey];
+		[p pinMode:KonashiDigitalIO1 mode:KonashiPinModeOutput];
+		peripherals = [[KNSCentralManager sharedInstance].activePeripherals allObjects];
+		[self.tableView reloadData];
+	}];
+	
+	[self.tableView registerNib:[UINib nibWithNibName:@"PeripheralCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(readPeripheralDeviceValue) userInfo:nil repeats:YES];
+}
+
 - (void)discover
 {
+	[[KNSCentralManager sharedInstance] showPeripherals];
+}
+
+BOOL flag = NO;
+
+- (void)blinkPeripheralLED
+{
+	BOOL f = flag;
+	[[KNSCentralManager sharedInstance].activePeripherals enumerateObjectsUsingBlock:^(KNSPeripheral *p, BOOL *stop) {
+		[queue addOperationWithBlock:^{
+			KonashiLevel l = f ? KonashiLevelLow : KonashiLevelHigh;
+			[p digitalWrite:KonashiDigitalIO1 value:l];
+		}];
+	}];
+	flag = !flag;
+}
+
+#pragma mark - table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return peripherals.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *const reuseIdentifier = @"Cell";
+	PeripheralCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+	KNSPeripheral *p = peripherals[indexPath.row];
+	cell.peripheral = p;
 	
+	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 45;
+}
+
+#pragma mark - table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+}
+
+#pragma mark - 
+
+- (void)readPeripheralDeviceValue
+{
+	[[KNSCentralManager sharedInstance].activePeripherals enumerateObjectsUsingBlock:^(KNSPeripheral *p, BOOL *stop) {
+		[p signalStrengthReadRequest];
+		[p batteryLevelReadRequest];
+	}];
 }
 
 @end
