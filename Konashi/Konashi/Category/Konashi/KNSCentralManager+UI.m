@@ -21,11 +21,11 @@
 	} timeoutInterval:KonashiFindTimeoutInterval];
 }
 
-static NSArray *peripherals_;
+static NSArray *peripheralArray;
 
 - (void)showModulePickerWithPeripherals:(NSArray *)peripherals
 {
-	peripherals_ = peripherals;
+	peripheralArray = peripherals;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Module" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 	for (CBPeripheral *p in peripherals) {
 		NSString *name = p.name;
@@ -49,7 +49,7 @@ static NSArray *peripherals_;
 		[self actionSheetCancel:actionSheet];
 	}
 	else {
-		CBPeripheral *peripheral = peripherals_[buttonIndex];
+		CBPeripheral *peripheral = peripheralArray[buttonIndex];
 		[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
 #ifdef KONASHI_DEBUG
 		KNS_LOG(@"Connecting %@(UUID: %@)", peripheral.name, peripheral.identifier.UUIDString);
