@@ -65,9 +65,9 @@ static KNSCentralManager *c;
 	return self;
 }
 
-- (NSSet *)connectedPeripherals
+- (NSSet *)activePeripherals
 {
-	return [connectedPeripherals_ copy];
+	return [activePeripherals_ copy];
 }
 
 - (NSSet *)peripherals
@@ -79,18 +79,20 @@ static KNSCentralManager *c;
 
 - (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks
 {
-	[self discover:discoverBlocks timeoutBlock:^(NSSet *peripherals) {
+	[self discover:discoverBlocks completionBlock:^(NSSet *peripherals, BOOL timeout) {
 	} timeoutInterval:KonashiFindTimeoutInterval];
 }
 
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks timeoutBlock:(void (^)(NSSet *peripherals))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
+- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
     KNS_LOG(@"discover");
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventStartDiscoveryNotification object:nil];
 	if (self.discovering == NO) {
 		[peripherals_ removeAllObjects];
 		
 		self.discovering = YES;
-		NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:timeoutInterval target:self selector:@selector(stopDiscoveriong:) userInfo:@{@"callback":[timeoutBlock copy]} repeats:YES];
+		NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:timeoutInterval target:self selector:@selector(stopDiscover:) userInfo:@{@"callback":[timeoutBlock copy]} repeats:NO];
+
 		static dispatch_once_t onceToken;
 		dispatch_once(&onceToken, ^{
 			[self.handler setDidUpdateStateBlock:^(CBCentralManager *central) {
@@ -103,7 +105,8 @@ static KNSCentralManager *c;
 				BOOL stop = NO;
 				discoverBlocks(peripheral, &stop);
 				if (stop == YES) {
-					[bself stopDiscoveriong:t];
+					[t invalidate];
+					[bself stopDiscover:t];
 				}
 			}];			
 		});
@@ -114,14 +117,22 @@ static KNSCentralManager *c;
 	}
 }
 
-- (void)stopDiscoveriong:(NSTimer *)timer
+- (void)stopDiscover:(NSTimer *)timer
 {
 	KNS_LOG(@"stopDiscoveriong");
 	[self stopScan];
 	self.discovering = NO;
-	void (^timeoutBlock)(NSSet *peripherals) = timer.userInfo[@"callback"];
-	timeoutBlock(self.peripherals);
-	[timer invalidate];
+	void (^timeoutBlock)(NSSet *peripherals, BOOL timeout) = timer.userInfo[@"callback"];
+	timeoutBlock(self.peripherals, timer.isValid);
+	if (timer.isValid) {
+		[timer invalidate];
+	}
+	if ([self.peripherals count] > 0) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralFoundNotification object:nil];
+	}
+	else {
+		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventNoPeripheralsAvailableNotification object:nil];
+	}
 }
 
 - (KNSPeripheral *)connectWithPeripheral:(CBPeripheral *)peripheral
@@ -133,7 +144,7 @@ static KNSCentralManager *c;
 	return p;
 }
 
-- (KNSPeripheral *)findActivePeripheralWithPeripheral:(CBPeripheral *)peripheral
+- (KNSPeripheral *)findActivePeripheralByPeripheral:(CBPeripheral *)peripheral
 {
 	KNSPeripheral *result = nil;
 	for (KNSPeripheral *p in activePeripherals_) {
@@ -144,6 +155,44 @@ static KNSCentralManager *c;
 	}
 	
 	return result;
+}
+
+- (void)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout connectedHandler:(void (^)(KNSPeripheral *connectedPeripheral))connectedHandler
+{
+	if (self.state  != CBCentralManagerStatePoweredOn) {
+		KNS_LOG(@"CoreBluetooth not correctly initialized !");
+//		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
+	}
+	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
+		if ([peripheral.name isEqualToString:name]) {
+			connectedHandler([self connectWithPeripheral:peripheral]);
+			*stop = YES;
+		}
+	} completionBlock:^(NSSet *peripherals, BOOL timeout) {
+		KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
+		__block CBPeripheral *peripheral = nil;
+		if ([peripherals count] > 0) {
+			[peripherals enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+				CBPeripheral *p = obj;
+				if ([[p name] isEqualToString:name]) {
+					peripheral = p;
+					*stop = YES;
+				}
+			}];
+		}
+		if (peripheral) {
+			connectedHandler([self connectWithPeripheral:peripheral]);
+		}
+		else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralNotFoundNotification object:nil];
+		}
+	} timeoutInterval:timeout];
+}
+
+- (void)connectKonashiPeripheral:(KNSPeripheral *)peripheral
+{
+	[activePeripherals_ addObject:peripheral];
+	[self connectPeripheral:peripheral.peripheral options:0];
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -227,7 +276,7 @@ static KNSCentralManager *c;
 	if (self.handler.didDisconnectPeripheralBlock) {
 		self.handler.didDisconnectPeripheralBlock(central, peripheral, error);
 	}
-	KNSPeripheral *p = [self findActivePeripheralWithPeripheral:peripheral];
+	KNSPeripheral *p = [self findActivePeripheralByPeripheral:peripheral];
 	if (self.didDisconnectPeripheralBlock) {
 		self.didDisconnectPeripheralBlock(central, p, error);
 	}
@@ -244,7 +293,7 @@ static KNSCentralManager *c;
 		self.handler.didConnectPeripheral(central, peripheral);
 	}
 	
-	KNSPeripheral *p = [self findActivePeripheralWithPeripheral:peripheral];
+	KNSPeripheral *p = [self findActivePeripheralByPeripheral:peripheral];
 	[p.peripheral kns_discoverAllServices];
 	if (self.didConnectPeripheral) {
 		self.didConnectPeripheral(central, p);

@@ -17,13 +17,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ======================================================================== */
-#define KONASHI_DEBUG
+
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
 #import "KonashiConstant.h"
 #import "KNSPeripheral.h"
 #import "KNSCentralManager.h"
+#import "KNSCentralManager+UI.h"
 #import "KonashiJavaScriptBindingsProtocol.h"
 
 @class KNSHandlerManager;
@@ -221,6 +222,22 @@
  *  @return 成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。
  */
 + (KonashiResult) digitalWriteAll:(int)value;
+
+/**
+ *  指定したPIOの値を取得します。
+ *
+ *  @param pin PIOの番号
+ *
+ *  @return 指定したPIOの値。KonashiLevelHigh及びKonashiLevelLow。
+ */
++ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin;
+
+/**
+ *  PIOの値を取得します。
+ *
+ *  @return PIOの状態。各bitにおいてHighの場合は1、Lowの場合は0がセットされている。
+ */
++ (int) digitalReadAll;
 
 /// ---------------------------------
 /// @name PWM
@@ -447,29 +464,25 @@
  */
 + (KonashiResult) signalStrengthReadRequest;
 
+/**
+ *  バッテリーの残量を取得します。
+ *
+ *  @return バッテリーの残量(%)
+ */
++ (int) batteryLevelRead;
+
+/**
+ *  RSSIの値を取得します。
+ *
+ *  @return RSSIの値。
+ */
++ (int) signalStrengthRead;
+
 #pragma mark - Depricated
 
 /// ---------------------------------
 /// @name Digital I/O (PIO)
 /// ---------------------------------
-
-/**
- *  指定したPIOの値を取得します。
- *
- *  @param pin PIOの番号
- *
- *  @return 指定したPIOの値。KonashiLevelHigh及びKonashiLevelLow。
- *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
- */
-+ (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin __attribute__ ((deprecated));
-
-/**
- *  PIOの値を取得します。
- *
- *  @return PIOの状態。各bitにおいてHighの場合は1、Lowの場合は0がセットされている。
- *	@warning このメソッドは非推奨です。 [Konashi digitalInputDidChangeValueHandler] 及び [Konashi digitalOutputDidChangeValueHandler] を用いて値を取得してください。
- */
-+ (int) digitalReadAll __attribute__ ((deprecated));
 
 /// ---------------------------------
 /// @name Analog I/O (AIO)
@@ -557,22 +570,6 @@
 /// ---------------------------------
 /// @name Hardware Control
 /// ---------------------------------
-
-/**
- *  バッテリーの残量を取得します。
- *
- *  @return バッテリーの残量(%)
- *	@warning このメソッドは非推奨です。 [Konashi batteryLevelDidUpdateHandler] を用いて残量を取得してください。
- */
-+ (int) batteryLevelRead __attribute__ ((deprecated));
-
-/**
- *  RSSIの値を取得します。
- *
- *  @return RSSIの値。
- *	@warning このメソッドは非推奨です。 [Konashi signalStrengthDidUpdateHandler] を用いてRSSIを取得してください。
- */
-+ (int) signalStrengthRead __attribute__ ((deprecated));
 
 + (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName NS_DEPRECATED(NA, NA, 5_0, 8_0);
 + (void) removeObserver:(id)notificationObserver NS_DEPRECATED(NA, NA, 5_0, 8_0);

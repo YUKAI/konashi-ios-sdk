@@ -12,7 +12,7 @@
 @class KNSPeripheral;
 @interface KNSCentralManager : CBCentralManager <CBCentralManagerDelegate>
 
-@property (nonatomic, readonly) NSSet *connectedPeripherals;
+@property (nonatomic, readonly) NSSet *activePeripherals;
 @property (nonatomic, readonly) NSSet *peripherals;
 @property (nonatomic, assign) BOOL discovering;
 @property (nonatomic, copy) void (^didUpdateStateBlock)(CBCentralManager *central);
@@ -25,7 +25,9 @@
 @property (nonatomic, copy) void (^didConnectPeripheral)(CBCentralManager *central, KNSPeripheral *peripheral);
 
 + (instancetype)sharedInstance;
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks timeoutBlock:(void (^)(NSSet *peripherals))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
+- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
+- (void)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout connectedHandler:(void (^)(KNSPeripheral *connectedPeripheral))connectedHandler;
 - (KNSPeripheral *)connectWithPeripheral:(CBPeripheral *)peripheral;
+- (void)connectKonashiPeripheral:(KNSPeripheral *)peripheral;
 
 @end

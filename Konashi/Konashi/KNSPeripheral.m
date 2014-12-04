@@ -9,7 +9,6 @@
 #import "KNSPeripheral.h"
 #import "KNSPeripheralImpls.h"
 #import "KNSCentralManager.h"
-#import "Konashi+UI.h"
 
 @interface KNSPeripheral ()
 {
@@ -17,7 +16,7 @@
 	BOOL isCallFind;
 }
 
-@property (nonatomic, readonly) 	CBPeripheral *assignedPeripheral;
+@property (nonatomic, readonly) CBPeripheral *assignedPeripheral;
 
 @end
 
@@ -33,33 +32,82 @@
 	return p;
 }
 
-- (instancetype)initWithPeripheral:(CBPeripheral *)p
+- (instancetype)init
 {
 	self = [super init];
+	if (self) {
+		self.handlerManager = [KNSHandlerManager new];
+	}
+	
+	return self;
+}
+
+- (instancetype)initWithPeripheral:(CBPeripheral *)p
+{
+	self = [self init];
 	if (self) {
 		_assignedPeripheral = p;
 		p.delegate = self;
 		
-		__weak typeof(findName) bfindName = findName;
-		__block typeof(isCallFind) bisCallFind = isCallFind;
-		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			if (bisCallFind) {
-				bisCallFind = NO;
-				if (bfindName) {
-					KNS_LOG(@"Try findWithName");
-					[self connectWithName:bfindName timeout:KonashiFindTimeoutInterval];
-				}
-				else {
-					[self connectWithTimeoutInterval:KonashiFindTimeoutInterval];
-				}
-			}
-		}];
 		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 			KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [note userInfo][KonashiPeripheralKey], [note userInfo][KonashiErrorKey]);
 		}];
 	}
 	
 	return self;
+}
+
+#pragma mark -
+#pragma mark - Blocks
+
+- (void)setConnectedHandler:(KonashiEventHandler)connectedHander
+{
+	_handlerManager.connectedHandler = connectedHander;
+}
+
+- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+{
+	_handlerManager.disconnectedHandler = disconnectedHandler;
+}
+
+- (void)setReadyHandler:(KonashiEventHandler)readyHander
+{
+	_handlerManager.readyHandler = readyHander;
+}
+
+- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+{
+	_handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+}
+
+- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+{
+	_handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
+}
+
+- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+{
+	_handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
+{
+	_handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
+}
+
+- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+{
+	_handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+{
+	_handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+}
+
+- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+{
+	_handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
 }
 
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
@@ -92,70 +140,6 @@
 - (BOOL)isReady
 {
 	return _impl.isReady;
-}
-
-- (KonashiResult)connectWithTimeoutInterval:(NSTimeInterval)timeout
-{
-	if(self.state == CBPeripheralStateConnected){
-		return KonashiResultFailure;
-	}
-	
-	if ([KNSCentralManager sharedInstance].state  != CBCentralManagerStatePoweredOn) {
-		KNS_LOG(@"CoreBluetooth not correctly initialized !");
-		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
-		return KonashiResultSuccess;
-	}
-	
-	[[KNSCentralManager sharedInstance] discover:^(CBPeripheral *peripheral, BOOL *stop) {
-	} timeoutBlock:^(NSSet *peripherals) {
-		if ([peripherals count] > 0) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralFoundNotification object:nil];
-		}
-		else {
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventNoPeripheralsAvailableNotification object:nil];
-		}
-	} timeoutInterval:KonashiFindTimeoutInterval];
-	
-	return KonashiResultSuccess;
-}
-
-- (KonashiResult)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout
-{
-	if(self.state == CBPeripheralStateConnected){
-		return KonashiResultFailure;
-	}
-	
-	if ([KNSCentralManager sharedInstance].state  != CBCentralManagerStatePoweredOn) {
-		KNS_LOG(@"CoreBluetooth not correctly initialized !");
-		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
-		return KonashiResultSuccess;
-	}
-	[[KNSCentralManager sharedInstance] discover:^(CBPeripheral *peripheral, BOOL *stop) {
-		if ([peripheral.name isEqualToString:name]) {
-			[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
-			*stop = YES;
-		}
-	} timeoutBlock:^(NSSet *peripherals) {
-		KNS_LOG(@"Peripherals: %lu", (unsigned long)[peripherals count]);
-		__block CBPeripheral *peripheral = nil;
-		if ([peripherals count] > 0) {
-			[peripherals enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-				CBPeripheral *p = obj;
-				if ([[p name] isEqualToString:name]) {
-					peripheral = p;
-					*stop = YES;
-				}
-			}];
-		}
-		if (peripheral) {
-			[[KNSCentralManager sharedInstance] connectWithPeripheral:peripheral];
-		}
-		else {
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventPeripheralNotFoundNotification object:nil];
-		}
-	} timeoutInterval:timeout];
-	
-	return KonashiResultSuccess;
 }
 
 - (NSString *)softwareRevisionString
@@ -384,9 +368,6 @@
 			self.handlerManager.connectedHandler();
 		}
 		_impl.handlerManager = self.handlerManager;
-		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventImplReadyToUseNotification object:_impl queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil userInfo:@{KonashiPeripheralKey:self}];
-		}];
 		[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectedNotification object:self userInfo:@{KonashiPeripheralKey:self}];
 	}
 }
