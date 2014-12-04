@@ -140,6 +140,7 @@ static KNSCentralManager *c;
 	KNSPeripheral *p =[[KNSPeripheral alloc] initWithPeripheral:peripheral];
 	[activePeripherals_ addObject:p];
 	[self connectPeripheral:peripheral options:0];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectingNotification object:@{KonashiPeripheralKey:p}];
 	
 	return p;
 }
