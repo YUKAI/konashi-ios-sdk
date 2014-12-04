@@ -36,6 +36,7 @@ static NSString *const JS_KONASHI_EVENT_I2C_READ_COMPLETE = @"i2cReadComplete";
 static NSString *const JS_KONASHI_EVENT_UART_RX_COMPLETE = @"uartRxComplete";
 static NSString *const JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"updateBatteryLevel";
 static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalStrength";
+static NSString *const JS_KONASHI_EVENT_START_DISCOVERY = @"startDiscovery";
 
 - (instancetype)init
 {
@@ -136,7 +137,8 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 								 KonashiEventI2CReadCompleteNotification : JS_KONASHI_EVENT_I2C_READ_COMPLETE,
 								 KonashiEventUartRxCompleteNotification : JS_KONASHI_EVENT_UART_RX_COMPLETE,
 								 KonashiEventBatteryLevelDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL,
-								 KonashiEventSignalStrengthDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH};
+								 KonashiEventSignalStrengthDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH,
+								 KonashiEventStartDiscoveryNotification : JS_KONASHI_EVENT_START_DISCOVERY};
 		
 		[events enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 			[[NSNotificationCenter defaultCenter] addObserverForName:key object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
