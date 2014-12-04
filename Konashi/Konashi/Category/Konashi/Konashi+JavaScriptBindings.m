@@ -119,7 +119,7 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalS
 		
 		vm.context[@"Konashi"][@"KONASHI_UART_DISABLE"] = @(KonashiUartModeDisable);
 		vm.context[@"Konashi"][@"KONASHI_UART_ENABLE"] = @(KonashiUartModeEnable);
-		vm.context[@"Konashi"][@"KONASHI_UART_MAX_DATA_LENGTH"] = @([[KNSKonashiPeripheralImpl class] uartDataMaxLength]);
+		vm.context[@"Konashi"][@"KONASHI_UART_MAX_DATA_LENGTH"] = @(1);
 		vm.context[@"Konashi"][@"KOSHIAN_1_0_UART_MAX_DATA_LENGTH"] = @(1);
 		vm.context[@"Konashi"][@"KOSHIAN_2_0_UART_MAX_DATA_LENGTH"] = @(18);
 		
