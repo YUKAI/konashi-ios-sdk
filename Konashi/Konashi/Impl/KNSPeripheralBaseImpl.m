@@ -146,9 +146,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 			// set konashi property
 			if (self.handlerManager.readyHandler) {
 				self.handlerManager.readyHandler();
-			}
-			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventImplReadyToUseNotification object:self];
-			
+			}			
 			//read software revision string
 			[self readDataWithServiceUUID:[CBUUID UUIDWithString:kDeviceInformationServiceUUIDString] characteristicUUID:[CBUUID UUIDWithString:kSoftwareRevisionStringCharacteristiceUUIDString]];
 			
@@ -996,7 +994,7 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	_softwareRevisionString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	_softwareRevisionString = [_softwareRevisionString stringByReplacingOccurrencesOfString:@"\0" withString:@""];
 	_ready = YES;
-	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventReadyToUseNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventImplReadyToUseNotification object:self userInfo:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventDidFindSoftwareRevisionStringNotification object:nil];
 }
 
