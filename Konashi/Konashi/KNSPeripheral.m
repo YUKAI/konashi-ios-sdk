@@ -22,16 +22,6 @@
 
 @implementation KNSPeripheral
 
-+ (KNSPeripheral *)peripheraliWithConnectedHandler:(KonashiEventHandler)connectedHandler disconnectedHandler:(KonashiEventHandler)disconnectedHander readyHandler:(KonashiEventHandler)readyHandler
-{
-	KNSPeripheral *p = [KNSPeripheral new];
-	p.handlerManager.connectedHandler = connectedHandler;
-	p.handlerManager.disconnectedHandler = disconnectedHander;
-	p.handlerManager.readyHandler = readyHandler;
-	
-	return p;
-}
-
 - (instancetype)init
 {
 	self = [super init];
@@ -48,10 +38,6 @@
 	if (self) {
 		_assignedPeripheral = p;
 		p.delegate = self;
-		
-		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			KNS_LOG(@"Disconnect from the peripheral: %@, error: %@", [note userInfo][KonashiPeripheralKey], [note userInfo][KonashiErrorKey]);
-		}];
 	}
 	
 	return self;
