@@ -567,11 +567,7 @@
  */
 + (unsigned char) uartRead __attribute__ ((deprecated));
 
-/// ---------------------------------
-/// @name Hardware Control
-/// ---------------------------------
-
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName NS_DEPRECATED(NA, NA, 5_0, 8_0);
-+ (void) removeObserver:(id)notificationObserver NS_DEPRECATED(NA, NA, 5_0, 8_0);
++ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName __attribute__ ((deprecated));
++ (void) removeObserver:(id)notificationObserver __attribute__ ((deprecated));
 
 @end
