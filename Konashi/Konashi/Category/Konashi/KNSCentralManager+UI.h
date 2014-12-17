@@ -7,6 +7,7 @@
 //
 
 #import "KNSCentralManager.h"
+#import <UIKit/UIKit.h>
 
 @interface KNSCentralManager (UI) <UIActionSheetDelegate>
 
