@@ -292,7 +292,7 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 - (NSInteger)uartDataMaxLengthByRevisionString:(NSString *)revisionString
 {
 	NSInteger dataLength = 1;
-	// revision stringが2.0.0の時だけマルチバイトで送信できる
+	// revision stringが2.x.xの時だけマルチバイトで送信できる
 	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] == NSOrderedDescending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
 		dataLength = 18;
 	}
