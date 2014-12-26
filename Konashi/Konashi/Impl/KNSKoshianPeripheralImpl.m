@@ -219,8 +219,8 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 - (KonashiResult) uartWriteData:(NSData *)data
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
-			// revision stringが2.0.0の時はマルチバイトで送信できる
+		if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] == NSOrderedDescending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+			// revision stringが2.x.xの時はマルチバイトで送信できる
 			// 先頭1バイトはデータ長
 			NSMutableData *d = [NSMutableData new];
 			NSUInteger length = data.length;
