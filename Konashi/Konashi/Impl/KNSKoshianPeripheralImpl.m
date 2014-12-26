@@ -270,7 +270,7 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 
 - (void)uartDataDidUpdate:(NSData *)data
 {
-	if ([self.softwareRevisionString isEqualToString:@"2.0.0"]) {
+	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] == NSOrderedDescending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
 		unsigned char byte[32];
 		[data getBytes:byte length:1];
 		char length = byte[0];
@@ -293,7 +293,7 @@ static NSString *const kLatestFirmwareVersion = @"2.0.0";
 {
 	NSInteger dataLength = 1;
 	// revision stringが2.0.0の時だけマルチバイトで送信できる
-	if ([revisionString isEqualToString:@"2.0.0"]) {
+	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] == NSOrderedDescending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
 		dataLength = 18;
 	}
 	
