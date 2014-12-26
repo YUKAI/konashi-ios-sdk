@@ -9,8 +9,6 @@
 #import "KNSKoshianPeripheralImpl.h"
 #import "KonashiUtils.h"
 
-static NSString *const kLatestFirmwareVersion = @"2.0.0";
-
 @interface KNSKoshianPeripheralImpl ()
 
 @end
