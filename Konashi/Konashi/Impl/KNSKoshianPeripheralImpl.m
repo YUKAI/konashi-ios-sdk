@@ -143,75 +143,75 @@
 + (CBUUID *)i2cWriteUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B300D-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B300D-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)i2cReadParamUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B300E-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B300E-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)i2cReadUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B300F-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B300F-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 // UART
 + (CBUUID *)uartConfigUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3010-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3010-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)uartBaudrateUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3011-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3011-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)uartTX_UUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3012-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3012-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)uartRX_NotificationUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3013-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3013-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 // Hardware
 + (CBUUID *)hardwareResetUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3014-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3014-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)lowBatteryNotificationUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"229B3015-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
+	return kns_CreateUUIDFromString(@"229B3015-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
 + (CBUUID *)upgradeServiceUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"3908d54f-0c55-4ea1-8fd1-8394a172257d", uuid);
+	return kns_CreateUUIDFromString(@"3908d54f-0c55-4ea1-8fd1-8394a172257d", uuid);
 }
 
 + (CBUUID *)upgradeCharacteristicControlPointUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"0f7a29bb-a965-4279-8546-b56e981c008b", uuid);
+	return kns_CreateUUIDFromString(@"0f7a29bb-a965-4279-8546-b56e981c008b", uuid);
 }
 
 + (CBUUID *)upgradeCharacteristicDataUUID
 {
 	static CBUUID *uuid;
-	return kns_CreateUUIDFromString(	@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
+	return kns_CreateUUIDFromString(@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
 }
 
 - (KonashiResult) uartWriteData:(NSData *)data
