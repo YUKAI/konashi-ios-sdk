@@ -105,7 +105,6 @@ static KNSCentralManager *c;
 				BOOL stop = NO;
 				discoverBlocks(peripheral, &stop);
 				if (stop == YES) {
-					[t invalidate];
 					[bself stopDiscover:t];
 				}
 			}];			
@@ -122,9 +121,9 @@ static KNSCentralManager *c;
 	KNS_LOG(@"stopDiscoveriong");
 	[self stopScan];
 	self.discovering = NO;
-	void (^timeoutBlock)(NSSet *peripherals, BOOL timeout) = timer.userInfo[@"callback"];
-	timeoutBlock(self.peripherals, timer.isValid);
 	if (timer.isValid) {
+		void (^timeoutBlock)(NSSet *peripherals, BOOL timeout) = timer.userInfo[@"callback"];
+		timeoutBlock(self.peripherals, timer.isValid);
 		[timer invalidate];
 	}
 	if ([self.peripherals count] > 0) {
