@@ -22,6 +22,7 @@
 		E9C79AD71A1447690048E6DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C79AD61A1447690048E6DF /* Images.xcassets */; };
 		E9C79ADA1A1447690048E6DF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C79AD81A1447690048E6DF /* LaunchScreen.xib */; };
 		E9C79AE61A1447690048E6DF /* MultiNodeSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C79AE51A1447690048E6DF /* MultiNodeSampleTests.m */; };
+		E9E077111A89EAFE0081B4E0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E077101A89EAFE0081B4E0 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		E9C79ADF1A1447690048E6DF /* MultiNodeSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiNodeSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C79AE41A1447690048E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C79AE51A1447690048E6DF /* MultiNodeSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiNodeSampleTests.m; sourceTree = "<group>"; };
+		E9E0770F1A89EAFE0081B4E0 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E9E077101A89EAFE0081B4E0 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 		E9C65DB91A2DA18F0077AD49 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				E9E0770E1A89EAF10081B4E0 /* DetailViewController */,
 				E9C65DBB1A2DA4FD0077AD49 /* MainViewController */,
 			);
 			path = Class;
@@ -181,6 +185,15 @@
 				E9C79AE41A1447690048E6DF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9E0770E1A89EAF10081B4E0 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E9E0770F1A89EAFE0081B4E0 /* DetailViewController.h */,
+				E9E077101A89EAFE0081B4E0 /* DetailViewController.m */,
+			);
+			path = DetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E077111A89EAFE0081B4E0 /* DetailViewController.m in Sources */,
 				E9C79AC91A1447690048E6DF /* AppDelegate.m in Sources */,
 				E9C65DBE1A2DA5080077AD49 /* MainViewController.m in Sources */,
 				E9C79AC61A1447690048E6DF /* main.m in Sources */,

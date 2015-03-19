@@ -36,6 +36,9 @@
 		[self.tableView reloadData];
 	}];
 	
+	UIBarButtonItem *uartTestButton = [[UIBarButtonItem alloc] initWithTitle:@"Uart" style:UIBarButtonItemStylePlain target:self action:@selector(showTestViewController:)];
+	self.navigationItem.leftBarButtonItem = uartTestButton;
+	
 	[self.tableView registerNib:[UINib nibWithNibName:@"PeripheralCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
 	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(readPeripheralDeviceValue) userInfo:nil repeats:YES];
 }
@@ -77,7 +80,6 @@ BOOL flag = NO;
 	PeripheralCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 	KNSPeripheral *p = peripherals[indexPath.row];
 	cell.peripheral = p;
-	
 	return cell;
 }
 
@@ -101,6 +103,12 @@ BOOL flag = NO;
 		[p signalStrengthReadRequest];
 		[p batteryLevelReadRequest];
 	}];
+}
+
+- (void)showTestViewController:(id)sender
+{
+	UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+	[self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end
