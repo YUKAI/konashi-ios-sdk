@@ -46,6 +46,12 @@
 #pragma mark -
 #pragma mark - Blocks
 
+- (void)setHandlerManager:(KNSHandlerManager *)handlerManager
+{
+	_handlerManager = handlerManager;
+	_impl.handlerManager = _handlerManager;
+}
+
 - (void)setConnectedHandler:(KonashiEventHandler)connectedHander
 {
 	_handlerManager.connectedHandler = connectedHander;
