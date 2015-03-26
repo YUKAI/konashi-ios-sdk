@@ -28,7 +28,7 @@
 	
 	UIBarButtonItem *discoverButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(discover)];
 	self.navigationItem.rightBarButtonItem = discoverButton;
-	[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blinkPeripheralLED) userInfo:nil repeats:YES];
+	[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(blinkPeripheralLED) userInfo:nil repeats:YES];
 	[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventReadyToUseNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 		KNSPeripheral *p = note.userInfo[KonashiPeripheralKey];
 		[p pinMode:KonashiDigitalIO1 mode:KonashiPinModeOutput];
