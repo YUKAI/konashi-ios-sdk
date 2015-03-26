@@ -487,16 +487,6 @@
  */
 + (int) signalStrengthRead;
 
-#pragma mark - Depricated
-
-/// ---------------------------------
-/// @name Digital I/O (PIO)
-/// ---------------------------------
-
-// Konashi event methods
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
-+ (void) removeObserver:(id)notificationObserver;
-
 #pragma mark - Deprecated
 
 /// ---------------------------------

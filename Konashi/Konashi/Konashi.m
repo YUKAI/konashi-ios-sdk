@@ -74,19 +74,23 @@
 				}
 			}
 		}];
-		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventReadyToUseNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-			KNSPeripheral *connectedPeripheral = [note userInfo][KonashiPeripheralKey];
-			KNS_LOG(@"Peripheral(UUID : %@) is ready to use.", connectedPeripheral.peripheral.identifier.UUIDString);
-			_activePeripheral = connectedPeripheral;
-			_activePeripheral.handlerManager = handlerManager;
-			// Enable PIO input notification
-			[_activePeripheral enablePIOInputNotification];
-			// Enable UART RX notification
-			[_activePeripheral enableUART_RXNotification];
-		}];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readyToUse:) name:KonashiEventReadyToUseNotification object:nil];
 	}
 	
 	return self;
+}
+
+- (void)readyToUse:(NSNotification *)note
+{
+	KNSPeripheral *connectedPeripheral = [note userInfo][KonashiPeripheralKey];
+	KNS_LOG(@"Peripheral(UUID : %@) is ready to use.", connectedPeripheral.peripheral.identifier.UUIDString);
+	_activePeripheral = connectedPeripheral;
+	_activePeripheral.handlerManager = handlerManager;
+	// Enable PIO input notification
+	[_activePeripheral enablePIOInputNotification];
+	// Enable UART RX notification
+	[_activePeripheral enableUART_RXNotification];
 }
 
 #pragma mark -
@@ -193,16 +197,6 @@
 }
 
 + (KonashiLevel) digitalRead:(KonashiDigitalIOPin)pin
-{
-	return [[Konashi shared].activePeripheral digitalRead:pin];
-}
-
-+ (int) digitalReadAll
-{
-	return [[Konashi shared].activePeripheral digitalReadAll];
-}
-
-+ (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
 	return [[Konashi shared].activePeripheral digitalRead:pin];
 }
@@ -342,16 +336,6 @@
     return [[Konashi shared].activePeripheral signalStrengthReadRequest];
 }
 
-+ (int) batteryLevelRead
-{
-	return [[Konashi shared].activePeripheral batteryLevelRead];
-}
-
-+ (int) signalStrengthRead
-{
-	return [[Konashi shared].activePeripheral signalStrengthRead];
-}
-
 #pragma mark -
 #pragma mark - Blocks
 
@@ -431,11 +415,6 @@
 #pragma mark - digital
 
 #pragma mark - analog
-
-+ (int) analogRead:(KonashiAnalogIOPin)pin
-{
-	return [[Konashi shared].activePeripheral analogRead:pin];
-}
 
 #pragma mark - I2C
 
