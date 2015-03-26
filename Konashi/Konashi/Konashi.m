@@ -172,6 +172,16 @@
     return [[Konashi shared].activePeripheral pinModeAll:mode];
 }
 
++ (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
+{
+    return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
+}
+
++ (KonashiResult) pinPullupAll:(int)mode
+{
+    return [[Konashi shared].activePeripheral pinPullupAll:mode];
+}
+
 + (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
 {
 	return [[Konashi shared].activePeripheral digitalWrite:pin value:value];
@@ -194,12 +204,12 @@
 
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
-    return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
+	return [[Konashi shared].activePeripheral digitalRead:pin];
 }
 
-+ (KonashiResult) pinPullupAll:(int)mode
++ (int) digitalReadAll
 {
-    return [[Konashi shared].activePeripheral pinPullupAll:mode];
+	return [[Konashi shared].activePeripheral digitalReadAll];
 }
 
 #pragma mark -
@@ -241,6 +251,11 @@
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
     return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
+}
+
++ (int) analogRead:(KonashiAnalogIOPin)pin
+{
+	return [[Konashi shared].activePeripheral analogRead:pin];
 }
 
 #pragma mark -
@@ -325,6 +340,16 @@
 + (KonashiResult) signalStrengthReadRequest
 {
     return [[Konashi shared].activePeripheral signalStrengthReadRequest];
+}
+
++ (int) batteryLevelRead
+{
+	return [[Konashi shared].activePeripheral batteryLevelRead];
+}
+
++ (int) signalStrengthRead
+{
+	return [[Konashi shared].activePeripheral signalStrengthRead];
 }
 
 #pragma mark -

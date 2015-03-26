@@ -319,6 +319,15 @@
  */
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt;
 
+/**
+ *  AIOの値を取得します。 [Konashi analogReadRequest:] を用いてAIOの値の要求後に正しい値を取得可能です。
+ *
+ *  @param pin AIOの番号
+ *
+ *  @return AIOの値。
+ */
++ (int) analogRead:(KonashiAnalogIOPin)pin;
+
 /// ---------------------------------
 /// @name I2C
 /// ---------------------------------
@@ -484,19 +493,11 @@
 /// @name Digital I/O (PIO)
 /// ---------------------------------
 
-/// ---------------------------------
-/// @name Analog I/O (AIO)
-/// ---------------------------------
+// Konashi event methods
++ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName;
++ (void) removeObserver:(id)notificationObserver;
 
-/**
- *  AIOの値を取得します。 [Konashi analogReadRequest:] を用いてAIOの値の要求後に正しい値を取得可能です。
- *
- *  @param pin AIOの番号
- *
- *  @return AIOの値。
- *	@warning このメソッドは非推奨です。 [Konashi analogPinDidChangeValueHandler] を用いて値の取得をしてください。
- */
-+ (int) analogRead:(KonashiAnalogIOPin)pin __attribute__ ((deprecated));
+#pragma mark - Deprecated
 
 /// ---------------------------------
 /// @name I2C
