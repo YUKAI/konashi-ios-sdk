@@ -40,4 +40,7 @@
    <FileRef
       location = "group:samples/JSBindingsSample/JSBindingsSample.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:samples/MultiNodeSample/MultiNodeSample.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -7,6 +7,7 @@
 //
 
 #import "Konashi.h"
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface KNSJavaScriptVirtualMachine : NSObject
