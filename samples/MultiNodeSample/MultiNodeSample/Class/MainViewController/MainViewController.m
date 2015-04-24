@@ -40,7 +40,7 @@
 	self.navigationItem.leftBarButtonItem = uartTestButton;
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"PeripheralCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(readPeripheralDeviceValue) userInfo:nil repeats:YES];
+	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(readPeripheralDeviceValue) userInfo:nil repeats:YES];
 }
 
 - (void)discover
