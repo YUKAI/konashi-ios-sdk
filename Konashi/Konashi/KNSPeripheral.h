@@ -18,9 +18,64 @@
 
 @interface KNSPeripheral : NSObject <CBPeripheralDelegate>
 
+@property (nonatomic, readonly, getter=isReady) BOOL ready;
 @property (nonatomic, readonly) KNSPeripheralBaseImpl<KNSPeripheralImplProtocol> *impl;
-@property (nonatomic, weak) KNSHandlerManager *handlerManager;
+@property (nonatomic, strong) KNSHandlerManager *handlerManager;
 @property (nonatomic, readonly) NSString *softwareRevisionString;
+
+/// ---------------------------------
+/// @name Event handler
+/// ---------------------------------
+
+/**
+ *  このHandlerはKonashiが接続された際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiEventHandler connectedHandler;
+
+/**
+ *  このHandlerはKonashiが切断された際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiEventHandler disconnectedHandler;
+
+/**
+ *  このHandlerはKonashiが使用可能状態になった際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiEventHandler readyHandler;
+
+/**
+ *  このHandlerはKonashiPinModeInputに設定されているPIOの値が変化した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
+
+/**
+ *  このHandlerはKonashiPinModeOutputに設定されているPIOの値が変化した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
+
+/**
+ *  このHandlerはAIOの値が変化した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
+
+/**
+ *  このHandlerはUartで値を受信した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
+
+/**
+ *  このHandlerはI2Cで接続されたモジュールからデータを読みだした際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
+
+/**
+ *  このHandlerはバッテリー残量の値を取得した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
+
+/**
+ *  このHandlerはRSSIが変化した際に呼び出されます。
+ */
+@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
@@ -28,10 +83,7 @@
 - (void)notificationWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on;
 
 - (CBPeripheral *)peripheral;
-
 - (CBPeripheralState)state;
-- (BOOL)isReady;
-- (NSString *)findName;
 
 - (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode;
 - (KonashiResult) pinModeAll:(int)mode;
