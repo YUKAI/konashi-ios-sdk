@@ -18,7 +18,7 @@ Physical computing toolkit for smartphones and tablets
 ```
 source "https://github.com/CocoaPods/Specs.git"
 platform :ios, "7.1"
-pod "konashi-ios-sdk", "~> 2.0"
+pod "konashi-ios-sdk", "~> 3.0"
 ```
 
 そして
