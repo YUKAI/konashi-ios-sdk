@@ -11,15 +11,15 @@
 		08AE632816CE96040027B895 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE632716CE96040027B895 /* Foundation.framework */; };
 		08AE632A16CE96040027B895 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE632916CE96040027B895 /* CoreGraphics.framework */; };
 		08AE634916CE96140027B895 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE634816CE96140027B895 /* CoreBluetooth.framework */; };
-		E92D578D1B63B20400FE1BF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57801B63B20400FE1BF8 /* AppDelegate.m */; };
-		E92D578E1B63B20400FE1BF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57821B63B20400FE1BF8 /* Default-568h@2x.png */; };
-		E92D578F1B63B20400FE1BF8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57831B63B20400FE1BF8 /* Default.png */; };
-		E92D57901B63B20400FE1BF8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57841B63B20400FE1BF8 /* Default@2x.png */; };
-		E92D57911B63B20400FE1BF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92D57851B63B20400FE1BF8 /* InfoPlist.strings */; };
-		E92D57921B63B20400FE1BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92D57871B63B20400FE1BF8 /* MainStoryboard.storyboard */; };
-		E92D57931B63B20400FE1BF8 /* GettingStarted-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E92D57891B63B20400FE1BF8 /* GettingStarted-Info.plist */; };
-		E92D57941B63B20400FE1BF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D578A1B63B20400FE1BF8 /* main.m */; };
-		E92D57951B63B20400FE1BF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D578C1B63B20400FE1BF8 /* ViewController.m */; };
+		E92D57DA1B63B57200FE1BF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57CD1B63B57200FE1BF8 /* AppDelegate.m */; };
+		E92D57DE1B63B57200FE1BF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92D57D11B63B57200FE1BF8 /* InfoPlist.strings */; };
+		E92D57DF1B63B57200FE1BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92D57D31B63B57200FE1BF8 /* MainStoryboard.storyboard */; };
+		E92D57E01B63B57200FE1BF8 /* GettingStarted-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E92D57D51B63B57200FE1BF8 /* GettingStarted-Info.plist */; };
+		E92D57E11B63B57200FE1BF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57D71B63B57200FE1BF8 /* main.m */; };
+		E92D57E21B63B57200FE1BF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57D91B63B57200FE1BF8 /* ViewController.m */; };
+		E92D57E81B63B5A700FE1BF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57E51B63B5A700FE1BF8 /* Default-568h@2x.png */; };
+		E92D57E91B63B5A700FE1BF8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57E61B63B5A700FE1BF8 /* Default.png */; };
+		E92D57EA1B63B5A700FE1BF8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E92D57E71B63B5A700FE1BF8 /* Default@2x.png */; };
 		E9E64FFC19C8F40100AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E64FFB19C8F40100AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
 
@@ -29,18 +29,18 @@
 		08AE632716CE96040027B895 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08AE632916CE96040027B895 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		08AE634816CE96140027B895 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		E92D577F1B63B20400FE1BF8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E92D57801B63B20400FE1BF8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E92D57811B63B20400FE1BF8 /* BlinkLed-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlinkLed-Prefix.pch"; sourceTree = "<group>"; };
-		E92D57821B63B20400FE1BF8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E92D57831B63B20400FE1BF8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		E92D57841B63B20400FE1BF8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		E92D57861B63B20400FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E92D57881B63B20400FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		E92D57891B63B20400FE1BF8 /* GettingStarted-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GettingStarted-Info.plist"; sourceTree = "<group>"; };
-		E92D578A1B63B20400FE1BF8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E92D578B1B63B20400FE1BF8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E92D578C1B63B20400FE1BF8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E92D57CC1B63B57200FE1BF8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E92D57CD1B63B57200FE1BF8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E92D57D21B63B57200FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E92D57D41B63B57200FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E92D57D51B63B57200FE1BF8 /* GettingStarted-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GettingStarted-Info.plist"; sourceTree = "<group>"; };
+		E92D57D61B63B57200FE1BF8 /* GettingStarted-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GettingStarted-Prefix.pch"; sourceTree = "<group>"; };
+		E92D57D71B63B57200FE1BF8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E92D57D81B63B57200FE1BF8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E92D57D91B63B57200FE1BF8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E92D57E51B63B5A700FE1BF8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E92D57E61B63B5A700FE1BF8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E92D57E71B63B5A700FE1BF8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E9E64FFB19C8F40100AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,8 +63,7 @@
 		08AE631916CE96040027B895 = {
 			isa = PBXGroup;
 			children = (
-				08AE634816CE96140027B895 /* CoreBluetooth.framework */,
-				E92D577E1B63B20400FE1BF8 /* BlinkLed */,
+				E92D57CB1B63B57200FE1BF8 /* GettingStarted */,
 				08AE632416CE96040027B895 /* Frameworks */,
 				08AE632316CE96040027B895 /* Products */,
 			);
@@ -81,6 +80,7 @@
 		08AE632416CE96040027B895 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08AE634816CE96140027B895 /* CoreBluetooth.framework */,
 				E9E64FFB19C8F40100AC0F17 /* libKonashi.a */,
 				08AE632516CE96040027B895 /* UIKit.framework */,
 				08AE632716CE96040027B895 /* Foundation.framework */,
@@ -89,24 +89,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E92D577E1B63B20400FE1BF8 /* BlinkLed */ = {
+		E92D57CB1B63B57200FE1BF8 /* GettingStarted */ = {
 			isa = PBXGroup;
 			children = (
-				E92D577F1B63B20400FE1BF8 /* AppDelegate.h */,
-				E92D57801B63B20400FE1BF8 /* AppDelegate.m */,
-				E92D57811B63B20400FE1BF8 /* BlinkLed-Prefix.pch */,
-				E92D57821B63B20400FE1BF8 /* Default-568h@2x.png */,
-				E92D57831B63B20400FE1BF8 /* Default.png */,
-				E92D57841B63B20400FE1BF8 /* Default@2x.png */,
-				E92D57851B63B20400FE1BF8 /* InfoPlist.strings */,
-				E92D57871B63B20400FE1BF8 /* MainStoryboard.storyboard */,
-				E92D57891B63B20400FE1BF8 /* GettingStarted-Info.plist */,
-				E92D578A1B63B20400FE1BF8 /* main.m */,
-				E92D578B1B63B20400FE1BF8 /* ViewController.h */,
-				E92D578C1B63B20400FE1BF8 /* ViewController.m */,
+				E92D57E31B63B57B00FE1BF8 /* GettingStarted */,
 			);
-			name = BlinkLed;
-			path = ../BlinkLed/BlinkLed;
+			path = GettingStarted;
+			sourceTree = "<group>";
+		};
+		E92D57E31B63B57B00FE1BF8 /* GettingStarted */ = {
+			isa = PBXGroup;
+			children = (
+				E92D57D31B63B57200FE1BF8 /* MainStoryboard.storyboard */,
+				E92D57CC1B63B57200FE1BF8 /* AppDelegate.h */,
+				E92D57CD1B63B57200FE1BF8 /* AppDelegate.m */,
+				E92D57D81B63B57200FE1BF8 /* ViewController.h */,
+				E92D57D91B63B57200FE1BF8 /* ViewController.m */,
+				E92D57E41B63B58700FE1BF8 /* Supporting Files */,
+			);
+			name = GettingStarted;
+			sourceTree = "<group>";
+		};
+		E92D57E41B63B58700FE1BF8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E92D57E51B63B5A700FE1BF8 /* Default-568h@2x.png */,
+				E92D57E61B63B5A700FE1BF8 /* Default.png */,
+				E92D57E71B63B5A700FE1BF8 /* Default@2x.png */,
+				E92D57D71B63B57200FE1BF8 /* main.m */,
+				E92D57D11B63B57200FE1BF8 /* InfoPlist.strings */,
+				E92D57D51B63B57200FE1BF8 /* GettingStarted-Info.plist */,
+				E92D57D61B63B57200FE1BF8 /* GettingStarted-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +150,7 @@
 		08AE631A16CE96040027B895 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Yukai Engineering";
 			};
 			buildConfigurationList = 08AE631D16CE96040027B895 /* Build configuration list for PBXProject "GettingStarted" */;
@@ -160,12 +175,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E92D57901B63B20400FE1BF8 /* Default@2x.png in Resources */,
-				E92D57921B63B20400FE1BF8 /* MainStoryboard.storyboard in Resources */,
-				E92D57911B63B20400FE1BF8 /* InfoPlist.strings in Resources */,
-				E92D57931B63B20400FE1BF8 /* GettingStarted-Info.plist in Resources */,
-				E92D578E1B63B20400FE1BF8 /* Default-568h@2x.png in Resources */,
-				E92D578F1B63B20400FE1BF8 /* Default.png in Resources */,
+				E92D57EA1B63B5A700FE1BF8 /* Default@2x.png in Resources */,
+				E92D57DF1B63B57200FE1BF8 /* MainStoryboard.storyboard in Resources */,
+				E92D57E81B63B5A700FE1BF8 /* Default-568h@2x.png in Resources */,
+				E92D57DE1B63B57200FE1BF8 /* InfoPlist.strings in Resources */,
+				E92D57E01B63B57200FE1BF8 /* GettingStarted-Info.plist in Resources */,
+				E92D57E91B63B5A700FE1BF8 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,27 +191,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E92D57951B63B20400FE1BF8 /* ViewController.m in Sources */,
-				E92D57941B63B20400FE1BF8 /* main.m in Sources */,
-				E92D578D1B63B20400FE1BF8 /* AppDelegate.m in Sources */,
+				E92D57E21B63B57200FE1BF8 /* ViewController.m in Sources */,
+				E92D57E11B63B57200FE1BF8 /* main.m in Sources */,
+				E92D57DA1B63B57200FE1BF8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E92D57851B63B20400FE1BF8 /* InfoPlist.strings */ = {
+		E92D57D11B63B57200FE1BF8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E92D57861B63B20400FE1BF8 /* en */,
+				E92D57D21B63B57200FE1BF8 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		E92D57871B63B20400FE1BF8 /* MainStoryboard.storyboard */ = {
+		E92D57D31B63B57200FE1BF8 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E92D57881B63B20400FE1BF8 /* en */,
+				E92D57D41B63B57200FE1BF8 /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
@@ -218,6 +233,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -270,8 +286,9 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uxux.monaka.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GettingStarted;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(PROJECT_DIR)/../../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -286,8 +303,9 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uxux.monaka.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GettingStarted;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(PROJECT_DIR)/../..";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

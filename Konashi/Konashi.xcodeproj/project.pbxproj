@@ -65,13 +65,6 @@
 			remoteGlobalIDString = E91E548D19C8F2750071D7C9;
 			remoteInfo = Konashi;
 		};
-		E9E0BC461B63AFED003BFFDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9E0BC421B63AFED003BFFDC /* ACDriveExtension.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 32CC97111802D8340038AB97;
-			remoteInfo = ACDriveExtension;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,7 +145,6 @@
 		E9C02D2F19CB4021005E9F04 /* Konashi+ADC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+ADC.m"; sourceTree = "<group>"; };
 		E9C02D3019CB4021005E9F04 /* Konashi+Grove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Konashi+Grove.h"; sourceTree = "<group>"; };
 		E9C02D3119CB4021005E9F04 /* Konashi+Grove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Konashi+Grove.m"; sourceTree = "<group>"; };
-		E9E0BC421B63AFED003BFFDC /* ACDriveExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ACDriveExtension.xcodeproj; path = ../samples/ACDriveExtension/ACDriveExtension.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +175,6 @@
 		E91E548519C8F2750071D7C9 = {
 			isa = PBXGroup;
 			children = (
-				E9E0BC421B63AFED003BFFDC /* ACDriveExtension.xcodeproj */,
 				E91E549319C8F2750071D7C9 /* Konashi */,
 				E91E54A719C8F2750071D7C9 /* KonashiTests */,
 				E91E549019C8F2750071D7C9 /* Frameworks */,
@@ -322,14 +313,6 @@
 			path = Konashi;
 			sourceTree = "<group>";
 		};
-		E9E0BC431B63AFED003BFFDC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E9E0BC471B63AFED003BFFDC /* ACDriveExtension.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -374,7 +357,7 @@
 		E91E548619C8F2750071D7C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Akira Matsuda";
 			};
 			buildConfigurationList = E91E548919C8F2750071D7C9 /* Build configuration list for PBXProject "Konashi" */;
@@ -387,12 +370,6 @@
 			mainGroup = E91E548519C8F2750071D7C9;
 			productRefGroup = E91E548F19C8F2750071D7C9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E9E0BC431B63AFED003BFFDC /* Products */;
-					ProjectRef = E9E0BC421B63AFED003BFFDC /* ACDriveExtension.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				E91E548D19C8F2750071D7C9 /* Konashi */,
@@ -400,16 +377,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		E9E0BC471B63AFED003BFFDC /* ACDriveExtension.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ACDriveExtension.app;
-			remoteRef = E9E0BC461B63AFED003BFFDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E91E549C19C8F2750071D7C9 /* Resources */ = {
@@ -499,6 +466,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -599,6 +567,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akira.matsuda.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -615,6 +584,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Konashi/Konashi-Prefix.pch";
 				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akira.matsuda.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};

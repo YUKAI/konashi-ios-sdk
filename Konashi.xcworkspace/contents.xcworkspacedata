@@ -14,7 +14,7 @@
       location = "group:/Users/Akira/Documents/work/YUKAI/Project/XcodeProject/konashi-ios-sdk/samples/BlinkLed/BlinkLed.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/Akira/Documents/work/YUKAI/Project/XcodeProject/konashi-ios-sdk/samples/GettingStarted/GettingStarted.xcodeproj">
+      location = "group:samples/GettingStarted/GettingStarted.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:samples/GroveExtension/GroveExtension.xcodeproj">
