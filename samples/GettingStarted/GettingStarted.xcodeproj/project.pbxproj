@@ -11,6 +11,7 @@
 		08AE632816CE96040027B895 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE632716CE96040027B895 /* Foundation.framework */; };
 		08AE632A16CE96040027B895 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE632916CE96040027B895 /* CoreGraphics.framework */; };
 		08AE634916CE96140027B895 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AE634816CE96140027B895 /* CoreBluetooth.framework */; };
+		9E1045521B63D41300951810 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1045511B63D41300951810 /* JavaScriptCore.framework */; };
 		E92D57DA1B63B57200FE1BF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57CD1B63B57200FE1BF8 /* AppDelegate.m */; };
 		E92D57DE1B63B57200FE1BF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92D57D11B63B57200FE1BF8 /* InfoPlist.strings */; };
 		E92D57DF1B63B57200FE1BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92D57D31B63B57200FE1BF8 /* MainStoryboard.storyboard */; };
@@ -29,6 +30,7 @@
 		08AE632716CE96040027B895 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08AE632916CE96040027B895 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		08AE634816CE96140027B895 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9E1045511B63D41300951810 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E92D57CC1B63B57200FE1BF8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E92D57CD1B63B57200FE1BF8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E92D57D21B63B57200FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E1045521B63D41300951810 /* JavaScriptCore.framework in Frameworks */,
 				E9E64FFC19C8F40100AC0F17 /* libKonashi.a in Frameworks */,
 				08AE634916CE96140027B895 /* CoreBluetooth.framework in Frameworks */,
 				08AE632616CE96040027B895 /* UIKit.framework in Frameworks */,
@@ -80,6 +83,7 @@
 		08AE632416CE96040027B895 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E1045511B63D41300951810 /* JavaScriptCore.framework */,
 				08AE634816CE96140027B895 /* CoreBluetooth.framework */,
 				E9E64FFB19C8F40100AC0F17 /* libKonashi.a */,
 				08AE632516CE96040027B895 /* UIKit.framework */,
