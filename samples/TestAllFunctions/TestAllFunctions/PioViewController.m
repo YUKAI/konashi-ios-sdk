@@ -50,7 +50,16 @@
     [self.pullup7 addTarget:self action:@selector(onChangePullup:) forControlEvents:UIControlEventValueChanged];
 
     // 入力状態の変化イベントハンドラ
-    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventDigitalIODidUpdateNotification];
+	[[Konashi shared] setDigitalInputDidChangeValueHandler:^(KonashiDigitalIOPin pin, int value) {
+		self.in0.on = [Konashi digitalRead:KonashiDigitalIO0];
+		self.in1.on = [Konashi digitalRead:KonashiDigitalIO1];
+		self.in2.on = [Konashi digitalRead:KonashiDigitalIO2];
+		self.in3.on = [Konashi digitalRead:KonashiDigitalIO3];
+		self.in4.on = [Konashi digitalRead:KonashiDigitalIO4];
+		self.in5.on = [Konashi digitalRead:KonashiDigitalIO5];
+		self.in6.on = [Konashi digitalRead:KonashiDigitalIO6];
+		self.in7.on = [Konashi digitalRead:KonashiDigitalIO7];
+	}];
 	
 	[Konashi shared].digitalInputDidChangeValueHandler = ^(KonashiDigitalIOPin pin, int value) {
 		NSLog(@"pio input changed:%d(pin:%d)", value, pin);
@@ -301,22 +310,6 @@
             [Konashi pinPullup:KonashiDigitalIO7 mode:KonashiPinModeNoPulls];
         }
     }
-}
-
-
-/////////////////////////////////////
-// 入力の変化
-
-- (void)updatePioInput
-{
-    self.in0.on = [Konashi digitalRead:KonashiDigitalIO0];
-    self.in1.on = [Konashi digitalRead:KonashiDigitalIO1];
-    self.in2.on = [Konashi digitalRead:KonashiDigitalIO2];
-    self.in3.on = [Konashi digitalRead:KonashiDigitalIO3];
-    self.in4.on = [Konashi digitalRead:KonashiDigitalIO4];
-    self.in5.on = [Konashi digitalRead:KonashiDigitalIO5];
-    self.in6.on = [Konashi digitalRead:KonashiDigitalIO6];
-    self.in7.on = [Konashi digitalRead:KonashiDigitalIO7];
 }
 
 @end

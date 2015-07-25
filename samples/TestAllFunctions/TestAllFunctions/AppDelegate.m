@@ -12,9 +12,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // 初期化
-    [Konashi initialize];
-    
     // Override point for customization after application launch.
     return YES;
 }

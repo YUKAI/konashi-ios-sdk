@@ -20,10 +20,25 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	[[Konashi shared] setConnectedHandler:^{
+		NSLog(@"CONNECTED");
+	}];
+	[[Konashi shared] setReadyHandler:^{
+		NSLog(@"READY");
+		
+		
+		self.statusMessage.hidden = FALSE;
+		
+		// Drive LED
+		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
+		[Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
+		
+
+//		//Blink LED (interval: 0.5s)
+//		[Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
+//		[Konashi pwmDuty:KonashiLED2 duty:500000];        // 0.5s
+//		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,30 +67,6 @@
     NSLog(@"Blightness: %f", self.blightnessSlider.value);
     
     [Konashi pwmLedDrive:KonashiLED2 dutyRatio:self.blightnessSlider.value];
-}
-
-- (void) connected
-{
-    NSLog(@"CONNECTED");
-}
-
-- (void) ready
-{
-    NSLog(@"READY");
-    
-    
-    self.statusMessage.hidden = FALSE;
-    
-    // Drive LED
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
-    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
-    
-    /*
-    //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:LED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:LED2 duty:500000];        // 0.5s
-    [Konashi pwmMode:LED2 mode:ENABLE];
-     */
 }
 
 @end

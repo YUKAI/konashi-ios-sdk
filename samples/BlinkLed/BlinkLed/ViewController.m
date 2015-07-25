@@ -18,10 +18,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	
+    [[Konashi shared] setReadyHandler:^{
+	    // Drive LED
+	    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
+	    
+	    //Blink LED (interval: 0.5s)
+	    [Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
+	    [Konashi pwmDuty:KonashiLED2 duty:500000];       // 0.5s
+	    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
+	    
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,17 +39,6 @@
 
 - (IBAction)find:(id)sender {
     [Konashi find];
-}
-
-- (void)ready
-{
-    // Drive LED
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
-    
-    //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:KonashiLED2 duty:500000];       // 0.5s
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
 }
 
 @end
