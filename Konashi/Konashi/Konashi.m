@@ -74,6 +74,11 @@
 		}];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readyToUse:) name:KonashiEventReadyToUseNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventConnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if ([Konashi shared].connectedHandler) {
+				[Konashi shared].connectedHandler();
+			}
+		}];
 	}
 	
 	return self;
@@ -128,9 +133,6 @@
 		return KonashiResultSuccess;
 	}
 	[[KNSCentralManager sharedInstance] connectWithName:name timeout:KonashiFindTimeoutInterval connectedHandler:^(KNSPeripheral *connectedPeripheral) {
-		if ([Konashi shared].connectedHandler) {
-			[Konashi shared].connectedHandler();
-		}
 	}];
 	
 	return KonashiResultSuccess;
@@ -348,9 +350,19 @@
 	self.handlerManager.connectedHandler = connectedHander;
 }
 
+- (KonashiEventHandler)connectedHandler
+{
+	return self.handlerManager.connectedHandler;
+}
+
 - (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
 {
 	self.handlerManager.disconnectedHandler = disconnectedHandler;
+}
+
+- (KonashiEventHandler)disconnectedHandler
+{
+	return self.handlerManager.disconnectedHandler;
 }
 
 - (void)setReadyHandler:(KonashiEventHandler)readyHander
@@ -358,9 +370,19 @@
 	self.handlerManager.readyHandler = readyHander;
 }
 
+- (KonashiEventHandler)readyHandler
+{
+	return self.handlerManager.readyHandler;
+}
+
 - (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
 {
 	self.handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+}
+
+- (KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+{
+	return self.handlerManager.digitalInputDidChangeValueHandler;
 }
 
 - (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
@@ -368,9 +390,19 @@
 	self.handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
+- (KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+{
+	return self.handlerManager.digitalOutputDidChangeValueHandler;
+}
+
 - (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
 {
 	self.handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+{
+	return self.handlerManager.analogPinDidChangeValueHandler;
 }
 
 - (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
@@ -378,9 +410,19 @@
 	self.handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
 }
 
+- (KonashiUartRxCompleteHandler)uartRxCompleteHandler
+{
+	return self.handlerManager.uartRxCompleteHandler;
+}
+
 - (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
 {
 	self.handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+{
+	return self.handlerManager.i2cReadCompleteHandler;
 }
 
 - (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
@@ -388,9 +430,19 @@
 	self.handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
 }
 
+- (KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+{
+	return self.handlerManager.batteryLevelDidUpdateHandler;
+}
+
 - (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
 {
 	self.handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+}
+
+- (KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+{
+	return self.handlerManager.signalStrengthDidUpdateHandler;
 }
 
 #pragma mark - Depricated methods
