@@ -21,7 +21,7 @@
     
     [Konashi initialize];
     
-    [Konashi addObserver:self selector:@selector(ready) name:KONASHI_EVENT_READY];
+    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,8 +36,8 @@
 
 - (void)ready
 {
-    [Konashi pinMode:LED2 mode:OUTPUT];
-    [Konashi digitalWrite:LED2 value:HIGH];
+    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+    [Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
 }
 
 @end

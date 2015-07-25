@@ -357,7 +357,7 @@
 		E91E548619C8F2750071D7C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Akira Matsuda";
 			};
 			buildConfigurationList = E91E548919C8F2750071D7C9 /* Build configuration list for PBXProject "Konashi" */;
@@ -466,6 +466,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -566,6 +567,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akira.matsuda.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -582,6 +584,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Konashi/Konashi-Prefix.pch";
 				INFOPLIST_FILE = "KonashiTests/KonashiTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akira.matsuda.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
