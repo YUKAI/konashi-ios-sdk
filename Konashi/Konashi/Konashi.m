@@ -89,7 +89,9 @@
 	[_activePeripheral enablePIOInputNotification];
 	// Enable UART RX notification
 	[_activePeripheral enableUART_RXNotification];
-	self.readyHandler();
+	if (self.readyHandler) {
+		self.readyHandler();
+	}
 }
 
 #pragma mark -
@@ -126,7 +128,9 @@
 		return KonashiResultSuccess;
 	}
 	[[KNSCentralManager sharedInstance] connectWithName:name timeout:KonashiFindTimeoutInterval connectedHandler:^(KNSPeripheral *connectedPeripheral) {
-		[Konashi shared].connectedHandler();
+		if ([Konashi shared].connectedHandler) {
+			[Konashi shared].connectedHandler();
+		}
 	}];
 	
 	return KonashiResultSuccess;
