@@ -24,13 +24,11 @@
     [self.dacBar2 addTarget:self action:@selector(onChangeDacBar:) forControlEvents:UIControlEventValueChanged];
     
     // ADC
-    [Konashi addObserver:self selector:@selector(onGetAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
-    [Konashi addObserver:self selector:@selector(onGetAio1) name:KonashiEventAnalogIO1DidUpdateNotification];
-    [Konashi addObserver:self selector:@selector(onGetAio2) name:KonashiEventAnalogIO2DidUpdateNotification];
-	
-	[Konashi shared].analogPinDidChangeValueHandler = ^(KonashiAnalogIOPin pin, int value) {
-		NSLog(@"aio changed:%d(pin:%d)", value, pin);
-	};
+	[[Konashi shared] setAnalogPinDidChangeValueHandler:^(KonashiAnalogIOPin pin, int value) {
+		NSArray *labels = @[self.adc0, self.adc1, self.adc2];
+		UILabel *l = (UILabel *)labels[pin];
+		l.text = [NSString stringWithFormat:@"%.3f", (double)[Konashi analogRead:pin] / 1000];
+	}];
 }
 
 - (void)didReceiveMemoryWarning

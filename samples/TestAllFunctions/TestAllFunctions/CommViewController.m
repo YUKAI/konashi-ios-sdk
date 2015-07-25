@@ -31,10 +31,18 @@
 	};
     
     // I2C系のイベントハンドラ
-    [Konashi addObserver:self selector:@selector(onI2cRecv) name:KonashiEventI2CReadCompleteNotification];
-	[Konashi shared].i2cReadCompleteHandler = ^(NSData *data) {
-		NSLog(@"i2c read complete:%@(%ld)", [data description], data.length);
-	};
+	[[Konashi shared] setI2cReadCompleteHandler:^(NSData *data) {
+		unsigned char d[[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]];
+		
+		[Konashi i2cRead:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] data:d];
+		[NSThread sleepForTimeInterval:0.01];
+		[Konashi i2cStopCondition];
+		
+		for(int i = 0; i < (int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
+			NSLog(@"I2C Recv data: %d", d[i]);
+			self.i2cRecvText.text = [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", d[i]]];
+		}
+	}];
 	
 	baudrate = KonashiUartBaudrateRate2K4;
 	baudrateList = @[@"2400", @"9600", @"19200", @"38400", @"57600", @"76800", @"115200"];
@@ -122,21 +130,6 @@
     [Konashi i2cStartCondition];
     [NSThread sleepForTimeInterval:0.01];
     [Konashi i2cReadRequest:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] address:0x1F];
-}
-
-- (void)onI2cRecv
-{
-    unsigned char data[[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]];
-    
-    [Konashi i2cRead:(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength] data:data];
-    [NSThread sleepForTimeInterval:0.01];
-    [Konashi i2cStopCondition];
-    
-    int i;
-    for(i=0; i<(int)[[[Konashi shared].activePeripheral.impl class] i2cDataMaxLength]; i++){
-        NSLog(@"I2C Recv data: %d", data[i]);
-        self.i2cRecvText.text = [self.i2cRecvText.text stringByAppendingString:[NSString stringWithFormat:@"%d ", data[i]]];
-    }
 }
 
 - (IBAction)clearI2CTextView:(id)sender

@@ -13,12 +13,12 @@ Physical computing toolkit for smartphones and tablets
 ---
 
 ## CocoaPods に対応しました
-以下の様な Podfile を作成。(ios6.1を指定)
+以下の様な Podfile を作成。
 
 ```
 source "https://github.com/CocoaPods/Specs.git"
 platform :ios, "7.1"
-pod "konashi-ios-sdk", "~> 3.0"
+pod "konashi-ios-sdk"
 ```
 
 そして

@@ -21,10 +21,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	[[Konashi shared] setConnectedHandler:^{
+		NSLog(@"CONNECTED");
+	}];
+	[[Konashi shared] setReadyHandler:^{
+		NSLog(@"READY");
+		
+		self.statusMessage.hidden = NO;
+		
+		[Konashi i2cMode:KonashiI2CModeEnable100K];
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,20 +49,6 @@
     [self initLcd];
     
     [self writeCmd:0x31];
-}
-
-- (void) connected
-{
-    NSLog(@"CONNECTED");
-}
-
-- (void) ready
-{
-    NSLog(@"READY");
-    
-    self.statusMessage.hidden = FALSE;
-    
-    [Konashi i2cMode:KonashiI2CModeEnable100K];
 }
 
 - (void) writeCmd:(unsigned char)cmd

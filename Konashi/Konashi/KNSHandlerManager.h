@@ -11,15 +11,15 @@
 
 @interface KNSHandlerManager : NSObject
 
-@property (nonatomic, copy) KonashiEventHandler connectedHandler;
-@property (nonatomic, copy) KonashiEventHandler disconnectedHandler;
-@property (nonatomic, copy) KonashiEventHandler readyHandler;
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
-@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
-@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
-@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
-@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
-@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
+@property (nonatomic, copy) void (^connectedHandler)();
+@property (nonatomic, copy) void (^disconnectedHandler)();
+@property (nonatomic, copy) void (^readyHandler)();
+@property (nonatomic, copy) void (^digitalInputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
+@property (nonatomic, copy) void (^digitalOutputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
+@property (nonatomic, copy) void (^analogPinDidChangeValueHandler)(KonashiAnalogIOPin pin, int value);
+@property (nonatomic, copy) void (^uartRxCompleteHandler)(NSData *data);
+@property (nonatomic, copy) void (^i2cReadCompleteHandler)(NSData *data);
+@property (nonatomic, copy) void (^batteryLevelDidUpdateHandler)(int value);
+@property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
 
 @end

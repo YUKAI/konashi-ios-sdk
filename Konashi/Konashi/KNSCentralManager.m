@@ -162,8 +162,9 @@ static KNSCentralManager *c;
 	if (self.state != CBCentralManagerStatePoweredOn) {
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
 	}
+	__weak NSString *n = name;
 	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
-		if ([peripheral.name isEqualToString:name]) {
+		if ([peripheral.name isEqualToString:n]) {
 			connectedHandler([self connectWithPeripheral:peripheral]);
 			*stop = YES;
 		}
