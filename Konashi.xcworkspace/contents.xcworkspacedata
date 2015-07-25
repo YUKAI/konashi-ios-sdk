@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Konashi/Konashi.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:samples/ACDriveExtension/ACDriveExtension.xcodeproj">
    </FileRef>
    <FileRef
@@ -14,7 +11,10 @@
       location = "group:samples/AioSample/AioSample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:samples/BlinkLed/GettingStarted.xcodeproj">
+      location = "group:/Users/Akira/Documents/work/YUKAI/Project/XcodeProject/konashi-ios-sdk/samples/BlinkLed/BlinkLed.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Akira/Documents/work/YUKAI/Project/XcodeProject/konashi-ios-sdk/samples/GettingStarted/GettingStarted.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:samples/GroveExtension/GroveExtension.xcodeproj">
@@ -24,6 +24,12 @@
    </FileRef>
    <FileRef
       location = "group:samples/I2cSample/I2cSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/JSBindingsSample/JSBindingsSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:samples/MultiNodeSample/MultiNodeSample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:samples/PioDrive/PioDrive.xcodeproj">
@@ -38,9 +44,6 @@
       location = "group:samples/UartSample/UartSample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:samples/JSBindingsSample/JSBindingsSample.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:samples/MultiNodeSample/MultiNodeSample.xcodeproj">
+      location = "group:Konashi/Konashi.xcodeproj">
    </FileRef>
 </Workspace>
