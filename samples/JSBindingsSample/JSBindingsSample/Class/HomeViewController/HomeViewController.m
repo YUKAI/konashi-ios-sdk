@@ -48,7 +48,7 @@
 	[KNSJavaScriptVirtualMachine addBridgeHandlerWithKey:@"ready" hendler:^(JSValue *value) {
 		NSLog(@"READY");
 		
-		self.statusMessage.hidden = FALSE;
+		self.statusMessage.hidden = NO;
 		[self.connectButton setTitle: @"接続を切る" forState:UIControlStateNormal];
 		
 		// 電波強度タイマー

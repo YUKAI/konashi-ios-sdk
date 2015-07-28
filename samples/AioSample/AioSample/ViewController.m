@@ -19,20 +19,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-    [Konashi addObserver:self selector:@selector(readAio) name:KonashiEventAnalogIODidUpdateNotification];
-    [Konashi addObserver:self selector:@selector(readAio0) name:KonashiEventAnalogIO0DidUpdateNotification];
+	
+	[[Konashi shared] setConnectedHandler:^{
+		NSLog(@"CONNECTED");
+	}];
+	[[Konashi shared] setReadyHandler:^{
+		NSLog(@"READY");
+		
+		self.statusMessage.hidden = NO;
+	}];
+	[[Konashi shared] setAnalogPinDidChangeValueHandler:^(KonashiAnalogIOPin pin, int value) {
+		NSLog(@"READ_AIO0: %d", [Konashi analogRead:KonashiAnalogIO0]);
+		self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:KonashiAnalogIO0]/1000];
+	}];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    }
+}
 
 - (IBAction)find:(id)sender {
     [Konashi find];
@@ -45,27 +51,5 @@
 - (IBAction)requestReadAio0:(id)sender {
     [Konashi analogReadRequest:KonashiAnalogIO0];
 }
-
-- (void) connected
-{
-    NSLog(@"CONNECTED");
-}
-
-- (void) ready
-{
-    NSLog(@"READY");
-    
-    self.statusMessage.hidden = FALSE;
-}
-
-- (void) readAio
-{
-    NSLog(@"READ_AIO");
-}
-
-- (void) readAio0
-{
-    NSLog(@"READ_AIO0: %d", [Konashi analogRead:KonashiAnalogIO0]);
-    self.adcValue.text = [NSString stringWithFormat:@"%.3f", (float)[Konashi analogRead:KonashiAnalogIO0]/1000];}
 
 @end

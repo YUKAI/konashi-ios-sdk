@@ -18,15 +18,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [Konashi initialize];
-    //[Konashi findWithName:@"konashi#4-0452"];
-    
-    //[Konashi addObserver:self selector:@selector(cmPoweredOn) name:KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON];
-    //[Konashi addObserver:self selector:@selector(peripheralNotFound) name:KONASHI_EVENT_PERIPHERAL_NOT_FOUND];
-    [Konashi addObserver:self selector:@selector(disconnected) name:KonashiEventDisconnectedNotification];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-    [Konashi addObserver:self selector:@selector(updatePioInput) name:KonashiEventDigitalIODidUpdateNotification];
+	[[Konashi shared] setDisconnectedHandler:^{
+		NSLog(@"DISCONNECTED");
+	}];
+	[[Konashi shared] setReadyHandler:^{
+		NSLog(@"READY peripheral name:%@", [Konashi peripheralName]);
+		
+		// Show buttons
+		self.led3.hidden = NO;
+		self.led4.hidden = NO;
+		self.led5.hidden = NO;
+		self.pioMessage.hidden = NO;
+		
+		[Konashi pinMode:KonashiS1 mode:KonashiPinModeInput];
+		[Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+		[Konashi pinMode:KonashiLED3 mode:KonashiPinModeOutput];
+		[Konashi pinMode:KonashiLED4 mode:KonashiPinModeOutput];
+		[Konashi pinMode:KonashiLED5 mode:KonashiPinModeOutput];
+	}];
+	[[Konashi shared] setDigitalInputDidChangeValueHandler:^(KonashiDigitalIOPin pin, int value) {
+		NSLog(@"UPDATE_PIO_INPUT");
+		
+		if([Konashi digitalRead:KonashiS1]){
+			[Konashi digitalWrite:KonashiLED2 value:KonashiLevelHigh];
+		} else {
+			[Konashi digitalWrite:KonashiLED2 value:KonashiLevelLow];
+		}
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +54,6 @@
 }
 
 - (IBAction)find:(id)sender {
-    //[Konashi findWithName:@"konashi#4-0960"];
     [Konashi find];
 }
 
@@ -66,40 +83,6 @@
 
 - (IBAction)downLed5:(id)sender {
     [Konashi digitalWrite:KonashiLED5 value:KonashiLevelHigh];
-}
-
-/*- (void) cmPoweredOn
-{
-    [Konashi find];
-}*/
-
-/*- (void) peripheralNotFound
-{
-    NSLog(@"peripheralNotFound :-(");
-}*/
-
-- (void) disconnected
-{
-    NSLog(@"DISCONNECTED");
-}
-
-- (void) ready
-{
-    NSLog(@"READY peripheral name:%@", [Konashi peripheralName]);
-    
-    // Show buttons
-    self.led3.hidden = NO;
-    self.led4.hidden = NO;
-    self.led5.hidden = NO;
-    self.pioMessage.hidden = NO;
-    
-    [Konashi pinMode:KonashiS1 mode:KonashiPinModeInput];
-    [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
-    [Konashi pinMode:KonashiLED3 mode:KonashiPinModeOutput];
-    [Konashi pinMode:KonashiLED4 mode:KonashiPinModeOutput];
-    [Konashi pinMode:KonashiLED5 mode:KonashiPinModeOutput];
-    
-    //[Konashi pinModeAll:0b11111110];
 }
 
 - (void) updatePioInput
