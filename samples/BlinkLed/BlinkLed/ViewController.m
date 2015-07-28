@@ -18,10 +18,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+    [[Konashi shared] setReadyHandler:^{
+        // Set pin mode to output
+        [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
+        
+        // blink timer
+        self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blink) userInfo:nil repeats:YES];
+    }];
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+    [[Konashi shared] setDisconnectedHandler:^{
+        // stop blinking
+        [self.blinkTimer invalidate];
+    }];
+}
+
+- (void)blink
+{
+    static BOOL glow = NO;
+    glow = !glow;
+    [Konashi digitalWrite:KonashiLED2 value:(glow ? KonashiLevelHigh : KonashiLevelLow)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,17 +48,6 @@
 
 - (IBAction)find:(id)sender {
     [Konashi find];
-}
-
-- (void)ready
-{
-    // Drive LED
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
-    
-    //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:KonashiLED2 duty:500000];       // 0.5s
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
 }
 
 @end

@@ -14,9 +14,6 @@
       location = "group:samples/BlinkLed/BlinkLed.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:samples/GettingStarted/GettingStarted.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:samples/GroveExtension/GroveExtension.xcodeproj">
    </FileRef>
    <FileRef
@@ -36,9 +33,6 @@
    </FileRef>
    <FileRef
       location = "group:samples/PwmDrive/PwmDrive.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:samples/TestAllFunctions/TestAllFunctions.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:samples/UartSample/UartSample.xcodeproj">

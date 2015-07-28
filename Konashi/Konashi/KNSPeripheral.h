@@ -30,52 +30,52 @@
 /**
  *  このHandlerはKonashiが接続された際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiEventHandler connectedHandler;
+@property (nonatomic, copy) void (^connectedHandler)();
 
 /**
  *  このHandlerはKonashiが切断された際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiEventHandler disconnectedHandler;
+@property (nonatomic, copy) void (^disconnectedHandler)();
 
 /**
  *  このHandlerはKonashiが使用可能状態になった際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiEventHandler readyHandler;
+@property (nonatomic, copy) void (^readyHandler)();
 
 /**
  *  このHandlerはKonashiPinModeInputに設定されているPIOの値が変化した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalInputDidChangeValueHandler;
+@property (nonatomic, copy) void (^digitalInputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
 
 /**
  *  このHandlerはKonashiPinModeOutputに設定されているPIOの値が変化した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiDigitalPinDidChangeValueHandler digitalOutputDidChangeValueHandler;
+@property (nonatomic, copy) void (^digitalOutputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
 
 /**
  *  このHandlerはAIOの値が変化した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiAnalogPinDidChangeValueHandler analogPinDidChangeValueHandler;
+@property (nonatomic, copy) void (^analogPinDidChangeValueHandler)(KonashiAnalogIOPin pin, int value);
 
 /**
  *  このHandlerはUartで値を受信した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiUartRxCompleteHandler uartRxCompleteHandler;
+@property (nonatomic, copy) void (^uartRxCompleteHandler)(NSData *data);
 
 /**
  *  このHandlerはI2Cで接続されたモジュールからデータを読みだした際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiI2CReadCompleteHandler i2cReadCompleteHandler;
+@property (nonatomic, copy) void (^i2cReadCompleteHandler)(NSData *data);
 
 /**
  *  このHandlerはバッテリー残量の値を取得した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiBatteryLevelDidUpdateHandler batteryLevelDidUpdateHandler;
+@property (nonatomic, copy) void (^batteryLevelDidUpdateHandler)(int value);
 
 /**
  *  このHandlerはRSSIが変化した際に呼び出されます。
  */
-@property (nonatomic, copy) KonashiSignalStrengthDidUpdateHandler signalStrengthDidUpdateHandler;
+@property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;

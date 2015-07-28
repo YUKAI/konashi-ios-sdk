@@ -21,10 +21,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [Konashi initialize];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
-    
-    timer=[NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(refreshDuty) userInfo:nil repeats:YES];
+    [[Konashi shared] setReadyHandler:^{
+	    NSLog(@"Ready");
+	    [Konashi initACDrive:KONASHI_AC_MODE_PWM freq:KONASHI_AC_FREQ_50HZ];
+    }];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(refreshDuty) userInfo:nil repeats:YES];
     [timer fire];
 }
 
@@ -37,14 +38,9 @@
 - (void)refreshDuty
 {
     int duty;
-    duty=[brightnessSlider value];
+    duty = [brightnessSlider value];
     NSLog(@"Duty: %d",duty);
     [Konashi updateACDriveDuty:duty];
-}
-
-- (void)ready {
-    NSLog(@"Ready");
-    [Konashi initACDrive:KONASHI_AC_MODE_PWM freq:KONASHI_AC_FREQ_50HZ];
 }
 
 - (IBAction)find:(id)sender {

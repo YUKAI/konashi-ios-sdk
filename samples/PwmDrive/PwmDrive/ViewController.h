@@ -11,11 +11,11 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *statusMessage;
-@property (weak, nonatomic) IBOutlet UISlider *blightnessSlider;
+@property (weak, nonatomic) IBOutlet UISlider *brightnessSlider;
 
 - (IBAction)find:(id)sender;
-- (IBAction)changeLedBlightness20:(id)sender;
-- (IBAction)changeLedBlightness50:(id)sender;
-- (IBAction)changeLedBlightness80:(id)sender;
-- (IBAction)changeLedBlightnessBar:(id)sender;
+- (IBAction)changeLedBrightness20:(id)sender;
+- (IBAction)changeLedBrightness50:(id)sender;
+- (IBAction)changeLedBrightness80:(id)sender;
+- (IBAction)changeLedBrightnessBar:(id)sender;
 @end

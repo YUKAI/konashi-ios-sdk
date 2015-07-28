@@ -27,12 +27,10 @@
 #import "CBUUID+Konashi.h"
 
 @interface Konashi ()
-{
-	NSString *findName;
-	KNSHandlerManager *handlerManager;
-}
 
+@property (nonatomic, strong) NSString *findName;
 @property (nonatomic, assign) BOOL callFind;
+@property (nonatomic, strong) KNSHandlerManager *handlerManager;
 
 @end
 
@@ -60,8 +58,8 @@
 	self = [super init];
 	if (self) {
 		[KNSCentralManager sharedInstance];
-		handlerManager = [KNSHandlerManager new];
-		__weak typeof(findName) bfindName = findName;
+		self.handlerManager = [KNSHandlerManager new];
+		__weak typeof(self.findName) bfindName = self.findName;
 		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 			if (_callFind) {
 				_callFind = NO;
@@ -76,6 +74,16 @@
 		}];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readyToUse:) name:KonashiEventReadyToUseNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventConnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if ([Konashi shared].connectedHandler) {
+				[Konashi shared].connectedHandler();
+			}
+		}];
+        [[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            if ([Konashi shared].disconnectedHandler) {
+                [Konashi shared].disconnectedHandler();
+            }
+        }];
 	}
 	
 	return self;
@@ -86,11 +94,14 @@
 	KNSPeripheral *connectedPeripheral = [note userInfo][KonashiPeripheralKey];
 	KNS_LOG(@"Peripheral(UUID : %@) is ready to use.", connectedPeripheral.peripheral.identifier.UUIDString);
 	_activePeripheral = connectedPeripheral;
-	_activePeripheral.handlerManager = handlerManager;
+	_activePeripheral.handlerManager = self.handlerManager;
 	// Enable PIO input notification
 	[_activePeripheral enablePIOInputNotification];
 	// Enable UART RX notification
 	[_activePeripheral enableUART_RXNotification];
+	if (self.readyHandler) {
+		self.readyHandler();
+	}
 }
 
 #pragma mark -
@@ -339,54 +350,104 @@
 #pragma mark -
 #pragma mark - Blocks
 
-- (void)setConnectedHandler:(KonashiEventHandler)connectedHander
+- (void)setConnectedHandler:(void (^)())connectedHandler
 {
-	handlerManager.connectedHandler = connectedHander;
+	self.handlerManager.connectedHandler = connectedHandler;
 }
 
-- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+- (void (^)())connectedHandler
 {
-	handlerManager.disconnectedHandler = disconnectedHandler;
+	return self.handlerManager.connectedHandler;
 }
 
-- (void)setReadyHandler:(KonashiEventHandler)readyHander
+- (void)setDisconnectedHandler:(void (^)())disconnectedHandler
 {
-	handlerManager.readyHandler = readyHander;
+	self.handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
-- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+- (void (^)())disconnectedHandler
 {
-	handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+	return self.handlerManager.disconnectedHandler;
 }
 
-- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+- (void)setReadyHandler:(void (^)())readyHandler
 {
-	handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
+	self.handlerManager.readyHandler = readyHandler;
 }
 
-- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+- (void (^)())readyHandler
 {
-	handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+	return self.handlerManager.readyHandler;
 }
 
-- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
+- (void)setDigitalInputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
-	handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
+	self.handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
 }
 
-- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+- (void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
-	handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+	return self.handlerManager.digitalInputDidChangeValueHandler;
 }
 
-- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+- (void)setDigitalOutputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
 {
-	handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+	self.handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
-- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+- (void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
 {
-	handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+	return self.handlerManager.digitalOutputDidChangeValueHandler;
+}
+
+- (void)setAnalogPinDidChangeValueHandler:(void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
+{
+	self.handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
+{
+	return self.handlerManager.analogPinDidChangeValueHandler;
+}
+
+- (void)setUartRxCompleteHandler:(void (^)(NSData *))uartRxCompleteHandler
+{
+	self.handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
+}
+
+- (void (^)(NSData *))uartRxCompleteHandler
+{
+	return self.handlerManager.uartRxCompleteHandler;
+}
+
+- (void)setI2cReadCompleteHandler:(void (^)(NSData *))i2cReadCompleteHandler
+{
+	self.handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (void (^)(NSData *))i2cReadCompleteHandler
+{
+	return self.handlerManager.i2cReadCompleteHandler;
+}
+
+- (void)setBatteryLevelDidUpdateHandler:(void (^)(int))batteryLevelDidUpdateHandler
+{
+	self.handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+}
+
+- (void (^)(int))batteryLevelDidUpdateHandler
+{
+	return self.handlerManager.batteryLevelDidUpdateHandler;
+}
+
+- (void)setSignalStrengthDidUpdateHandler:(void (^)(int))signalStrengthDidUpdateHandler
+{
+	self.handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+}
+
+- (void (^)(int))signalStrengthDidUpdateHandler
+{
+	return self.handlerManager.signalStrengthDidUpdateHandler;
 }
 
 #pragma mark - Depricated methods
@@ -463,26 +524,6 @@
 + (int) signalStrengthRead
 {
 	return [[Konashi shared].activePeripheral signalStrengthRead];
-}
-
-#pragma mark - Notification
-
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName
-{
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:notificationObserver selector:notificationSelector name:notificationName object:nil];
-}
-
-+ (void) removeObserver:(id)notificationObserver
-{
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc removeObserver:notificationObserver];
-}
-
-- (void) postNotification:(NSString*)notificationName
-{
-	NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
-	[[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
 @end

@@ -10,5 +10,6 @@
 @interface ViewController : UIViewController
 
 - (IBAction)find:(id)sender;
+@property (nonatomic, strong) NSTimer* blinkTimer;
 
 @end
