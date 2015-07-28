@@ -38,9 +38,6 @@
       location = "group:samples/PwmDrive/PwmDrive.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:samples/TestAllFunctions/TestAllFunctions.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:samples/UartSample/UartSample.xcodeproj">
    </FileRef>
    <FileRef
