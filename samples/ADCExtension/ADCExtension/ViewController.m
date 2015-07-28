@@ -45,10 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)completeI2cRead{
-
-}
-
 - (void)readValue{
     [Konashi readADCWithChannel:KONASHI_ADC_CH0];
 }

@@ -32,12 +32,6 @@
 		// Drive LED
 		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
 		[Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
-		
-
-//		//Blink LED (interval: 0.5s)
-//		[Konashi pwmPeriod:KonashiLED2 period:1000000];   // 1.0s
-//		[Konashi pwmDuty:KonashiLED2 duty:500000];        // 0.5s
-//		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnable];
 	}];
 }
 

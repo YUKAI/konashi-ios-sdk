@@ -40,15 +40,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) ready
-{
-}
-
-- (void) recvUartRx
-{
-	
-}
-
 - (IBAction)find:(id)sender {
     [Konashi find];
 }

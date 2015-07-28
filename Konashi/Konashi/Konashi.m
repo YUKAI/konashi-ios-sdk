@@ -79,6 +79,11 @@
 				[Konashi shared].connectedHandler();
 			}
 		}];
+        [[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            if ([Konashi shared].disconnectedHandler) {
+                [Konashi shared].disconnectedHandler();
+            }
+        }];
 	}
 	
 	return self;

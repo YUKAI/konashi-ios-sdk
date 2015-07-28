@@ -24,11 +24,12 @@
         [Konashi pinMode:KonashiLED2 mode:KonashiPinModeOutput];
         
         // blink timer
-        [NSTimer scheduledTimerWithTimeInterval:0.5
-                                         target:self
-                                       selector:@selector(blink)
-                                       userInfo:nil
-                                        repeats:YES];
+        self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blink) userInfo:nil repeats:YES];
+    }];
+    
+    [[Konashi shared] setDisconnectedHandler:^{
+        // stop blinking
+        [self.blinkTimer invalidate];
     }];
 }
 
