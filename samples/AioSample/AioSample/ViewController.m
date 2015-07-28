@@ -26,7 +26,7 @@
 	[[Konashi shared] setReadyHandler:^{
 		NSLog(@"READY");
 		
-		self.statusMessage.hidden = FALSE;
+		self.statusMessage.hidden = NO;
 	}];
 	[[Konashi shared] setAnalogPinDidChangeValueHandler:^(KonashiAnalogIOPin pin, int value) {
 		NSLog(@"READ_AIO0: %d", [Konashi analogRead:KonashiAnalogIO0]);

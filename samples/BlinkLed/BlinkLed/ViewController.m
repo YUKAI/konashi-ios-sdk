@@ -35,7 +35,7 @@
 
 - (void)blink
 {
-    static bool glow = false;
+    static BOOL glow = NO;
     glow = !glow;
     [Konashi digitalWrite:KonashiLED2 value:(glow ? KonashiLevelHigh : KonashiLevelLow)];
 }

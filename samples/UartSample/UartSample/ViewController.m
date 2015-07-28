@@ -24,7 +24,7 @@
 	[[Konashi shared] setReadyHandler:^{
 		NSLog(@"READY");
 		
-		self.statusMessage.hidden = FALSE;
+		self.statusMessage.hidden = NO;
 		
 		[Konashi uartBaudrate:KonashiUartBaudrateRate9K6];
 		[Konashi uartMode:KonashiUartModeEnable];

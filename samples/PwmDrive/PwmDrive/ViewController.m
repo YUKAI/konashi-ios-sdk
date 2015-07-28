@@ -25,10 +25,7 @@
 	}];
 	[[Konashi shared] setReadyHandler:^{
 		NSLog(@"READY");
-		
-		
-		self.statusMessage.hidden = FALSE;
-		
+		self.statusMessage.hidden = NO;
 		// Drive LED
 		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
 		[Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
