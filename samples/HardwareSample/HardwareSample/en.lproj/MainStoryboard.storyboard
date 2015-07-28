@@ -1,120 +1,134 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rcm-fi-buw"/>
+                        <viewControllerLayoutGuide type="bottom" id="MGY-yW-kuZ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a8-cQ-l83">
+                                <rect key="frame" x="95" y="40" width="130" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="gGw-dh-BDf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Find">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="find:" destination="2" eventType="touchUpInside" id="m6A-5e-zAb"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A10-JS-hfs">
+                                <rect key="frame" x="49" y="346" width="261" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="Mzv-lE-ZTs"/>
                                 </constraints>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ss-13-KWH">
+                                <rect key="frame" x="95" y="128" width="130" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Reset">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="reset:" destination="2" eventType="touchUpInside" id="46M-uc-wFQ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Radio strength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr7-h3-K9a">
+                                <rect key="frame" x="49" y="317" width="113" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0db" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHZ-8f-hzu">
+                                <rect key="frame" x="18" y="352" width="30" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-100db" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gw-Gw-3lC">
+                                <rect key="frame" x="254" y="352" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ready" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-zh-FtJ">
+                                <rect key="frame" x="136" y="96" width="49" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-E7-GWt">
+                                <rect key="frame" x="134" y="451" width="91" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Read battery">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="requestReadBattery:" destination="2" eventType="touchUpInside" id="KBY-jz-gmZ"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sN-Zw-Nja"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sN-Zw-Nja">
+                                <rect key="frame" x="49" y="508" width="261" height="2"/>
+                            </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnB-Uj-p7n">
+                                <rect key="frame" x="21" y="516" width="27" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWL-Er-FRc">
+                                <rect key="frame" x="265" y="516" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GCD-Vr-p6I">
+                                <rect key="frame" x="16" y="166" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="3a8-cQ-l83" secondAttribute="trailing" type="default" id="1zl-cH-5e3"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="3a8-cQ-l83" secondAttribute="trailing" id="1zl-cH-5e3"/>
                             <constraint firstItem="MHZ-8f-hzu" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="18" id="4za-ut-kH3"/>
                             <constraint firstAttribute="bottom" secondItem="MHZ-8f-hzu" secondAttribute="bottom" constant="195" id="5wL-VB-xni"/>
-                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" type="default" id="AHt-j1-mh4"/>
-                            <constraint firstItem="3Gw-Gw-3lC" firstAttribute="baseline" secondItem="MHZ-8f-hzu" secondAttribute="baseline" type="default" id="AYw-1C-YNc"/>
+                            <constraint firstItem="GCD-Vr-p6I" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" id="6ui-jc-X9k"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" id="AHt-j1-mh4"/>
+                            <constraint firstItem="3Gw-Gw-3lC" firstAttribute="baseline" secondItem="MHZ-8f-hzu" secondAttribute="baseline" id="AYw-1C-YNc"/>
                             <constraint firstItem="3a8-cQ-l83" firstAttribute="top" secondItem="3" secondAttribute="top" constant="40" id="BEQ-9h-aEs"/>
-                            <constraint firstItem="5Ss-13-KWH" firstAttribute="leading" secondItem="3a8-cQ-l83" secondAttribute="leading" type="default" id="BHR-np-n3r"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="leading" secondItem="3a8-cQ-l83" secondAttribute="leading" id="BHR-np-n3r"/>
                             <constraint firstAttribute="bottom" secondItem="A10-JS-hfs" secondAttribute="bottom" constant="220" id="DJC-qC-icw"/>
                             <constraint firstAttribute="bottom" secondItem="fnB-Uj-p7n" secondAttribute="bottom" constant="31" id="EQA-Le-AWr"/>
-                            <constraint firstItem="A10-JS-hfs" firstAttribute="top" secondItem="cr7-h3-K9a" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="F1P-kR-hJb"/>
-                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="centerX" secondItem="sYX-E7-GWt" secondAttribute="centerX" type="default" id="Fyk-4c-fam"/>
+                            <constraint firstItem="A10-JS-hfs" firstAttribute="top" secondItem="cr7-h3-K9a" secondAttribute="bottom" constant="8" symbolic="YES" id="F1P-kR-hJb"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="centerX" secondItem="sYX-E7-GWt" secondAttribute="centerX" id="Fyk-4c-fam"/>
                             <constraint firstAttribute="trailing" secondItem="XWL-Er-FRc" secondAttribute="trailing" constant="9" id="Hwj-bl-0MB"/>
                             <constraint firstItem="pVZ-zh-FtJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="96" id="Iyn-JT-h07"/>
-                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="trailing" secondItem="MHZ-8f-hzu" secondAttribute="trailing" type="default" id="Jf8-L0-bf4"/>
-                            <constraint firstItem="cr7-h3-K9a" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" type="default" id="L0m-XP-zQi"/>
+                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="trailing" secondItem="MHZ-8f-hzu" secondAttribute="trailing" id="Jf8-L0-bf4"/>
+                            <constraint firstItem="cr7-h3-K9a" firstAttribute="leading" secondItem="A10-JS-hfs" secondAttribute="leading" id="L0m-XP-zQi"/>
                             <constraint firstItem="5Ss-13-KWH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="128" id="NJG-c7-Lns"/>
-                            <constraint firstItem="3a8-cQ-l83" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="OU7-F2-nj8"/>
+                            <constraint firstItem="GCD-Vr-p6I" firstAttribute="trailing" secondItem="3" secondAttribute="trailingMargin" id="OLs-or-8y4"/>
+                            <constraint firstItem="3a8-cQ-l83" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="OU7-F2-nj8"/>
                             <constraint firstAttribute="trailing" secondItem="3Gw-Gw-3lC" secondAttribute="trailing" constant="10" id="PPT-s0-Zt7"/>
-                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="sYX-E7-GWt" secondAttribute="trailing" type="default" id="fAC-Gh-ySD"/>
-                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="trailing" secondItem="A10-JS-hfs" secondAttribute="trailing" type="default" id="ifY-FV-3DU"/>
-                            <constraint firstItem="5Ss-13-KWH" firstAttribute="centerX" secondItem="pVZ-zh-FtJ" secondAttribute="centerX" type="default" id="rxk-2x-8mu"/>
-                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="baseline" secondItem="XWL-Er-FRc" secondAttribute="baseline" type="default" id="sTK-FA-P1r"/>
+                            <constraint firstItem="GCD-Vr-p6I" firstAttribute="top" secondItem="5Ss-13-KWH" secondAttribute="bottom" constant="8" id="XDW-l7-ock"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="trailing" secondItem="sYX-E7-GWt" secondAttribute="trailing" id="fAC-Gh-ySD"/>
+                            <constraint firstItem="0sN-Zw-Nja" firstAttribute="trailing" secondItem="A10-JS-hfs" secondAttribute="trailing" id="ifY-FV-3DU"/>
+                            <constraint firstItem="5Ss-13-KWH" firstAttribute="centerX" secondItem="pVZ-zh-FtJ" secondAttribute="centerX" id="rxk-2x-8mu"/>
+                            <constraint firstItem="fnB-Uj-p7n" firstAttribute="baseline" secondItem="XWL-Er-FRc" secondAttribute="baseline" id="sTK-FA-P1r"/>
                             <constraint firstAttribute="bottom" secondItem="0sN-Zw-Nja" secondAttribute="bottom" constant="58" id="uLS-sv-2Hl"/>
                             <constraint firstAttribute="bottom" secondItem="sYX-E7-GWt" secondAttribute="bottom" constant="87" id="yEV-ae-qRU"/>
                         </constraints>
@@ -122,6 +136,7 @@
                     <connections>
                         <outlet property="batteryBar" destination="0sN-Zw-Nja" id="Zdg-mO-lsF"/>
                         <outlet property="dbBar" destination="A10-JS-hfs" id="yYb-YH-9Zy"/>
+                        <outlet property="nameTextField" destination="GCD-Vr-p6I" id="4py-Pk-pG8"/>
                         <outlet property="statusMessage" destination="pVZ-zh-FtJ" id="eCc-rs-NmO"/>
                     </connections>
                 </viewController>
@@ -129,23 +144,6 @@
             </objects>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="find:"/>
-                <relationship kind="action" name="requestReadBattery:"/>
-                <relationship kind="action" name="reset:"/>
-                <relationship kind="action" name="resetMonaka:"/>
-                <relationship kind="outlet" name="batteryBar" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="dbBar" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="statusMessage" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "Konashi.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
+
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
 
@@ -67,7 +69,12 @@
 }
 
 - (IBAction)find:(id)sender {
-    [Konashi find];
+	if (self.nameTextField.text) {
+		[Konashi findWithName:self.nameTextField.text];
+	}
+	else {
+		[Konashi find];
+	}
 }
 
 - (IBAction)reset:(id)sender {
@@ -81,6 +88,14 @@
 - (void) onRSSITimer:(NSTimer*)timer
 {
     [Konashi signalStrengthReadRequest];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return YES;
 }
 
 @end
