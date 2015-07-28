@@ -52,52 +52,52 @@
 	_impl.handlerManager = _handlerManager;
 }
 
-- (void)setConnectedHandler:(KonashiEventHandler)connectedHander
+- (void)setConnectedHandler:(void (^)())connectedHandler
 {
-	_handlerManager.connectedHandler = connectedHander;
+	_handlerManager.connectedHandler = connectedHandler;
 }
 
-- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+- (void)setDisconnectedHandler:(void (^)())disconnectedHandler
 {
 	_handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
-- (void)setReadyHandler:(KonashiEventHandler)readyHander
+- (void)setReadyHandler:(void (^)())readyHandler
 {
-	_handlerManager.readyHandler = readyHander;
+	_handlerManager.readyHandler = readyHandler;
 }
 
-- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+- (void)setDigitalInputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
 	_handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
 }
 
-- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+- (void)setDigitalOutputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
 {
 	_handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
-- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+- (void)setAnalogPinDidChangeValueHandler:(void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
 {
 	_handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
 }
 
-- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
+- (void)setUartRxCompleteHandler:(void (^)(NSData *))uartRxCompleteHandler
 {
 	_handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
 }
 
-- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+- (void)setI2cReadCompleteHandler:(void (^)(NSData *))i2cReadCompleteHandler
 {
 	_handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
 }
 
-- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+- (void)setBatteryLevelDidUpdateHandler:(void (^)(int))batteryLevelDidUpdateHandler
 {
 	_handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
 }
 
-- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+- (void)setSignalStrengthDidUpdateHandler:(void (^)(int))signalStrengthDidUpdateHandler
 {
 	_handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
 }

@@ -1,0 +1,3623 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>Konashi Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Konashi iOS SDK </a></h1>
+				<a id="developerHome" href="../index.html">YUKAI Engineering</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">Konashi Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/analogPinDidChangeValueHandler">&nbsp;&nbsp;&nbsp;&nbsp;analogPinDidChangeValueHandler</option>
+	
+	<option value="//api/name/batteryLevelDidUpdateHandler">&nbsp;&nbsp;&nbsp;&nbsp;batteryLevelDidUpdateHandler</option>
+	
+	<option value="//api/name/connectedHandler">&nbsp;&nbsp;&nbsp;&nbsp;connectedHandler</option>
+	
+	<option value="//api/name/digitalInputDidChangeValueHandler">&nbsp;&nbsp;&nbsp;&nbsp;digitalInputDidChangeValueHandler</option>
+	
+	<option value="//api/name/digitalOutputDidChangeValueHandler">&nbsp;&nbsp;&nbsp;&nbsp;digitalOutputDidChangeValueHandler</option>
+	
+	<option value="//api/name/disconnectedHandler">&nbsp;&nbsp;&nbsp;&nbsp;disconnectedHandler</option>
+	
+	<option value="//api/name/i2cReadCompleteHandler">&nbsp;&nbsp;&nbsp;&nbsp;i2cReadCompleteHandler</option>
+	
+	<option value="//api/name/readyHandler">&nbsp;&nbsp;&nbsp;&nbsp;readyHandler</option>
+	
+	<option value="//api/name/signalStrengthDidUpdateHandler">&nbsp;&nbsp;&nbsp;&nbsp;signalStrengthDidUpdateHandler</option>
+	
+	<option value="//api/name/uartRxCompleteHandler">&nbsp;&nbsp;&nbsp;&nbsp;uartRxCompleteHandler</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/analogRead:">&nbsp;&nbsp;&nbsp;&nbsp;+ analogRead:</option>
+	
+	<option value="//api/name/analogReadRequest:">&nbsp;&nbsp;&nbsp;&nbsp;+ analogReadRequest:</option>
+	
+	<option value="//api/name/analogReference">&nbsp;&nbsp;&nbsp;&nbsp;+ analogReference</option>
+	
+	<option value="//api/name/analogWrite:milliVolt:">&nbsp;&nbsp;&nbsp;&nbsp;+ analogWrite:milliVolt:</option>
+	
+	<option value="//api/name/batteryLevelRead">&nbsp;&nbsp;&nbsp;&nbsp;+ batteryLevelRead</option>
+	
+	<option value="//api/name/batteryLevelReadRequest">&nbsp;&nbsp;&nbsp;&nbsp;+ batteryLevelReadRequest</option>
+	
+	<option value="//api/name/digitalRead:">&nbsp;&nbsp;&nbsp;&nbsp;+ digitalRead:</option>
+	
+	<option value="//api/name/digitalReadAll">&nbsp;&nbsp;&nbsp;&nbsp;+ digitalReadAll</option>
+	
+	<option value="//api/name/digitalWrite:value:">&nbsp;&nbsp;&nbsp;&nbsp;+ digitalWrite:value:</option>
+	
+	<option value="//api/name/digitalWriteAll:">&nbsp;&nbsp;&nbsp;&nbsp;+ digitalWriteAll:</option>
+	
+	<option value="//api/name/disconnect">&nbsp;&nbsp;&nbsp;&nbsp;+ disconnect</option>
+	
+	<option value="//api/name/find">&nbsp;&nbsp;&nbsp;&nbsp;+ find</option>
+	
+	<option value="//api/name/findWithName:">&nbsp;&nbsp;&nbsp;&nbsp;+ findWithName:</option>
+	
+	<option value="//api/name/i2cMode:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cMode:</option>
+	
+	<option value="//api/name/i2cRead:data:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cRead:data:</option>
+	
+	<option value="//api/name/i2cReadData">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cReadData</option>
+	
+	<option value="//api/name/i2cReadRequest:address:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cReadRequest:address:</option>
+	
+	<option value="//api/name/i2cRestartCondition">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cRestartCondition</option>
+	
+	<option value="//api/name/i2cStartCondition">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cStartCondition</option>
+	
+	<option value="//api/name/i2cStopCondition">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cStopCondition</option>
+	
+	<option value="//api/name/i2cWrite:data:address:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cWrite:data:address:</option>
+	
+	<option value="//api/name/i2cWriteData:address:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cWriteData:address:</option>
+	
+	<option value="//api/name/i2cWriteString:address:">&nbsp;&nbsp;&nbsp;&nbsp;+ i2cWriteString:address:</option>
+	
+	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;+ isConnected</option>
+	
+	<option value="//api/name/isReady">&nbsp;&nbsp;&nbsp;&nbsp;+ isReady</option>
+	
+	<option value="//api/name/peripheralName">&nbsp;&nbsp;&nbsp;&nbsp;+ peripheralName</option>
+	
+	<option value="//api/name/pinMode:mode:">&nbsp;&nbsp;&nbsp;&nbsp;+ pinMode:mode:</option>
+	
+	<option value="//api/name/pinModeAll:">&nbsp;&nbsp;&nbsp;&nbsp;+ pinModeAll:</option>
+	
+	<option value="//api/name/pinPullup:mode:">&nbsp;&nbsp;&nbsp;&nbsp;+ pinPullup:mode:</option>
+	
+	<option value="//api/name/pinPullupAll:">&nbsp;&nbsp;&nbsp;&nbsp;+ pinPullupAll:</option>
+	
+	<option value="//api/name/pwmDuty:duty:">&nbsp;&nbsp;&nbsp;&nbsp;+ pwmDuty:duty:</option>
+	
+	<option value="//api/name/pwmLedDrive:dutyRatio:">&nbsp;&nbsp;&nbsp;&nbsp;+ pwmLedDrive:dutyRatio:</option>
+	
+	<option value="//api/name/pwmMode:mode:">&nbsp;&nbsp;&nbsp;&nbsp;+ pwmMode:mode:</option>
+	
+	<option value="//api/name/pwmPeriod:period:">&nbsp;&nbsp;&nbsp;&nbsp;+ pwmPeriod:period:</option>
+	
+	<option value="//api/name/readUartData">&nbsp;&nbsp;&nbsp;&nbsp;+ readUartData</option>
+	
+	<option value="//api/name/reset">&nbsp;&nbsp;&nbsp;&nbsp;+ reset</option>
+	
+	<option value="//api/name/shared">&nbsp;&nbsp;&nbsp;&nbsp;+ shared</option>
+	
+	<option value="//api/name/signalStrengthRead">&nbsp;&nbsp;&nbsp;&nbsp;+ signalStrengthRead</option>
+	
+	<option value="//api/name/signalStrengthReadRequest">&nbsp;&nbsp;&nbsp;&nbsp;+ signalStrengthReadRequest</option>
+	
+	<option value="//api/name/softwareRevisionString">&nbsp;&nbsp;&nbsp;&nbsp;+ softwareRevisionString</option>
+	
+	<option value="//api/name/uartBaudrate:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartBaudrate:</option>
+	
+	<option value="//api/name/uartMode:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartMode:</option>
+	
+	<option value="//api/name/uartMode:baudrate:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartMode:baudrate:</option>
+	
+	<option value="//api/name/uartRead">&nbsp;&nbsp;&nbsp;&nbsp;+ uartRead</option>
+	
+	<option value="//api/name/uartWrite:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartWrite:</option>
+	
+	<option value="//api/name/uartWriteData:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartWriteData:</option>
+	
+	<option value="//api/name/uartWriteString:">&nbsp;&nbsp;&nbsp;&nbsp;+ uartWriteString:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Event handler">Event handler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Basic method">Basic method</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Digital I/O (PIO)">Digital I/O (PIO)</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PWM">PWM</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Analog I/O (AIO)">Analog I/O (AIO)</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_I2C">I2C</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_UART">UART</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Hardware Control">Hardware Control</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_I2C">I2C</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_UART">UART</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/analogPinDidChangeValueHandler">analogPinDidChangeValueHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryLevelDidUpdateHandler">batteryLevelDidUpdateHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectedHandler">connectedHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalInputDidChangeValueHandler">digitalInputDidChangeValueHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalOutputDidChangeValueHandler">digitalOutputDidChangeValueHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnectedHandler">disconnectedHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cReadCompleteHandler">i2cReadCompleteHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readyHandler">readyHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signalStrengthDidUpdateHandler">signalStrengthDidUpdateHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartRxCompleteHandler">uartRxCompleteHandler</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/analogRead:">analogRead:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/analogReadRequest:">analogReadRequest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/analogReference">analogReference</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/analogWrite:milliVolt:">analogWrite:milliVolt:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryLevelRead">batteryLevelRead</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryLevelReadRequest">batteryLevelReadRequest</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalRead:">digitalRead:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalReadAll">digitalReadAll</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalWrite:value:">digitalWrite:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/digitalWriteAll:">digitalWriteAll:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnect">disconnect</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/find">find</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/findWithName:">findWithName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cMode:">i2cMode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cRead:data:">i2cRead:data:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cReadData">i2cReadData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cReadRequest:address:">i2cReadRequest:address:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cRestartCondition">i2cRestartCondition</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cStartCondition">i2cStartCondition</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cStopCondition">i2cStopCondition</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cWrite:data:address:">i2cWrite:data:address:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cWriteData:address:">i2cWriteData:address:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/i2cWriteString:address:">i2cWriteString:address:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isReady">isReady</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/peripheralName">peripheralName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinMode:mode:">pinMode:mode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinModeAll:">pinModeAll:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinPullup:mode:">pinPullup:mode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinPullupAll:">pinPullupAll:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pwmDuty:duty:">pwmDuty:duty:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pwmLedDrive:dutyRatio:">pwmLedDrive:dutyRatio:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pwmMode:mode:">pwmMode:mode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pwmPeriod:period:">pwmPeriod:period:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readUartData">readUartData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reset">reset</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shared">shared</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signalStrengthRead">signalStrengthRead</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signalStrengthReadRequest">signalStrengthReadRequest</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/softwareRevisionString">softwareRevisionString</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartBaudrate:">uartBaudrate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartMode:">uartMode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartMode:baudrate:">uartMode:baudrate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartRead">uartRead</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartWrite:">uartWrite:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartWriteData:">uartWriteData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uartWriteString:">uartWriteString:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="Konashi Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">Konashi Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">CBPeripheralDelegate<br />KonashiJavaScriptBindings</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">Konashi.h<br />Konashi.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Event handler" name="task_Event handler"></a>
+						<h3 class="subsubtitle task-title">Event handler</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connectedHandler">&nbsp;&nbsp;connectedHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disconnectedHandler">&nbsp;&nbsp;disconnectedHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readyHandler">&nbsp;&nbsp;readyHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalInputDidChangeValueHandler">&nbsp;&nbsp;digitalInputDidChangeValueHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalOutputDidChangeValueHandler">&nbsp;&nbsp;digitalOutputDidChangeValueHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/analogPinDidChangeValueHandler">&nbsp;&nbsp;analogPinDidChangeValueHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartRxCompleteHandler">&nbsp;&nbsp;uartRxCompleteHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cReadCompleteHandler">&nbsp;&nbsp;i2cReadCompleteHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/batteryLevelDidUpdateHandler">&nbsp;&nbsp;batteryLevelDidUpdateHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signalStrengthDidUpdateHandler">&nbsp;&nbsp;signalStrengthDidUpdateHandler</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Basic method" name="task_Basic method"></a>
+						<h3 class="subsubtitle task-title">Basic method</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shared">+&nbsp;shared</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/find">+&nbsp;find</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/findWithName:">+&nbsp;findWithName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/softwareRevisionString">+&nbsp;softwareRevisionString</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disconnect">+&nbsp;disconnect</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isConnected">+&nbsp;isConnected</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isReady">+&nbsp;isReady</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/peripheralName">+&nbsp;peripheralName</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Digital I/O (PIO)" name="task_Digital I/O (PIO)"></a>
+						<h3 class="subsubtitle task-title">Digital I/O (PIO)</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pinMode:mode:">+&nbsp;pinMode:mode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pinModeAll:">+&nbsp;pinModeAll:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pinPullup:mode:">+&nbsp;pinPullup:mode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pinPullupAll:">+&nbsp;pinPullupAll:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalWrite:value:">+&nbsp;digitalWrite:value:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalWriteAll:">+&nbsp;digitalWriteAll:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalRead:">+&nbsp;digitalRead:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/digitalReadAll">+&nbsp;digitalReadAll</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PWM" name="task_PWM"></a>
+						<h3 class="subsubtitle task-title">PWM</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pwmMode:mode:">+&nbsp;pwmMode:mode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pwmPeriod:period:">+&nbsp;pwmPeriod:period:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pwmDuty:duty:">+&nbsp;pwmDuty:duty:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pwmLedDrive:dutyRatio:">+&nbsp;pwmLedDrive:dutyRatio:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Analog I/O (AIO)" name="task_Analog I/O (AIO)"></a>
+						<h3 class="subsubtitle task-title">Analog I/O (AIO)</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/analogReference">+&nbsp;analogReference</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/analogReadRequest:">+&nbsp;analogReadRequest:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/analogWrite:milliVolt:">+&nbsp;analogWrite:milliVolt:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/analogRead:">+&nbsp;analogRead:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="I2C" name="task_I2C"></a>
+						<h3 class="subsubtitle task-title">I2C</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cMode:">+&nbsp;i2cMode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cStartCondition">+&nbsp;i2cStartCondition</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cRestartCondition">+&nbsp;i2cRestartCondition</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cStopCondition">+&nbsp;i2cStopCondition</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cWriteData:address:">+&nbsp;i2cWriteData:address:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cWriteString:address:">+&nbsp;i2cWriteString:address:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cReadRequest:address:">+&nbsp;i2cReadRequest:address:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cReadData">+&nbsp;i2cReadData</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="UART" name="task_UART"></a>
+						<h3 class="subsubtitle task-title">UART</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartMode:baudrate:">+&nbsp;uartMode:baudrate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartWriteData:">+&nbsp;uartWriteData:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartWriteString:">+&nbsp;uartWriteString:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readUartData">+&nbsp;readUartData</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Hardware Control" name="task_Hardware Control"></a>
+						<h3 class="subsubtitle task-title">Hardware Control</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reset">+&nbsp;reset</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/batteryLevelReadRequest">+&nbsp;batteryLevelReadRequest</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signalStrengthReadRequest">+&nbsp;signalStrengthReadRequest</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/batteryLevelRead">+&nbsp;batteryLevelRead</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signalStrengthRead">+&nbsp;signalStrengthRead</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="I2C" name="task_I2C"></a>
+						<h3 class="subsubtitle task-title">I2C</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cWrite:data:address:">+&nbsp;i2cWrite:data:address:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/i2cRead:data:">+&nbsp;i2cRead:data:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="UART" name="task_UART"></a>
+						<h3 class="subsubtitle task-title">UART</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartMode:">+&nbsp;uartMode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartBaudrate:">+&nbsp;uartBaudrate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartWrite:">+&nbsp;uartWrite:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uartRead">+&nbsp;uartRead</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/analogPinDidChangeValueHandler" title="analogPinDidChangeValueHandler"></a>
+	<h3 class="subsubtitle method-title">analogPinDidChangeValueHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはAIOの値が変化した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( KonashiAnalogIOPin pin , int value ) analogPinDidChangeValueHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/batteryLevelDidUpdateHandler" title="batteryLevelDidUpdateHandler"></a>
+	<h3 class="subsubtitle method-title">batteryLevelDidUpdateHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはバッテリー残量の値を取得した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( int value ) batteryLevelDidUpdateHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connectedHandler" title="connectedHandler"></a>
+	<h3 class="subsubtitle method-title">connectedHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはKonashiが接続された際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( ) connectedHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalInputDidChangeValueHandler" title="digitalInputDidChangeValueHandler"></a>
+	<h3 class="subsubtitle method-title">digitalInputDidChangeValueHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはKonashiPinModeInputに設定されているPIOの値が変化した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( KonashiDigitalIOPin pin , int value ) digitalInputDidChangeValueHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalOutputDidChangeValueHandler" title="digitalOutputDidChangeValueHandler"></a>
+	<h3 class="subsubtitle method-title">digitalOutputDidChangeValueHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはKonashiPinModeOutputに設定されているPIOの値が変化した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( KonashiDigitalIOPin pin , int value ) digitalOutputDidChangeValueHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disconnectedHandler" title="disconnectedHandler"></a>
+	<h3 class="subsubtitle method-title">disconnectedHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはKonashiが切断された際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( ) disconnectedHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cReadCompleteHandler" title="i2cReadCompleteHandler"></a>
+	<h3 class="subsubtitle method-title">i2cReadCompleteHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはI2Cで接続されたモジュールからデータを読みだした際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( NSData *data ) i2cReadCompleteHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/readyHandler" title="readyHandler"></a>
+	<h3 class="subsubtitle method-title">readyHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはKonashiが使用可能状態になった際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( ) readyHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signalStrengthDidUpdateHandler" title="signalStrengthDidUpdateHandler"></a>
+	<h3 class="subsubtitle method-title">signalStrengthDidUpdateHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはRSSIが変化した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( int value ) signalStrengthDidUpdateHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartRxCompleteHandler" title="uartRxCompleteHandler"></a>
+	<h3 class="subsubtitle method-title">uartRxCompleteHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>このHandlerはUartで値を受信した際に呼び出されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( NSData *data ) uartRxCompleteHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/analogRead:" title="analogRead:"></a>
+	<h3 class="subsubtitle method-title">analogRead:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>AIOの値を取得します。 <a href="#//api/name/analogReadRequest:">[Konashi analogReadRequest:]</a> を用いてAIOの値の要求後に正しい値を取得可能です。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (int)analogRead:(KonashiAnalogIOPin)<em>pin</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>AIOの番号</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>AIOの値。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/analogReadRequest:" title="analogReadRequest:"></a>
+	<h3 class="subsubtitle method-title">analogReadRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>AIO の指定のピンの入力電圧を取得するリクエストを konashi に送ります。
+    入力電圧の取得が完了した際は KonashiEventAnalogIODidUpdateNotification が発行されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)analogReadRequest:(KonashiAnalogIOPin)<em>pin</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>AIOのピン名。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="bug"><p><strong>Bug:</strong> koshianでは正確な値を取得することができません。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/analogReference" title="analogReference"></a>
+	<h3 class="subsubtitle method-title">analogReference</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>アナログ入出力の基準電圧を返します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (int)analogReference</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>アナログ入出力の基準電圧(mV)。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/analogWrite:milliVolt:" title="analogWrite:milliVolt:"></a>
+	<h3 class="subsubtitle method-title">analogWrite:milliVolt:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>AIO の指定のピンに任意の電圧を出力します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)analogWrite:(KonashiAnalogIOPin)<em>pin</em> milliVolt:(int)<em>milliVolt</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>AIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>milliVolt</em></dt>
+			<dd><p>設定する電圧をmVで指定します。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/batteryLevelRead" title="batteryLevelRead"></a>
+	<h3 class="subsubtitle method-title">batteryLevelRead</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>バッテリーの残量を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (int)batteryLevelRead</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>バッテリーの残量(%)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/batteryLevelReadRequest" title="batteryLevelReadRequest"></a>
+	<h3 class="subsubtitle method-title">batteryLevelReadRequest</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashi のバッテリ残量を取得するリクエストを konashi に送ります。
+    値の取得が成功した際には KonashiEventBatteryLevelDidUpdateNotification が発行されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)batteryLevelReadRequest</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalRead:" title="digitalRead:"></a>
+	<h3 class="subsubtitle method-title">digitalRead:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>指定したPIOの値を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiLevel)digitalRead:(KonashiDigitalIOPin)<em>pin</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PIOの番号</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>指定したPIOの値。KonashiLevelHigh及びKonashiLevelLow。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalReadAll" title="digitalReadAll"></a>
+	<h3 class="subsubtitle method-title">digitalReadAll</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOの値を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (int)digitalReadAll</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>PIOの状態。各bitにおいてHighの場合は1、Lowの場合は0がセットされている。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalWrite:value:" title="digitalWrite:value:"></a>
+	<h3 class="subsubtitle method-title">digitalWrite:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOの特定のピンの出力状態を設定します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)digitalWrite:(KonashiDigitalIOPin)<em>pin</em> value:(KonashiLevel)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>設定するPIOの出力状態。KonashiLevelHigh もしくは KonashiLevelLow が指定可能です。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/digitalWriteAll:" title="digitalWriteAll:"></a>
+	<h3 class="subsubtitle method-title">digitalWriteAll:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOの特定のピンの出力状態を設定します。
+    この関数での引数は、PIO0〜PIO7の出力状態が8bit(1byte)で表現されます。bitとピンの対応は以下です。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)digitalWriteAll:(int)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>PIO0〜PIO7の出力に設定する値。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disconnect" title="disconnect"></a>
+	<h3 class="subsubtitle method-title">disconnect</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashiとの接続を解除します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)disconnect</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>切断した場合はKonashiResultSuccess、すでに切断されている及び何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/find" title="find"></a>
+	<h3 class="subsubtitle method-title">find</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>iPhone周辺のkonashiを探します。
+    この関数を実行した後、周りにあるkonashiのリストが出現します。リストに列挙されているkonashiのひとつをクリックすると、konashiに自動的に接続されます。その後、KonashiEventConnectedNotification と KonashiEventReadyToUseNotification が発行されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)find</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>探索が開始された場合はKonashiResultSuccess、既に接続されている場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> 本来、KonashiEventCentralManagerPowerOnNotification のイベント以前に find を実行しても無効ですが、この場合に限り、KonashiEventCentralManagerPowerOnNotification のイベント後に自動的に find が遅延実行されるように調整されています。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/findWithName:" title="findWithName:"></a>
+	<h3 class="subsubtitle method-title">findWithName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashiの名前を指定して接続します。
+    <a href="#//api/name/find">find</a> の場合はkonashiのリストが出現しますが、findWithName を実行した場合はリストが出ずに自動的に接続されます。
+    名前に関しては、<a href="#//api/name/find">find</a> を実行することによって下から出現するリストでリストアップされる konashi#4-0452 などの文字列です。konashi#<em>-</em><em>** の</em>部分の数字は、konashiの緑色チップのシール上に記載されている番号と同じです。
+    もし、指定した名前が見つからない場合は KonashiEventPeripheralNotFoundNotification が発行されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)findWithName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>接続したいkonashiの名前。例："konashi#4-0452"</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>探索が開始された場合はKonashiResultSuccess、既に接続されている場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> 本来、KonashiEventCentralManagerPowerOnNotification のイベント以前に findWithName を実行しても無効ですが、この場合に限り、KonashiEventCentralManagerPowerOnNotification のイベント後に自動的に findWithName が遅延実行されるように調整されています。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cMode:" title="i2cMode:"></a>
+	<h3 class="subsubtitle method-title">i2cMode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C を有効/無効を設定します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cMode:(KonashiI2CMode)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>設定するI2Cのモード。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cRead:data:" title="i2cRead:data:"></a>
+	<h3 class="subsubtitle method-title">i2cRead:data:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2Cで接続されたモジュールから得られるデータを取得します。<a href="#//api/name/i2cReadRequest:address:">[Konashi i2cReadRequest:address:]</a> を用いてデータの要求後に正しいデータを取得可能です。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cRead:(int)<em>length</em> data:(unsigned char *)<em>data</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>length</em></dt>
+			<dd><p>データの長さ(byte)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>格納する変数</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>値の取得に成功した場合はKonashiResultSuccess、失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> このメソッドは非推奨です。 <a href="#//api/name/i2cReadCompleteHandler">[Konashi i2cReadCompleteHandler]</a> を用いてデータの取得をしてください。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cReadData" title="i2cReadData"></a>
+	<h3 class="subsubtitle method-title">i2cReadData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<pre><code>I2Cで接続されたモジュールから得られるデータを取得します。[Konashi i2cReadRequest:address:] を用いてデータの要求後に正しいデータを取得可能です。
+</code></pre>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSData *)i2cReadData</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>取得したデータ</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cReadRequest:address:" title="i2cReadRequest:address:"></a>
+	<h3 class="subsubtitle method-title">i2cReadRequest:address:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C で指定したアドレスからデータを読み込むリクエストを行います。
+    この関数はリクエストを行うだけでデータは取得できません。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cReadRequest:(int)<em>length</em> address:(unsigned char)<em>address</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>length</em></dt>
+			<dd><p>読み込むデータの長さ</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>address</em></dt>
+			<dd><p>読み込み先のアドレス</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cRestartCondition" title="i2cRestartCondition"></a>
+	<h3 class="subsubtitle method-title">i2cRestartCondition</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C のリスタートコンディションを発行します。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cRestartCondition</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cStartCondition" title="i2cStartCondition"></a>
+	<h3 class="subsubtitle method-title">i2cStartCondition</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C のスタートコンディションを発行します。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cStartCondition</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cStopCondition" title="i2cStopCondition"></a>
+	<h3 class="subsubtitle method-title">i2cStopCondition</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C のストップコンディションを発行します。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cStopCondition</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cWrite:data:address:" title="i2cWrite:data:address:"></a>
+	<h3 class="subsubtitle method-title">i2cWrite:data:address:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C で指定したアドレスにデータを書き込みます。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cWrite:(int)<em>length</em> data:(unsigned char *)<em>data</em> address:(unsigned char)<em>address</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>length</em></dt>
+			<dd><p>書き込むデータの長さ(byte)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>書き込むデータ</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>address</em></dt>
+			<dd><p>書き込み先アドレス</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> このメソッドは非推奨です。 [Konashi i2cWriteData:address] を用いてデータの書き込んでください。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cWriteData:address:" title="i2cWriteData:address:"></a>
+	<h3 class="subsubtitle method-title">i2cWriteData:address:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C で指定したアドレスにデータを書き込みます。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cWriteData:(NSData *)<em>data</em> address:(unsigned char)<em>address</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>書き込むデータ</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>address</em></dt>
+			<dd><p>書き込み先アドレス</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/i2cWriteString:address:" title="i2cWriteString:address:"></a>
+	<h3 class="subsubtitle method-title">i2cWriteString:address:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I2C で指定したアドレスに文字列を書き込みます。
+    事前に i2cMode で I2C を有効にしておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)i2cWriteString:(NSString *)<em>data</em> address:(unsigned char)<em>address</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>書き込む文字列</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>address</em></dt>
+			<dd><p>書き込み先アドレス</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isConnected" title="isConnected"></a>
+	<h3 class="subsubtitle method-title">isConnected</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashiと接続中かを返します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isConnected</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>接続されている場合はYES、されていない場合はNO。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isReady" title="isReady"></a>
+	<h3 class="subsubtitle method-title">isReady</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashiに接続完了しているかを返します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isReady</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>接続完了している場合はYES、していない場合はNO.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/peripheralName" title="peripheralName"></a>
+	<h3 class="subsubtitle method-title">peripheralName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>接続中のkonashiの名前を返します。
+    konashiに接続していない状態で peripheralName を実行すると空文字 @&ldquo;&rdquo; が返ります。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)peripheralName</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>接続しているkonashiの名前。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pinMode:mode:" title="pinMode:mode:"></a>
+	<h3 class="subsubtitle method-title">pinMode:mode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOのピンを入力として使うか、出力として使うかの設定を行います。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pinMode:(KonashiDigitalIOPin)<em>pin</em> mode:(KonashiPinMode)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>設定するPIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>ピンに設定するモード。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pinModeAll:" title="pinModeAll:"></a>
+	<h3 class="subsubtitle method-title">pinModeAll:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOのピンを入力として使うか、出力として使うかの設定を行います。
+    それぞれのビットでは、入力設定を0、出力設定を1として表現します。
+    この関数での引数は、PIO0〜PIO7の入出力設定を8bit(1byte)で表現します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pinModeAll:(int)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>PIO0 〜 PIO7 の計8ピンの設定。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pinPullup:mode:" title="pinPullup:mode:"></a>
+	<h3 class="subsubtitle method-title">pinPullup:mode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOのピンをプルアップするかの設定を行います。
+    初期状態では、PIOはプルアップされていません(NO_PULLS)。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pinPullup:(KonashiDigitalIOPin)<em>pin</em> mode:(KonashiPinMode)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>設定するPIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>ピンをプルアップするかの設定。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pinPullupAll:" title="pinPullupAll:"></a>
+	<h3 class="subsubtitle method-title">pinPullupAll:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIOのピンをプルアップするかの設定を行います。
+    この関数での引数は、PIO0〜PIO7のプルアップ設定を8bit(1byte)で表現します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pinPullupAll:(int)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>設定するPIOのピン名。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>PIO0 〜 PIO7 の計8ピンのプルアップの設定。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pwmDuty:duty:" title="pwmDuty:duty:"></a>
+	<h3 class="subsubtitle method-title">pwmDuty:duty:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>指定のピンのPWMのデューティ(ONになっている時間)を設定します。
+    単位はマイクロ秒(us)で指定してください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pwmDuty:(KonashiDigitalIOPin)<em>pin</em> duty:(unsigned int)<em>duty</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>duty</em></dt>
+			<dd><p>デューティ。単位はマイクロ秒(us)で32bitで指定してください。最大2<sup>32us</sup> = 71.5分です。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pwmLedDrive:dutyRatio:" title="pwmLedDrive:dutyRatio:"></a>
+	<h3 class="subsubtitle method-title">pwmLedDrive:dutyRatio:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>指定のピンのLEDの明るさを0%〜100%で指定します。
+    pwmLedDrive 関数を使うには pwmMode で KonashiPWMModeEnableLED を指定してください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pwmLedDrive:(KonashiDigitalIOPin)<em>pin</em> dutyRatio:(int)<em>ratio</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>ratio</em></dt>
+			<dd><p>LEDの明るさ。0〜100 をしてしてください。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pwmMode:mode:" title="pwmMode:mode:"></a>
+	<h3 class="subsubtitle method-title">pwmMode:mode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PIO の指定のピンを PWM として使用する/しないかを設定します。
+    PIO のいずれのピンも PWMモード に設定できます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pwmMode:(KonashiDigitalIOPin)<em>pin</em> mode:(KonashiPWMMode)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PWMモードの設定をするPIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>設定するPWMのモード。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pwmPeriod:period:" title="pwmPeriod:period:"></a>
+	<h3 class="subsubtitle method-title">pwmPeriod:period:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>指定のピンのPWM周期を設定します。
+    周期の単位はマイクロ秒(us)で指定してください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)pwmPeriod:(KonashiDigitalIOPin)<em>pin</em> period:(unsigned int)<em>period</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pin</em></dt>
+			<dd><p>PIOのピン名。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>period</em></dt>
+			<dd><p>周期。単位はマイクロ秒(us)で32bitで指定してください。最大2<sup>32us</sup> = 71.5分です。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/readUartData" title="readUartData"></a>
+	<h3 class="subsubtitle method-title">readUartData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>uartの値を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSData *)readUartData</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>取得した値。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reset" title="reset"></a>
+	<h3 class="subsubtitle method-title">reset</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashi を再起動します。
+    konashi が再起動すると、自動的にBLEのコネクションは切断されてしまいます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)reset</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shared" title="shared"></a>
+	<h3 class="subsubtitle method-title">shared</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>シングルトンを取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (Konashi *)shared</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Konashiのインスタンス。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signalStrengthRead" title="signalStrengthRead"></a>
+	<h3 class="subsubtitle method-title">signalStrengthRead</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>RSSIの値を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (int)signalStrengthRead</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>RSSIの値。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signalStrengthReadRequest" title="signalStrengthReadRequest"></a>
+	<h3 class="subsubtitle method-title">signalStrengthReadRequest</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>konashi の電波強度を取得するリクエストを行います。
+    値の取得が成功した際には KonashiEventSignalStrengthDidUpdateNotification が発行されます。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)signalStrengthReadRequest</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/softwareRevisionString" title="softwareRevisionString"></a>
+	<h3 class="subsubtitle method-title">softwareRevisionString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>ファームウェアのバージョンを返します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)softwareRevisionString</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>ファームウェアのバージョン文字列。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartBaudrate:" title="uartBaudrate:"></a>
+	<h3 class="subsubtitle method-title">uartBaudrate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART の通信速度を設定します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartBaudrate:(KonashiUartBaudrate)<em>baudrate</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>baudrate</em></dt>
+			<dd><p>UARTの通信速度。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartMode:" title="uartMode:"></a>
+	<h3 class="subsubtitle method-title">uartMode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART の有効/無効を設定します。
+    有効にする前に、uartBaudrate でボーレートを設定しておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartMode:(KonashiUartMode)<em>mode</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>設定するUARTのモード。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartMode:baudrate:" title="uartMode:baudrate:"></a>
+	<h3 class="subsubtitle method-title">uartMode:baudrate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART の有効/無効を設定します。
+    有効にする前に、uartBaudrate でボーレートを設定しておいてください。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartMode:(KonashiUartMode)<em>mode</em> baudrate:(KonashiUartBaudrate)<em>baudrate</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mode</em></dt>
+			<dd><p>設定するUARTのモード。</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>baudrate</em></dt>
+			<dd><p>設定するUARTのボーレート。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>設定に成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartRead" title="uartRead"></a>
+	<h3 class="subsubtitle method-title">uartRead</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>uartの値を取得します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (unsigned char)uartRead</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>取得した値。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> このメソッドは非推奨です。 <a href="#//api/name/uartRxCompleteHandler">[Konashi uartRxCompleteHandler]</a> 及び <a href="#//api/name/readUartData">[Konashi readUartData]</a> を用いて値を取得してください。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartWrite:" title="uartWrite:"></a>
+	<h3 class="subsubtitle method-title">uartWrite:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART でデータを送信します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartWrite:(unsigned char)<em>data</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>送信するデータ。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> このメソッドは非推奨です。 <a href="#//api/name/uartWriteData:">[Konashi uartWriteData:]</a> を用いでデータを送信してください。</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartWriteData:" title="uartWriteData:"></a>
+	<h3 class="subsubtitle method-title">uartWriteData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART でデータを送信します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartWriteData:(NSData *)<em>data</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>送信するデータ。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uartWriteString:" title="uartWriteString:"></a>
+	<h3 class="subsubtitle method-title">uartWriteString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UART で文字列を送信します。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KonashiResult)uartWriteString:(NSString *)<em>string</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>string</em></dt>
+			<dd><p>送信する文字列</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>成功した場合はKonashiResultSuccess、何らかの原因で失敗した場合はKonashiResultFailure。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Konashi.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+                    
+                    
+                    
+                    
+
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2015 YUKAI Engineering. All rights reserved. (Last updated: 2015-07-28)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

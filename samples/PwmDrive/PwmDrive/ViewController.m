@@ -20,10 +20,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Konashi initialize];
-    
-    [Konashi addObserver:self selector:@selector(connected) name:KonashiEventConnectedNotification];
-    [Konashi addObserver:self selector:@selector(ready) name:KonashiEventReadyToUseNotification];
+	[[Konashi shared] setConnectedHandler:^{
+		NSLog(@"CONNECTED");
+	}];
+	[[Konashi shared] setReadyHandler:^{
+		NSLog(@"READY");
+		self.statusMessage.hidden = NO;
+		// Drive LED
+		[Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
+		[Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
+	}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,46 +42,22 @@
     [Konashi find];
 }
 
-- (IBAction)changeLedBlightness20:(id)sender {
+- (IBAction)changeLedBrightness20:(id)sender {
     [Konashi pwmLedDrive:KonashiLED2 dutyRatio:20.0];
 }
 
-- (IBAction)changeLedBlightness50:(id)sender {
+- (IBAction)changeLedBrightness50:(id)sender {
     [Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
 }
 
-- (IBAction)changeLedBlightness80:(id)sender {
+- (IBAction)changeLedBrightness80:(id)sender {
     [Konashi pwmLedDrive:KonashiLED2 dutyRatio:80.0];
 }
 
-- (IBAction)changeLedBlightnessBar:(id)sender {
-    NSLog(@"Blightness: %f", self.blightnessSlider.value);
+- (IBAction)changeLedBrightnessBar:(id)sender {
+    NSLog(@"Brightness: %f", self.brightnessSlider.value);
     
-    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:self.blightnessSlider.value];
-}
-
-- (void) connected
-{
-    NSLog(@"CONNECTED");
-}
-
-- (void) ready
-{
-    NSLog(@"READY");
-    
-    
-    self.statusMessage.hidden = FALSE;
-    
-    // Drive LED
-    [Konashi pwmMode:KonashiLED2 mode:KonashiPWMModeEnableLED];
-    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:50.0];
-    
-    /*
-    //Blink LED (interval: 0.5s)
-    [Konashi pwmPeriod:LED2 period:1000000];   // 1.0s
-    [Konashi pwmDuty:LED2 duty:500000];        // 0.5s
-    [Konashi pwmMode:LED2 mode:ENABLE];
-     */
+    [Konashi pwmLedDrive:KonashiLED2 dutyRatio:self.brightnessSlider.value];
 }
 
 @end

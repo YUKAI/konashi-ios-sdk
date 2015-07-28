@@ -27,12 +27,10 @@
 #import "CBUUID+Konashi.h"
 
 @interface Konashi ()
-{
-	NSString *findName;
-	KNSHandlerManager *handlerManager;
-}
 
+@property (nonatomic, strong) NSString *findName;
 @property (nonatomic, assign) BOOL callFind;
+@property (nonatomic, strong) KNSHandlerManager *handlerManager;
 
 @end
 
@@ -43,16 +41,16 @@
 
 + (Konashi *) shared
 {
-    static Konashi *_konashi = nil;
-    
-    @synchronized (self){
-        static dispatch_once_t pred;
-        dispatch_once(&pred, ^{
-            _konashi = [[Konashi alloc] init];
-        });
-    }
+	static Konashi *_konashi = nil;
 	
-    return _konashi;
+	@synchronized (self){
+		static dispatch_once_t pred;
+		dispatch_once(&pred, ^{
+			_konashi = [[Konashi alloc] init];
+		});
+	}
+	
+	return _konashi;
 }
 
 - (instancetype)init
@@ -60,14 +58,13 @@
 	self = [super init];
 	if (self) {
 		[KNSCentralManager sharedInstance];
-		handlerManager = [KNSHandlerManager new];
-		__weak typeof(findName) bfindName = findName;
+		self.handlerManager = [KNSHandlerManager new];
 		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 			if (_callFind) {
 				_callFind = NO;
-				if (bfindName) {
+				if (self.findName) {
 					KNS_LOG(@"Try findWithName");
-					[Konashi findWithName:bfindName];
+					[Konashi findWithName:self.findName];
 				}
 				else {
 					[Konashi find];
@@ -76,6 +73,16 @@
 		}];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readyToUse:) name:KonashiEventReadyToUseNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventConnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if ([Konashi shared].connectedHandler) {
+				[Konashi shared].connectedHandler();
+			}
+		}];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if ([Konashi shared].disconnectedHandler) {
+				[Konashi shared].disconnectedHandler();
+			}
+		}];
 	}
 	
 	return self;
@@ -86,11 +93,14 @@
 	KNSPeripheral *connectedPeripheral = [note userInfo][KonashiPeripheralKey];
 	KNS_LOG(@"Peripheral(UUID : %@) is ready to use.", connectedPeripheral.peripheral.identifier.UUIDString);
 	_activePeripheral = connectedPeripheral;
-	_activePeripheral.handlerManager = handlerManager;
+	_activePeripheral.handlerManager = self.handlerManager;
 	// Enable PIO input notification
 	[_activePeripheral enablePIOInputNotification];
 	// Enable UART RX notification
 	[_activePeripheral enableUART_RXNotification];
+	if (self.readyHandler) {
+		self.readyHandler();
+	}
 }
 
 #pragma mark -
@@ -124,6 +134,7 @@
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
 		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
 		[Konashi shared].callFind = YES;
+		[Konashi shared].findName = name;
 		return KonashiResultSuccess;
 	}
 	[[KNSCentralManager sharedInstance] connectWithName:name timeout:KonashiFindTimeoutInterval connectedHandler:^(KNSPeripheral *connectedPeripheral) {
@@ -155,35 +166,35 @@
 
 + (BOOL) isReady
 {
-    return [[Konashi shared].activePeripheral isReady];
+	return [[Konashi shared].activePeripheral isReady];
 }
 
 + (NSString *) peripheralName
 {
-    return [Konashi shared].activePeripheral.peripheral.name;
+	return [Konashi shared].activePeripheral.peripheral.name;
 }
 
 #pragma mark -
 #pragma mark - Konashi PIO public methods
 
 + (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
-{    
-    return [[Konashi shared].activePeripheral pinMode:pin mode:mode];
+{
+	return [[Konashi shared].activePeripheral pinMode:pin mode:mode];
 }
 
 + (KonashiResult) pinModeAll:(int)mode
 {
-    return [[Konashi shared].activePeripheral pinModeAll:mode];
+	return [[Konashi shared].activePeripheral pinModeAll:mode];
 }
 
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
-    return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
+	return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
 }
 
 + (KonashiResult) pinPullupAll:(int)mode
 {
-    return [[Konashi shared].activePeripheral pinPullupAll:mode];
+	return [[Konashi shared].activePeripheral pinPullupAll:mode];
 }
 
 + (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
@@ -211,22 +222,22 @@
 
 + (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
-    return [[Konashi shared].activePeripheral pwmMode:pin mode:mode];
+	return [[Konashi shared].activePeripheral pwmMode:pin mode:mode];
 }
 
 + (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period
 {
-    return [[Konashi shared].activePeripheral pwmPeriod:pin period:period];
+	return [[Konashi shared].activePeripheral pwmPeriod:pin period:period];
 }
 
 + (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty
 {
-    return [[Konashi shared].activePeripheral pwmDuty:pin duty:duty];
+	return [[Konashi shared].activePeripheral pwmDuty:pin duty:duty];
 }
 
 + (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
-    return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
+	return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
 }
 
 #pragma mark -
@@ -234,17 +245,17 @@
 
 + (int) analogReference
 {
-    return [[Konashi shared].activePeripheral analogReference];
+	return [[Konashi shared].activePeripheral analogReference];
 }
 
 + (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
-    return [[Konashi shared].activePeripheral analogReadRequest:pin];
+	return [[Konashi shared].activePeripheral analogReadRequest:pin];
 }
 
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-    return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
+	return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
 }
 
 + (int) analogRead:(KonashiAnalogIOPin)pin
@@ -257,22 +268,22 @@
 
 + (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
-    return [[Konashi shared].activePeripheral i2cMode:mode];
+	return [[Konashi shared].activePeripheral i2cMode:mode];
 }
 
 + (KonashiResult) i2cStartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStart];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStart];
 }
 
 + (KonashiResult) i2cRestartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionRestart];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionRestart];
 }
 
 + (KonashiResult) i2cStopCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
 + (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address
@@ -287,7 +298,7 @@
 
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
-    return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
+	return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
 }
 
 + (NSData *)i2cReadData
@@ -323,91 +334,141 @@
 
 + (KonashiResult) reset
 {
-    return [[Konashi shared].activePeripheral reset];
+	return [[Konashi shared].activePeripheral reset];
 }
 
 + (KonashiResult) batteryLevelReadRequest
 {
-    return [[Konashi shared].activePeripheral batteryLevelReadRequest];
+	return [[Konashi shared].activePeripheral batteryLevelReadRequest];
 }
 
 + (KonashiResult) signalStrengthReadRequest
 {
-    return [[Konashi shared].activePeripheral signalStrengthReadRequest];
+	return [[Konashi shared].activePeripheral signalStrengthReadRequest];
 }
 
 #pragma mark -
 #pragma mark - Blocks
 
-- (void)setConnectedHandler:(KonashiEventHandler)connectedHander
+- (void)setConnectedHandler:(void (^)())connectedHandler
 {
-	handlerManager.connectedHandler = connectedHander;
+	self.handlerManager.connectedHandler = connectedHandler;
 }
 
-- (void)setDisconnectedHandler:(KonashiEventHandler)disconnectedHandler
+- (void (^)())connectedHandler
 {
-	handlerManager.disconnectedHandler = disconnectedHandler;
+	return self.handlerManager.connectedHandler;
 }
 
-- (void)setReadyHandler:(KonashiEventHandler)readyHander
+- (void)setDisconnectedHandler:(void (^)())disconnectedHandler
 {
-	handlerManager.readyHandler = readyHander;
+	self.handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
-- (void)setDigitalInputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalInputDidChangeValueHandler
+- (void (^)())disconnectedHandler
 {
-	handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+	return self.handlerManager.disconnectedHandler;
 }
 
-- (void)setDigitalOutputDidChangeValueHandler:(KonashiDigitalPinDidChangeValueHandler)digitalOutputDidChangeValueHandler
+- (void)setReadyHandler:(void (^)())readyHandler
 {
-	handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
+	self.handlerManager.readyHandler = readyHandler;
 }
 
-- (void)setAnalogPinDidChangeValueHandler:(KonashiAnalogPinDidChangeValueHandler)analogPinDidChangeValueHandler
+- (void (^)())readyHandler
 {
-	handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+	return self.handlerManager.readyHandler;
 }
 
-- (void)setUartRxCompleteHandler:(KonashiUartRxCompleteHandler)uartRxCompleteHandler
+- (void)setDigitalInputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
-	handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
+	self.handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
 }
 
-- (void)setI2cReadCompleteHandler:(KonashiI2CReadCompleteHandler)i2cReadCompleteHandler
+- (void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
-	handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+	return self.handlerManager.digitalInputDidChangeValueHandler;
 }
 
-- (void)setBatteryLevelDidUpdateHandler:(KonashiBatteryLevelDidUpdateHandler)batteryLevelDidUpdateHandler
+- (void)setDigitalOutputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
 {
-	handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+	self.handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
-- (void)setSignalStrengthDidUpdateHandler:(KonashiSignalStrengthDidUpdateHandler)signalStrengthDidUpdateHandler
+- (void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
 {
-	handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+	return self.handlerManager.digitalOutputDidChangeValueHandler;
+}
+
+- (void)setAnalogPinDidChangeValueHandler:(void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
+{
+	self.handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
+{
+	return self.handlerManager.analogPinDidChangeValueHandler;
+}
+
+- (void)setUartRxCompleteHandler:(void (^)(NSData *))uartRxCompleteHandler
+{
+	self.handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
+}
+
+- (void (^)(NSData *))uartRxCompleteHandler
+{
+	return self.handlerManager.uartRxCompleteHandler;
+}
+
+- (void)setI2cReadCompleteHandler:(void (^)(NSData *))i2cReadCompleteHandler
+{
+	self.handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (void (^)(NSData *))i2cReadCompleteHandler
+{
+	return self.handlerManager.i2cReadCompleteHandler;
+}
+
+- (void)setBatteryLevelDidUpdateHandler:(void (^)(int))batteryLevelDidUpdateHandler
+{
+	self.handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
+}
+
+- (void (^)(int))batteryLevelDidUpdateHandler
+{
+	return self.handlerManager.batteryLevelDidUpdateHandler;
+}
+
+- (void)setSignalStrengthDidUpdateHandler:(void (^)(int))signalStrengthDidUpdateHandler
+{
+	self.handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+}
+
+- (void (^)(int))signalStrengthDidUpdateHandler
+{
+	return self.handlerManager.signalStrengthDidUpdateHandler;
 }
 
 #pragma mark - Depricated methods
 
 - (BOOL) _isConnected
 {
-    return (self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected);
+	return (self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected);
 }
 
 - (BOOL) _isReady
 {
-    return [[Konashi shared].activePeripheral isReady];
+	return [[Konashi shared].activePeripheral isReady];
 }
 
 - (NSString *) _peripheralName
 {
-    if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
-        return self.activePeripheral.peripheral.name;
-    } else {
-        return @"";
-    }
+	if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
+		return self.activePeripheral.peripheral.name;
+	} else {
+		return @"";
+	}
 }
 
 #pragma mark - Deprecated
@@ -463,26 +524,6 @@
 + (int) signalStrengthRead
 {
 	return [[Konashi shared].activePeripheral signalStrengthRead];
-}
-
-#pragma mark - Notification
-
-+ (void) addObserver:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString*)notificationName
-{
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:notificationObserver selector:notificationSelector name:notificationName object:nil];
-}
-
-+ (void) removeObserver:(id)notificationObserver
-{
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc removeObserver:notificationObserver];
-}
-
-- (void) postNotification:(NSString*)notificationName
-{
-	NSNotification *n = [NSNotification notificationWithName:notificationName object:self];
-	[[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
 @end
