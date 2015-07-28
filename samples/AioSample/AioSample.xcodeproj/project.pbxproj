@@ -279,6 +279,7 @@
 		085A31C1168A806700A75E66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AioSample/AioSample-Prefix.pch";
 				INFOPLIST_FILE = "AioSample/AioSample-Info.plist";
@@ -298,6 +299,7 @@
 		085A31C2168A806700A75E66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AioSample/AioSample-Prefix.pch";
 				INFOPLIST_FILE = "AioSample/AioSample-Info.plist";

@@ -273,6 +273,7 @@
 		32E2C50A1802B2E100DF5810 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GroveExtension/GroveExtension-Prefix.pch";
 				INFOPLIST_FILE = "GroveExtension/GroveExtension-Info.plist";
@@ -292,6 +293,7 @@
 		32E2C50B1802B2E100DF5810 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GroveExtension/GroveExtension-Prefix.pch";
 				INFOPLIST_FILE = "GroveExtension/GroveExtension-Info.plist";

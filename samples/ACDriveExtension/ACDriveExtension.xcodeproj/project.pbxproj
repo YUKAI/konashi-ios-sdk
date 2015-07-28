@@ -272,6 +272,7 @@
 		32CC97351802D8340038AB97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";
@@ -290,6 +291,7 @@
 		32CC97361802D8340038AB97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
 				INFOPLIST_FILE = "ACDriveExtension/ACDriveExtension-Info.plist";

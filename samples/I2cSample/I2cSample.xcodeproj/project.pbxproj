@@ -279,6 +279,7 @@
 		082325B4168AAAE200586AE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I2cSample/I2cSample-Prefix.pch";
 				INFOPLIST_FILE = "I2cSample/I2cSample-Info.plist";
@@ -298,6 +299,7 @@
 		082325B5168AAAE200586AE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I2cSample/I2cSample-Prefix.pch";
 				INFOPLIST_FILE = "I2cSample/I2cSample-Info.plist";

@@ -273,6 +273,7 @@
 		32CAD211180421690082729D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ADCExtension/ADCExtension-Prefix.pch";
 				INFOPLIST_FILE = "ADCExtension/ADCExtension-Info.plist";
@@ -292,6 +293,7 @@
 		32CAD212180421690082729D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ADCExtension/ADCExtension-Prefix.pch";
 				INFOPLIST_FILE = "ADCExtension/ADCExtension-Info.plist";
