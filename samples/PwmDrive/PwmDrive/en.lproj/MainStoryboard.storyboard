@@ -42,7 +42,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeLedBrightness20:" destination="2" eventType="touchUpInside" id="4Xh-lC-Dh9"/>
+                                    <action selector="changeLedBrightness20:" destination="2" eventType="touchUpInside" id="yxC-kn-s7g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBR-rp-sJm">
