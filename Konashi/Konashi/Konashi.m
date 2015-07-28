@@ -41,16 +41,16 @@
 
 + (Konashi *) shared
 {
-    static Konashi *_konashi = nil;
-    
-    @synchronized (self){
-        static dispatch_once_t pred;
-        dispatch_once(&pred, ^{
-            _konashi = [[Konashi alloc] init];
-        });
-    }
+	static Konashi *_konashi = nil;
 	
-    return _konashi;
+	@synchronized (self){
+		static dispatch_once_t pred;
+		dispatch_once(&pred, ^{
+			_konashi = [[Konashi alloc] init];
+		});
+	}
+	
+	return _konashi;
 }
 
 - (instancetype)init
@@ -59,13 +59,12 @@
 	if (self) {
 		[KNSCentralManager sharedInstance];
 		self.handlerManager = [KNSHandlerManager new];
-		__weak typeof(self.findName) bfindName = self.findName;
 		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventCentralManagerPowerOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 			if (_callFind) {
 				_callFind = NO;
-				if (bfindName) {
+				if (self.findName) {
 					KNS_LOG(@"Try findWithName");
-					[Konashi findWithName:bfindName];
+					[Konashi findWithName:self.findName];
 				}
 				else {
 					[Konashi find];
@@ -79,11 +78,11 @@
 				[Konashi shared].connectedHandler();
 			}
 		}];
-        [[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            if ([Konashi shared].disconnectedHandler) {
-                [Konashi shared].disconnectedHandler();
-            }
-        }];
+		[[NSNotificationCenter defaultCenter] addObserverForName:KonashiEventDisconnectedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+			if ([Konashi shared].disconnectedHandler) {
+				[Konashi shared].disconnectedHandler();
+			}
+		}];
 	}
 	
 	return self;
@@ -135,6 +134,7 @@
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
 		KNS_LOG(@"State = %ld (%@)", (long)[KNSCentralManager sharedInstance].state, NSStringFromCBCentralManagerState([KNSCentralManager sharedInstance].state));
 		[Konashi shared].callFind = YES;
+		[Konashi shared].findName = name;
 		return KonashiResultSuccess;
 	}
 	[[KNSCentralManager sharedInstance] connectWithName:name timeout:KonashiFindTimeoutInterval connectedHandler:^(KNSPeripheral *connectedPeripheral) {
@@ -166,35 +166,35 @@
 
 + (BOOL) isReady
 {
-    return [[Konashi shared].activePeripheral isReady];
+	return [[Konashi shared].activePeripheral isReady];
 }
 
 + (NSString *) peripheralName
 {
-    return [Konashi shared].activePeripheral.peripheral.name;
+	return [Konashi shared].activePeripheral.peripheral.name;
 }
 
 #pragma mark -
 #pragma mark - Konashi PIO public methods
 
 + (KonashiResult) pinMode:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
-{    
-    return [[Konashi shared].activePeripheral pinMode:pin mode:mode];
+{
+	return [[Konashi shared].activePeripheral pinMode:pin mode:mode];
 }
 
 + (KonashiResult) pinModeAll:(int)mode
 {
-    return [[Konashi shared].activePeripheral pinModeAll:mode];
+	return [[Konashi shared].activePeripheral pinModeAll:mode];
 }
 
 + (KonashiResult) pinPullup:(KonashiDigitalIOPin)pin mode:(KonashiPinMode)mode
 {
-    return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
+	return [[Konashi shared].activePeripheral pinPullup:pin mode:mode];
 }
 
 + (KonashiResult) pinPullupAll:(int)mode
 {
-    return [[Konashi shared].activePeripheral pinPullupAll:mode];
+	return [[Konashi shared].activePeripheral pinPullupAll:mode];
 }
 
 + (KonashiResult) digitalWrite:(KonashiDigitalIOPin)pin value:(KonashiLevel)value
@@ -222,22 +222,22 @@
 
 + (KonashiResult) pwmMode:(KonashiDigitalIOPin)pin mode:(KonashiPWMMode)mode
 {
-    return [[Konashi shared].activePeripheral pwmMode:pin mode:mode];
+	return [[Konashi shared].activePeripheral pwmMode:pin mode:mode];
 }
 
 + (KonashiResult) pwmPeriod:(KonashiDigitalIOPin)pin period:(unsigned int)period
 {
-    return [[Konashi shared].activePeripheral pwmPeriod:pin period:period];
+	return [[Konashi shared].activePeripheral pwmPeriod:pin period:period];
 }
 
 + (KonashiResult) pwmDuty:(KonashiDigitalIOPin)pin duty:(unsigned int)duty
 {
-    return [[Konashi shared].activePeripheral pwmDuty:pin duty:duty];
+	return [[Konashi shared].activePeripheral pwmDuty:pin duty:duty];
 }
 
 + (KonashiResult) pwmLedDrive:(KonashiDigitalIOPin)pin dutyRatio:(int)ratio
 {
-    return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
+	return [[Konashi shared].activePeripheral pwmLedDrive:pin dutyRatio:ratio];
 }
 
 #pragma mark -
@@ -245,17 +245,17 @@
 
 + (int) analogReference
 {
-    return [[Konashi shared].activePeripheral analogReference];
+	return [[Konashi shared].activePeripheral analogReference];
 }
 
 + (KonashiResult) analogReadRequest:(KonashiAnalogIOPin)pin
 {
-    return [[Konashi shared].activePeripheral analogReadRequest:pin];
+	return [[Konashi shared].activePeripheral analogReadRequest:pin];
 }
 
 + (KonashiResult) analogWrite:(KonashiAnalogIOPin)pin milliVolt:(int)milliVolt
 {
-    return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
+	return [[Konashi shared].activePeripheral analogWrite:pin milliVolt:(int)milliVolt];
 }
 
 + (int) analogRead:(KonashiAnalogIOPin)pin
@@ -268,22 +268,22 @@
 
 + (KonashiResult) i2cMode:(KonashiI2CMode)mode
 {
-    return [[Konashi shared].activePeripheral i2cMode:mode];
+	return [[Konashi shared].activePeripheral i2cMode:mode];
 }
 
 + (KonashiResult) i2cStartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStart];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStart];
 }
 
 + (KonashiResult) i2cRestartCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionRestart];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionRestart];
 }
 
 + (KonashiResult) i2cStopCondition
 {
-    return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
+	return [[Konashi shared].activePeripheral i2cSendCondition:KonashiI2CConditionStop];
 }
 
 + (KonashiResult)i2cWriteData:(NSData *)data address:(unsigned char)address
@@ -298,7 +298,7 @@
 
 + (KonashiResult) i2cReadRequest:(int)length address:(unsigned char)address
 {
-    return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
+	return [[Konashi shared].activePeripheral i2cReadRequest:length address:address];
 }
 
 + (NSData *)i2cReadData
@@ -334,17 +334,17 @@
 
 + (KonashiResult) reset
 {
-    return [[Konashi shared].activePeripheral reset];
+	return [[Konashi shared].activePeripheral reset];
 }
 
 + (KonashiResult) batteryLevelReadRequest
 {
-    return [[Konashi shared].activePeripheral batteryLevelReadRequest];
+	return [[Konashi shared].activePeripheral batteryLevelReadRequest];
 }
 
 + (KonashiResult) signalStrengthReadRequest
 {
-    return [[Konashi shared].activePeripheral signalStrengthReadRequest];
+	return [[Konashi shared].activePeripheral signalStrengthReadRequest];
 }
 
 #pragma mark -
@@ -454,21 +454,21 @@
 
 - (BOOL) _isConnected
 {
-    return (self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected);
+	return (self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected);
 }
 
 - (BOOL) _isReady
 {
-    return [[Konashi shared].activePeripheral isReady];
+	return [[Konashi shared].activePeripheral isReady];
 }
 
 - (NSString *) _peripheralName
 {
-    if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
-        return self.activePeripheral.peripheral.name;
-    } else {
-        return @"";
-    }
+	if(self.activePeripheral && self.activePeripheral.state == CBPeripheralStateConnected){
+		return self.activePeripheral.peripheral.name;
+	} else {
+		return @"";
+	}
 }
 
 #pragma mark - Deprecated
