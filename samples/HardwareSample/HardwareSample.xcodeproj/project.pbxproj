@@ -22,6 +22,7 @@
 		085A320A168A967400A75E66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A3207168A967400A75E66 /* icon.png */; };
 		085A320B168A967400A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A3208168A967400A75E66 /* icon@2x.png */; };
 		085A3211168A969D00A75E66 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085A3210168A969D00A75E66 /* CoreBluetooth.framework */; };
+		9E6155121B7114D5009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155111B7114D5009EF270 /* Images.xcassets */; };
 		E98BA81C1A10C48D0075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA81B1A10C48D0075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500019C8F44F00AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E64FFF19C8F44F00AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		085A3207168A967400A75E66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		085A3208168A967400A75E66 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		085A3210168A969D00A75E66 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9E6155111B7114D5009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E98BA81B1A10C48D0075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E9E64FFF19C8F44F00AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				085A31FB168A964900A75E66 /* MainStoryboard.storyboard */,
 				085A31FE168A964900A75E66 /* ViewController.h */,
 				085A31FF168A964900A75E66 /* ViewController.m */,
+				9E6155111B7114D5009EF270 /* Images.xcassets */,
 				085A31EA168A964900A75E66 /* Supporting Files */,
 			);
 			path = HardwareSample;
@@ -179,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6155121B7114D5009EF270 /* Images.xcassets in Resources */,
 				085A31EE168A964900A75E66 /* InfoPlist.strings in Resources */,
 				085A31F6168A964900A75E66 /* Default.png in Resources */,
 				085A31F8168A964900A75E66 /* Default@2x.png in Resources */,
@@ -279,6 +283,8 @@
 		085A3204168A964900A75E66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -301,6 +307,8 @@
 		085A3205168A964900A75E66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
