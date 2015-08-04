@@ -19,6 +19,7 @@
 		32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CC972C1802D8340038AB97 /* MainStoryboard.storyboard */; };
 		32CC97311802D8340038AB97 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97301802D8340038AB97 /* ViewController.m */; };
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
+		9E61550A1B71149C009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155091B71149C009EF270 /* Images.xcassets */; };
 		E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712D19C8F2F100BC88A4 /* libKonashi.a */; };
 		E98BA8121A10C4200075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		32CC972F1802D8340038AB97 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		32CC97301802D8340038AB97 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9E6155091B71149C009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E91B712D19C8F2F100BC88A4 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 		E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				32CC972C1802D8340038AB97 /* MainStoryboard.storyboard */,
 				32CC972F1802D8340038AB97 /* ViewController.h */,
 				32CC97301802D8340038AB97 /* ViewController.m */,
+				9E6155091B71149C009EF270 /* Images.xcassets */,
 				32CC971B1802D8340038AB97 /* Supporting Files */,
 			);
 			path = ACDriveExtension;
@@ -173,6 +176,7 @@
 				32CC971F1802D8340038AB97 /* InfoPlist.strings in Resources */,
 				32CC97271802D8340038AB97 /* Default.png in Resources */,
 				32CC97291802D8340038AB97 /* Default@2x.png in Resources */,
+				9E61550A1B71149C009EF270 /* Images.xcassets in Resources */,
 				32CC972B1802D8340038AB97 /* Default-568h@2x.png in Resources */,
 				32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */,
 			);
@@ -272,6 +276,8 @@
 		32CC97351802D8340038AB97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
@@ -291,6 +297,8 @@
 		32CC97361802D8340038AB97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACDriveExtension/ACDriveExtension-Prefix.pch";
