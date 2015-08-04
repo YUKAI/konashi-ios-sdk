@@ -126,7 +126,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
-				ORGANIZATIONNAME = sagiii;
+				ORGANIZATIONNAME = "Yukai Engineering Inc.";
 				TargetAttributes = {
 					9E6154D81B710653009EF270 = {
 						CreatedOnToolsVersion = 6.4;
@@ -334,6 +334,7 @@
 				9E6154FE1B710654009EF270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
