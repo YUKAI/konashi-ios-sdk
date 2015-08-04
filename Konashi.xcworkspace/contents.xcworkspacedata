@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:samples/GettingStarted/GettingStarted.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:samples/ACDriveExtension/ACDriveExtension.xcodeproj">
    </FileRef>
    <FileRef
