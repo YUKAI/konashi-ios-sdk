@@ -28,10 +28,24 @@
 
 - (void) kns_discoverAllCharacteristics
 {
-	for (int i=0; i < self.services.count; i++) {
-		CBService *s = [self.services objectAtIndex:i];
+	if (NSFoundationVersionNumber_iOS_8_3 > floor(NSFoundationVersionNumber)) {
+		// iOS9
+		//DeviceInfo 180a
+		CBService *s = [self.services objectAtIndex:0];
 		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
 		[self discoverCharacteristics:nil forService:s];
+		//Konashi Service ff00
+		s = [self.services objectAtIndex:2];
+		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
+		[self discoverCharacteristics:nil forService:s];
+	}
+	else {
+		// iOS8 or earlier
+		[self.services enumerateObjectsUsingBlock:^(CBService * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+			KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
+			[self discoverCharacteristics:nil forService:s];
+		}];
+
 	}
 }
 
