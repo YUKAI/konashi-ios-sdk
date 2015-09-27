@@ -17,6 +17,7 @@
 		E92D57C21B63B40000FE1BF8 /* BlinkLed-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C11B63B40000FE1BF8 /* BlinkLed-Info.plist */; };
 		E92D57C61B63B41600FE1BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C41B63B41600FE1BF8 /* MainStoryboard.storyboard */; };
 		E92D57CA1B63B46C00FE1BF8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C91B63B46C00FE1BF8 /* Images.xcassets */; };
+		E965765C1BB802F500DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E965765B1BB802F500DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		E98BA8181A10C4750075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8171A10C4740075F9B9 /* JavaScriptCore.framework */; };
 		E9E64FFA19C8F3E400AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E64FF919C8F3E400AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		E92D57C11B63B40000FE1BF8 /* BlinkLed-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BlinkLed-Info.plist"; path = "BlinkLed/BlinkLed-Info.plist"; sourceTree = "<group>"; };
 		E92D57C51B63B41600FE1BF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = BlinkLed/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		E92D57C91B63B46C00FE1BF8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BlinkLed/Images.xcassets; sourceTree = "<group>"; };
+		E965765B1BB802F500DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = BlinkLed/LaunchScreen.xib; sourceTree = "<group>"; };
 		E98BA8171A10C4740075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E9E64FF919C8F3E400AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 			children = (
 				E92D57C31B63B40500FE1BF8 /* Supporting Files */,
 				E92D57C41B63B41600FE1BF8 /* MainStoryboard.storyboard */,
+				E965765B1BB802F500DFA35D /* LaunchScreen.xib */,
 				E92D57B71B63B3E400FE1BF8 /* AppDelegate.h */,
 				E92D57B81B63B3E400FE1BF8 /* AppDelegate.m */,
 				E92D57BB1B63B3E400FE1BF8 /* ViewController.h */,
@@ -160,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E965765C1BB802F500DFA35D /* LaunchScreen.xib in Resources */,
 				E92D57C61B63B41600FE1BF8 /* MainStoryboard.storyboard in Resources */,
 				E92D57CA1B63B46C00FE1BF8 /* Images.xcassets in Resources */,
 				E92D57C21B63B40000FE1BF8 /* BlinkLed-Info.plist in Resources */,
