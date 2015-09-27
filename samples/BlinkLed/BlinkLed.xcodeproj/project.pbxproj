@@ -14,7 +14,6 @@
 		E92D57BD1B63B3E400FE1BF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57B81B63B3E400FE1BF8 /* AppDelegate.m */; };
 		E92D57BE1B63B3E400FE1BF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57BA1B63B3E400FE1BF8 /* main.m */; };
 		E92D57BF1B63B3E400FE1BF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92D57BC1B63B3E400FE1BF8 /* ViewController.m */; };
-		E92D57C21B63B40000FE1BF8 /* BlinkLed-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C11B63B40000FE1BF8 /* BlinkLed-Info.plist */; };
 		E92D57C61B63B41600FE1BF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C41B63B41600FE1BF8 /* MainStoryboard.storyboard */; };
 		E92D57CA1B63B46C00FE1BF8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92D57C91B63B46C00FE1BF8 /* Images.xcassets */; };
 		E965765C1BB802F500DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E965765B1BB802F500DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
@@ -166,7 +165,6 @@
 				E965765C1BB802F500DFA35D /* LaunchScreen.xib in Resources */,
 				E92D57C61B63B41600FE1BF8 /* MainStoryboard.storyboard in Resources */,
 				E92D57CA1B63B46C00FE1BF8 /* Images.xcassets in Resources */,
-				E92D57C21B63B40000FE1BF8 /* BlinkLed-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
