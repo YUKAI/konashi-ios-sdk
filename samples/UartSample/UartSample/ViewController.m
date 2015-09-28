@@ -44,6 +44,6 @@
 }
 
 - (IBAction)send:(id)sender {
-    [Konashi uartWriteData:[NSData dataWithBytes:'A' length:1]];
+    [Konashi uartWriteData:[NSData dataWithBytes:"A" length:1]];
 }
 @end
