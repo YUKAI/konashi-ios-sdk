@@ -15,6 +15,24 @@
 
 @implementation KNSKonashiPeripheralImpl
 
+
+- (void)discoverCharacteristics
+{
+	if (NSFoundationVersionNumber_iOS_8_3 < floor(NSFoundationVersionNumber)) {
+		//DeviceInfo 180a
+		CBService *s = [self.peripheral.services objectAtIndex:0];
+		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
+		[self.peripheral discoverCharacteristics:nil forService:s];
+		//Konashi Service ff00
+		s = [self.peripheral.services objectAtIndex:2];
+		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
+		[self.peripheral discoverCharacteristics:nil forService:s];
+	}
+	else {
+		[super discoverCharacteristics];
+	}
+}
+
 + (NSInteger)i2cDataMaxLength
 {
 	return 18;

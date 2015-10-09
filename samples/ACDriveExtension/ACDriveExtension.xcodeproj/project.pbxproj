@@ -21,6 +21,7 @@
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
 		9E61550A1B71149C009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155091B71149C009EF270 /* Images.xcassets */; };
 		E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712D19C8F2F100BC88A4 /* libKonashi.a */; };
+		E96576561BB8027B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576551BB8027B00DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		E98BA8121A10C4200075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9E6155091B71149C009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E91B712D19C8F2F100BC88A4 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
+		E96576551BB8027B00DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		32CC971A1802D8340038AB97 /* ACDriveExtension */ = {
 			isa = PBXGroup;
 			children = (
+				E96576551BB8027B00DFA35D /* LaunchScreen.xib */,
 				32CC97231802D8340038AB97 /* AppDelegate.h */,
 				32CC97241802D8340038AB97 /* AppDelegate.m */,
 				32CC972C1802D8340038AB97 /* MainStoryboard.storyboard */,
@@ -176,6 +179,7 @@
 				32CC971F1802D8340038AB97 /* InfoPlist.strings in Resources */,
 				32CC97271802D8340038AB97 /* Default.png in Resources */,
 				32CC97291802D8340038AB97 /* Default@2x.png in Resources */,
+				E96576561BB8027B00DFA35D /* LaunchScreen.xib in Resources */,
 				9E61550A1B71149C009EF270 /* Images.xcassets in Resources */,
 				32CC972B1802D8340038AB97 /* Default-568h@2x.png in Resources */,
 				32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */,

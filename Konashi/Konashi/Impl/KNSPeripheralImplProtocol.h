@@ -11,6 +11,8 @@
 @protocol KNSPeripheralImplProtocol <NSObject>
 
 @required
+- (void)discoverCharacteristics;
+
 - (NSInteger)uartDataMaxLength;
 + (NSInteger)i2cDataMaxLength;
 + (NSInteger)levelServiceReadLength;
