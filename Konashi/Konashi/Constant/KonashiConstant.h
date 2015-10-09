@@ -59,6 +59,8 @@ static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"Konas
 
 static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
+static NSString *const KonashiEventSPIReadCompleteNotification = @"KonashiEventSPIReadCompleteNotification";
+
 static NSString *const KonashiLegacyRevisionString = @"T1.0.0";
 
 static NSTimeInterval const KonashiFindTimeoutInterval = 2;
@@ -153,6 +155,30 @@ typedef NS_ENUM(int, KonashiUartBaudrate) {
 	KonashiUartBaudrateRate57K6 = 0x00f0,
 	KonashiUartBaudrateRate76K8 = 0x0140,
 	KonashiUartBaudrateRate115K2 = 0x01e0
+};
+
+// Konashi SPI Speed
+typedef NS_ENUM(int, KonashiSPISpeed) {
+	KonashiSPISpeed200K = 20,
+	KonashiSPISpeed500K = 50,
+	KonashiSPISpeed1M = 100,
+	KonashiSPISpeed2M = 200,
+	KonashiSPISpeed3M = 300,
+	KonashiSPISpeed6M = 600,
+};
+
+// Konashi SPI Mode
+typedef NS_ENUM(int, KonashiSPIMode) {
+	KonashiSPIModeEnableCPOL0CPHA1 = 0,
+	KonashiSPIModeEnableCPOL0CPHA0 = 1,
+	KonashiSPIModeEnableCPOL1CPHA1 = 2,
+	KonashiSPIModeEnableCPOL1CPHA0 = 3,
+	KonashiSPIModeDisable = -1
+};
+// Konashi SPI Bit order
+typedef NS_ENUM(int, KonashiSPIBitOrder) {
+	KonashiSPIBitOrderLSBFirst = 0,
+	KonashiSPIBitOrderMSBFirst = 1
 };
 
 #endif
