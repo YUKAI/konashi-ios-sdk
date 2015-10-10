@@ -57,9 +57,19 @@
 	_handlerManager.connectedHandler = connectedHandler;
 }
 
+- (void (^)())connectedHandler
+{
+	return _handlerManager.connectedHandler;
+}
+
 - (void)setDisconnectedHandler:(void (^)())disconnectedHandler
 {
 	_handlerManager.disconnectedHandler = disconnectedHandler;
+}
+
+- (void (^)())disconnectedHandler
+{
+	return _handlerManager.disconnectedHandler;
 }
 
 - (void)setReadyHandler:(void (^)())readyHandler
@@ -67,9 +77,19 @@
 	_handlerManager.readyHandler = readyHandler;
 }
 
+- (void (^)())readyHandler
+{
+	return _handlerManager.readyHandler;
+}
+
 - (void)setDigitalInputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
 {
 	_handlerManager.digitalInputDidChangeValueHandler = digitalInputDidChangeValueHandler;
+}
+
+- (void (^)(KonashiDigitalIOPin, int))digitalInputDidChangeValueHandler
+{
+	return _handlerManager.digitalInputDidChangeValueHandler;
 }
 
 - (void)setDigitalOutputDidChangeValueHandler:(void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
@@ -77,9 +97,19 @@
 	_handlerManager.digitalOutputDidChangeValueHandler = digitalOutputDidChangeValueHandler;
 }
 
+- (void (^)(KonashiDigitalIOPin, int))digitalOutputDidChangeValueHandler
+{
+	return _handlerManager.digitalOutputDidChangeValueHandler;
+}
+
 - (void)setAnalogPinDidChangeValueHandler:(void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
 {
 	_handlerManager.analogPinDidChangeValueHandler = analogPinDidChangeValueHandler;
+}
+
+- (void (^)(KonashiAnalogIOPin, int))analogPinDidChangeValueHandler
+{
+	return _handlerManager.analogPinDidChangeValueHandler;
 }
 
 - (void)setUartRxCompleteHandler:(void (^)(NSData *))uartRxCompleteHandler
@@ -87,9 +117,19 @@
 	_handlerManager.uartRxCompleteHandler = uartRxCompleteHandler;
 }
 
+- (void (^)(NSData *))uartRxCompleteHandler
+{
+	return _handlerManager.uartRxCompleteHandler;
+}
+
 - (void)setI2cReadCompleteHandler:(void (^)(NSData *))i2cReadCompleteHandler
 {
 	_handlerManager.i2cReadCompleteHandler = i2cReadCompleteHandler;
+}
+
+- (void (^)(NSData *))i2cReadCompleteHandler
+{
+	return _handlerManager.i2cReadCompleteHandler;
 }
 
 - (void)setBatteryLevelDidUpdateHandler:(void (^)(int))batteryLevelDidUpdateHandler
@@ -97,9 +137,39 @@
 	_handlerManager.batteryLevelDidUpdateHandler = batteryLevelDidUpdateHandler;
 }
 
+- (void (^)(int))batteryLevelDidUpdateHandler
+{
+	return _handlerManager.batteryLevelDidUpdateHandler;
+}
+
 - (void)setSignalStrengthDidUpdateHandler:(void (^)(int))signalStrengthDidUpdateHandler
 {
 	_handlerManager.signalStrengthDidUpdateHandler = signalStrengthDidUpdateHandler;
+}
+
+- (void (^)(int))signalStrengthDidUpdateHandler
+{
+	return _handlerManager.signalStrengthDidUpdateHandler;
+}
+
+- (void)setSpiWriteCompleteHandler:(void (^)())spiWriteCompleteHandler
+{
+	_handlerManager.spiWriteCompleteHandler = spiWriteCompleteHandler;
+}
+
+- (void (^)())spiWriteCompleteHandler
+{
+	return _handlerManager.spiWriteCompleteHandler;
+}
+
+- (void)setSpiReadCompleteHandler:(void (^)(NSData *))spiReadCompleteHandler
+{
+	_handlerManager.spiReadCompleteHandler = spiReadCompleteHandler;
+}
+
+- (void (^)(NSData *))spiReadCompleteHandler
+{
+	return _handlerManager.spiReadCompleteHandler;
 }
 
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID
@@ -315,6 +385,50 @@
 	return [_impl readUartData];
 }
 
+#pragma mark - SPI
+
+- (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder
+{
+	KonashiResult result = KonashiResultFailure;
+	if ([_impl isKindOfClass:[KNSKoshianPeripheralImpl class]]) {
+		result = [(KNSKoshianPeripheralImpl *)_impl spiMode:mode speed:speed bitOrder:bitOrder];
+	}
+	
+	return result;
+}
+
+- (KonashiResult)spiWrite:(NSData *)data
+{
+	KonashiResult result = KonashiResultFailure;
+	if ([_impl isKindOfClass:[KNSKoshianPeripheralImpl class]]) {
+		result = [(KNSKoshianPeripheralImpl *)_impl spiWrite:data];
+	}
+	
+	return result;
+}
+
+- (KonashiResult)spiReadRequest
+{
+	KonashiResult result = KonashiResultFailure;
+	if ([_impl isKindOfClass:[KNSKoshianPeripheralImpl class]]) {
+		result = [(KNSKoshianPeripheralImpl *)_impl spiReadRequest];
+	}
+	
+	return result;
+}
+
+- (NSData *)spiReadData
+{
+	NSData *data = nil;
+	if ([_impl isKindOfClass:[KNSKoshianPeripheralImpl class]]) {
+		data = [(KNSKoshianPeripheralImpl *)_impl spiReadData];
+	}
+	
+	return data;
+}
+
+#pragma markr Hardware
+
 - (KonashiResult) reset
 {
 	return [_impl reset];
@@ -375,6 +489,13 @@
 - (void)enableUART_RXNotification
 {
 	[_impl enableUART_RXNotification];
+}
+
+- (void)enableSPI_MISONotification
+{
+	if ([_impl isKindOfClass:[KNSKoshianPeripheralImpl class]]) {
+		[(KNSKoshianPeripheralImpl *)_impl enableSPINotification];
+	}
 }
 
 @end

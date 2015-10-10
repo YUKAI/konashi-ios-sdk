@@ -11,10 +11,10 @@
 
 // Debug
 // Define in "Build Settings > Preprocessor Macros", not here
-// #define KONASHI_DEBUG
+#define KONASHI_DEBUG
 
 #ifdef KONASHI_DEBUG
-#define KNS_LOG(...) NSLog(__VA_ARGS__)
+#define KNS_LOG(__FORMAT__, ...) NSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define KNS_LOG_METHOD NSLog(@"[Konashi]%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
 #else
 #define KNS_LOG(...)
@@ -59,6 +59,7 @@ static NSString *const KonashiEventSignalStrengthDidUpdateNotification = @"Konas
 
 static NSString *const KonashiEventDidFindSoftwareRevisionStringNotification = @"KonashiEventDidFindSoftwareRevisionStringNotification";
 
+static NSString *const KonashiEventSPIWriteCompleteNotification = @"KonashiEventSPIWriteCompleteNotification";
 static NSString *const KonashiEventSPIReadCompleteNotification = @"KonashiEventSPIReadCompleteNotification";
 
 static NSString *const KonashiLegacyRevisionString = @"T1.0.0";

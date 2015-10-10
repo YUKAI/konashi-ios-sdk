@@ -77,6 +77,9 @@
  */
 @property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
 
+@property (nonatomic, copy) void (^spiWriteCompleteHandler)();
+@property (nonatomic, copy) void (^spiReadCompleteHandler)(NSData *data);
+
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
 - (void)writeData:(NSData *)data serviceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
 - (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
@@ -124,6 +127,11 @@
 - (KonashiResult) uartWriteData:(NSData *)data;
 - (NSData *) readUartData;
 
+- (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder;
+- (KonashiResult)spiWrite:(NSData *)data;
+- (KonashiResult)spiReadRequest;
+- (NSData *)spiReadData;
+
 - (KonashiResult) reset;
 - (KonashiResult) batteryLevelReadRequest;
 - (int) batteryLevelRead;
@@ -132,5 +140,6 @@
 
 - (void)enablePIOInputNotification;
 - (void)enableUART_RXNotification;
+- (void)enableSPI_MISONotification;
 
 @end
