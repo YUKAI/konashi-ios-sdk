@@ -65,6 +65,11 @@ JSExportAs(i2cWriteString, + (KonashiResult) i2cWriteString:(NSString *)data add
 + (KonashiResult) signalStrengthReadRequest;
 + (int) signalStrengthRead;
 
+// Konashi SPI methods
+JSExportAs(spiMode, + (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder);
++ (KonashiResult)spiWrite:(NSData *)data;
++ (NSData *)spiReadData;
+
 @end
 
 #endif
