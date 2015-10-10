@@ -88,14 +88,14 @@
 
 /**
  *  このHandlerはSPI経由でのデータ書き込み完了時に呼び出されます。呼びだされた瞬間からSPIモジュールから受け取るデータを取得することができます。
- @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。 +spiReadRequest メソッドを呼び出すことでkoshianからデータを読み出すことが可能です。
+ * @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。 +spiReadRequest メソッドを呼び出すことでkoshianからデータを読み出すことが可能です。
  */
 @property (nonatomic, copy) void (^spiWriteCompleteHandler)();
 
 /**
  *  このHandlerは +spiReadRequest メソッドを用いてデータを受信した時に呼び出されます。
- @param data 受信したデータ
- @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。
+ * @param data 受信したデータ
+ * @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。
  */
 @property (nonatomic, copy) void (^spiReadCompleteHandler)(NSData *data);
 
@@ -459,6 +459,48 @@
 + (NSData *) readUartData;
 
 /// ---------------------------------
+/// @name SPI
+/// ---------------------------------
+
+/**
+ *  SPIのモードを設定します。
+ *
+ *  @param mode     動作モード
+ *  @param speed    動作速度
+ *  @param bitOrder ビットオーダー
+ *
+ *  @return 設定に成功した場合は KonashiResultSuccess 、何らかの原因で失敗した場合は KonashiResultFailure 。
+ *  @note SPI機能が追加されたファームウェアを搭載したkoshianでのみ実行可能です。
+ */
++ (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder;
+
+/**
+ *  SPI経由でデータを書き込みます。
+ *
+ *  @param data 書き込むデータ。
+ *
+ *  @return 成功した場合は KonashiResultSuccess 、何らかの原因で失敗した場合は KonashiResultFailure 。
+ *  @note SPI機能が追加されたファームウェアを搭載したkoshianでのみ実行可能です。
+ */
++ (KonashiResult)spiWrite:(NSData *)data;
+
+/**
+ *  SPI経由で取得したデータを読み込むリクエストを行います。koshianからiOSデバイスにデータを転送します。
+ *
+ *  @return 成功した場合は KonashiResultSuccess 、何らかの原因で失敗した場合は KonashiResultFailure 。
+ *  @note SPI機能が追加されたファームウェアを搭載したkoshianでのみ実行可能です。
+ */
++ (KonashiResult)spiReadRequest;
+
+/**
+ *  SPI経由で読み込んだデータを取得します。
+ *
+ *  @return 読み込んだデータ。
+ *  @note SPI機能が追加されたファームウェアを搭載したkoshianでのみ実行可能です。
+ */
++ (NSData *)spiReadData;
+
+/// ---------------------------------
 /// @name Hardware Control
 /// ---------------------------------
 
@@ -503,7 +545,7 @@
 #pragma mark - Deprecated
 
 /// ---------------------------------
-/// @name I2C
+/// @name I2C(Deprecated)
 /// ---------------------------------
 
 /**
@@ -531,7 +573,7 @@
 + (KonashiResult) i2cRead:(int)length data:(unsigned char*)data __attribute__ ((deprecated));
 
 /// ---------------------------------
-/// @name UART
+/// @name UART(Deprecated)
 /// ---------------------------------
 
 /**
@@ -570,19 +612,5 @@
  *	@warning このメソッドは非推奨です。 [Konashi uartRxCompleteHandler] 及び [Konashi readUartData] を用いて値を取得してください。
  */
 + (unsigned char) uartRead __attribute__ ((deprecated));
-
-/**
- *  SPIのモードを設定します。
- *
- *  @param mode     動作モード
- *  @param speed    動作速度
- *  @param bitOrder ビットオーダー
- *
- *  @return 設定に成功した場合は KonashiResultSuccess 、何らかの原因で失敗した場合は KonashiResultFailure 。
- */
-+ (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder;
-+ (KonashiResult)spiWrite:(NSData *)data;
-+ (KonashiResult)spiReadRequest;
-+ (NSData *)spiReadData;
 
 @end

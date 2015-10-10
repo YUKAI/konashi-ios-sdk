@@ -77,7 +77,17 @@
  */
 @property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
 
+/**
+ *  このHandlerはSPI経由でのデータ書き込み完了時に呼び出されます。呼びだされた瞬間からSPIモジュールから受け取るデータを取得することができます。
+ * @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。 +spiReadRequest メソッドを呼び出すことでkoshianからデータを読み出すことが可能です。
+ */
 @property (nonatomic, copy) void (^spiWriteCompleteHandler)();
+
+/**
+ *  このHandlerは +spiReadRequest メソッドを用いてデータを受信した時に呼び出されます。
+ * @param data 受信したデータ
+ * @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。
+ */
 @property (nonatomic, copy) void (^spiReadCompleteHandler)(NSData *data);
 
 - (instancetype)initWithPeripheral:(CBPeripheral *)p;
