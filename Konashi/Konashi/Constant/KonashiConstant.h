@@ -169,10 +169,10 @@ typedef NS_ENUM(int, KonashiSPISpeed) {
 
 // Konashi SPI Mode
 typedef NS_ENUM(int, KonashiSPIMode) {
-	KonashiSPIModeEnableCPOL0CPHA1 = 0,
-	KonashiSPIModeEnableCPOL0CPHA0 = 1,
-	KonashiSPIModeEnableCPOL1CPHA1 = 2,
-	KonashiSPIModeEnableCPOL1CPHA0 = 3,
+	KonashiSPIModeEnableCPOL0CPHA0 = 0,
+	KonashiSPIModeEnableCPOL0CPHA1 = 1,
+	KonashiSPIModeEnableCPOL1CPHA0 = 2,
+	KonashiSPIModeEnableCPOL1CPHA1 = 3,
 	KonashiSPIModeDisable = -1
 };
 // Konashi SPI Bit order
