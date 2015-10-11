@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'konashi-ios-sdk'
-  s.version      = '4.0.2'
+  s.version      = 'v4.0.2'
   s.summary      = 'iOS SDK for konashi, a wireless physical computing toolkit for iPhone, iPod touch and iPad.'
   s.homepage     = 'http://konashi.ux-xu.com'
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
