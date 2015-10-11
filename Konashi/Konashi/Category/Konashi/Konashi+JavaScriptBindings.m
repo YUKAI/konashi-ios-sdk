@@ -38,6 +38,7 @@ static NSString *const JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"updateBatteryLe
 static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalStrength";
 static NSString *const JS_KONASHI_EVENT_START_DISCOVERY = @"startDiscovery";
 static NSString *const JS_KONASHI_EVENT_SPI_WRITE_COMPLETE = @"spiWriteComplete";
+static NSString *const JS_KONASHI_EVENT_SPI_READ_COMPLETE = @"spiReadComplete";
 
 - (instancetype)init
 {
@@ -156,7 +157,8 @@ static NSString *const JS_KONASHI_EVENT_SPI_WRITE_COMPLETE = @"spiWriteComplete"
 							KonashiEventBatteryLevelDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL,
 							KonashiEventSignalStrengthDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH,
 							KonashiEventStartDiscoveryNotification : JS_KONASHI_EVENT_START_DISCOVERY,
-							KonashiEventSPIWriteCompleteNotification : JS_KONASHI_EVENT_SPI_WRITE_COMPLETE
+							KonashiEventSPIWriteCompleteNotification : JS_KONASHI_EVENT_SPI_WRITE_COMPLETE,
+							KonashiEventSPIReadCompleteNotification : JS_KONASHI_EVENT_SPI_READ_COMPLETE
 							};
 		
 		[events enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
