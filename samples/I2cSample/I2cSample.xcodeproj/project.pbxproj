@@ -23,6 +23,7 @@
 		082325BB168AAB0B00586AE2 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B8168AAB0B00586AE2 /* icon@2x.png */; };
 		082325C6168AABA600586AE2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082325C5168AABA600586AE2 /* CoreBluetooth.framework */; };
 		9E6155141B7114E9009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155131B7114E9009EF270 /* Images.xcassets */; };
+		E96576621BB8034700DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576611BB8034700DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		E98BA81E1A10C4960075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA81D1A10C4960075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500219C8F47000AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500119C8F47000AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		082325B8168AAB0B00586AE2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		082325C5168AABA600586AE2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9E6155131B7114E9009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E96576611BB8034700DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E98BA81D1A10C4960075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E9E6500119C8F47000AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 		08232599168AAAE200586AE2 /* I2cSample */ = {
 			isa = PBXGroup;
 			children = (
+				E96576611BB8034700DFA35D /* LaunchScreen.xib */,
 				082325A2168AAAE200586AE2 /* AppDelegate.h */,
 				082325A3168AAAE200586AE2 /* AppDelegate.m */,
 				082325AB168AAAE200586AE2 /* MainStoryboard.storyboard */,
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96576621BB8034700DFA35D /* LaunchScreen.xib in Resources */,
 				9E6155141B7114E9009EF270 /* Images.xcassets in Resources */,
 				0823259E168AAAE200586AE2 /* InfoPlist.strings in Resources */,
 				082325A6168AAAE200586AE2 /* Default.png in Resources */,

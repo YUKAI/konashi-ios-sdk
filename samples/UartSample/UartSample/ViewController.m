@@ -26,8 +26,7 @@
 		
 		self.statusMessage.hidden = NO;
 		
-		[Konashi uartBaudrate:KonashiUartBaudrateRate9K6];
-		[Konashi uartMode:KonashiUartModeEnable];
+		[Konashi uartMode:KonashiUartModeEnable baudrate:KonashiUartBaudrateRate9K6];
 	}];
 	[[Konashi shared] setUartRxCompleteHandler:^(NSData *data) {
 		NSLog(@"UartRx %@", [data description]);
@@ -45,6 +44,6 @@
 }
 
 - (IBAction)send:(id)sender {
-    [Konashi uartWrite:'A'];
+    [Konashi uartWriteData:[NSData dataWithBytes:"A" length:1]];
 }
 @end

@@ -23,6 +23,7 @@
 		085A314716873D2E00A75E66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314616873D2E00A75E66 /* icon.png */; };
 		085A314916873D4500A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314816873D4500A75E66 /* icon@2x.png */; };
 		9E6155161B7114F6009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155151B7114F6009EF270 /* Images.xcassets */; };
+		E96576641BB8036B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576631BB8036B00DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		E98BA8201A10C49F0075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA81F1A10C49F0075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500419C8F49600AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500319C8F49600AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		085A314616873D2E00A75E66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		085A314816873D4500A75E66 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9E6155151B7114F6009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E96576631BB8036B00DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E98BA81F1A10C49F0075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E9E6500319C8F49600AC0F17 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Konashi-dhofczlcrxxgidezchdszsmucwex/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 		085A30FA1685EC0A00A75E66 /* PioDrive */ = {
 			isa = PBXGroup;
 			children = (
+				E96576631BB8036B00DFA35D /* LaunchScreen.xib */,
 				085A31031685EC0A00A75E66 /* AppDelegate.h */,
 				085A31041685EC0A00A75E66 /* AppDelegate.m */,
 				085A310C1685EC0A00A75E66 /* MainStoryboard.storyboard */,
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96576641BB8036B00DFA35D /* LaunchScreen.xib in Resources */,
 				9E6155161B7114F6009EF270 /* Images.xcassets in Resources */,
 				085A30FF1685EC0A00A75E66 /* InfoPlist.strings in Resources */,
 				085A31071685EC0A00A75E66 /* Default.png in Resources */,

@@ -16,6 +16,7 @@
 		9E6155031B710669009EF270 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155021B710669009EF270 /* CoreBluetooth.framework */; };
 		9E6155051B710677009EF270 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155041B710677009EF270 /* JavaScriptCore.framework */; };
 		9E6155071B71068E009EF270 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155061B71068E009EF270 /* libKonashi.a */; };
+		E96576541BB8023400DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576531BB8023400DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9E6155021B710669009EF270 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9E6155041B710677009EF270 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		9E6155061B71068E009EF270 /* libKonashi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKonashi.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Konashi-emsmolqwyjtzdcgmvmzonmaksanf/Build/Products/Debug-iphoneos/libKonashi.a"; sourceTree = "<group>"; };
+		E96576531BB8023400DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		9E6154DB1B710654009EF270 /* GettingStarted */ = {
 			isa = PBXGroup;
 			children = (
+				E96576531BB8023400DFA35D /* LaunchScreen.xib */,
 				9E6154E01B710654009EF270 /* AppDelegate.h */,
 				9E6154E11B710654009EF270 /* AppDelegate.m */,
 				9E6154E31B710654009EF270 /* ViewController.h */,
@@ -156,6 +159,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96576541BB8023400DFA35D /* LaunchScreen.xib in Resources */,
 				9E6154E81B710654009EF270 /* Main.storyboard in Resources */,
 				9E6154ED1B710654009EF270 /* LaunchScreen.xib in Resources */,
 				9E6154EA1B710654009EF270 /* Images.xcassets in Resources */,
@@ -281,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -300,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

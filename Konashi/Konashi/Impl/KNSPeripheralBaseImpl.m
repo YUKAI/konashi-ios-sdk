@@ -27,7 +27,8 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 	if (self) {
 		_peripheral = p;
 		_peripheral.delegate = self;
-		[_peripheral kns_discoverAllCharacteristics];
+		[self discoverCharacteristics];
+		
 		// Digital PIO
 		pioSetting = 0;
 		pioPullup = 0;
@@ -195,6 +196,11 @@ static NSString *const kSoftwareRevisionStringCharacteristiceUUIDString = @"2a28
 }
 
 #pragma mark - KNSPeripheralImplProtocol
+
+- (void)discoverCharacteristics
+{
+	[self.peripheral kns_discoverAllCharacteristics];
+}
 
 - (NSInteger)uartDataMaxLength
 {

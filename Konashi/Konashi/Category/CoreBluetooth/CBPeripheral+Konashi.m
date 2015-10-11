@@ -28,11 +28,10 @@
 
 - (void) kns_discoverAllCharacteristics
 {
-	for (int i=0; i < self.services.count; i++) {
-		CBService *s = [self.services objectAtIndex:i];
+	[self.services enumerateObjectsUsingBlock:^(CBService * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
 		KNS_LOG(@"Fetching characteristics for service with UUID : %@", [s.UUID kns_dataDescription]);
 		[self discoverCharacteristics:nil forService:s];
-	}
+	}];
 }
 
 @end
