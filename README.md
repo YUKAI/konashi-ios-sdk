@@ -1,7 +1,9 @@
 <a href="http://konashi.ux-xu.com"><img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" /></a><br/>
-Physical computing toolkit for smartphones and tablets
+Physical computing toolkit for smartphones and tablets.
 
 [![Version](https://img.shields.io/cocoapods/v/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
+[![License](https://img.shields.io/cocoapods/l/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
+[![Platform](https://img.shields.io/cocoapods/p/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 
 [http://konashi.ux-xu.com](http://konashi.ux-xu.com)<br/>
 [http://konashi-yukai.tumblr.com](http://konashi-yukai.tumblr.com)
@@ -12,27 +14,51 @@ Physical computing toolkit for smartphones and tablets
 
 ---
 
-## CocoaPods に対応しました
-以下の様な Podfile を作成。
+# Requirements
+- iOS 7.1 or later.
+- Xcode 7 or later.
 
+# Installation
+## Manually
+ご自身のXcodeプロジェクトに手動でライブラリを追加するには次の手順を行う必要があります。
+1. `Konashi`フォルダ以下のファイルをXcodeのプロジェクトへコピーする。
+- `Linked Frameworks and Libraries`に`CoreBluetooth.framework`を追加する。
+
+## Using CocoaPods
+konashi-ios-sdk は CocoaPodsを用いてインストールすることが可能です。
+最新版のSDKをインストールする際は、Podfileに次の1行を追加します。
 ```
-source "https://github.com/CocoaPods/Specs.git"
-platform :ios, "7.1"
-pod "konashi-ios-sdk"
+pod 'konashi-ios-sdk'
 ```
 
-そして
-
+一方、特定のバージョンをインストールする際は次のようにPodfileに記述します。
 ```
-$ pod install
+pod 'konashi-ios-sdk', '~> 3.0'
 ```
-
 
 ## Getting Started
 
 - [公式ページの Getting Started](http://konashi.ux-xu.com/getting_started/)
   - konashi の基板上の LED を点灯させるまで
 
+## Usage
+`samples`フォルダ内に様々なサンプルプロジェクトを用意しています。
+- ACDriveExtension
+- ADCExtension
+- AioSample
+- BlinkLed
+- GettingStarted
+- GroveExtension
+- HardwareSample
+- I2cSample
+- JSBindingsSample
+- MultiNodeSample
+- PioDrive
+- PwmDrive
+- UartSample
+
+## Document
+リポジトリ内の`Document/html/index.html`から閲覧することが可能です。
 
 ## 開発について
 
