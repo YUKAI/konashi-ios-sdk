@@ -354,19 +354,19 @@
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
 		if (KonashiSPIModeDisable > mode || mode > KonashiSPIModeEnableCPOL1CPHA1) {
 			result = KonashiResultFailure;
-			self.spiMode = mode;
 		}
 		if (KonashiSPISpeed200K > speed || speed > KonashiSPISpeed6M) {
 			result = KonashiResultFailure;
-			self.spiSpeed = speed;
 		}
 		if (KonashiSPIBitOrderLSBFirst > bitOrder || bitOrder > KonashiSPIBitOrderMSBFirst) {
 			result = KonashiResultFailure;
-			self.spiBitOrder = bitOrder;
 		}
 	}
 	
 	if (result == KonashiResultSuccess) {
+		self.spiMode = mode;
+		self.spiSpeed = speed;
+		self.spiBitOrder = bitOrder;
 		Byte byte[4] = {mode & 0xff, bitOrder & 0xff, (speed >> 8) & 0xff, speed & 0xff};
 		NSData *data = [NSData dataWithBytes:&byte length:4];
 		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] spiConfigUUID]];
