@@ -13,15 +13,12 @@
 		32CAD1FB180421690082729D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD1F9180421690082729D /* InfoPlist.strings */; };
 		32CAD1FD180421690082729D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD1FC180421690082729D /* main.m */; };
 		32CAD201180421690082729D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD200180421690082729D /* AppDelegate.m */; };
-		32CAD203180421690082729D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD202180421690082729D /* Default.png */; };
-		32CAD205180421690082729D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD204180421690082729D /* Default@2x.png */; };
-		32CAD207180421690082729D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD206180421690082729D /* Default-568h@2x.png */; };
 		32CAD20A180421690082729D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CAD208180421690082729D /* MainStoryboard.storyboard */; };
 		32CAD20D180421690082729D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAD20C180421690082729D /* ViewController.m */; };
 		32CAD214180421940082729D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CAD213180421940082729D /* CoreBluetooth.framework */; };
 		9E61550C1B7114AB009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E61550B1B7114AB009EF270 /* Images.xcassets */; };
 		E91B713019C8F36F00BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712F19C8F36F00BC88A4 /* libKonashi.a */; };
-		E96576581BB802B200DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576571BB802B200DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576581BB802B200DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576571BB802B200DFA35D /* LaunchScreen.xib */; };
 		E98BA8141A10C4370075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8131A10C4370075F9B9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +33,6 @@
 		32CAD1FE180421690082729D /* ADCExtension-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ADCExtension-Prefix.pch"; sourceTree = "<group>"; };
 		32CAD1FF180421690082729D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32CAD200180421690082729D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		32CAD202180421690082729D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		32CAD204180421690082729D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		32CAD206180421690082729D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32CAD209180421690082729D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		32CAD20B180421690082729D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		32CAD20C180421690082729D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -118,9 +112,6 @@
 				32CAD1F9180421690082729D /* InfoPlist.strings */,
 				32CAD1FC180421690082729D /* main.m */,
 				32CAD1FE180421690082729D /* ADCExtension-Prefix.pch */,
-				32CAD202180421690082729D /* Default.png */,
-				32CAD204180421690082729D /* Default@2x.png */,
-				32CAD206180421690082729D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,7 +143,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "YUKAI Engineering";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 32CAD1E8180421690082729D /* Build configuration list for PBXProject "ADCExtension" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -177,11 +168,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CAD1FB180421690082729D /* InfoPlist.strings in Resources */,
-				32CAD203180421690082729D /* Default.png in Resources */,
-				32CAD205180421690082729D /* Default@2x.png in Resources */,
 				E96576581BB802B200DFA35D /* LaunchScreen.xib in Resources */,
 				9E61550C1B7114AB009EF270 /* Images.xcassets in Resources */,
-				32CAD207180421690082729D /* Default-568h@2x.png in Resources */,
 				32CAD20A180421690082729D /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

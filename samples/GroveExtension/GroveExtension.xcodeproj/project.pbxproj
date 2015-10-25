@@ -13,14 +13,11 @@
 		32E2C4F41802B2E100DF5810 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32E2C4F21802B2E100DF5810 /* InfoPlist.strings */; };
 		32E2C4F61802B2E100DF5810 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2C4F51802B2E100DF5810 /* main.m */; };
 		32E2C4FA1802B2E100DF5810 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2C4F91802B2E100DF5810 /* AppDelegate.m */; };
-		32E2C4FC1802B2E100DF5810 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E2C4FB1802B2E100DF5810 /* Default.png */; };
-		32E2C4FE1802B2E100DF5810 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E2C4FD1802B2E100DF5810 /* Default@2x.png */; };
-		32E2C5001802B2E100DF5810 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E2C4FF1802B2E100DF5810 /* Default-568h@2x.png */; };
 		32E2C5031802B2E100DF5810 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E2C5011802B2E100DF5810 /* MainStoryboard.storyboard */; };
 		32E2C5061802B2E100DF5810 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2C5051802B2E100DF5810 /* ViewController.m */; };
 		32E2C5121802B32700DF5810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E2C5111802B32700DF5810 /* CoreBluetooth.framework */; };
 		9E6155101B7114C7009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E61550F1B7114C7009EF270 /* Images.xcassets */; };
-		E965765E1BB8030F00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E965765D1BB8030F00DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E965765E1BB8030F00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E965765D1BB8030F00DFA35D /* LaunchScreen.xib */; };
 		E98BA81A1A10C4800075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8191A10C4800075F9B9 /* JavaScriptCore.framework */; };
 		E9E64FFE19C8F43100AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E64FFD19C8F43100AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -36,9 +33,6 @@
 		32E2C4F71802B2E100DF5810 /* GroveExtension-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroveExtension-Prefix.pch"; sourceTree = "<group>"; };
 		32E2C4F81802B2E100DF5810 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32E2C4F91802B2E100DF5810 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		32E2C4FB1802B2E100DF5810 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		32E2C4FD1802B2E100DF5810 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		32E2C4FF1802B2E100DF5810 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32E2C5021802B2E100DF5810 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		32E2C5041802B2E100DF5810 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		32E2C5051802B2E100DF5810 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -118,9 +112,6 @@
 				32E2C4F21802B2E100DF5810 /* InfoPlist.strings */,
 				32E2C4F51802B2E100DF5810 /* main.m */,
 				32E2C4F71802B2E100DF5810 /* GroveExtension-Prefix.pch */,
-				32E2C4FB1802B2E100DF5810 /* Default.png */,
-				32E2C4FD1802B2E100DF5810 /* Default@2x.png */,
-				32E2C4FF1802B2E100DF5810 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,7 +143,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "YUKAI Engineering";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 32E2C4E11802B2E100DF5810 /* Build configuration list for PBXProject "GroveExtension" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -177,11 +168,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32E2C4F41802B2E100DF5810 /* InfoPlist.strings in Resources */,
-				32E2C4FC1802B2E100DF5810 /* Default.png in Resources */,
-				32E2C4FE1802B2E100DF5810 /* Default@2x.png in Resources */,
 				E965765E1BB8030F00DFA35D /* LaunchScreen.xib in Resources */,
 				9E6155101B7114C7009EF270 /* Images.xcassets in Resources */,
-				32E2C5001802B2E100DF5810 /* Default-568h@2x.png in Resources */,
 				32E2C5031802B2E100DF5810 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

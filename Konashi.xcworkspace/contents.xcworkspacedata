@@ -38,6 +38,9 @@
       location = "group:samples/PwmDrive/PwmDrive.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:samples/SPISample/SPISample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:samples/UartSample/UartSample.xcodeproj">
    </FileRef>
    <FileRef

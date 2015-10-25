@@ -21,5 +21,7 @@
 @property (nonatomic, copy) void (^i2cReadCompleteHandler)(NSData *data);
 @property (nonatomic, copy) void (^batteryLevelDidUpdateHandler)(int value);
 @property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
+@property (nonatomic, copy) void (^spiWriteCompleteHandler)();
+@property (nonatomic, copy) void (^spiReadCompleteHandler)(NSData *data);
 
 @end

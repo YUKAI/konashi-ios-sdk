@@ -450,6 +450,26 @@
 	return self.handlerManager.signalStrengthDidUpdateHandler;
 }
 
+- (void)setSpiWriteCompleteHandler:(void (^)())spiWriteCompleteHandler
+{
+	self.handlerManager.spiWriteCompleteHandler = spiWriteCompleteHandler;
+}
+
+- (void (^)())spiWriteCompleteHandler
+{
+	return self.handlerManager.spiWriteCompleteHandler;
+}
+
+- (void)setSpiReadCompleteHandler:(void (^)(NSData *))spiReadCompleteHandler
+{
+	self.handlerManager.spiReadCompleteHandler = spiReadCompleteHandler;
+}
+
+- (void (^)(NSData *))spiReadCompleteHandler
+{
+	return self.handlerManager.spiReadCompleteHandler;
+}
+
 #pragma mark - Depricated methods
 
 - (BOOL) _isConnected
@@ -512,6 +532,28 @@
 	unsigned char data;
 	[d getBytes:&data length:1];
 	return data;
+}
+
+#pragma mark - SPI
+
++ (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder
+{
+	return [[Konashi shared].activePeripheral spiMode:mode speed:speed bitOrder:bitOrder];
+}
+
++ (KonashiResult)spiWrite:(NSData *)data
+{
+	return [[Konashi shared].activePeripheral spiWrite:data];
+}
+
++ (KonashiResult)spiReadRequest
+{
+	return [[Konashi shared].activePeripheral spiReadRequest];
+}
+
++ (NSData *)spiReadData
+{
+	return [[Konashi shared].activePeripheral spiReadData];
 }
 
 #pragma mark - Hardware

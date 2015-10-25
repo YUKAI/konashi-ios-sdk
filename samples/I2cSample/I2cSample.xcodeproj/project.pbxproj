@@ -13,17 +13,11 @@
 		0823259E168AAAE200586AE2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0823259C168AAAE200586AE2 /* InfoPlist.strings */; };
 		082325A0168AAAE200586AE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0823259F168AAAE200586AE2 /* main.m */; };
 		082325A4168AAAE200586AE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 082325A3168AAAE200586AE2 /* AppDelegate.m */; };
-		082325A6168AAAE200586AE2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325A5168AAAE200586AE2 /* Default.png */; };
-		082325A8168AAAE200586AE2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325A7168AAAE200586AE2 /* Default@2x.png */; };
-		082325AA168AAAE200586AE2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325A9168AAAE200586AE2 /* Default-568h@2x.png */; };
 		082325AD168AAAE200586AE2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082325AB168AAAE200586AE2 /* MainStoryboard.storyboard */; };
 		082325B0168AAAE200586AE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082325AF168AAAE200586AE2 /* ViewController.m */; };
-		082325B9168AAB0B00586AE2 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B6168AAB0B00586AE2 /* icon-72.png */; };
-		082325BA168AAB0B00586AE2 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B7168AAB0B00586AE2 /* icon.png */; };
-		082325BB168AAB0B00586AE2 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 082325B8168AAB0B00586AE2 /* icon@2x.png */; };
 		082325C6168AABA600586AE2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082325C5168AABA600586AE2 /* CoreBluetooth.framework */; };
 		9E6155141B7114E9009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155131B7114E9009EF270 /* Images.xcassets */; };
-		E96576621BB8034700DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576611BB8034700DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576621BB8034700DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576611BB8034700DFA35D /* LaunchScreen.xib */; };
 		E98BA81E1A10C4960075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA81D1A10C4960075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500219C8F47000AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500119C8F47000AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -39,15 +33,9 @@
 		082325A1168AAAE200586AE2 /* I2cSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "I2cSample-Prefix.pch"; sourceTree = "<group>"; };
 		082325A2168AAAE200586AE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		082325A3168AAAE200586AE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		082325A5168AAAE200586AE2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		082325A7168AAAE200586AE2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		082325A9168AAAE200586AE2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		082325AC168AAAE200586AE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		082325AE168AAAE200586AE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		082325AF168AAAE200586AE2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		082325B6168AAB0B00586AE2 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
-		082325B7168AAB0B00586AE2 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		082325B8168AAB0B00586AE2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		082325C5168AABA600586AE2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9E6155131B7114E9009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E96576611BB8034700DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -120,16 +108,10 @@
 		0823259A168AAAE200586AE2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				082325B6168AAB0B00586AE2 /* icon-72.png */,
-				082325B7168AAB0B00586AE2 /* icon.png */,
-				082325B8168AAB0B00586AE2 /* icon@2x.png */,
 				0823259B168AAAE200586AE2 /* I2cSample-Info.plist */,
 				0823259C168AAAE200586AE2 /* InfoPlist.strings */,
 				0823259F168AAAE200586AE2 /* main.m */,
 				082325A1168AAAE200586AE2 /* I2cSample-Prefix.pch */,
-				082325A5168AAAE200586AE2 /* Default.png */,
-				082325A7168AAAE200586AE2 /* Default@2x.png */,
-				082325A9168AAAE200586AE2 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,7 +143,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Yukai Engineering";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 08232589168AAAE200586AE2 /* Build configuration list for PBXProject "I2cSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,13 +170,7 @@
 				E96576621BB8034700DFA35D /* LaunchScreen.xib in Resources */,
 				9E6155141B7114E9009EF270 /* Images.xcassets in Resources */,
 				0823259E168AAAE200586AE2 /* InfoPlist.strings in Resources */,
-				082325A6168AAAE200586AE2 /* Default.png in Resources */,
-				082325A8168AAAE200586AE2 /* Default@2x.png in Resources */,
-				082325AA168AAAE200586AE2 /* Default-568h@2x.png in Resources */,
 				082325AD168AAAE200586AE2 /* MainStoryboard.storyboard in Resources */,
-				082325B9168AAB0B00586AE2 /* icon-72.png in Resources */,
-				082325BA168AAB0B00586AE2 /* icon.png in Resources */,
-				082325BB168AAB0B00586AE2 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

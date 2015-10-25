@@ -358,7 +358,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Akira Matsuda";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = E91E548919C8F2750071D7C9 /* Build configuration list for PBXProject "Konashi" */;
 			compatibilityVersion = "Xcode 3.2";

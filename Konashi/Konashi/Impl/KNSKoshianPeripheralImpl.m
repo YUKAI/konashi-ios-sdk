@@ -11,6 +11,8 @@
 
 @interface KNSKoshianPeripheralImpl ()
 
+@property (nonatomic, strong) NSData *spiReadData;
+
 @end
 
 @implementation KNSKoshianPeripheralImpl
@@ -183,6 +185,26 @@
 	return kns_CreateUUIDFromString(@"229B3013-03FB-40DA-98A7-B0DEF65C2D4B", uuid);
 }
 
+// SPI
+
++ (CBUUID *)spiDataUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"229b3017-03fb-40da-98a7-b0def65c2d4b", uuid);
+}
+
++ (CBUUID *)spiNotificationUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"229b3018-03fb-40da-98a7-b0def65c2d4b", uuid);
+}
+
++ (CBUUID *)spiConfigUUID
+{
+	static CBUUID *uuid;
+	return kns_CreateUUIDFromString(@"229b3016-03fb-40da-98a7-b0def65c2d4b", uuid);
+}
+
 // Hardware
 + (CBUUID *)hardwareResetUUID
 {
@@ -214,6 +236,8 @@
 	return kns_CreateUUIDFromString(@"8e922cce-eec6-47b0-b46d-09563a8da638", uuid);
 }
 
+#pragma mark - UART
+
 - (KonashiResult) uartWriteData:(NSData *)data
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
@@ -239,8 +263,6 @@
 		return KonashiResultFailure;
 	}
 }
-
-#pragma mark - UART
 
 - (KonashiResult) uartMode:(KonashiUartMode)mode baudrate:(KonashiUartBaudrate)baudrate
 {
@@ -312,8 +334,6 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventUartRxCompleteNotification object:nil];
 }
 
-#pragma mark -
-
 - (NSInteger)uartDataMaxLengthByRevisionString:(NSString *)revisionString
 {
 	NSInteger dataLength = 1;
@@ -323,6 +343,98 @@
 	}
 	
 	return dataLength;
+}
+
+#pragma mark - SPI
+
+- (KonashiResult)spiMode:(KonashiSPIMode)mode speed:(KonashiSPISpeed)speed bitOrder:(KonashiSPIBitOrder)bitOrder
+{
+	KonashiResult result = KonashiResultSuccess;
+	
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
+		if (KonashiSPIModeDisable > mode || mode > KonashiSPIModeEnableCPOL1CPHA1) {
+			result = KonashiResultFailure;
+		}
+		if (KonashiSPISpeed200K > speed || speed > KonashiSPISpeed6M) {
+			result = KonashiResultFailure;
+		}
+		if (KonashiSPIBitOrderLSBFirst > bitOrder || bitOrder > KonashiSPIBitOrderMSBFirst) {
+			result = KonashiResultFailure;
+		}
+	}
+	
+	if (result == KonashiResultSuccess) {
+		self.spiMode = mode;
+		self.spiSpeed = speed;
+		self.spiBitOrder = bitOrder;
+		Byte byte[4] = {mode & 0xff, bitOrder & 0xff, (speed >> 8) & 0xff, speed & 0xff};
+		NSData *data = [NSData dataWithBytes:&byte length:4];
+		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] spiConfigUUID]];
+	}
+	
+	return result;
+}
+
+- (KonashiResult)spiWrite:(NSData *)data
+{
+	KonashiResult result = KonashiResultFailure;
+	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && self.spiMode != KonashiSPIModeDisable) {
+		result = KonashiResultSuccess;
+		[self writeData:data serviceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] spiDataUUID]];
+	}
+	
+	return result;
+}
+
+- (KonashiResult)spiReadRequest
+{
+	KonashiResult result = KonashiResultFailure;
+	if (self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
+		result = KonashiResultSuccess;
+		[self readDataWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] spiDataUUID]];
+	}
+	
+	return result;
+}
+
+- (void)spiDataDidUpdate:(NSData *)data
+{
+	self.spiReadData = data;
+	if (self.handlerManager.spiReadCompleteHandler) {
+		self.handlerManager.spiReadCompleteHandler(self.spiReadData);
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventSPIReadCompleteNotification object:nil];
+}
+
+- (void)enableSPINotification
+{
+	[self notificationWithServiceUUID:[[self class] serviceUUID] characteristicUUID:[[self class] spiNotificationUUID] on:YES];
+}
+
+#pragma mark - 
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
+	[super peripheral:peripheral didDiscoverCharacteristicsForService:service error:error];
+	if (!error) {
+		[self enableSPINotification];
+	}
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+	[super peripheral:peripheral didUpdateValueForCharacteristic:characteristic error:error];
+	if (!error) {
+		if ([characteristic.UUID kns_isEqualToUUID:[[self class] spiDataUUID]]) {
+			[self spiDataDidUpdate:characteristic.value];
+		}
+		else if ([characteristic.UUID kns_isEqualToUUID:[[self class] spiNotificationUUID]]) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventSPIWriteCompleteNotification object:nil];
+			if (self.handlerManager.spiWriteCompleteHandler) {
+				self.handlerManager.spiWriteCompleteHandler();
+			}
+		}
+	}
 }
 
 @end
