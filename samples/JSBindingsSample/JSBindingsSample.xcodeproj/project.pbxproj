@@ -257,7 +257,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Akira Matsuda";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 				TargetAttributes = {
 					E987D43519F6205F00BDC6CF = {
 						CreatedOnToolsVersion = 6.1;

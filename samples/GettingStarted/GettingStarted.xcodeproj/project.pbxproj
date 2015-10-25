@@ -16,7 +16,7 @@
 		9E6155031B710669009EF270 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155021B710669009EF270 /* CoreBluetooth.framework */; };
 		9E6155051B710677009EF270 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155041B710677009EF270 /* JavaScriptCore.framework */; };
 		9E6155071B71068E009EF270 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6155061B71068E009EF270 /* libKonashi.a */; };
-		E96576541BB8023400DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576531BB8023400DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576541BB8023400DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576531BB8023400DFA35D /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,7 +128,7 @@
 		9E6154D11B710653009EF270 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Yukai Engineering Inc.";
 				TargetAttributes = {
 					9E6154D81B710653009EF270 = {
@@ -222,6 +222,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -288,14 +289,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi-emsmolqwyjtzdcgmvmzonmaksanf/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "YukaiEngineeringInc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../** $(BUILT_PRODUCTS_DIR)/**";
 			};
@@ -308,14 +307,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Konashi-emsmolqwyjtzdcgmvmzonmaksanf/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "YukaiEngineeringInc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../** $(BUILT_PRODUCTS_DIR)/**";
 			};

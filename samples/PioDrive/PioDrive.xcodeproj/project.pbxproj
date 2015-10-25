@@ -13,17 +13,11 @@
 		085A30FF1685EC0A00A75E66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 085A30FD1685EC0A00A75E66 /* InfoPlist.strings */; };
 		085A31011685EC0A00A75E66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 085A31001685EC0A00A75E66 /* main.m */; };
 		085A31051685EC0A00A75E66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 085A31041685EC0A00A75E66 /* AppDelegate.m */; };
-		085A31071685EC0A00A75E66 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A31061685EC0A00A75E66 /* Default.png */; };
-		085A31091685EC0A00A75E66 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A31081685EC0A00A75E66 /* Default@2x.png */; };
-		085A310B1685EC0A00A75E66 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A310A1685EC0A00A75E66 /* Default-568h@2x.png */; };
 		085A310E1685EC0A00A75E66 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 085A310C1685EC0A00A75E66 /* MainStoryboard.storyboard */; };
 		085A31111685EC0A00A75E66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 085A31101685EC0A00A75E66 /* ViewController.m */; };
 		085A312C1686FEA400A75E66 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085A312B1686FEA400A75E66 /* CoreBluetooth.framework */; };
-		085A314516873D0000A75E66 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314416873D0000A75E66 /* icon-72.png */; };
-		085A314716873D2E00A75E66 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314616873D2E00A75E66 /* icon.png */; };
-		085A314916873D4500A75E66 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085A314816873D4500A75E66 /* icon@2x.png */; };
 		9E6155161B7114F6009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155151B7114F6009EF270 /* Images.xcassets */; };
-		E96576641BB8036B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576631BB8036B00DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576641BB8036B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576631BB8036B00DFA35D /* LaunchScreen.xib */; };
 		E98BA8201A10C49F0075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA81F1A10C49F0075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500419C8F49600AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500319C8F49600AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -39,16 +33,10 @@
 		085A31021685EC0A00A75E66 /* PioDrive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PioDrive-Prefix.pch"; sourceTree = "<group>"; };
 		085A31031685EC0A00A75E66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		085A31041685EC0A00A75E66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		085A31061685EC0A00A75E66 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		085A31081685EC0A00A75E66 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		085A310A1685EC0A00A75E66 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		085A310D1685EC0A00A75E66 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		085A310F1685EC0A00A75E66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		085A31101685EC0A00A75E66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		085A312B1686FEA400A75E66 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		085A314416873D0000A75E66 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
-		085A314616873D2E00A75E66 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		085A314816873D4500A75E66 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9E6155151B7114F6009EF270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E96576631BB8036B00DFA35D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E98BA81F1A10C49F0075F9B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -120,16 +108,10 @@
 		085A30FB1685EC0A00A75E66 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				085A314816873D4500A75E66 /* icon@2x.png */,
-				085A314616873D2E00A75E66 /* icon.png */,
-				085A314416873D0000A75E66 /* icon-72.png */,
 				085A30FC1685EC0A00A75E66 /* PioDrive-Info.plist */,
 				085A30FD1685EC0A00A75E66 /* InfoPlist.strings */,
 				085A31001685EC0A00A75E66 /* main.m */,
 				085A31021685EC0A00A75E66 /* PioDrive-Prefix.pch */,
-				085A31061685EC0A00A75E66 /* Default.png */,
-				085A31081685EC0A00A75E66 /* Default@2x.png */,
-				085A310A1685EC0A00A75E66 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,7 +143,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Yukai Engineering";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 085A30EA1685EC0900A75E66 /* Build configuration list for PBXProject "PioDrive" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,13 +170,7 @@
 				E96576641BB8036B00DFA35D /* LaunchScreen.xib in Resources */,
 				9E6155161B7114F6009EF270 /* Images.xcassets in Resources */,
 				085A30FF1685EC0A00A75E66 /* InfoPlist.strings in Resources */,
-				085A31071685EC0A00A75E66 /* Default.png in Resources */,
-				085A31091685EC0A00A75E66 /* Default@2x.png in Resources */,
-				085A310B1685EC0A00A75E66 /* Default-568h@2x.png in Resources */,
 				085A310E1685EC0A00A75E66 /* MainStoryboard.storyboard in Resources */,
-				085A314516873D0000A75E66 /* icon-72.png in Resources */,
-				085A314716873D2E00A75E66 /* icon.png in Resources */,
-				085A314916873D4500A75E66 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

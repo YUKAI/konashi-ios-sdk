@@ -13,15 +13,12 @@
 		32CC971F1802D8340038AB97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32CC971D1802D8340038AB97 /* InfoPlist.strings */; };
 		32CC97211802D8340038AB97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97201802D8340038AB97 /* main.m */; };
 		32CC97251802D8340038AB97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97241802D8340038AB97 /* AppDelegate.m */; };
-		32CC97271802D8340038AB97 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC97261802D8340038AB97 /* Default.png */; };
-		32CC97291802D8340038AB97 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC97281802D8340038AB97 /* Default@2x.png */; };
-		32CC972B1802D8340038AB97 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC972A1802D8340038AB97 /* Default-568h@2x.png */; };
 		32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CC972C1802D8340038AB97 /* MainStoryboard.storyboard */; };
 		32CC97311802D8340038AB97 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC97301802D8340038AB97 /* ViewController.m */; };
 		32CC97401802D85A0038AB97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CC973F1802D85A0038AB97 /* CoreBluetooth.framework */; };
 		9E61550A1B71149C009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155091B71149C009EF270 /* Images.xcassets */; };
 		E91B712E19C8F2F100BC88A4 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E91B712D19C8F2F100BC88A4 /* libKonashi.a */; };
-		E96576561BB8027B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576551BB8027B00DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576561BB8027B00DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576551BB8027B00DFA35D /* LaunchScreen.xib */; };
 		E98BA8121A10C4200075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8111A10C4200075F9B9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +33,6 @@
 		32CC97221802D8340038AB97 /* ACDriveExtension-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACDriveExtension-Prefix.pch"; sourceTree = "<group>"; };
 		32CC97231802D8340038AB97 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32CC97241802D8340038AB97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		32CC97261802D8340038AB97 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		32CC97281802D8340038AB97 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		32CC972A1802D8340038AB97 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32CC972D1802D8340038AB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		32CC972F1802D8340038AB97 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		32CC97301802D8340038AB97 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -118,9 +112,6 @@
 				32CC971D1802D8340038AB97 /* InfoPlist.strings */,
 				32CC97201802D8340038AB97 /* main.m */,
 				32CC97221802D8340038AB97 /* ACDriveExtension-Prefix.pch */,
-				32CC97261802D8340038AB97 /* Default.png */,
-				32CC97281802D8340038AB97 /* Default@2x.png */,
-				32CC972A1802D8340038AB97 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,8 +142,8 @@
 		32CC97091802D8340038AB97 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "YUKAI Engineering";
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 32CC970C1802D8340038AB97 /* Build configuration list for PBXProject "ACDriveExtension" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -177,11 +168,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CC971F1802D8340038AB97 /* InfoPlist.strings in Resources */,
-				32CC97271802D8340038AB97 /* Default.png in Resources */,
-				32CC97291802D8340038AB97 /* Default@2x.png in Resources */,
 				E96576561BB8027B00DFA35D /* LaunchScreen.xib in Resources */,
 				9E61550A1B71149C009EF270 /* Images.xcassets in Resources */,
-				32CC972B1802D8340038AB97 /* Default-568h@2x.png in Resources */,
 				32CC972E1802D8340038AB97 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +223,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -292,6 +281,7 @@
 					"-all_load",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ux-xu.konashi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(PROJECT_DIR)/../../**";
 				WRAPPER_EXTENSION = app;
@@ -313,6 +303,7 @@
 					"-all_load",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ux-xu.konashi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(PROJECT_DIR)/../../**";
 				WRAPPER_EXTENSION = app;

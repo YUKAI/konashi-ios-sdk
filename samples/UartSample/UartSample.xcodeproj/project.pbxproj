@@ -13,17 +13,11 @@
 		08284B9116AEF7DA00693B45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08284B8F16AEF7DA00693B45 /* InfoPlist.strings */; };
 		08284B9316AEF7DA00693B45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08284B9216AEF7DA00693B45 /* main.m */; };
 		08284B9716AEF7DA00693B45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08284B9616AEF7DA00693B45 /* AppDelegate.m */; };
-		08284B9916AEF7DA00693B45 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284B9816AEF7DA00693B45 /* Default.png */; };
-		08284B9B16AEF7DA00693B45 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284B9A16AEF7DA00693B45 /* Default@2x.png */; };
-		08284B9D16AEF7DA00693B45 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284B9C16AEF7DA00693B45 /* Default-568h@2x.png */; };
 		08284BA016AEF7DA00693B45 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08284B9E16AEF7DA00693B45 /* MainStoryboard.storyboard */; };
 		08284BA316AEF7DA00693B45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08284BA216AEF7DA00693B45 /* ViewController.m */; };
 		08284BB116AEF80900693B45 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08284BB016AEF80900693B45 /* CoreBluetooth.framework */; };
-		08284BB716AEF8CB00693B45 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB416AEF8CB00693B45 /* icon-72.png */; };
-		08284BB816AEF8CB00693B45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB516AEF8CB00693B45 /* icon.png */; };
-		08284BB916AEF8CB00693B45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08284BB616AEF8CB00693B45 /* icon@2x.png */; };
 		9E61551A1B711511009EF270 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E6155191B711511009EF270 /* Images.xcassets */; };
-		E96576681BB8039400DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576671BB8039400DFA35D /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		E96576681BB8039400DFA35D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96576671BB8039400DFA35D /* LaunchScreen.xib */; };
 		E98BA8241A10C4BB0075F9B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BA8231A10C4BB0075F9B9 /* JavaScriptCore.framework */; };
 		E9E6500A19C8F4F800AC0F17 /* libKonashi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E6500919C8F4F800AC0F17 /* libKonashi.a */; };
 /* End PBXBuildFile section */
@@ -161,7 +155,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Yukai Engineering";
+				ORGANIZATIONNAME = "YUKAI Engineering.Inc";
 			};
 			buildConfigurationList = 08284B7C16AEF7DA00693B45 /* Build configuration list for PBXProject "UartSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,13 +182,7 @@
 				E96576681BB8039400DFA35D /* LaunchScreen.xib in Resources */,
 				9E61551A1B711511009EF270 /* Images.xcassets in Resources */,
 				08284B9116AEF7DA00693B45 /* InfoPlist.strings in Resources */,
-				08284B9916AEF7DA00693B45 /* Default.png in Resources */,
-				08284B9B16AEF7DA00693B45 /* Default@2x.png in Resources */,
-				08284B9D16AEF7DA00693B45 /* Default-568h@2x.png in Resources */,
 				08284BA016AEF7DA00693B45 /* MainStoryboard.storyboard in Resources */,
-				08284BB716AEF8CB00693B45 /* icon-72.png in Resources */,
-				08284BB816AEF8CB00693B45 /* icon.png in Resources */,
-				08284BB916AEF8CB00693B45 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
