@@ -352,7 +352,7 @@
 	KonashiResult result = KonashiResultSuccess;
 	
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected) {
-		if (KonashiSPIModeDisable > mode || mode > KonashiSPIModeEnableCPOL1CPHA0) {
+		if (KonashiSPIModeDisable > mode || mode > KonashiSPIModeEnableCPOL1CPHA1) {
 			result = KonashiResultFailure;
 			self.spiMode = mode;
 		}
