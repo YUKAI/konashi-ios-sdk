@@ -37,6 +37,8 @@ static NSString *const JS_KONASHI_EVENT_UART_RX_COMPLETE = @"uartRxComplete";
 static NSString *const JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL = @"updateBatteryLevel";
 static NSString *const JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH = @"updateSignalStrength";
 static NSString *const JS_KONASHI_EVENT_START_DISCOVERY = @"startDiscovery";
+static NSString *const JS_KONASHI_EVENT_SPI_WRITE_COMPLETE = @"spiWriteComplete";
+static NSString *const JS_KONASHI_EVENT_SPI_READ_COMPLETE = @"spiReadComplete";
 
 - (instancetype)init
 {
@@ -124,21 +126,40 @@ static NSString *const JS_KONASHI_EVENT_START_DISCOVERY = @"startDiscovery";
 		vm.context[@"Konashi"][@"KOSHIAN_1_0_UART_MAX_DATA_LENGTH"] = @(1);
 		vm.context[@"Konashi"][@"KOSHIAN_2_0_UART_MAX_DATA_LENGTH"] = @(18);
 		
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_200K"] = @(KonashiSPISpeed200K);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_500K"] = @(KonashiSPISpeed500K);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_1M"] = @(KonashiSPISpeed1M);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_2M"] = @(KonashiSPISpeed2M);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_3M"] = @(KonashiSPISpeed3M);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_SPEED_6M"] = @(KonashiSPISpeed6M);
+		
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_MODE_CPOL0_CPHA0"] = @(KonashiSPIModeEnableCPOL0CPHA0);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_MODE_CPOL0_CPHA1"] = @(KonashiSPIModeEnableCPOL0CPHA1);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_MODE_CPOL1_CPHA0"] = @(KonashiSPIModeEnableCPOL1CPHA0);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_MODE_CPOL1_CPHA1"] = @(KonashiSPIModeEnableCPOL1CPHA1);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_MODE_DISABLE"] = @(KonashiSPIModeDisable);
+		
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_BIT_ORDER_LSB_FIRST"] = @(KonashiSPIBitOrderLSBFirst);
+		vm.context[@"Konashi"][@"KOSHIAN_SPI_BIT_ORDER_MSB_FIRST"] = @(KonashiSPIBitOrderMSBFirst);
+		
 		NSDictionary *events = @{KonashiEventCentralManagerPowerOnNotification : JS_KONASHI_EVENT_CENTRAL_MANAGER_POWERED_ON,
-								 KonashiEventPeripheralNotFoundNotification : JS_KONASHI_EVENT_PERIPHERAL_NOT_FOUND,
-								 KonashiEventConnectedNotification : JS_KONASHI_EVENT_CONNECTED,
-								 KonashiEventDisconnectedNotification : JS_KONASHI_EVENT_DISCONNECTED,
-								 KonashiEventReadyToUseNotification : JS_KONASHI_EVENT_READY,
-								 KonashiEventDigitalIODidUpdateNotification : JS_KONASHI_EVENT_UPDATE_PIO_INPUT,
-								 KonashiEventAnalogIODidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE,
-								 KonashiEventAnalogIO0DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0,
-								 KonashiEventAnalogIO1DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1,
-								 KonashiEventAnalogIO2DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2,
-								 KonashiEventI2CReadCompleteNotification : JS_KONASHI_EVENT_I2C_READ_COMPLETE,
-								 KonashiEventUartRxCompleteNotification : JS_KONASHI_EVENT_UART_RX_COMPLETE,
-								 KonashiEventBatteryLevelDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL,
-								 KonashiEventSignalStrengthDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH,
-								 KonashiEventStartDiscoveryNotification : JS_KONASHI_EVENT_START_DISCOVERY};
+							KonashiEventPeripheralNotFoundNotification : JS_KONASHI_EVENT_PERIPHERAL_NOT_FOUND,
+							KonashiEventConnectedNotification : JS_KONASHI_EVENT_CONNECTED,
+							KonashiEventDisconnectedNotification : JS_KONASHI_EVENT_DISCONNECTED,
+							KonashiEventReadyToUseNotification : JS_KONASHI_EVENT_READY,
+							KonashiEventDigitalIODidUpdateNotification : JS_KONASHI_EVENT_UPDATE_PIO_INPUT,
+							KonashiEventAnalogIODidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE,
+							KonashiEventAnalogIO0DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO0,
+							KonashiEventAnalogIO1DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO1,
+							KonashiEventAnalogIO2DidUpdateNotification : JS_KONASHI_EVENT_UPDATE_ANALOG_VALUE_AIO2,
+							KonashiEventI2CReadCompleteNotification : JS_KONASHI_EVENT_I2C_READ_COMPLETE,
+							KonashiEventUartRxCompleteNotification : JS_KONASHI_EVENT_UART_RX_COMPLETE,
+							KonashiEventBatteryLevelDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_BATTERY_LEVEL,
+							KonashiEventSignalStrengthDidUpdateNotification : JS_KONASHI_EVENT_UPDATE_SIGNAL_STRENGTH,
+							KonashiEventStartDiscoveryNotification : JS_KONASHI_EVENT_START_DISCOVERY,
+							KonashiEventSPIWriteCompleteNotification : JS_KONASHI_EVENT_SPI_WRITE_COMPLETE,
+							KonashiEventSPIReadCompleteNotification : JS_KONASHI_EVENT_SPI_READ_COMPLETE
+							};
 		
 		[events enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 			[[NSNotificationCenter defaultCenter] addObserverForName:key object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
