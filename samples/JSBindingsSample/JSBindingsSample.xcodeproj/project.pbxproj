@@ -87,9 +87,9 @@
 		E987D42D19F6205F00BDC6CF = {
 			isa = PBXGroup;
 			children = (
-				E987D47619F6224100BDC6CF /* Frameworks */,
 				E987D43819F6205F00BDC6CF /* JSBindingsSample */,
 				E987D45219F6205F00BDC6CF /* JSBindingsSampleTests */,
+				E987D47619F6224100BDC6CF /* Frameworks */,
 				E987D43719F6205F00BDC6CF /* Products */,
 			);
 			sourceTree = "<group>";
