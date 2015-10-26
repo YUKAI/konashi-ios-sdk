@@ -21,8 +21,12 @@ Physical computing toolkit for smartphones and tablets.
 # Installation
 ## Manually
 ご自身のXcodeプロジェクトに手動でライブラリを追加するには次の手順を行う必要があります。
+
 1. `Konashi`フォルダ以下のファイルをXcodeのプロジェクトへコピーする。
-- `Linked Frameworks and Libraries`に`CoreBluetooth.framework`を追加する。
+2. `Linked Frameworks and Libraries`に`CoreBluetooth.framework`と`JavaScriptCore.framework`を追加する。
+3. Other Linker Flagsに`-all_load`と`-ObjC`を追加する。
+
+以上です。
 
 ## Using CocoaPods
 konashi-ios-sdk は CocoaPodsを用いてインストールすることが可能です。
