@@ -150,13 +150,7 @@
 
 + (KonashiResult) disconnect
 {
-	if([Konashi shared].activePeripheral && [Konashi shared].activePeripheral.state == CBPeripheralStateConnected){
-		[[KNSCentralManager sharedInstance] cancelPeripheralConnection:[Konashi shared].activePeripheral.peripheral];
-		return KonashiResultSuccess;
-	}
-	else{
-		return KonashiResultFailure;
-	}
+	return [[Konashi shared].activePeripheral disconnect];
 }
 
 + (BOOL) isConnected
