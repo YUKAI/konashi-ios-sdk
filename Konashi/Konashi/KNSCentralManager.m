@@ -48,7 +48,7 @@ static KNSCentralManager *c;
 	dispatch_once(&onceToken, ^{
 		c = [KNSCentralManager new];
 	});
-	
+
 	return c;
 }
 
@@ -61,7 +61,7 @@ static KNSCentralManager *c;
 		peripherals_ = [NSMutableSet new];
 		activePeripherals_ = [NSMutableSet new];
 	}
-	
+
 	return self;
 }
 
@@ -75,21 +75,21 @@ static KNSCentralManager *c;
 	return [peripherals_ copy];
 }
 
-#pragma mark - 
+#pragma mark -
 
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks
+- (void)discover:(void (^)(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop))discoverBlocks
 {
 	[self discover:discoverBlocks completionBlock:^(NSSet *peripherals, BOOL timeout) {
 	} timeoutInterval:KonashiFindTimeoutInterval];
 }
 
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
+- (void)discover:(void (^)(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
     KNS_LOG(@"discover");
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventStartDiscoveryNotification object:nil];
 	if (self.discovering == NO) {
 		[peripherals_ removeAllObjects];
-		
+
 		self.discovering = YES;
 		NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:timeoutInterval target:self selector:@selector(stopDiscover:) userInfo:@{@"callback":[timeoutBlock copy]} repeats:NO];
 
@@ -103,13 +103,13 @@ static KNSCentralManager *c;
 			__weak typeof(self) bself = self;
 			[self.handler setDidDiscoverPeripheralBlock:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
 				BOOL stop = NO;
-				discoverBlocks(peripheral, &stop);
+				discoverBlocks(peripheral, advertisementData, &stop);
 				if (stop == YES) {
 					[bself stopDiscover:t];
 				}
-			}];			
+			}];
 		});
-		
+
 		if (self.state == CBCentralManagerStatePoweredOn) {
 			[self scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@(NO)}];
 		}
@@ -140,7 +140,7 @@ static KNSCentralManager *c;
 	[activePeripherals_ addObject:p];
 	[self connectPeripheral:peripheral options:0];
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventConnectingNotification object:@{KonashiPeripheralKey:p}];
-	
+
 	return p;
 }
 
@@ -153,7 +153,7 @@ static KNSCentralManager *c;
 			break;
 		}
 	}
-	
+
 	return result;
 }
 
@@ -162,9 +162,10 @@ static KNSCentralManager *c;
 	if (self.state != CBCentralManagerStatePoweredOn) {
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
 	}
-	__weak NSString *n = name;
-	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
-		if ([peripheral.name isEqualToString:n]) {
+	NSString *n = name;
+	[self discover:^(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop) {
+        NSLog(@"p.name = %@, name = %@", [peripheral.name dataUsingEncoding:NSUTF8StringEncoding], [n dataUsingEncoding:NSUTF8StringEncoding]);
+        if ([[advertisementData objectForKey:CBAdvertisementDataLocalNameKey] isEqualToString:n]) {
 			connectedHandler([self connectWithPeripheral:peripheral]);
 			*stop = YES;
 		}
@@ -216,7 +217,7 @@ static KNSCentralManager *c;
 	if (self.handler.willRestoreStateBlock) {
 		self.handler.willRestoreStateBlock(central, dict);
 	}
-	
+
 	if (self.willRestoreStateBlock) {
 		self.willRestoreStateBlock(central, dict);
 	}
@@ -227,7 +228,7 @@ static KNSCentralManager *c;
 	if (self.handler.didRetrievePeripheralsBlock) {
 		self.handler.didRetrievePeripheralsBlock(central, peripherals);
 	}
-	
+
 	if (self.didRetrievePeripheralsBlock) {
 		self.didRetrievePeripheralsBlock(central, peripherals);
 	}
@@ -238,7 +239,7 @@ static KNSCentralManager *c;
 	if (self.handler.didRetrieveConnectedPeripheralsBlock) {
 		self.handler.didRetrieveConnectedPeripheralsBlock(central, peripherals);
 	}
-	
+
 	if (self.didRetrieveConnectedPeripheralsBlock) {
 		self.didRetrieveConnectedPeripheralsBlock(central, peripherals);
 	}
@@ -249,7 +250,7 @@ static KNSCentralManager *c;
 	if (self.handler.didFailToConnectPeripheralBlock) {
 		self.handler.didFailToConnectPeripheralBlock(central, peripheral, error);
 	}
-	
+
 	if (self.didFailToConnectPeripheralBlock) {
 		self.didFailToConnectPeripheralBlock(central, peripheral, error);
 	}
@@ -260,11 +261,11 @@ static KNSCentralManager *c;
 {
 	KNS_LOG(@"New UUID, adding:%@", peripheral.name);
 	[peripherals_ addObject:peripheral];
-	
+
 	if (self.handler.didDiscoverPeripheralBlock) {
 		self.handler.didDiscoverPeripheralBlock(central, peripheral, advertisementData, RSSI);
 	}
-	
+
 	if (self.didDiscoverPeripheralBlock) {
 		self.didDiscoverPeripheralBlock(central, peripheral, advertisementData, RSSI);
 	}
@@ -297,13 +298,13 @@ static KNSCentralManager *c;
 	if (self.handler.didConnectPeripheral) {
 		self.handler.didConnectPeripheral(central, peripheral);
 	}
-	
+
 	KNSPeripheral *p = [self findActivePeripheralByPeripheral:peripheral];
 	[p.peripheral kns_discoverAllServices];
 	if (self.didConnectPeripheral) {
 		self.didConnectPeripheral(central, p);
 	}
-	
+
 	[connectedPeripherals_ addObject:peripheral];
 }
 
