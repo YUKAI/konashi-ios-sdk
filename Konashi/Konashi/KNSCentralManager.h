@@ -25,7 +25,7 @@
 @property (nonatomic, copy) void (^didConnectPeripheral)(CBCentralManager *central, KNSPeripheral *peripheral);
 
 + (instancetype)sharedInstance;
-- (void)discover:(void (^)(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
+- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval;
 - (void)connectWithName:(NSString*)name timeout:(NSTimeInterval)timeout connectedHandler:(void (^)(KNSPeripheral *connectedPeripheral))connectedHandler;
 - (KNSPeripheral *)connectWithPeripheral:(CBPeripheral *)peripheral;
 - (void)connectKonashiPeripheral:(KNSPeripheral *)peripheral;
