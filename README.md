@@ -5,6 +5,8 @@ Physical computing toolkit for smartphones and tablets.
 [![License](https://img.shields.io/cocoapods/l/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 [![Platform](https://img.shields.io/cocoapods/p/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 
+※ バグ改善や要望以外の質問については `konashi`**AT**`ux-xu.com` 宛にご連絡下さい。
+
 [http://konashi.ux-xu.com](http://konashi.ux-xu.com)<br/>
 [http://konashi-yukai.tumblr.com](http://konashi-yukai.tumblr.com)
 
