@@ -13,7 +13,7 @@
 
 - (void)showPeripherals
 {
-	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
+	[self discover:^(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop) {
 	} completionBlock:^(NSSet *peripherals, BOOL timeout) {
 		if ([peripherals count] > 0) {
 			[self showModulePickerWithPeripherals:[self.peripherals allObjects]];

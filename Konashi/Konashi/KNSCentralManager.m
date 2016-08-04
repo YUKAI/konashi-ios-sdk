@@ -77,13 +77,13 @@ static KNSCentralManager *c;
 
 #pragma mark - 
 
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks
+- (void)discover:(void (^)(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop))discoverBlocks
 {
 	[self discover:discoverBlocks completionBlock:^(NSSet *peripherals, BOOL timeout) {
 	} timeoutInterval:KonashiFindTimeoutInterval];
 }
 
-- (void)discover:(void (^)(CBPeripheral *peripheral, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
+- (void)discover:(void (^)(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop))discoverBlocks completionBlock:(void (^)(NSSet *peripherals, BOOL timeout))timeoutBlock timeoutInterval:(NSTimeInterval)timeoutInterval
 {
     KNS_LOG(@"discover");
 	[[NSNotificationCenter defaultCenter] postNotificationName:KonashiEventStartDiscoveryNotification object:nil];
@@ -103,7 +103,7 @@ static KNSCentralManager *c;
 			__weak typeof(self) bself = self;
 			[self.handler setDidDiscoverPeripheralBlock:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
 				BOOL stop = NO;
-				discoverBlocks(peripheral, &stop);
+				discoverBlocks(peripheral, advertisementData, &stop);
 				if (stop == YES) {
 					[bself stopDiscover:t];
 				}
@@ -163,8 +163,8 @@ static KNSCentralManager *c;
 		KNS_LOG(@"CoreBluetooth not correctly initialized !");
 	}
 	__weak NSString *n = name;
-	[self discover:^(CBPeripheral *peripheral, BOOL *stop) {
-		if ([peripheral.name isEqualToString:n]) {
+	[self discover:^(CBPeripheral *peripheral, NSDictionary *advertisementData, BOOL *stop) {
+		if ([[advertisementData objectForKey:CBAdvertisementDataLocalNameKey] isEqualToString:n]) {
 			connectedHandler([self connectWithPeripheral:peripheral]);
 			*stop = YES;
 		}
