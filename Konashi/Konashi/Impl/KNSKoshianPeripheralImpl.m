@@ -241,8 +241,8 @@
 - (KonashiResult) uartWriteData:(NSData *)data
 {
 	if(self.peripheral && self.peripheral.state == CBPeripheralStateConnected && uartSetting==KonashiUartModeEnable){
-		if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
-			// revision stringが2.x.xの時はマルチバイトで送信できる
+		if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"4.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+			// revision stringが2.x.x~3.x.xの時はマルチバイトで送信できる
 			// 先頭1バイトはデータ長
 			NSMutableData *d = [NSMutableData new];
 			NSUInteger length = data.length;
@@ -317,7 +317,7 @@
 
 - (void)uartDataDidUpdate:(NSData *)data
 {
-	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"4.0.0" options:NSNumericSearch] == NSOrderedAscending) {
 		unsigned char byte[32];
 		[data getBytes:byte length:1];
 		char length = byte[0];
@@ -337,8 +337,8 @@
 - (NSInteger)uartDataMaxLengthByRevisionString:(NSString *)revisionString
 {
 	NSInteger dataLength = 1;
-	// revision stringが2.x.xの時だけマルチバイトで送信できる
-	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"3.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+	// revision stringが2.x.x~3.x.xの時だけマルチバイトで送信できる
+	if ([self.softwareRevisionString compare:@"2.0.0" options:NSNumericSearch] != NSOrderedAscending && [self.softwareRevisionString compare:@"4.0.0" options:NSNumericSearch] == NSOrderedAscending) {
 		dataLength = 18;
 	}
 	
