@@ -11,7 +11,7 @@
 
 // Debug
 // Define in "Build Settings > Preprocessor Macros", not here
-#define KONASHI_DEBUG
+// #define KONASHI_DEBUG
 
 #ifdef KONASHI_DEBUG
 #define KNS_LOG(__FORMAT__, ...) NSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

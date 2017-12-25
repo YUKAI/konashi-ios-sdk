@@ -5,6 +5,8 @@ Physical computing toolkit for smartphones and tablets.
 [![License](https://img.shields.io/cocoapods/l/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 [![Platform](https://img.shields.io/cocoapods/p/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 
+※ バグ改善や要望以外の質問については `konashi`**AT**`ux-xu.com` 宛にご連絡下さい。
+
 [http://konashi.ux-xu.com](http://konashi.ux-xu.com)<br/>
 [http://konashi-yukai.tumblr.com](http://konashi-yukai.tumblr.com)
 
@@ -21,8 +23,12 @@ Physical computing toolkit for smartphones and tablets.
 # Installation
 ## Manually
 ご自身のXcodeプロジェクトに手動でライブラリを追加するには次の手順を行う必要があります。
+
 1. `Konashi`フォルダ以下のファイルをXcodeのプロジェクトへコピーする。
-- `Linked Frameworks and Libraries`に`CoreBluetooth.framework`を追加する。
+2. `Linked Frameworks and Libraries`に`CoreBluetooth.framework`と`JavaScriptCore.framework`を追加する。
+3. Other Linker Flagsに`-all_load`と`-ObjC`を追加する。
+
+以上です。
 
 ## Using CocoaPods
 konashi-ios-sdk は CocoaPodsを用いてインストールすることが可能です。
