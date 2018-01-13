@@ -11,9 +11,9 @@
 
 @interface KNSHandlerManager : NSObject
 
-@property (nonatomic, copy) void (^connectedHandler)();
-@property (nonatomic, copy) void (^disconnectedHandler)();
-@property (nonatomic, copy) void (^readyHandler)();
+@property (nonatomic, copy) void (^connectedHandler)(void);
+@property (nonatomic, copy) void (^disconnectedHandler)(void);
+@property (nonatomic, copy) void (^readyHandler)(void);
 @property (nonatomic, copy) void (^digitalInputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
 @property (nonatomic, copy) void (^digitalOutputDidChangeValueHandler)(KonashiDigitalIOPin pin, int value);
 @property (nonatomic, copy) void (^analogPinDidChangeValueHandler)(KonashiAnalogIOPin pin, int value);
@@ -21,7 +21,7 @@
 @property (nonatomic, copy) void (^i2cReadCompleteHandler)(NSData *data);
 @property (nonatomic, copy) void (^batteryLevelDidUpdateHandler)(int value);
 @property (nonatomic, copy) void (^signalStrengthDidUpdateHandler)(int value);
-@property (nonatomic, copy) void (^spiWriteCompleteHandler)();
+@property (nonatomic, copy) void (^spiWriteCompleteHandler)(void);
 @property (nonatomic, copy) void (^spiReadCompleteHandler)(NSData *data);
 
 @end

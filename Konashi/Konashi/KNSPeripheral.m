@@ -52,32 +52,32 @@
 	_impl.handlerManager = _handlerManager;
 }
 
-- (void)setConnectedHandler:(void (^)())connectedHandler
+- (void)setConnectedHandler:(void (^)(void))connectedHandler
 {
 	_handlerManager.connectedHandler = connectedHandler;
 }
 
-- (void (^)())connectedHandler
+- (void (^)(void))connectedHandler
 {
 	return _handlerManager.connectedHandler;
 }
 
-- (void)setDisconnectedHandler:(void (^)())disconnectedHandler
+- (void)setDisconnectedHandler:(void (^)(void))disconnectedHandler
 {
 	_handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
-- (void (^)())disconnectedHandler
+- (void (^)(void))disconnectedHandler
 {
 	return _handlerManager.disconnectedHandler;
 }
 
-- (void)setReadyHandler:(void (^)())readyHandler
+- (void)setReadyHandler:(void (^)(void))readyHandler
 {
 	_handlerManager.readyHandler = readyHandler;
 }
 
-- (void (^)())readyHandler
+- (void (^)(void))readyHandler
 {
 	return _handlerManager.readyHandler;
 }
@@ -152,12 +152,12 @@
 	return _handlerManager.signalStrengthDidUpdateHandler;
 }
 
-- (void)setSpiWriteCompleteHandler:(void (^)())spiWriteCompleteHandler
+- (void)setSpiWriteCompleteHandler:(void (^)(void))spiWriteCompleteHandler
 {
 	_handlerManager.spiWriteCompleteHandler = spiWriteCompleteHandler;
 }
 
-- (void (^)())spiWriteCompleteHandler
+- (void (^)(void))spiWriteCompleteHandler
 {
 	return _handlerManager.spiWriteCompleteHandler;
 }
