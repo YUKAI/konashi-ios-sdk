@@ -39,17 +39,17 @@
 /**
  *  このHandlerはKonashiが接続された際に呼び出されます。
  */
-@property (nonatomic, copy) void (^connectedHandler)();
+@property (nonatomic, copy) void (^connectedHandler)(void);
 
 /**
  *  このHandlerはKonashiが切断された際に呼び出されます。
  */
-@property (nonatomic, copy) void (^disconnectedHandler)();
+@property (nonatomic, copy) void (^disconnectedHandler)(void);
 
 /**
  *  このHandlerはKonashiが使用可能状態になった際に呼び出されます。
  */
-@property (nonatomic, copy) void (^readyHandler)();
+@property (nonatomic, copy) void (^readyHandler)(void);
 
 /**
  *  このHandlerはKonashiPinModeInputに設定されているPIOの値が変化した際に呼び出されます。
@@ -90,7 +90,7 @@
  *  このHandlerはSPI経由でのデータ書き込み完了時に呼び出されます。呼びだされた瞬間からSPIモジュールから受け取るデータを取得することができます。
  * @note このHanderはSPI機能が追加されたファームウェアを搭載したkoshianでのみ呼びだされます。 +spiReadRequest メソッドを呼び出すことでkoshianからデータを読み出すことが可能です。
  */
-@property (nonatomic, copy) void (^spiWriteCompleteHandler)();
+@property (nonatomic, copy) void (^spiWriteCompleteHandler)(void);
 
 /**
  *  このHandlerは +spiReadRequest メソッドを用いてデータを受信した時に呼び出されます。

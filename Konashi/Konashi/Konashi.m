@@ -350,32 +350,32 @@
 #pragma mark -
 #pragma mark - Blocks
 
-- (void)setConnectedHandler:(void (^)())connectedHandler
+- (void)setConnectedHandler:(void (^)(void))connectedHandler
 {
 	self.handlerManager.connectedHandler = connectedHandler;
 }
 
-- (void (^)())connectedHandler
+- (void (^)(void))connectedHandler
 {
 	return self.handlerManager.connectedHandler;
 }
 
-- (void)setDisconnectedHandler:(void (^)())disconnectedHandler
+- (void)setDisconnectedHandler:(void (^)(void))disconnectedHandler
 {
 	self.handlerManager.disconnectedHandler = disconnectedHandler;
 }
 
-- (void (^)())disconnectedHandler
+- (void (^)(void))disconnectedHandler
 {
 	return self.handlerManager.disconnectedHandler;
 }
 
-- (void)setReadyHandler:(void (^)())readyHandler
+- (void)setReadyHandler:(void (^)(void))readyHandler
 {
 	self.handlerManager.readyHandler = readyHandler;
 }
 
-- (void (^)())readyHandler
+- (void (^)(void))readyHandler
 {
 	return self.handlerManager.readyHandler;
 }
@@ -450,12 +450,12 @@
 	return self.handlerManager.signalStrengthDidUpdateHandler;
 }
 
-- (void)setSpiWriteCompleteHandler:(void (^)())spiWriteCompleteHandler
+- (void)setSpiWriteCovoidmpleteHandler:(void (^)(void))spiWriteCompleteHandler
 {
 	self.handlerManager.spiWriteCompleteHandler = spiWriteCompleteHandler;
 }
 
-- (void (^)())spiWriteCompleteHandler
+- (void (^)(void))spiWriteCompleteHandler
 {
 	return self.handlerManager.spiWriteCompleteHandler;
 }
