@@ -95,6 +95,8 @@
 - (void)readDataWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)charasteristicUUID;
 - (void)notificationWithServiceUUID:(CBUUID*)uuid characteristicUUID:(CBUUID*)characteristicUUID on:(BOOL)on;
 
+- (KonashiResult)disconnect;
+
 - (CBPeripheral *)peripheral;
 - (CBPeripheralState)state;
 

@@ -209,6 +209,16 @@
 	return _impl.softwareRevisionString;
 }
 
+- (KonashiResult)disconnect
+{
+	if(_impl.peripheral && self.state == CBPeripheralStateConnected){
+		[[KNSCentralManager sharedInstance] cancelPeripheralConnection:_impl.peripheral];
+		return KonashiResultSuccess;
+	}
+	else{
+		return KonashiResultFailure;
+	}
+}
 
 #pragma mark - Digital
 
