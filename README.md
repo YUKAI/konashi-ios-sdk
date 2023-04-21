@@ -1,9 +1,12 @@
+※ **本レポジトリはkonashi3以前のSDKで、今後メンテナンスの予定がないためArchiveいたしました。**
+
+konashi 5のSDK等については[こちら](konashi5.ux-xu.com)をご参照ください。
+
+---
+
+
 <a href="http://konashi.ux-xu.com"><img src="http://konashi.ux-xu.com/img/header_logo.png" width="200" /></a><br/>
 Physical computing toolkit for smartphones and tablets.
-
-[![Version](https://img.shields.io/cocoapods/v/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
-[![License](https://img.shields.io/cocoapods/l/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
-[![Platform](https://img.shields.io/cocoapods/p/konashi-ios-sdk.svg?style=flat)](http://cocoadocs.org/docsets/konashi-ios-sdk)
 
 ※ バグ改善や要望以外の質問については `konashi`**AT**`ux-xu.com` 宛にご連絡下さい。
 
