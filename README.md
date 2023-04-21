@@ -1,6 +1,6 @@
 ※ **本レポジトリはkonashi3以前のSDKで、今後メンテナンスの予定がないためArchiveいたしました。**
 
-konashi 5のSDK等については[こちら](konashi5.ux-xu.com)をご参照ください。
+konashi 5のSDK等については[こちら](https://konashi5.ux-xu.com/)をご参照ください。
 
 ---
 
